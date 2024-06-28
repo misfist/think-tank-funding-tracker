@@ -1,0 +1,25 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","area":"header"} /-->
+
+<!-- wp:group {"tagName":"main","metadata":{"name":"Main Content"},"layout":{"type":"default"}} -->
+<main class="wp-block-group">
+    <!-- wp:group {"tagName":"article","metadata":{"name":"Post Article"},"align":"wide","className":"alignwide","layout":{"type":"constrained","wideSize":"1280px"}} -->
+    <article class="wp-block-group alignwide">
+        <!-- wp:group {"tagName":"header","metadata":{"name":"Post Header"},"layout":{"type":"default"}} -->
+        <header class="wp-block-group"><!-- wp:post-title {"level":1,"fontSize":"x-large"} /--></header>
+        <!-- /wp:group -->
+
+        <!-- wp:post-content {"lock":{"move":false,"remove":true},"layout":{"type":"default"}} /-->
+
+        <!-- wp:shortcode -->
+        [ninja_table_info id='2813' field="total_rows"]
+        <!-- /wp:shortcode -->
+
+        <!-- wp:shortcode -->
+        [ninja_tables id="2813" info="{TR} Records Found."]
+        <!-- /wp:shortcode -->
+    </article>
+    <!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","area":"footer"} /-->
