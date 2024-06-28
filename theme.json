@@ -1,4 +1,20 @@
 {
+	"customTemplates": [
+		{
+			"name": "single-donor",
+			"postTypes": [
+				"donor"
+			],
+			"title": "Single Donors"
+		},
+		{
+			"name": "single-think_tank",
+			"postTypes": [
+				"think-tank"
+			],
+			"title": "Single Think Tanks"
+		}
+	],
 	"settings": {
 		"blocks": {
 			"core/image": {
@@ -345,6 +361,6 @@
 			"fontFamily": "var(--wp--preset--font-family--dm-sans)"
 		}
 	},
-	"version": 3,
-	"$schema": "https://schemas.wp.org/trunk/theme.json"
+	"version": 2,
+	"$schema": "https://schemas.wp.org/wp/6.5/theme.json"
 }
