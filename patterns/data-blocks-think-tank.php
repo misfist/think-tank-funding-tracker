@@ -16,9 +16,21 @@
         <p>U.S. Government Funding</p>
         <!-- /wp:paragraph -->
 
-        <!-- wp:paragraph -->
+        <!-- wp:paragraph {
+            "metadata":{
+                "bindings":{
+                    "content":{
+                        "source":"core/post-meta",
+                        "args":{
+                            "key":"amount_domestic_cumulative"
+                        }
+                    }
+                }
+            }
+        } -->
         <p>$X</p>
         <!-- /wp:paragraph -->
+
     </div>
     <!-- /wp:group -->
 
@@ -29,7 +41,18 @@
         <p>Defense Contractor Funding</p>
         <!-- /wp:paragraph -->
 
-        <!-- wp:paragraph -->
+         <!-- wp:paragraph {
+            "metadata":{
+                "bindings":{
+                    "content":{
+                        "source":"core/post-meta",
+                        "args":{
+                            "key":"amount_defense_cumulative"
+                        }
+                    }
+                }
+            }
+        } -->
         <p>$X</p>
         <!-- /wp:paragraph -->
     </div>
@@ -42,7 +65,18 @@
         <p>Foreign Interest Funding</p>
         <!-- /wp:paragraph -->
 
-        <!-- wp:paragraph -->
+         <!-- wp:paragraph {
+            "metadata":{
+                "bindings":{
+                    "content":{
+                        "source":"core/post-meta",
+                        "args":{
+                            "key":"amount_foreign_cumulative"
+                        }
+                    }
+                }
+            }
+        } -->
         <p>$X</p>
         <!-- /wp:paragraph -->
     </div>
