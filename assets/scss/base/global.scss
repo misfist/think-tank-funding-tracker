@@ -1,0 +1,36 @@
+/* -- Defaults -- */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+
+a,
+button,
+input,
+textarea,
+.wp-element-button {
+	transition: all 0.2s ease-in-out;
+}
+
+sup {
+	color: var(--wp--preset--color--primary-500);
+	font-size: 0.75rem;
+
+	a {
+		color: var(--wp--preset--color--primary-500);
+		text-decoration: none;
+	}
+}
+
+/** Fix for image lightbox with caption trigger overflow from core **/
+.wp-block-gallery {
+	.lightbox-trigger {
+		top: 1rem !important; /* stylelint-disable-line declaration-no-important */
+	}
+}

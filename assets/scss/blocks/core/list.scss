@@ -1,0 +1,74 @@
+@import '../../abstracts/responsive-mixins';
+
+/* -- List -- */
+
+main,
+.wp-block-post-content {
+	ul {
+		&:not([class]),
+		&.wp-block-list {
+			list-style-type: none;
+
+			li {
+				padding-bottom: var(--wp--preset--spacing--20);
+				padding-left: var(--wp--preset--spacing--50);
+				position: relative;
+
+				@include responsive-max(600px) {
+					padding-left: var(--wp--preset--spacing--70);
+				}
+
+				&::before {
+					background-color: var(--wp--preset--color--grey-200);
+					content: '';
+					display: block;
+					height: 0.125rem;
+					left: 0;
+					position: absolute;
+					top: 0.5625rem;
+					width: 1.5rem;
+				}
+
+				&:last-child {
+					padding-bottom: 0;
+				}
+			}
+		}
+	}
+
+	/* -- Ordered List -- */
+
+	ol {
+		&:not([class]),
+		&.wp-block-list {
+			list-style-position: inside;
+
+			li {
+				padding-bottom: var(--wp--preset--spacing--20);
+				position: relative;
+
+				ol {
+					padding-left: var(
+						--wp--preset--spacing--30
+					) !important; /* stylelint-disable-line declaration-no-important */
+				}
+
+				&::marker {
+					font-weight: 700;
+				}
+
+				&:last-child {
+					padding-bottom: 0;
+				}
+
+				.rich-text {
+					display: inline-block;
+				}
+			}
+
+			ol {
+				padding-bottom: 0;
+			}
+		}
+	}
+}
