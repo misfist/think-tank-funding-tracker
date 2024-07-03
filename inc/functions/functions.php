@@ -138,9 +138,9 @@ add_action( 'init', __NAMESPACE__ . '\projectslug_register_block_bindings' );
 
 function projectslug_register_block_bindings() {
 	register_block_bindings_source(
-		'think-tank-transparency/transactions-think-tank',
+		'ttt/transactions-think-tank',
 		array(
-			'label'              => __( 'Think Tank Transactions', 'think-tank-transparency' ),
+			'label'              => __( 'Think Tank Transactions', 'ttt' ),
 			'get_value_callback' => __NAMESPACE__ . '\think_tank_transactions',
 		)
 	);
