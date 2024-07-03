@@ -30,5 +30,5 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 
-ttt is a child theme of Twenty Twenty-Four (https://wordpress.org/themes/twentytwentyfour/), (C) the WordPress team, [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
+ttt is a child theme of Twenty Twenty-Four (https://wordpress.org/themes/ttt/), (C) the WordPress team, [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 

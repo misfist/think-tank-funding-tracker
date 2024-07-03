@@ -4,12 +4,13 @@
 		"at-rule-empty-line-before": null,
 		"no-eol-whitespace": null,
 		"declaration-colon-newline-after": null,
-		"declaration-no-important": true,
+		"declaration-no-important": null,
 		"function-parentheses-space-inside": null,
 		"no-descending-specificity": null,
 		"rule-empty-line-before": null,
 		"selector-pseudo-class-parentheses-space-inside": null,
 		"selector-class-pattern": null,
+		"comment-empty-line-before": null,
 		"scss/at-rule-no-unknown": [
 			true,
 			{
