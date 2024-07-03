@@ -6,13 +6,23 @@
  * Inserter: no
  */
 ?>
-<!-- wp:template-part {"slug":"header","tagName":"header","area":"header"} /-->
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header","area":"header"} /-->
 
 <!-- wp:group {"tagName":"main","metadata":{"name":"Main Content"},"style":{"spacing":{"blockGap":"0","margin":{"top":"0"}}},"layout":{"type":"default"}} -->
 <main class="wp-block-group" style="margin-top:0">
 	<!-- wp:group {"metadata":{"name":"Main Top"},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group">
-		<!-- wp:pattern {"slug":"ttt/search-form"} /-->
+		<!-- wp:group {"metadata":{"name":"Search Wrapper"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"backgroundColor":"base","layout":{"type":"default"}} -->
+		<div class="wp-block-group has-base-background-color has-background"
+			style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+			<!-- wp:search {"label":"","placeholder":"Search by Think Tank or Donor","width":100,"widthUnit":"%","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"style":{"border":{"width":"1px","color":"#A4A4A4","radius":"0px"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"backgroundColor":"base-2","textColor":"contrast"} /-->
+
+			<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast-2"}}},"spacing":{"margin":{"top":"0"}}},"textColor":"contrast-2","fontSize":"small"} -->
+			<p class="has-contrast-2-color has-text-color has-link-color has-small-font-size" style="margin-top:0">
+				Examples: Lockheed Martin, Mitsubishi, United Arab Emirates, U.S. Government </p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
 
@@ -41,8 +51,7 @@
 			<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 			<div class="wp-block-buttons"><!-- wp:button -->
 				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">
-						<?php echo __( 'About us', 'ttt' ); ?>
-					</a></div>
+						About us </a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
@@ -57,8 +66,7 @@
 		<!-- wp:heading {"align":"wide","style":{"typography":{"lineHeight":"1"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|40"}}},"fontSize":"x-large"} -->
 		<h2 class="wp-block-heading alignwide has-x-large-font-size"
 			style="margin-top:0;margin-bottom:var(--wp--preset--spacing--40);line-height:1">
-			<?php echo __( 'Think Tanks', 'ttt' ); ?>
-		</h2>
+			Think Tanks </h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:group {"metadata":{"name":"Think Tank List"},"align":"wide","layout":{"type":"constrained"}} -->
@@ -102,8 +110,7 @@
 				<!-- wp:query-no-results -->
 				<!-- wp:paragraph -->
 				<p>
-					<?php echo __( 'No posts were found.', 'ttt' ); ?>
-				</p>
+					No posts were found. </p>
 				<!-- /wp:paragraph -->
 				<!-- /wp:query-no-results -->
 			</div>
@@ -119,8 +126,7 @@
 		<!-- wp:heading {"align":"wide","style":{"typography":{"lineHeight":"1"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|40"}}},"className":"is-style-default","fontSize":"x-large"} -->
 		<h2 class="wp-block-heading alignwide is-style-default has-x-large-font-size"
 			style="margin-top:0;margin-bottom:var(--wp--preset--spacing--40);line-height:1">
-			<?php echo __( 'Donors', 'ttt' ); ?>
-		</h2>
+			Donors </h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:group {"metadata":{"name":"Donor List"},"align":"wide","layout":{"type":"constrained"}} -->
@@ -164,8 +170,7 @@
 				<!-- wp:query-no-results -->
 				<!-- wp:paragraph -->
 				<p>
-					<?php echo __( 'No posts were found.', 'ttt' ); ?>
-				</p>
+					No posts were found. </p>
 				<!-- /wp:paragraph -->
 				<!-- /wp:query-no-results -->
 			</div>
@@ -196,7 +201,7 @@
 			<div class="wp-block-group">
 				<!-- wp:image {"width":"60px","aspectRatio":"1","scale":"cover","sizeSlug":"thumbnail","linkDestination":"none","align":"center","style":{"border":{"radius":"100px"}}} -->
 				<figure class="wp-block-image aligncenter size-thumbnail is-resized has-custom-border"><img
-						alt="<?php echo __( '', 'ttt' ); ?>"
+						alt="<?php esc_html_e('', 'ttt');?>"
 						style="border-radius:100px;aspect-ratio:1;object-fit:cover;width:60px" /></figure>
 				<!-- /wp:image -->
 
@@ -208,8 +213,7 @@
 				<!-- wp:paragraph {"align":"center","style":{"typography":{"fontStyle":"normal","fontWeight":"300"}},"textColor":"contrast-3","fontSize":"small"} -->
 				<p class="has-text-align-center has-contrast-3-color has-text-color has-small-font-size"
 					style="font-style:normal;font-weight:300">
-					<?php echo __( 'CEO, Greenprint', 'ttt' ); ?>
-				</p>
+					CEO, Greenprint </p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -230,21 +234,18 @@
 
 			<!-- wp:heading {"textAlign":"center","fontSize":"x-large"} -->
 			<h2 class="wp-block-heading has-text-align-center has-x-large-font-size">
-				<?php echo __( 'Stay Informed', 'ttt' ); ?>
-			</h2>
+				Stay Informed </h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"align":"center"} -->
 			<p class="has-text-align-center">
-				<?php echo __( 'Stay in the loop with everything you need to know.', 'ttt' ); ?>
-			</p>
+				Stay in the loop with everything you need to know. </p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 			<div class="wp-block-buttons"><!-- wp:button -->
 				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">
-						<?php echo __( 'Sign up', 'ttt' ); ?>
-					</a></div>
+						Sign up </a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
@@ -259,4 +260,4 @@
 </main>
 <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer","tagName":"footer","area":"footer"} /-->
+<!-- wp:template-part {"slug":"footer","area":"footer","className":"site-footer","tagName":"footer"} /-->

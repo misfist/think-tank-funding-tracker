@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: footer
+ * Title: Footer
  * Slug: ttt/footer
  * Categories: hidden
  * Inserter: no
