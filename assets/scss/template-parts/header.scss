@@ -33,6 +33,14 @@
 			}
 		}
 	}
+
+	.site-branding {
+		max-width: 300px;
+	}
+
+	.wp-block-site-title {
+		text-wrap: balance;
+	}
 }
 
 @include responsive-max(833px) {
