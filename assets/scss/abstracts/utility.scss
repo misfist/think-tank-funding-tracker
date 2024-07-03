@@ -85,14 +85,14 @@ figure[class*=' blur-'] {
 /* Header */
 
 .js-enabled {
-	.site-header {
-		position: sticky;
-		top: var(
-			--wp-admin--admin-bar--height, 0
-		) !important; /* stylelint-disable-line declaration-no-important */
-		transition: top 0.5s;
-		z-index: 100;
-	}
+	// .site-header {
+	// 	position: sticky;
+	// 	top: var(
+	// 		--wp-admin--admin-bar--height, 0
+	// 	) !important; /* stylelint-disable-line declaration-no-important */
+	// 	transition: top 0.5s;
+	// 	z-index: 100;
+	// }
 }
 
 /* Media Queries */

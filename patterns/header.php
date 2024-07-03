@@ -6,7 +6,7 @@
  * Inserter: no
  */
 ?>
-<!-- wp:group {"metadata":{"name":"Header Wrapper"},"align":"wide","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"}},"elements":{"link":{"color":{"text":"var:preset|color|base-2"}}},"position":{"type":"sticky","top":"0px"}},"backgroundColor":"accent-3","textColor":"base-2","className":"header-wrapper","layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"Header Wrapper"},"align":"wide","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"}},"elements":{"link":{"color":{"text":"var:preset|color|base-2"}}}},"backgroundColor":"accent-3","textColor":"base-2","className":"header-wrapper","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide header-wrapper has-base-2-color has-accent-3-background-color has-text-color has-background has-link-color"
     style="padding-top:20px;padding-bottom:20px">
     <!-- wp:group {"metadata":{"name":"Header Row"},"align":"wide","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
