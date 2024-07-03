@@ -2,6 +2,7 @@
 	"extends": ["@wordpress/stylelint-config/scss"],
 	"rules": {
 		"at-rule-empty-line-before": null,
+		"no-eol-whitespace": null,
 		"declaration-colon-newline-after": null,
 		"declaration-no-important": true,
 		"function-parentheses-space-inside": null,

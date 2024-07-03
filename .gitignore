@@ -22,7 +22,7 @@ node_modules/
 vendor/
 
 # theme
-build/
+# build/
 /blocks/
 
 #tests
