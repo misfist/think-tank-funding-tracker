@@ -5,7 +5,9 @@
     <!-- wp:group {"tagName":"article","metadata":{"name":"Post Article"},"align":"wide","className":"alignwide","layout":{"type":"constrained","wideSize":"1280px"}} -->
     <article class="wp-block-group alignwide">
         <!-- wp:group {"tagName":"header","metadata":{"name":"Post Header"},"layout":{"type":"default"}} -->
-        <header class="wp-block-group"><!-- wp:post-title {"level":1,"fontSize":"x-large"} /--></header>
+        <header class="wp-block-group">
+            <!-- wp:post-title {"level":1} /-->
+        </header>
         <!-- /wp:group -->
 
         <!-- wp:post-content {"lock":{"move":false,"remove":true},"layout":{"type":"default"}} /-->
@@ -13,11 +15,11 @@
         <!-- wp:pattern {"slug":"ttt/data-blocks-think-tank"} /-->
 
         <!-- wp:shortcode -->
-        [ninja_table_info id='11669' field="total_rows"]
+        [ninja_table_info id="11669" field="total_rows"]
         <!-- /wp:shortcode -->
 
         <!-- wp:shortcode -->
-        [ninja_tables id="11669" info="{TR} Records Found." get_filter='donor_type']
+        [ninja_tables id="11669" info="{TR} Records Found." get_filter="donor_type" filter_selects="donor_type=all|donation_year=all"]
         <!-- /wp:shortcode -->
     </article>
     <!-- /wp:group -->

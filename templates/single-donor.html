@@ -5,13 +5,15 @@
     <!-- wp:group {"tagName":"article","metadata":{"name":"Post Article"},"align":"wide","className":"alignwide","layout":{"type":"constrained","wideSize":"1280px"}} -->
     <article class="wp-block-group alignwide">
         <!-- wp:group {"tagName":"header","metadata":{"name":"Post Header"},"layout":{"type":"default"}} -->
-        <header class="wp-block-group"><!-- wp:post-title {"level":1,"fontSize":"x-large"} /--></header>
+        <header class="wp-block-group">
+            <!-- wp:post-title {"level":1} /-->
+            </header>
         <!-- /wp:group -->
 
         <!-- wp:post-content {"lock":{"move":false,"remove":true},"layout":{"type":"default"}} /-->
 
         <!-- wp:shortcode -->
-        [ninja_table_info id="11671" field="total_rows"]
+        [ninja_table_info id="11671" field="total_rows" get_filter="donation_year"]
         <!-- /wp:shortcode -->
 
         <!-- wp:shortcode -->
