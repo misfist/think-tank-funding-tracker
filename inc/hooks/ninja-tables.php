@@ -108,11 +108,9 @@ function filter_query( $query, $table_id ) {
 		$find      = '%%';
 		$replace   = "%{$post->post_title}%";
 		$new_query = str_replace( $find, $replace, $query );
-		// var_dump( $new_query );
 
 		return $new_query;
 	}
-	// var_dump( $query );
 
 	return $query;
 }
