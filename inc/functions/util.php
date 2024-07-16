@@ -7,19 +7,19 @@
 
 namespace Quincy\ttt;
 
-if( 'local' === wp_get_environment_type() && ! class_exists( '\WP_CLI' ) ) {
+if ( 'local' === wp_get_environment_type() && ! class_exists( '\WP_CLI' ) ) {
 	require_once trailingslashit( get_template_directory() ) . 'vendor/autoload.php';
 }
 
 /**
  * Assign transaction data
  *
- * @param  int $import_id
+ * @param  int    $import_id
  * @param  object $import
  * @return void
  */
 function assign_transaction_data_after_import( $import_id, $import ) : void {
-	if( 8 !== $import_id ) {
+	if ( 8 !== $import_id ) {
 		return;
 	}
 	assign_transaction_data();
@@ -33,16 +33,16 @@ add_action( 'pmxi_after_xml_import', __NAMESPACE__ . '\assign_transaction_data_a
  */
 function assign_transaction_data( $args = array() ) : void {
 	assign_think_tank_data();
-	if( class_exists( '\WP_CLI' ) ) {
+	if ( class_exists( '\WP_CLI' ) ) {
 		\WP_CLI::success( __( 'Transactions assigned to think tanks.', 'ttt' ) );
 	}
-	
+
 	assign_donor_data();
-	if( class_exists( '\WP_CLI' ) ) {
+	if ( class_exists( '\WP_CLI' ) ) {
 		\WP_CLI::success( __( 'Transactions assigned to donors.', 'ttt' ) );
 	}
 }
-if( class_exists( '\WP_CLI' ) ) {
+if ( class_exists( '\WP_CLI' ) ) {
 	\WP_CLI::add_command( 'transaction-data all', __NAMESPACE__ . '\assign_transaction_data' );
 }
 
@@ -61,16 +61,18 @@ function assign_think_tank_data() : void {
 				update_post_meta( $think_tank_id, 'transactions', $data, true );
 				$cumulative_data = calculate_data( $think_tank_id, $data );
 				update_post_meta( $think_tank_id, 'cumulative_data', $cumulative_data, true );
-				foreach( $cumulative_data as $key => $value ) {
-					$format = new \NumberFormatter( 'en', \NumberFormatter::CURRENCY );
-					$formatted_value = $format->formatCurrency( (int) $value, 'USD' );
-					update_post_meta( $think_tank_id, $key . '_cumulative', $formatted_value, true );
+				foreach ( $cumulative_data as $key => $value ) {
+					// $raw_value       = $value;
+					// $format          = new \NumberFormatter( 'en', \NumberFormatter::CURRENCY );
+					// $formatted_value = $format->formatCurrency( (int) $value, 'USD' );
+					// update_post_meta( $think_tank_id, $key . '_cumulative', $formatted_value, true );
+					update_post_meta( $think_tank_id, $key . '_cumulative', $value, true );
 				}
 			}
 		}
 	}
 }
-if( class_exists( '\WP_CLI' ) ) {
+if ( class_exists( '\WP_CLI' ) ) {
 	\WP_CLI::add_command( 'transaction-data think-tanks', __NAMESPACE__ . '\assign_think_tank_data' );
 }
 
@@ -89,15 +91,18 @@ function assign_donor_data() : void {
 				update_post_meta( $donor_id, 'transactions', $data, true );
 				$cumulative_data = calculate_data( $donor_id, $data );
 				update_post_meta( $donor_id, 'cumulative_data', $cumulative_data, true );
-				foreach( $cumulative_data as $key => $value ) {
-					$format = new \NumberFormatter( 'en', \NumberFormatter::CURRENCY );
-					update_post_meta( $donor_id, $key . '_cumulative', $format->formatCurrency( $value, 'USD' ), true );
+				foreach ( $cumulative_data as $key => $value ) {
+					// $raw_value       = $value;
+					// $format          = new \NumberFormatter( 'en', \NumberFormatter::CURRENCY );
+					// $formatted_value = $format->formatCurrency( (int) $value, 'USD' );
+					// update_post_meta( $donor_id, $key . '_cumulative', $formatted_value, true );
+					update_post_meta( $donor_id, $key . '_cumulative', $value, true );
 				}
 			}
 		}
 	}
 }
-if( class_exists( '\WP_CLI' ) ) {
+if ( class_exists( '\WP_CLI' ) ) {
 	\WP_CLI::add_command( 'transaction-data donors', __NAMESPACE__ . '\assign_donor_data' );
 }
 
@@ -141,6 +146,31 @@ function calculate_data( $post_id, $data ) : array {
 	$amount_min  = wp_list_pluck( $data, 'amount_min' );
 	$amount_max  = wp_list_pluck( $data, 'amount_max' );
 	$amount_calc = wp_list_pluck( $data, 'amount_calc' );
+	$years       = array_filter(
+		array_unique( wp_list_pluck( $data, 'year' ) ),
+		function ( $year ) {
+			return 0 != $year;
+		}
+	);
+
+	$years_array      = array();
+	$years_cumulative = array();
+	foreach ( $years as $year ) {
+		/**
+		 * Filter for $year
+		 */
+		$years_array[ $year ] = array_filter(
+			$data,
+			function( $var ) use ( $year ) {
+				return $year == $var['year'];
+			}
+		);
+
+		/**
+		 * Sum amount_calc for $year
+		 */
+		$years_cumulative[ $year ] = array_sum( wp_list_pluck( $years_array[ $year ], 'amount_calc' ) );
+	}
 
 	$domestic = wp_list_pluck(
 		array_filter(
@@ -180,7 +210,22 @@ function calculate_data( $post_id, $data ) : array {
 		'amount_domestic' => array_sum( $domestic ),
 		'amount_foreign'  => array_sum( $foreign ),
 		'amount_defense'  => array_sum( $defense ),
+		'years'           => $years,
+		'years_array'     => $years_array,
+		'years_amount'    => $years_cumulative,
 	);
+}
+
+function is_range( $item ) {
+	return str_contains( '-', $item );
+}
+
+function get_range_values( $item ) {
+	$range = explode( '-', $item );
+	if ( is_array( $range ) ) {
+		return range( $range[0], $range[1] );
+	}
+	return array();
 }
 
 /**
