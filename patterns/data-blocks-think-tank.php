@@ -17,7 +17,7 @@ $transparency_score = ( $score = get_post_meta( get_the_ID(), 'transparency_scor
 	<div class="wp-block-group has-border-color has-contrast-3-border-color has-base-background-color has-background <?php echo ( $no_domestic ) ? 'no-funding' : 'is-funded'; ?>"
 		style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 		<!-- wp:heading {"level":4} -->
-		<h4>U.S. Government Funding</h4>
+		<h4><?php esc_html_e( 'U.S. Government Funding', 'ttt' ); ?></h4>
 		<!-- /wp:heading -->
          
 		<?php
@@ -60,7 +60,7 @@ $transparency_score = ( $score = get_post_meta( get_the_ID(), 'transparency_scor
 		style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
 		<!-- wp:heading {"level":4} -->
-		<h4>Defense Contractor Funding</h4>
+		<h4><?php esc_html_e( 'Defense Contractor Funding', 'ttt' ); ?></h4>
 		<!-- /wp:heading -->
 
 		<?php
@@ -68,7 +68,7 @@ $transparency_score = ( $score = get_post_meta( get_the_ID(), 'transparency_scor
 			?>
 
 			<!-- wp:paragraph  -->
-			<p><?php esc_html_e( 'Did not accept any donations from the Defense Contractors', 'ttt' ); ?></p>
+			<p><?php esc_html_e( 'Did not accept any donations from Defense Contractors', 'ttt' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<?php
@@ -101,7 +101,7 @@ $transparency_score = ( $score = get_post_meta( get_the_ID(), 'transparency_scor
 		style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
 		<!-- wp:heading {"level":4} -->
-		<h4>Foreign Interest Funding</h4>
+		<h4><?php esc_html_e( 'Foreign Interest Funding', 'ttt' ); ?></h4>
 		<!-- /wp:heading -->
 
 		<?php
@@ -109,7 +109,7 @@ $transparency_score = ( $score = get_post_meta( get_the_ID(), 'transparency_scor
 			?>
 
 			<!-- wp:paragraph  -->
-			<p><?php esc_html_e( 'Did not accept any donations from the Foreign Interests', 'ttt' ); ?></p>
+			<p><?php esc_html_e( 'Did not accept any donations from Foreign Interests', 'ttt' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<?php
@@ -130,7 +130,6 @@ $transparency_score = ( $score = get_post_meta( get_the_ID(), 'transparency_scor
 			} -->
 			<p>$X</p>
 			<!-- /wp:paragraph -->
-
 
 			<?php
 		endif;
