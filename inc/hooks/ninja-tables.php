@@ -16,21 +16,9 @@ namespace Quincy\ttt;
  */
 function filter_tables( $data ) : array {
 	global $post;
-	$title = get_post_field( 'post_title', $post );
-
-	if ( 'think_tank' === $post->post_type ) {
-		$data['filter']        = $title;
-		$data['filter_column'] = 'transactionthinktank';
-		// $data['columns']       = 'transactiondonor,transactiondonationyear,actual_calc,transactiondonortype,data_notes,source';
-	} elseif ( 'donor' === $post->post_type ) {
-		$data['filter']        = $title;
-		$data['filter_column'] = 'transactiondonor';
-		// $data['columns']       = 'transactionthinktank,transactiondonationyear,actual_calc,transactiondonortype,data_notes,source';
-	}
-
 	return $data;
 }
-add_filter( 'ninja_tables_shortcode_data', __NAMESPACE__ . '\filter_tables' );
+// add_filter( 'ninja_tables_shortcode_data', __NAMESPACE__ . '\filter_tables' );
 
 /**
  * Format calculation field
@@ -48,7 +36,7 @@ function format_number_values( $formatted_data, $table_id ) : array {
 	}
 	return $formatted_data;
 }
-add_filter( 'ninja_tables_get_public_data', __NAMESPACE__ . '\format_number_values', '', 2 );
+// add_filter( 'ninja_tables_get_public_data', __NAMESPACE__ . '\format_number_values', '', 2 );
 
 
 add_filter(
@@ -72,10 +60,9 @@ add_filter(
 );
 
 function data_filter( $query, $table_id ) {
-	var_dump( $query );
 	return $query;
 }
-add_filter( 'ninja_table_own_data_filter_query', __NAMESPACE__ . '\data_filter', 10, 2 );
+// add_filter( 'ninja_table_own_data_filter_query', __NAMESPACE__ . '\data_filter', 10, 2 );
 
 
 add_filter(
