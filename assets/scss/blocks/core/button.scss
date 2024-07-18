@@ -19,23 +19,6 @@
 			opacity: 0.15;
 			pointer-events: none;
 		}
-
-		&::after {
-			background-color: currentcolor;
-			content: '';
-			display: inline-block;
-			height: 1rem;
-			margin-left: 0.5rem;
-			margin-right: unset;
-			mask-image: url(../../../images/icons/icon-circle-right.svg);
-			mask-size: contain;
-			left: unset;
-			position: absolute;
-			right: 0.75rem;
-			vertical-align: middle;
-			width: 1rem;
-			z-index: 0;
-		}
 	}
 
 	&.is-style-minimal,
