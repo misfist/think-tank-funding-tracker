@@ -11,7 +11,7 @@
 					background-color: transparent;
 
 					svg {
-						fill: var(--wp--preset--color--grey-500);
+						fill: var(--wp--preset--color--base);
 						min-height: 1.875rem;
 						min-width: 1.875rem;
 					}
@@ -25,12 +25,16 @@
 					background-color: transparent;
 
 					svg {
-						fill: var(--wp--preset--color--grey-500);
+						fill: var(--wp--preset--color--base);
 						min-height: 1.875rem;
 						min-width: 1.875rem;
 					}
 				}
 			}
+		}
+
+		.wp-block-search__input {
+			border-radius: 0;
 		}
 	}
 
