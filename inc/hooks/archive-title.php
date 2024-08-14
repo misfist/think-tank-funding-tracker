@@ -12,19 +12,22 @@ namespace Quincy\ttt;
  *
  * @author Quincy
  *
- * @param string $block_title The default $block_title of the page.
+ * @param string $archive_title The default $archive_title of the page.
  *
- * @return string The updated $block_title.
+ * @return string The updated $archive_title.
  */
-function remove_archive_title_prefix( $block_title ) {
-	// Get the single category title with no prefix.
+function remove_archive_title_prefix( $archive_title ) {
 	$single_cat_title = single_term_title( '', false );
+
+	if( is_post_type_archive( array( 'think_tank', 'donor' ) ) ) {
+		return sprintf( '%s %s', esc_html__( 'All', 'ttt' ), $archive_title );
+	}
 
 	if ( is_category() || is_tag() || is_tax() ) {
 		return esc_html( $single_cat_title );
 	}
 
-	return $block_title;
+	return $archive_title;
 }
 
 add_filter( 'get_the_archive_title', __NAMESPACE__ . '\remove_archive_title_prefix' );
