@@ -31,11 +31,11 @@ add_filter( 'upload_mimes', __NAMESPACE__ . '\add_mime_types' );
 function check_filetype( $data, $file, $filename, $mimes ) {
 	$filetype = wp_check_filetype( $filename, $mimes );
 
-	return [
+	return array(
 		'ext'             => $filetype['ext'],
 		'type'            => $filetype['type'],
 		'proper_filename' => $data['proper_filename'],
-	];
+	);
 }
 add_filter( 'wp_check_filetype_and_ext', __NAMESPACE__ . '\check_filetype', 10, 4 );
 

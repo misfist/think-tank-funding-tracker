@@ -7,14 +7,13 @@
 
 namespace Quincy\ttt;
 
-
 /**
  * Filter table
  *
  * @param  array $data
  * @return array
  */
-function filter_tables( $data ) : array {
+function filter_tables( $data ): array {
 	global $post;
 	return $data;
 }
@@ -27,7 +26,7 @@ function filter_tables( $data ) : array {
  * @param  int   $table_id
  * @return array
  */
-function format_number_values( $formatted_data, $table_id ) : array {
+function format_number_values( $formatted_data, $table_id ): array {
 	foreach ( $formatted_data as $index => $value ) {
 		if ( isset( $value['amount_calc'] ) && '#N/A' != $value['amount_calc'] ) {
 			$amount                                  = (int) $value['amount_calc'];

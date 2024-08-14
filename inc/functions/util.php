@@ -18,7 +18,7 @@ if ( 'local' === wp_get_environment_type() && ! class_exists( '\WP_CLI' ) ) {
  * @param  object $import
  * @return void
  */
-function assign_transaction_data_after_import( $import_id, $import ) : void {
+function assign_transaction_data_after_import( $import_id, $import ): void {
 	if ( 8 !== $import_id ) {
 		return;
 	}
@@ -31,7 +31,7 @@ add_action( 'pmxi_after_xml_import', __NAMESPACE__ . '\assign_transaction_data_a
  *
  * @return void
  */
-function assign_transaction_data( $args = array() ) : void {
+function assign_transaction_data( $args = array() ): void {
 	assign_think_tank_data();
 	if ( class_exists( '\WP_CLI' ) ) {
 		\WP_CLI::success( __( 'Transactions assigned to think tanks.', 'ttt' ) );
@@ -51,7 +51,7 @@ if ( class_exists( '\WP_CLI' ) ) {
  *
  * @return void
  */
-function assign_think_tank_data() : void {
+function assign_think_tank_data(): void {
 	$think_tanks = get_think_tanks();
 
 	if ( ! empty( $think_tanks ) && ! is_wp_error( $think_tanks ) ) {
@@ -81,7 +81,7 @@ if ( class_exists( '\WP_CLI' ) ) {
  *
  * @return void
  */
-function assign_donor_data() : void {
+function assign_donor_data(): void {
 	$donors = get_donors();
 
 	if ( ! empty( $donors ) && ! is_wp_error( $donors ) ) {
@@ -111,7 +111,7 @@ if ( class_exists( '\WP_CLI' ) ) {
  *
  * @return array
  */
-function get_think_tanks() : array {
+function get_think_tanks(): array {
 	$args = array(
 		'post_type'      => 'think_tank',
 		'posts_per_page' => -1,
@@ -125,7 +125,7 @@ function get_think_tanks() : array {
  *
  * @return array
  */
-function get_donors() : array {
+function get_donors(): array {
 	$args = array(
 		'post_type'      => 'donor',
 		'posts_per_page' => -1,
@@ -141,7 +141,7 @@ function get_donors() : array {
  * @param  array $data
  * @return array
  */
-function calculate_data( $post_id, $data ) : array {
+function calculate_data( $post_id, $data ): array {
 	$amount      = wp_list_pluck( $data, 'amount' );
 	$amount_min  = wp_list_pluck( $data, 'amount_min' );
 	$amount_max  = wp_list_pluck( $data, 'amount_max' );
@@ -161,7 +161,7 @@ function calculate_data( $post_id, $data ) : array {
 		 */
 		$years_array[ $year ] = array_filter(
 			$data,
-			function( $var ) use ( $year ) {
+			function ( $var ) use ( $year ) {
 				return $year == $var['year'];
 			}
 		);
@@ -175,7 +175,7 @@ function calculate_data( $post_id, $data ) : array {
 	$domestic = wp_list_pluck(
 		array_filter(
 			$data,
-			function( $var ) {
+			function ( $var ) {
 				return 'U.S. Government' == $var['type'];
 			}
 		),
@@ -185,7 +185,7 @@ function calculate_data( $post_id, $data ) : array {
 	$foreign = wp_list_pluck(
 		array_filter(
 			$data,
-			function( $var ) {
+			function ( $var ) {
 				return 'Foreign Government' == $var['type'];
 			}
 		),
@@ -195,7 +195,7 @@ function calculate_data( $post_id, $data ) : array {
 	$defense = wp_list_pluck(
 		array_filter(
 			$data,
-			function( $var ) {
+			function ( $var ) {
 				return 'Defense Contractor' == $var['type'];
 			}
 		),
@@ -311,7 +311,7 @@ function get_donor_data( $post_id = 0 ) {
  * @param  string $post_slug
  * @return array
  */
-function get_think_tank_transactions_by_slug( $post_slug ) : array {
+function get_think_tank_transactions_by_slug( $post_slug ): array {
 	$args         = array(
 		'post_type'      => 'transaction',
 		'posts_per_page' => -1,
@@ -340,7 +340,7 @@ function get_think_tank_transactions_by_slug( $post_slug ) : array {
  * @param  integer $post_id
  * @return array
  */
-function get_think_tank_transaction( $post_id = 0 ) : array {
+function get_think_tank_transaction( $post_id = 0 ): array {
 	global $post;
 	$donation_year = wp_get_post_terms( $post_id, 'year', array( 'number' => 1 ) );
 	$post_id       = ( $post_id ) ? $post_id : $post->ID;
@@ -379,7 +379,7 @@ function get_think_tank_transaction( $post_id = 0 ) : array {
  * @param  string $post_slug
  * @return array
  */
-function get_donor_transactions_by_slug( $post_slug ) : array {
+function get_donor_transactions_by_slug( $post_slug ): array {
 	$args         = array(
 		'post_type'      => 'transaction',
 		'posts_per_page' => -1,
@@ -408,7 +408,7 @@ function get_donor_transactions_by_slug( $post_slug ) : array {
  * @param  int $post_id
  * @return array
  */
-function get_donor_transaction( $post_id ) : array {
+function get_donor_transaction( $post_id ): array {
 	global $post;
 	$post_id = ( $post_id ) ? $post_id : $post->ID;
 

@@ -30,23 +30,24 @@
 			<!-- /wp:heading -->
 
 			<!-- wp:shortcode -->
-			[ninja_tables id="16863" filter_column="donor_type" filter="Foreign" sorting="0" Search="0"
-			hide_default_filter="yes"]
+			[wpdatatable id=9 table_view=regular var1=Foreign]
 			<!-- /wp:shortcode -->
+
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"metadata":{"name":"Defense"},"align":"wide","layout":{"type":"default"}} -->
+		<!-- wp:group {"metadata":{"name":"Pentagon"},"align":"wide","layout":{"type":"default"}} -->
 		<div class="wp-block-group alignwide">
 			<!-- wp:heading -->
 			<h2 class="wp-block-heading">
-				Top 10 Think Tanks That Receive Funding from Defense Contractors
+				Top 10 Think Tanks That Receive Funding from Pentagon Contractors
 			</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:shortcode -->
-			[ninja_tables id="16863" filter_column="donor_type" filter="Defense" sorting="0" Search="0"]
+			[wpdatatable id=9 table_view=regular var1=Pentagon]
 			<!-- /wp:shortcode -->
+
 		</div>
 		<!-- /wp:group -->
 
@@ -54,13 +55,14 @@
 		<div class="wp-block-group alignwide">
 			<!-- wp:heading -->
 			<h2 class="wp-block-heading">
-				Top 10 Think Tanks That Receive Funding from U.S. Goverment
+				Top 10 Think Tanks That Receive Funding from U.S. Government
 			</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:shortcode -->
-			[ninja_tables id="16863" filter_column="donor_type" filter="U.S." sorting="0" Search="0"]
+			[wpdatatable id=9 table_view=regular var1=U.S.]
 			<!-- /wp:shortcode -->
+
 		</div>
 		<!-- /wp:group -->
 	</div>
@@ -181,4 +183,6 @@
 </main>
 <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer","tagName":"footer","area":"footer"} /-->
+<!-- wp:template-part {"slug":"sidebar","area":"sidebar","className":"site-sidebar","tagName":"section"} /-->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","className":"site-footer","tagName":"footer"} /-->
