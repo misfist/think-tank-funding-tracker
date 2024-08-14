@@ -2,6 +2,8 @@
 	"extends": ["@wordpress/stylelint-config/scss"],
 	"rules": {
 		"at-rule-empty-line-before": null,
+		"no-missing-end-of-source-newline": null,
+		"indentation": null,
 		"no-eol-whitespace": null,
 		"declaration-colon-newline-after": null,
 		"declaration-no-important": null,
@@ -26,12 +28,13 @@
 		"string-quotes": "single",
 		"declaration-property-unit-allowed-list": [
 			{
-				"font-size": ["em", "rem"],
+				"font-size": ["em", "rem", "px"],
 				"line-height": [],
 				"/^border/": ["px"],
-				"/^margin/": ["em", "rem"],
-				"/^padding/": ["em", "rem"]
+				"/^margin/": ["em", "rem", "px"],
+				"/^padding/": ["em", "rem", "px"]
 			}
-		]
+		],
+		"font-family-no-missing-generic-family-keyword": null
 	}
 }
