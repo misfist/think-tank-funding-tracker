@@ -6,8 +6,8 @@
  * Inserter: no
  */
 ?>
-<!-- wp:group {"metadata":{"name":"Header Wrapper"},"align":"wide","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"}},"elements":{"link":{"color":{"text":"var:preset|color|base-2"}}}},"backgroundColor":"accent-3","textColor":"base-2","className":"header-wrapper","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide header-wrapper has-base-2-color has-accent-3-background-color has-text-color has-background has-link-color"
+<!-- wp:group {"metadata":{"name":"Header Wrapper"},"align":"wide","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"}},"elements":{"link":{"color":{"text":"var:preset|color|base-2"}}}},"backgroundColor":"contrast-2","textColor":"base-2","className":"header-wrapper","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide header-wrapper has-base-2-color has-contrast-2-background-color has-text-color has-background has-link-color"
 	style="padding-top:20px;padding-bottom:20px">
 	<!-- wp:group {"metadata":{"name":"Header Row"},"align":"wide","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
 	<div class="wp-block-group alignwide">
@@ -20,7 +20,7 @@
 
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 		<div class="wp-block-group">
-			<!-- wp:navigation {"ref":11684,"backgroundColor":"accent-3","overlayMenu":"always","icon":"menu","overlayBackgroundColor":"accent-3","overlayTextColor":"base-2","layout":{"type":"flex","justifyContent":"left","orientation":"horizontal"},"style":{"spacing":{"margin":{"top":"0"},"blockGap":"var:preset|spacing|20"},"layout":{"selfStretch":"fit","flexSize":null}}} /-->
+			<!-- wp:navigation {"ref":11684,"backgroundColor":"contrast-2","overlayMenu":"always","icon":"menu","overlayBackgroundColor":"contrast-2","overlayTextColor":"base-2","layout":{"type":"flex","justifyContent":"left","orientation":"horizontal"},"style":{"spacing":{"margin":{"top":"0"},"blockGap":"var:preset|spacing|20"},"layout":{"selfStretch":"fit","flexSize":null}}} /-->
 		</div>
 		<!-- /wp:group -->
 	</div>
