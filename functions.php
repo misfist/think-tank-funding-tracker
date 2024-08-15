@@ -26,6 +26,7 @@ function include_inc_files() {
 		'inc/functions/',
 		'inc/hooks/',
 		'inc/setup/',
+		'inc/blocks/',
 	);
 
 	foreach ( $files as $include ) {
