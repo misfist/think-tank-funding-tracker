@@ -25,7 +25,7 @@
 		"type": "default"
 	}
 } -->
-<div class="wp-block-group has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+<div class="wp-block-group has-base-2-background-color has-background" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 	<!-- wp:search {
 		"label": "",
 		"placeholder": "<?php echo esc_attr_e( 'Search by Think Tank or Donor', 'ttt' ); ?>",
@@ -43,10 +43,14 @@
 					"color": {
 						"text": "var:preset|color|contrast"
 					}
+				},
+				"button": {
+					"color": {
+						"background": "var:preset|color|base-2"
+					}
 				}
 			}
 		},
-		"backgroundColor": "base-2",
 		"textColor": "contrast"
 	} /-->
 
