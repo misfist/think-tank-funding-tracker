@@ -8,6 +8,27 @@
 namespace Quincy\ttt;
 
 /**
+ * Replace placeholders in description
+ *
+ * @param  string $text
+ * @return string
+ */
+function filter_table_description_text( string $text ) : string {
+	global $wdtVar1, $wdtVar2, $wdtVar3;
+	if( str_contains( $text, '%VAR1%' ) && $wdtVar1 ) {
+		$text = str_replace( '%VAR1%', $wdtVar1, $text );
+	} 
+	if( str_contains( $text, '%VAR2%' ) && $wdtVar2 ) {
+		$text = str_replace( '%VAR2%', $wdtVar2, $text );
+	}
+	if( str_contains( $text, '%VAR3%' ) && $wdtVar3 ) {
+		$text = str_replace( '%VAR3%', $wdtVar3, $text );
+	}
+	return $text;
+}
+add_filter( 'wpdatatables_filter_table_description_text', __NAMESPACE__ . '\filter_table_description_text' );
+
+/**
  * Filter title
  *
  * @param  [type] $table_title
@@ -25,10 +46,9 @@ function add_description( $table_id ) {
 // add_action( 'wpdatatables_before_get_columns_metadata', __NAMESPACE__ . '\add_description' );
 
 function filter_table_description( $object, $table_id, $table_instance ) {
-	// var_dump( $object );
 	return $object;
 }
-add_filter( 'wpdatatables_filter_table_description', __NAMESPACE__ . '\filter_table_description', '', 3 );
+// add_filter( 'wpdatatables_filter_table_description', __NAMESPACE__ . '\filter_table_description', '', 3 );
 
 function filter_table_cssClassArray( $classes, $table_id ) {
 	// var_dump( $classes );

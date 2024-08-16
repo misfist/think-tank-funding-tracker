@@ -24,41 +24,41 @@ register_block_style(
     'core/group',
     array(
         'name'         => 'score-0',
-        'label'        => __( 'Transparency Score 0', 'ttt' )
+        'label'        => __( 'Score 0', 'ttt' )
     )
 );
 register_block_style(
     'core/group',
     array(
         'name'         => 'score-1',
-        'label'        => __( 'Transparency Score 1', 'ttt' )
+        'label'        => __( 'Score 1', 'ttt' )
     )
 );
 register_block_style(
     'core/group',
     array(
         'name'         => 'score-2',
-        'label'        => __( 'Transparency Score 2', 'ttt' )
+        'label'        => __( 'Score 2', 'ttt' )
     )
 );
 register_block_style(
     'core/group',
     array(
         'name'         => 'score-3',
-        'label'        => __( 'Transparency Score 3', 'ttt' )
+        'label'        => __( 'Score 3', 'ttt' )
     )
 );
 register_block_style(
     'core/group',
     array(
         'name'         => 'score-4',
-        'label'        => __( 'Transparency Score 4', 'ttt' )
+        'label'        => __( 'Score 4', 'ttt' )
     )
 );
 register_block_style(
     'core/group',
     array(
         'name'         => 'score-5',
-        'label'        => __( 'Transparency Score 5', 'ttt' )
+        'label'        => __( 'Score 5', 'ttt' )
     )
 );
