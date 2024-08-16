@@ -9,5 +9,5 @@ use function Quincy\ttt\get_most_recent_donation_year;
 
 $year = get_most_recent_donation_year();
 
-echo do_shortcode( "[wpdatatable id=13]" ); 
+echo do_shortcode( "[wpdatatable id=13 var1={$year}]" ); 
 ?>
