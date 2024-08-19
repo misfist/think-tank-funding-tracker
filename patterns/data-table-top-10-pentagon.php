@@ -4,7 +4,8 @@
  * Slug: ttt/data-table-top-10-pentagon
  * Inserter: no
  */
-$type = 'Pentagon';
+$table_id = 9;
+$type     = 'Pentagon';
 ?>
 <!-- wp:group {"metadata":{"name":"<?php echo esc_attr( $type ); ?>"}} -->
 <div class="wp-block-group alignwide">
@@ -15,7 +16,7 @@ $type = 'Pentagon';
 	<!-- /wp:heading -->
 
 	<!-- wp:shortcode -->
-    <?php echo do_shortcode( "[wpdatatable id=9 table_view=regular var1={$type}]" ); ?>
+	<?php echo do_shortcode( "[wpdatatable id={$table_id} table_view=regular var1={$type}]" ); ?>
 	<!-- /wp:shortcode -->
 </div>
 <!-- /wp:group -->

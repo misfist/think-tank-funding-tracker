@@ -7,6 +7,6 @@
  */
 
 $search_term = get_search_query();
+$table_id    = 13;
 
-echo do_shortcode( "[wpdatatable id=13]" );
-?>
+echo do_shortcode( "[wpdatatable id={$table_id}]" );

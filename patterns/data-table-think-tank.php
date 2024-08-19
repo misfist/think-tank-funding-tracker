@@ -8,6 +8,7 @@
 
 $post_id    = get_the_ID();
 $post_title = get_the_title( $post_id );
- 
-echo do_shortcode( "[wpdatatable id=11 var1={$post_title}]" ); 
-?>
+$table_id   = 11;
+
+echo do_shortcode( "[wpdatatable id={$table_id} var1={$post_title}]" );
+
