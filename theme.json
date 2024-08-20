@@ -123,7 +123,7 @@
 					"slug": "accent-nine"
 				},
 				{
-					"color": "#E9E9E9",
+					"color": "#FAFAFA",
 					"name": "Gray 100",
 					"slug": "gray-100"
 				},
@@ -407,7 +407,8 @@
 				"score-1": "rgba(242, 153, 74, 0.35)",
 				"score-2": "rgba(229, 242, 74, 0.35)",
 				"score-3": "#E0FAC0",
-				"score-4": "#CBECD9"
+				"score-4": "#CBECD9",
+				"pink-light": "rgba(208, 68, 64, 0.15)"
 			}
 		}
 	},
