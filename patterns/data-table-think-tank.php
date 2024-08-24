@@ -35,6 +35,6 @@ elseif ( $is_transparent ) :
 	<?php
 else :
 	?>
-	<?php echo do_shortcode( "[wpdatatable id=11 var1='{$term_name}' var2='{$year}' export_file_name='{$term_name}']" ); ?>
+	<?php echo do_shortcode( "[wpdatatable id=11 var1='{$term_name}' var2='' export_file_name='{$term_name}']" ); ?>
 	<?php
 endif;
