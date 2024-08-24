@@ -5,6 +5,7 @@
  * Categories: transparency
  * Inserter: false
  */
+use function Quincy\ttt\get_most_recent_donation_year;
 
 $post_id        = get_the_ID();
 $post_title     = get_the_title( $post_id );
@@ -14,6 +15,7 @@ $table_id       = 11;
 $limited_info   = get_post_meta( $post_id, 'limited_info', true );
 $is_limited     = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
 $is_transparent = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
+$year           = get_most_recent_donation_year();
 
 if ( $is_limited ) :
 	?>
@@ -33,6 +35,6 @@ elseif ( $is_transparent ) :
 	<?php
 else :
 	?>
-	<?php echo do_shortcode( "[wpdatatable id=11 var1='{$term_name}' export_file_name='{$term_name}']" ); ?>
+	<?php echo do_shortcode( "[wpdatatable id=11 var1='{$term_name}' var2='{$year}' export_file_name='{$term_name}']" ); ?>
 	<?php
 endif;
