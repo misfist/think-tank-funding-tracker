@@ -6,18 +6,17 @@
  * Inserter: false
  */
 
-$post_id      = get_the_ID();
-$post_title   = get_the_title( $post_id );
-$table_id     = 11;
-$limited_info = get_post_meta( $post_id, 'limited_info', true );
-$is_limited   = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
+$post_id        = get_the_ID();
+$post_title     = get_the_title( $post_id );
+$table_id       = 11;
+$limited_info   = get_post_meta( $post_id, 'limited_info', true );
+$is_limited     = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
+$is_transparent = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
 
-if( ! $is_limited ) {
-    echo do_shortcode( "[wpdatatable id={$table_id} var1={$post_title}]" );
-} else {
-    ?>
+if ( $is_limited ) :
+	?>
 	<!-- wp:group {"metadata":{"name":"No Data"},"className":"no-data","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"backgroundColor":"var:custom|color|pink-light","layout":{"type":"default"}} -->
-	<div class="wp-block-group has-pink-light-background-color has-background no-data" style="background-color:var(--wp--custom--color--pink-light);padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
+		<div class="wp-block-group has-pink-light-background-color has-background no-data" style="background-color:var(--wp--custom--color--pink-light);padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
 		<!-- wp:heading {"level":4} -->
 		<h4><?php esc_html_e( 'This think tank has not provided data about it\'s donations.', 'ttt' ); ?></h4>
@@ -25,5 +24,13 @@ if( ! $is_limited ) {
 
 	</div>
 	<!-- /wp:group -->
-    <?php
-}
+	<?php
+elseif ( $is_transparent ) :
+	?>
+
+	<?php
+else :
+	?>
+	<?php echo do_shortcode( "[wpdatatable id={$table_id} var1={$post_title}]" ); ?>
+	<?php
+endif;

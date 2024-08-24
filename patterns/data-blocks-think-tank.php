@@ -8,12 +8,13 @@
 $post_id            = get_the_ID();
 $limited_info       = get_post_meta( $post_id, 'limited_info', true );
 $is_limited         = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
+$is_transparent     = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
 $no_domestic        = get_post_meta( $post_id, 'no_domestic_accepted', true );
 $no_defense         = get_post_meta( $post_id, 'no_defense_accepted', true );
 $no_foreign         = get_post_meta( $post_id, 'no_foreign_accepted', true );
 $transparency_score = ( $score = get_post_meta( $post_id, 'transparency_score', true ) ) ? (int) $score : 0;
 $think_tank_term    = wp_get_post_terms( $post_id, 'think_tank' );
-$column_count       = ( $is_limited ) ? 2 : 4;
+$column_count       = ( $is_limited || $is_transparent ) ? 2 : 4;
 ?>
 
 <!-- wp:group {"layout":{"type":"grid","columnCount":<?php echo intval( $column_count ); ?>,"minimumColumnWidth":"12rem","rowCount":"1"}} -->
@@ -32,19 +33,24 @@ $column_count       = ( $is_limited ) ? 2 : 4;
 		</div>
 		<!-- /wp:group -->
 		<?php
+	elseif( $is_transparent ) :
+		?>
+		<!-- wp:group {"metadata":{"name":"Transparent"},"className":"is-transparent","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"borderColor":"contrast-2","backgroundColor":"gray-100","layout":{"type":"default"}} -->
+		<div class="wp-block-group has-border-color has-contrast-2-border-color has-gray-100-background-color has-background no-data" style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
+
+			<!-- wp:heading {"level":4} -->
+				<h4><?php echo esc_html( $limited_info  ); ?> <?php  ?></h4>
+			<!-- /wp:heading -->
+			
+		</div>
+		<!-- /wp:group -->
+		<?php
 	else :
 		?>
 		<!-- wp:group {"metadata":{"name":"U.S. Government Funding"},"className":"<?php echo ( $no_domestic ) ? 'no-funding' : 'is-funded'; ?>","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"borderColor":"gray-300","backgroundColor":"gray-200","layout":{"type":"default"}} -->
 		<div class="wp-block-group has-border-color has-gray-300-border-color has-gray-200-background-color has-background <?php echo ( $no_domestic ) ? 'no-funding' : 'is-funded'; ?>"
 			style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
-			<?php
-			if ( $is_limited ) :
-				?>
-				Limited Info
-				<?php
-			endif;
-			?>
 			<!-- wp:heading {"level":4} -->
 			<h4><?php esc_html_e( 'U.S. Government Funding', 'ttt' ); ?></h4>
 			<!-- /wp:heading -->
