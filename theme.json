@@ -865,8 +865,13 @@
 								"color": {
 									"text": "var(--wp--preset--color--base)"
 								}
+							},
+							"button": {
+								"color": {
+									"background": "var(--wp--preset--color--contrast-3)",
+									"text": "var(--wp--preset--color--base)"
+								}
 							}
-
 						}
 					}
 				}
