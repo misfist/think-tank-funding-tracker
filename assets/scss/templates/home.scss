@@ -1,0 +1,36 @@
+/* -- Home -- */
+
+.home {
+	.section {
+		&__top-10 {
+			@include responsive-min(600px) {
+				grid-template-columns: 16.875rem 1fr;
+				background-color: var( --wp--preset--color--accent );
+				padding-right: var( --wp--preset--spacing--20 );
+				column-gap: 0;
+
+			}
+
+			.wpDataTables,
+			table.wpDataTable {
+				margin-bottom: 1px !important;
+			}
+		
+			.wp-block-heading {
+				font-size: var( --wp--preset--font-size--medium-2 );
+				padding: var( --wp--preset--spacing--20 );
+				background-color: var( --wp--preset--color--contrast-5 );
+				color: var( --wp--preset--color--white );
+			}
+
+			.dt-buttons {
+				display: none;
+				visibility: collapse;
+			}
+		}
+	}
+
+	.section + .section {
+		margin-top: var( --wp--preset--spacing--20 );
+	}
+}
