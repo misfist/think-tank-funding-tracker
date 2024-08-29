@@ -107,3 +107,10 @@ figure[class*=' blur-'] {
 		flex-direction: column-reverse;
 	}
 }
+
+@mixin screen-reader-text() {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	visibility: collapse;
+}
