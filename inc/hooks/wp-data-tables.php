@@ -29,6 +29,38 @@ function filter_table_description_text( string $text ) : string {
 add_filter( 'wpdatatables_filter_table_description_text', __NAMESPACE__ . '\filter_table_description_text' );
 
 /**
+ * Modify fonts available
+ *
+ * @param  array $fonts
+ * @return array
+ */
+function get_system_fonts( array $fonts ) : array {
+	$fonts = array(
+		'Inter, sans-serif'
+	);
+	return $fonts;
+}
+add_filter( 'wpdatatables_get_system_fonts', __NAMESPACE__ . '\get_system_fonts' );
+
+/**
+ * Modify table classes
+ *
+ * @param  array  $classes
+ * @param  int $table_id
+ * @return array
+ */
+function filter_table_cssClassArray( array $classes, $table_id ) : array {
+	/**
+	 * Top 10
+	 */
+	if( 9 === $table_id ) {
+		$classes[] = 'top-10';
+	}
+	return $classes;
+}
+add_filter( 'wpdatatables_filter_table_cssClassArray', __NAMESPACE__ . '\filter_table_cssClassArray', '', 2 );
+
+/**
  * Filter title
  *
  * @param  [type] $table_title
@@ -50,19 +82,9 @@ function filter_table_description( $object, $table_id, $table_instance ) {
 }
 // add_filter( 'wpdatatables_filter_table_description', __NAMESPACE__ . '\filter_table_description', '', 3 );
 
-function filter_table_cssClassArray( $classes, $table_id ) {
-	// var_dump( $classes );
-	return $classes;
-}
-add_filter( 'wpdatatables_filter_table_cssClassArray', __NAMESPACE__ . '\filter_table_cssClassArray', '', 2 );
 
-function get_system_fonts( $fonts ) {
-	$fonts = array(
-		'Inter, sans-serif'
-	);
-	return $fonts;
-}
-add_filter( 'wpdatatables_get_system_fonts', __NAMESPACE__ . '\get_system_fonts' );
+
+
 
 // wpdatatables_before_table( $tableId )
 // wpdatatables_before_header( $tableId )
