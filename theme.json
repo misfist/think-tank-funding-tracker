@@ -64,18 +64,28 @@
 				},
 				{
 					"color": "#1E1E1E",
-					"name": "Contrast",
+					"name": "Contrast / Black",
 					"slug": "contrast"
 				},
 				{
 					"color": "#61a267",
-					"name": "Contrast / Two",
+					"name": "Contrast / Green",
 					"slug": "contrast-2"
 				},
 				{
-					"color": "#aa2e2a",
-					"name": "Contrast / Three",
+					"color": "#D04440",
+					"name": "Contrast / Red",
 					"slug": "contrast-3"
+				},
+				{
+					"color": "#aa2e2a",
+					"name": "Contrast / Dark Red",
+					"slug": "contrast-4"
+				},
+				{
+					"color": "#3A3A70",
+					"name": "Contrast / Blue",
+					"slug": "contrast-5"
 				},
 				{
 					"color": "#f2f2f2",
@@ -120,7 +130,7 @@
 				{
 					"color": "#f8c4c4",
 					"name": "Accent / Nine",
-					"slug": "accent-nine"
+					"slug": "accent-9"
 				},
 				{
 					"color": "#FAFAFA",
@@ -178,32 +188,32 @@
 			"spacingSizes": [
 				{
 					"name": "1",
-					"size": "1rem",
+					"size": "min(11px, 2vw)",
 					"slug": "10"
 				},
 				{
 					"name": "2",
-					"size": "min(1.5rem, 2vw)",
+					"size": "min(22px, 2vw)",
 					"slug": "20"
 				},
 				{
 					"name": "3",
-					"size": "min(2.5rem, 3vw)",
+					"size": "min(33px, 3vw)",
 					"slug": "30"
 				},
 				{
 					"name": "4",
-					"size": "min(4rem, 5vw)",
+					"size": "min(44px, 5vw)",
 					"slug": "40"
 				},
 				{
 					"name": "5",
-					"size": "min(6.5rem, 8vw)",
+					"size": "min(55px, 8vw)",
 					"slug": "50"
 				},
 				{
 					"name": "6",
-					"size": "min(10.5rem, 13vw)",
+					"size": "min(66px, 13vw)",
 					"slug": "60"
 				}
 			],
