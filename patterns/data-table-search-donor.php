@@ -8,5 +8,8 @@
 
 $search_term = get_search_query();
 $table_id    = 12;
+?>
 
-echo do_shortcode( "[wpdatatable id={$table_id}]" );
+<!-- wp:shortcode -->
+<?php echo do_shortcode( "[wpdatatable id={$table_id} var1='{$search_term}']" ); ?>
+<!-- /wp:shortcode -->
