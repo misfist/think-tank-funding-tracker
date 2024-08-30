@@ -121,12 +121,85 @@
                     }
                 }
             }
+
+            .wdt-checkbox-filter.btn {
+                background-color: var( --wp--preset--color--contrast-2 );
+                color: var( --wp--preset--color--white );
+                border-color: var( --wp--preset--color--contrast-2 );
+            }
         }
     }
 
-    table.top-10 {
+    table {
+        &.top-10 {
+            thead {
+                @include screen-reader-text();
+            }
+        }
+
         thead {
-            @include screen-reader-text();
+            input {
+                border-bottom: 1px solid var( --wp--preset--color--gray-200 ) !important;
+            }
         }
     }
+}
+
+/* Style the container to align tabs horizontally */
+#custom-filters {
+
+    .filter-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        // margin-bottom: 1rem; /* Space between tabs and content */
+
+        &.type {
+            background-color: var( --wp--preset--color--gray-200 );
+            padding: var( --wp--preset--spacing--10 );
+
+            label {
+                font-size: var( --wp--preset--font-size--small );
+                font-weight: 400;
+                padding: calc( var( --wp--preset--spacing--10 ) / 2 );
+                border-radius: 6px;
+            }
+        }
+    }
+    
+    input[type='radio'] {
+        display: none;
+    }
+
+    label {
+        display: inline-block;
+        margin-right: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        text-align: center;
+
+        &:hover,
+        &:focus {
+            background-color: var( --wp--preset--color--gray-300 );
+        }
+    }
+
+    .year {
+        label {
+            background-color: var( --wp--preset--color--gray-200 );
+            padding: var( --wp--preset--spacing--10 ) var( --wp--preset--spacing--20 );
+    
+            &:hover,
+            &:focus {
+                background-color: var( --wp--preset--color--gray-300 );
+            }
+        }
+
+    }
+
+    input[type='radio']:checked + label {
+        background-color: var( --wp--preset--color--contrast-2 );
+        color: var( --wp--preset--color--white );
+    }
+    
 }
