@@ -3,6 +3,8 @@
 	"rules": {
 		"at-rule-empty-line-before": null,
 		"no-missing-end-of-source-newline": null,
+		"block-opening-brace-space-before": null,
+		"block-no-empty": null,
 		"indentation": null,
 		"no-eol-whitespace": null,
 		"declaration-colon-newline-after": null,
