@@ -6,6 +6,7 @@
  * Inserter: false
  */
 use function Quincy\ttt\get_most_recent_donation_year;
+use function Quincy\ttt\print_years;
 
 $post_id    = get_the_ID();
 $post_title = get_the_title( $post_id );
@@ -20,8 +21,19 @@ $terms      = wp_get_post_terms(
 $term_name  = ( $terms ) ? $terms[0] : $post_title;
 $table_id   = 10;
 $year       = get_most_recent_donation_year();
+?>
 
-echo do_shortcode( "[wpdatatable id={$table_id} var2='' var1='{$term_name}' export_file_name='{$term_name}']]" );
+<!-- wp:group {"metadata":{"name":"Data Filters"},"id":"custom-filters","className":"wpDataTables data-filters","layout":{"type":"default"}} -->
+<div id="custom-filters" class="wp-block-group wpDataTables data-filters" data-table-id="<?php echo intval( $table_id ); ?>" data-table-number="table_1">
+
+	<?php print_years(); ?>
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:shortcode -->
+<?php echo do_shortcode( "[wpdatatable id={$table_id} var2='' var1='{$term_name}' export_file_name='{$term_name}']" ); ?>
+<!-- /wp:shortcode -->
 
 
 
