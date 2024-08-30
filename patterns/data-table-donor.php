@@ -32,7 +32,7 @@ $year       = get_most_recent_donation_year();
 <!-- /wp:group -->
 
 <!-- wp:shortcode -->
-<?php echo do_shortcode( "[wpdatatable id={$table_id} var2='' var1='{$term_name}' export_file_name='{$term_name}']" ); ?>
+<?php echo do_shortcode( "[wpdatatable id={$table_id} var1='{$term_name}' var2='' export_file_name='{$term_name}']" ); ?>
 <!-- /wp:shortcode -->
 
 
