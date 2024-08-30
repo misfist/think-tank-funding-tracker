@@ -19,7 +19,7 @@ namespace Quincy\ttt;
 function remove_archive_title_prefix( $archive_title ) {
 	$single_cat_title = single_term_title( '', false );
 
-	if( is_post_type_archive( array( 'think_tank', 'donor' ) ) ) {
+	if ( is_post_type_archive( array( 'think_tank', 'donor' ) ) ) {
 		return sprintf( '%s %s', esc_html__( 'All', 'ttt' ), $archive_title );
 	}
 

@@ -7,7 +7,7 @@
 
 namespace Quincy\ttt;
 
-function get_search_form( string $form, array $args ) : string {
+function get_search_form( string $form, array $args ): string {
 	ob_start();
 	?>
 
@@ -38,7 +38,7 @@ function get_search_form( string $form, array $args ) : string {
 
 	<?php
 	$form = ob_get_clean();
-	
+
 	return $form;
 }
 add_filter( 'get_search_form', __NAMESPACE__ . '\get_search_form', '', 2 );

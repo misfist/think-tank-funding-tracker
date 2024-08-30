@@ -33,13 +33,13 @@ $column_count       = ( $is_limited || $is_transparent ) ? 2 : 4;
 		</div>
 		<!-- /wp:group -->
 		<?php
-	elseif( $is_transparent ) :
+	elseif ( $is_transparent ) :
 		?>
 		<!-- wp:group {"metadata":{"name":"Transparent"},"className":"is-transparent","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"borderColor":"contrast-2","backgroundColor":"gray-100","layout":{"type":"default"}} -->
 		<div class="wp-block-group has-border-color has-contrast-2-border-color has-gray-100-background-color has-background no-data" style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
 			<!-- wp:heading {"level":4} -->
-				<h4><?php echo esc_html( $limited_info  ); ?> <?php  ?></h4>
+				<h4><?php echo esc_html( $limited_info ); ?> </h4>
 			<!-- /wp:heading -->
 			
 		</div>

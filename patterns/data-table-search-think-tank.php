@@ -4,7 +4,7 @@
  * Slug: ttt/data-table-search-think-tank
  * Categories: transparency
  * Inserter: false
- * 
+ *
  * %VAR1% corresponses to donation_year name
  * %VAR2% corresponses to think_tank name
  */

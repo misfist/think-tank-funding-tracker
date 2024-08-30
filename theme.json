@@ -2,30 +2,21 @@
 	"customTemplates": [
 		{
 			"name": "single-donor",
-			"postTypes": [
-				"donor"
-			],
+			"postTypes": ["donor"],
 			"title": "Single Donors"
 		},
 		{
 			"name": "single-think_tank",
-			"postTypes": [
-				"think-tank"
-			],
+			"postTypes": ["think-tank"],
 			"title": "Single Think Tanks"
 		},
 		{
 			"name": "page-wide",
-			"postTypes": [
-				"page"
-			],
+			"postTypes": ["page"],
 			"title": "Page with Wide Image"
 		}
 	],
-	"patterns": [
-		"three-columns-of-services",
-		"clients-section"
-	],
+	"patterns": ["three-columns-of-services", "clients-section"],
 	"settings": {
 		"appearanceTools": true,
 		"blocks": {
@@ -42,10 +33,7 @@
 			"defaultPalette": false,
 			"duotone": [
 				{
-					"colors": [
-						"#111111",
-						"#ffffff"
-					],
+					"colors": ["#111111", "#ffffff"],
 					"name": "Black and white",
 					"slug": "duotone-1"
 				}
@@ -217,14 +205,7 @@
 					"slug": "60"
 				}
 			],
-			"units": [
-				"%",
-				"px",
-				"em",
-				"rem",
-				"vh",
-				"vw"
-			]
+			"units": ["%", "px", "em", "rem", "vh", "vw"]
 		},
 		"typography": {
 			"defaultFontSizes": false,

@@ -13,15 +13,15 @@ namespace Quincy\ttt;
  * @param  string $text
  * @return string
  */
-function filter_table_description_text( string $text ) : string {
+function filter_table_description_text( string $text ): string {
 	global $wdtVar1, $wdtVar2, $wdtVar3;
-	if( str_contains( $text, '%VAR1%' ) && $wdtVar1 ) {
+	if ( str_contains( $text, '%VAR1%' ) && $wdtVar1 ) {
 		$text = str_replace( '%VAR1%', $wdtVar1, $text );
-	} 
-	if( str_contains( $text, '%VAR2%' ) && $wdtVar2 ) {
+	}
+	if ( str_contains( $text, '%VAR2%' ) && $wdtVar2 ) {
 		$text = str_replace( '%VAR2%', $wdtVar2, $text );
 	}
-	if( str_contains( $text, '%VAR3%' ) && $wdtVar3 ) {
+	if ( str_contains( $text, '%VAR3%' ) && $wdtVar3 ) {
 		$text = str_replace( '%VAR3%', $wdtVar3, $text );
 	}
 	return $text;
@@ -34,9 +34,9 @@ add_filter( 'wpdatatables_filter_table_description_text', __NAMESPACE__ . '\filt
  * @param  array $fonts
  * @return array
  */
-function get_system_fonts( array $fonts ) : array {
+function get_system_fonts( array $fonts ): array {
 	$fonts = array(
-		'Inter, sans-serif'
+		'Inter, sans-serif',
 	);
 	return $fonts;
 }
@@ -45,20 +45,34 @@ add_filter( 'wpdatatables_get_system_fonts', __NAMESPACE__ . '\get_system_fonts'
 /**
  * Modify table classes
  *
- * @param  array  $classes
- * @param  int $table_id
+ * @param  array $classes
+ * @param  int   $table_id
  * @return array
  */
-function filter_table_cssClassArray( array $classes, $table_id ) : array {
+function filter_table_cssClassArray( array $classes, $table_id ): array {
 	/**
 	 * Top 10
 	 */
-	if( 9 === $table_id ) {
+	if ( 9 === $table_id ) {
 		$classes[] = 'top-10';
 	}
 	return $classes;
 }
 add_filter( 'wpdatatables_filter_table_cssClassArray', __NAMESPACE__ . '\filter_table_cssClassArray', '', 2 );
+
+/**
+ * Undocumented function
+ *
+ * @link https://wpdatatables.com/documentation/information-for-developers/filters/#wpdatatables_filter_cell_val_val_tableId
+ *
+ * @param  mixed $val
+ * @param  int   $table_id
+ * @return mixed
+ */
+function filter_cell_val( $val, $table_id ) {
+	return $val;
+}
+add_filter( 'wpdatatables_filter_cell_val', __NAMESPACE__ . '\filter_cell_val', '', 2 );
 
 /**
  * Filter title
@@ -67,7 +81,7 @@ add_filter( 'wpdatatables_filter_table_cssClassArray', __NAMESPACE__ . '\filter_
  * @param  [type] $table_id
  * @return string
  */
-function filter_table_title( $table_title, $table_id ) : string {
+function filter_table_title( $table_title, $table_id ): string {
 	return $table_title;
 }
 // add_filter( 'wpdatatables_filter_table_title', __NAMESPACE__ . '\filter_table_title', '', 2 );
