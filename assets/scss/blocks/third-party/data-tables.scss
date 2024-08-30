@@ -9,7 +9,7 @@
 
 .wpdt-c {
     td {
-        &.numdata {
+        &.column-min-amount {
             &::before {
                 content: '$';
             }
