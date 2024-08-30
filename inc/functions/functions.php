@@ -39,7 +39,7 @@ function get_most_recent_donation_year() {
  * @param string $type The donor taxonomy name. Default 'donor'.
  * @return array An array of donation_year term names.
  */
-function get_years( $name, $type = 'donor' ) : array {
+function get_years( $name, $type = 'donor' ): array {
 	$post_type     = 'transaction';
 	$year_taxonomy = 'donation_year';
 
@@ -88,7 +88,7 @@ function get_years( $name, $type = 'donor' ) : array {
  * @param  integer $column
  * @return void
  */
-function print_years( $name = '', $type = 'donor', $column = 2 ) : void {
+function print_years( $name = '', $type = 'donor', $column = 2 ): void {
 	global $post;
 	$post_id = $post->ID;
 	$type    = $post->post_type;
@@ -97,17 +97,65 @@ function print_years( $name = '', $type = 'donor', $column = 2 ) : void {
 
 	if ( $years ) {
 		?>
-		<ul>
-			<li data-year="all"><a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>"><?php esc_html_e( 'All', 'ttt' ); ?></a><li>
+		<div class="filter-group year" data-index="<?php echo intval( $column ); ?>">
+			
+				<input type="radio" name="filter-year" id="filter-all" class="filter-checkbox" value="all" data-index="<?php echo intval( $column ); ?>" checked />
+				<label for="filter-all">
+					<?php esc_html_e( 'All', 'ttt' ); ?>
+				</label>
 			<?php
 			foreach ( $years as $year ) :
 				$url = esc_url( add_query_arg( "wdt_column_filter[$column]", $year, get_permalink( $post_id ) ) );
 				?>
-				<li data-year="<?php echo esc_attr( $year ); ?>"><a href="<?php echo $url; ?>"><?php echo esc_html( $year ); ?></a><li>
+				
+					<input type="radio" id="filter-<?php echo esc_attr( $year ); ?>" name="filter-year" class="filter-checkbox" value="<?php echo esc_attr( $year ); ?>" data-query-var="wdt_column_filter[<?php echo intval( $column ); ?>]=<?php echo esc_attr( $year ); ?>" data-index="<?php echo intval( $column ); ?>" />
+					<label for="filter-<?php echo esc_attr( $year ); ?>">
+						<?php echo esc_html( $year ); ?>
+					</label>
 				<?php
 			endforeach;
 			?>
-		</ul>
+		</div>
+		
+		<?php
+	}
+}
+
+/**
+ * Print type tabs
+ *
+ * @param  string  $name
+ * @param  string  $type
+ * @param  integer $column
+ * @return void
+ */
+function print_types( $column = 3 ): void {
+	global $post;
+	$taxonomy = 'donor_type';
+	$types    = get_terms(
+		array(
+			'taxonomy' => $taxonomy,
+		)
+	);
+
+	if ( $types ) {
+		?>
+		<div class="filter-group type" data-index="<?php echo intval( $column ); ?>">
+			<input type="radio" id="filter-type-all" name="filter-type" class="filter-checkbox" value="all" data-index="<?php echo intval( $column ); ?>" checked />
+			<label for="filter-type-all">
+				<?php esc_html_e( 'All', 'ttt' ); ?>
+			</label>
+			<?php
+			foreach ( $types as $type ) :
+				?>
+				<input type="radio" id="filter-<?php echo esc_attr( $type->name ); ?>" name="filter-type" class="filter-checkbox" value="<?php echo esc_attr( $type->name ); ?>" data-query-var="wdt_column_filter[<?php echo intval( $column ); ?>]='<?php echo esc_attr( $type->name ); ?>'" data-index="<?php echo intval( $column ); ?>" />
+				<label for="filter-<?php echo esc_attr( $type->name ); ?>">
+					<?php echo esc_html( $type->name ); ?>
+				</label>
+				<?php
+			endforeach;
+			?>
+		</div>
 		
 		<?php
 	}
