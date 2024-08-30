@@ -8,14 +8,6 @@
 }
 
 .wpdt-c {
-    td {
-        &.column-min-amount {
-            &::before {
-                content: '$';
-            }
-        }
-    }
-
     p {
         display: none;
         margin: 0;
@@ -40,15 +32,21 @@
                             
                         }
                     }
+
+                    .column-source {
+                        a {
+                            text-decoration: none;
+                        }
+                    }
     
                     thead {
                         border: none;
 
                         tr {
                             &:first-child {
-                                background-color: var( --wp--preset--color--gray-200 );
-                                border: 1 solid var( --wp--preset--color--gray-200 );
-                                border-radius: var( --wp--custom--border-radius-lg );
+                                // background-color: var( --wp--preset--color--gray-200 );
+                                // border: 1 solid var( --wp--preset--color--gray-200 );
+                                // border-radius: var( --wp--custom--border--radius--lg );
                             }
                         }
     
@@ -94,27 +92,62 @@
                             }
                         }
                     }
+
+                    > thead {
+                        > tr {
+                            > th {
+                                &.wdtheader {
+                                    background-color: var( --wp--preset--color--gray-200 );
+                                    padding-top: var( --wp--preset--spacing--10 );
+                                    padding-bottom: var( --wp--preset--spacing--10 );
+        
+                                    &:first-child {
+                                        padding-left: var( --wp--preset--spacing--20 );
+                                    }
+        
+                                    &:last-child {
+                                        padding-right: var( --wp--preset--spacing--20 );
+                                    }
+
+                                    &:hover,
+                                    &:focus {
+                                        background-color: var( --wp--preset--color--gray-100 );
+                                    }
+                                }
+                            }
+                        }
+                    }
     
                     tbody {
                         tr {
                             border: none;
 
                             &:nth-child(odd) {
-                                background-color: var( --wp--preset--color--gray-200 );
+                                background-color: var( --wp--preset--color--white );
                                 // border: 1 solid var( --wp--preset--color--gray-200 );
-                                // border-radius: var( --wp--custom--border-radius-lg );
+                                // border-radius: var( --wp--custom--border--radius--lg );
                             }
 
                             &:nth-child(even) {
-                                background-color: var( --wp--preset--color--white );
+                                background-color: var( --wp--preset--color--gray-200 );
                                 // border: 1 solid var( --wp--preset--color--gray-200 );
-                                // border-radius: var( --wp--custom--border-radius-lg );
+                                // border-radius: var( --wp--custom--border--radius--lg );
                             }
                         }
 
                         > tr {
                             > td {
                                 border: none;
+                                padding-top: var( --wp--preset--spacing--10 );
+                                padding-bottom: var( --wp--preset--spacing--10 );
+    
+                                &:first-child {
+                                    padding-left: var( --wp--preset--spacing--20 );
+                                }
+    
+                                &:last-child {
+                                    padding-right: var( --wp--preset--spacing--20 );
+                                }
                             }
                         }
 
@@ -142,6 +175,70 @@
                 border-bottom: 1px solid var( --wp--preset--color--gray-200 ) !important;
             }
         }
+
+        th,
+        td {
+            &.numdata {}
+
+            &.column-think-tank,
+            &.column-donor {
+                text-align: left;
+                width: fit-content !important;
+            }
+
+            &.column-min-amount,
+            &.column-total-amount,
+            &.column-pentagon-contractors,
+            &.column-defense-contractors,
+            &.column-us-government,
+            &.column-foreign-interests,
+            &.column-foreign-government {
+                text-align: right !important;
+                width: min-content !important;
+            }
+
+            &.column-source {
+                text-align: left;
+            }
+
+            &.column-type {
+                text-align: left;
+            }
+
+            &.column-year {
+                text-align: left;
+            }
+        }
+
+        th {
+            &.wdtheader {
+                // background-color: var( --wp--preset--color--gray-200 ) !important;
+                // padding: var( --wp--preset--spacing--10 );
+
+                &:first-child {
+                    border-radius: var( --wp--custom--border--radius--lg ) 0 0 var( --wp--custom--border--radius--lg );
+                }
+
+                &:last-child {
+                    border-radius: 0 var( --wp--custom--border--radius--lg ) var( --wp--custom--border--radius--lg ) 0;
+                }
+            }
+        }
+
+        td {
+            &.column-min-amount,
+            &.column-total-amount,
+            &.column-pentagon-contractors,
+            &.column-defense-contractors,
+            &.column-us-government,
+            &.column-foreign-interests,
+            &.column-foreign-government {
+                &::before {
+                    content: '$';
+                }
+            }
+        }
+
     }
 }
 
@@ -162,7 +259,7 @@
                 font-size: var( --wp--preset--font-size--small );
                 font-weight: 400;
                 padding: calc( var( --wp--preset--spacing--10 ) / 2 );
-                border-radius: 6px;
+                border-radius: var( --wp--custom--border--radius--sm );
             }
         }
     }

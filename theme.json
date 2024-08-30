@@ -389,7 +389,7 @@
 		"custom": {
 			"border": {
 				"radius": {
-					"sm": "4px",
+					"sm": "6px",
 					"lg": ".75rem"
 				}
 			},
