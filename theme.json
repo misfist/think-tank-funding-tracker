@@ -408,6 +408,16 @@
 				"1.4": "1.4",
 				"1.5": "1.5",
 				"1.6": "1.6"
+			},
+			"breakpoint": {
+				"mobile": "480px",
+				"small": "600px",
+				"medium": "782px",
+				"large": "960px",
+				"xlarge": "1080px",
+				"wide": "1280px",
+				"huge": "1440px",
+				"xhuge": "1920px"
 			}
 		}
 	},
