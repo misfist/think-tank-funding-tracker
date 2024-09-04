@@ -99,4 +99,4 @@ function request( $request ) : array {
 	}
 	return $request;
 }
-add_filter( 'request', __NAMESPACE__ . '\request' );
+// add_filter( 'request', __NAMESPACE__ . '\request' );
