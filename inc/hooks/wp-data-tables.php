@@ -10,11 +10,17 @@ namespace Quincy\ttt;
 /**
  * Replace placeholders in description
  *
+ * %VAR1% = think_tank
+ * %VAR2% = donor
+ * %VAR3% = donation_year
+ * %VAR4% = donor_type
+ * %VAR5% = limit
+ *
  * @param  string $text
  * @return string
  */
 function filter_table_description_text( string $text ): string {
-	global $wdtVar1, $wdtVar2, $wdtVar3;
+	global $wdtVar1, $wdtVar2, $wdtVar3, $wdtVar4, $wdtVar5;
 	if ( str_contains( $text, '%VAR1%' ) && $wdtVar1 ) {
 		$text = str_replace( '%VAR1%', $wdtVar1, $text );
 	}
@@ -24,9 +30,47 @@ function filter_table_description_text( string $text ): string {
 	if ( str_contains( $text, '%VAR3%' ) && $wdtVar3 ) {
 		$text = str_replace( '%VAR3%', $wdtVar3, $text );
 	}
+	if ( str_contains( $text, '%VAR4%' ) && $wdtVar4 ) {
+		$text = str_replace( '%VAR4%', $wdtVar4, $text );
+	}
+	if ( str_contains( $text, '%VAR5%' ) && $wdtVar5 ) {
+		$text = str_replace( '%VAR5%', $wdtVar5, $text );
+	}
 	return $text;
 }
 add_filter( 'wpdatatables_filter_table_description_text', __NAMESPACE__ . '\filter_table_description_text' );
+
+/**
+ * Get query vars
+ *
+ * %VAR1% = think_tank
+ * %VAR2% = donor
+ * %VAR3% = donation_year
+ * %VAR4% = donor_type
+ * %VAR5% = limit
+ *
+ * @return array
+ */
+function get_vars() : array {
+
+	$placeholder_vars = array(
+		'think_tank' => 'wdt_var1',
+		'donor'      => 'wdt_var2',
+		'year'       => 'wdt_var3',
+		'type'       => 'wdt_var4',
+		'limit'      => 'wdt_var5',
+	);
+
+	$vars = array();
+
+	foreach( $placeholder_vars as $key => $value ) {
+		if ( isset( $_GET[$value] ) ) {
+			$vars[$key] = urldecode( sanitize_text_field( $_GET[$value] ) );
+		}
+	}
+
+	return $vars;
+}
 
 /**
  * Modify fonts available
