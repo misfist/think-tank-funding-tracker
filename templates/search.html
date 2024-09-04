@@ -4,36 +4,28 @@
 <main class="wp-block-group site-main">
 
 	<!-- wp:pattern {"slug":"ttt/search-form"} /-->
+	 
+	<!-- wp:query-title {"type":"search"} /-->
 
-	<!-- wp:query-title {"type":"search","style":{"typography":{"lineHeight":"1"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|10"}}}} /-->
-
-	<!-- wp:group {"metadata":{"name":"Search Results"},"layout":{"type":"default"}} -->
-	<div class="wp-block-group">
+	<!-- wp:group {"metadata":{"name":"Search Results"},"className":"transaction-results-tabs","layout":{"type":"default"}} -->
+	<div class="wp-block-group transaction-results-tabs">
 		<!-- wp:list {"metadata":{"name":"Tabs"},"className":"tab-links"} -->
 		<ul class="wp-block-list tab-links">
 			<!-- wp:list-item {"metadata":{"name":"Think Tanks Tab"},"className":"tab-link"} -->
-			<li class="tab-link"><a href="#think-tank-results">Think Tanks</a></li>
+			<li class="tab-link"><a href="#think-tank-results" data-entity-type="think_tank">Think Tanks</a></li>
 			<!-- /wp:list-item -->
 
 			<!-- wp:list-item {"metadata":{"name":"Donors Tab"},"className":"tab-link"} -->
-			<li id="donor-results" class="tab-link"><a href="#donor-results">Donors</a></li>
+			<li class="tab-link"><a href="#donor-results" data-entity-type="donor">Donors</a></li>
 			<!-- /wp:list-item -->
 		</ul>
 		<!-- /wp:list -->
 
 		<!-- wp:group {"metadata":{"name":"Content"},"className":"tab-content","layout":{"type":"default"}} -->
 		<div class="wp-block-group tab-content">
-			<!-- wp:group {"metadata":{"name":"Think Tanks Content"},"className":"tab","layout":{"type":"default"}} -->
-			<div id="think-tank-results" class="wp-block-group tab">
-				<!-- wp:pattern {"slug":"ttt/data-table-search-think-tank"} /-->
-			</div>
-			<!-- /wp:group -->
+			<!-- wp:pattern {"slug":"ttt/data-table-search-think-tank"} /-->
 
-			<!-- wp:group {"metadata":{"name":"Donor Content"},"className":"tab","layout":{"type":"default"}} -->
-			<div id="donor-results" class="wp-block-group tab">
-				<!-- wp:pattern {"slug":"ttt/data-table-search-donor"} /-->
-			</div>
-			<!-- /wp:group -->
+			<!-- wp:pattern {"slug":"ttt/data-table-search-donor"} /-->
 		</div>
 		<!-- /wp:group -->
 	</div>

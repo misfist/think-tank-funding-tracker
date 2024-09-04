@@ -6,5 +6,6 @@
  */
 $search = get_search_query();
 ?>
-
-<?php get_search_form(); ?>
+<!-- wp:shortcode -->
+<?php echo do_shortcode( "[search_form]", true ); ?>
+<!-- /wp:shortcode -->
