@@ -3,6 +3,12 @@
  * Title: Data Table - Top 10 Pentagon
  * Slug: ttt/data-table-top-10-pentagon
  * Inserter: no
+ * 
+ * %VAR1% = think_tank
+ * %VAR2% = donor
+ * %VAR3% = donation_year
+ * %VAR4% = donor_type
+ * %VAR5% = limit
  */
 $table_id = 9;
 $type     = 'Pentagon';
@@ -17,7 +23,7 @@ $limit    = 10;
 	<!-- /wp:heading -->
 
 	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[wpdatatable id={$table_id} table_view=regular var1='{$type}' var2={$limit}]" ); ?>
+	<?php echo do_shortcode( "[wpdatatable id={$table_id} table_view=regular var4='{$type}' var5={$limit}]" ); ?>
 	<!-- /wp:shortcode -->
 </section>
 <!-- /wp:group -->

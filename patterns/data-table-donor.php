@@ -4,13 +4,19 @@
  * Slug: ttt/data-table-donor
  * Categories: transparency
  * Inserter: false
+ *
+ * %VAR1% = think_tank
+ * %VAR2% = donor
+ * %VAR3% = donation_year
+ * %VAR4% = donor_type
+ * %VAR5% = limit
  */
 use function Quincy\ttt\get_most_recent_donation_year;
 use function Quincy\ttt\print_years;
 
 $post_id    = get_the_ID();
 $post_title = get_the_title( $post_id );
-$terms      = wp_get_post_terms(
+$donors     = wp_get_post_terms(
 	$post_id,
 	'donor',
 	array(
@@ -18,7 +24,7 @@ $terms      = wp_get_post_terms(
 		'fields' => 'names',
 	)
 );
-$term_name  = ( $terms ) ? $terms[0] : $post_title;
+$donor_name = ( $donors ) ? $donors[0] : $post_title;
 $table_id   = 10;
 $year       = get_most_recent_donation_year();
 ?>
@@ -32,7 +38,7 @@ $year       = get_most_recent_donation_year();
 <!-- /wp:group -->
 
 <!-- wp:shortcode -->
-<?php echo do_shortcode( "[wpdatatable id={$table_id} var1='{$term_name}' var2='' export_file_name='{$term_name}']" ); ?>
+<?php echo do_shortcode( "[wpdatatable id={$table_id} var2='{$donor_name}' export_file_name='{$donor_name}']" ); ?>
 <!-- /wp:shortcode -->
 
 

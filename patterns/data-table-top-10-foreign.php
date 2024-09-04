@@ -4,9 +4,11 @@
  * Slug: ttt/data-table-top-10-foreign
  * Inserter: no
  *
- * Donor Type: name LIKE %VAR1%
- * LIMIT: %VAR2%
- * Year: %VAR3%
+ * %VAR1% = think_tank
+ * %VAR2% = donor
+ * %VAR3% = donation_year
+ * %VAR4% = donor_type
+ * %VAR5% = limit
  */
 $table_id = 9;
 $type     = 'Foreign';
@@ -21,7 +23,7 @@ $limit    = 5;
 	<!-- /wp:heading -->
 
 	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[wpdatatable id={$table_id} table_view=regular var1='{$type}' var2={$limit}]" ); ?>
+	<?php echo do_shortcode( "[wpdatatable id={$table_id} table_view=regular var4='{$type}' var5={$limit}]" ); ?>
 	<!-- /wp:shortcode -->
 </section>
 <!-- /wp:group -->

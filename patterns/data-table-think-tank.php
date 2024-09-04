@@ -4,6 +4,12 @@
  * Slug: ttt/data-table-think-tank
  * Categories: transparency
  * Inserter: false
+ * 
+ * %VAR1% = think_tank
+ * %VAR2% = donor
+ * %VAR3% = donation_year
+ * %VAR4% = donor_type
+ * %VAR5% = limit
  */
 use function Quincy\ttt\get_most_recent_donation_year;
 use function Quincy\ttt\print_years;
@@ -39,7 +45,7 @@ else :
 	?>
 
 	<!-- wp:group {"metadata":{"name":"Data Filters"},"id":"custom-filters","className":"wpDataTables data-filters","layout":{"type":"default"}} -->
-	<div id="custom-filters" class="wp-block-group wpDataTables data-filters" data-table-id="<?php echo intval( $table_id ); ?>">
+	<div id="custom-filters" class="wp-block-group wpDataTables data-filters" data-table-id="<?php echo intval( $table_id ); ?>" data-table-number="table_1">
 		<?php
 		print_years( '', 'think_tank', 3 );
 
