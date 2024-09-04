@@ -1,14 +1,22 @@
 /* -- Home -- */
 
-.home {
+.home,
+.blog {
 	.section {
 		&__top-10 {
-			@include responsive-min(600px) {
+			row-gap: 0;
+
+			@include responsive-min( var( --wp--custom--breakpoint--mobile ) ) {
 				grid-template-columns: 16.875rem 1fr;
 				background-color: var( --wp--preset--color--accent );
 				padding-right: var( --wp--preset--spacing--20 );
 				column-gap: 0;
+			}
 
+			&:has( p.wpdt-c ) {
+				.wp-block-heading {
+					display: none;
+				}
 			}
 
 			.wpDataTables,
@@ -40,11 +48,15 @@
 				}
 			}
 		
-			.wp-block-heading {
+			.wp-block-heading,
+			p.wpdt-c {
 				font-size: var( --wp--preset--font-size--medium-2 );
+				font-family: var( --wp--preset--font-size--heading );
 				padding: var( --wp--preset--spacing--20 );
 				background-color: var( --wp--preset--color--contrast-5 );
 				color: var( --wp--preset--color--white );
+				line-height: var( --wp--custom--line-height--1-2 );
+				font-weight: 700;
 			}
 
 			.dt-buttons {

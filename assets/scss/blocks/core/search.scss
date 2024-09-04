@@ -3,7 +3,10 @@
 /* Search
 ---------------------------------------- */
 .wp-block-search {
-	padding: var( --wp--preset--spacing--20 );
+	p:empty,
+	br {
+		display: none;
+	}
 
 	legend {
 		margin-top: var( --wp--preset--spacing--10 );
@@ -17,7 +20,7 @@
 
 	.wp-block-search__filters {
 		border-radius: 0;
-		max-width: fit-content;
+		max-width: 9rem;
 		margin-top: 0;
 		background-color: var( --wp--preset--color--contrast-3 );
 		color: var( --wp--preset--color--base );
@@ -26,6 +29,7 @@
 	.wp-block-search__input {
 		margin-top: 0;
 		padding: 0.625rem 1rem;
+		border-radius: 0;
 	}
 
 	.wp-block-search__button {
@@ -35,16 +39,17 @@
 		height: 2.5rem;
 		justify-content: center;
 		margin-top: 0;
+		padding: 0;
 
 		&.has-icon {
 			width: 2.5rem;
 			border-radius: 0;
-			background-color: transparent;
+			background-color: var( --wp--preset--color--base );
 
 			svg {
-				height: 1rem;
+				height: 18px;
 				transform: scaleX(-1);
-				width: 1rem;
+				width: 18px;
 			}
 		}
 	}
@@ -58,7 +63,6 @@
 
 		.wp-block-search__inside-wrapper {
 			align-items: center;
-			// border-color: var(--wp--preset--color--grey-300);
 			position: relative;
 
 			.wp-block-search__input {
@@ -73,8 +77,6 @@
 
 	&.wp-block-search__button-inside {
 		.wp-block-search__inside-wrapper {
-			// border-color: var(--wp--preset--color--grey-300);
-			// padding: 0.625rem 0.875rem 0.625rem 0;
 			padding: 0;
 			position: relative;
 
@@ -89,6 +91,28 @@
 		.wp-block-search__inside-wrapper {
 			.wp-block-search__input {
 				padding: 0.625rem 1rem;
+			}
+		}
+	}
+}
+
+.site-main,
+.site-footer {
+	.wp-block-search {
+		padding: var( --wp--preset--spacing--20 );
+		background-color: var( --wp--preset--color--gray-200 );
+
+		&__inside-wrapper {
+			display: flex;
+
+			@include responsive-min( var( --wp--custom--breakpoint--small ) ) {
+				.wp-block-search {
+					&__filters {}
+
+					&__input {}
+
+					&__button {}
+				}
 			}
 		}
 	}
