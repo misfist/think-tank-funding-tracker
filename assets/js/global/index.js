@@ -5,5 +5,7 @@
  */
 
 import './header';
-import './table';
+// import './table';
+import './tabs';
+// import './wpDataTables';
 import './wpDataTables';
