@@ -12,8 +12,11 @@
 	<!-- wp:group {"metadata":{"name":"Header Row"},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
 	<div class="wp-block-group">
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"},"layout":{"selfStretch":"fit","flexSize":null}},"className":"site-branding","layout":{"type":"flex"}} -->
-		<div class="wp-block-group site-branding"><!-- wp:group {"style":{"spacing":{"blockGap":"0px"}}} -->
-			<div class="wp-block-group"><!-- wp:site-title {"level":0} /--></div>
+		<div class="wp-block-group site-branding">
+			<!-- wp:group {"style":{"spacing":{"blockGap":"0px"}}} -->
+			<div class="wp-block-group">
+				<!-- wp:site-title {"level":0} /-->
+			</div>
 			<!-- /wp:group -->
 		</div>
 		<!-- /wp:group -->
