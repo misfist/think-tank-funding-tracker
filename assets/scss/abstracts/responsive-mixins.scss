@@ -20,6 +20,17 @@
   }
 }
 */
+/**
+$break-xhuge: 1920px;
+$break-huge: 1440px;
+$break-wide: 1280px;
+$break-xlarge: 1080px;
+$break-large: 960px;	// admin sidebar auto folds
+$break-medium: 782px;	// adminbar goes big
+$break-mobile: 480px;
+$break-small: 600px;
+$break-zoomed-in: 280px;
+**/
 
 // Define mixin for media queries with min width
 @mixin responsive-min($min-width) {
