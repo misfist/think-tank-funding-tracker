@@ -14,9 +14,12 @@
 use function Quincy\ttt\get_most_recent_donation_year;
 use function Quincy\ttt\print_years;
 use function Quincy\ttt\print_types;
+use function Quincy\ttt\get_think_tank_donor_data;
 
 $post_id        = get_the_ID();
-$post_title     = get_the_title( $post_id );
+$post           = get_post( $post_id );
+$post_title     = $post->post_title;
+$think_tank     = $post->post_name;
 $terms          = wp_get_post_terms( $post_id, 'think_tank' );
 $term_name      = ( $terms ) ? $terms[0]->name : $post_title;
 $limited_info   = get_post_meta( $post_id, 'limited_info', true );
@@ -24,6 +27,8 @@ $is_limited     = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' 
 $is_transparent = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
 $table_id       = 11;
 $year           = get_most_recent_donation_year();
+$year           = '2023';
+$type           = '';
 
 if ( $is_limited ) :
 	?>
@@ -53,9 +58,10 @@ else :
 		?>
 	</div>
 	<!-- /wp:group -->
-	
+
 	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[wpdatatable id={$table_id} var1='{$term_name}' var2='']" ); ?>
+	<?php echo do_shortcode( "[think_tank_table think_tank={$think_tank} year='{$year}' type='{$type}']" ); ?>
 	<!-- /wp:shortcode -->
+	
 	<?php
 endif;
