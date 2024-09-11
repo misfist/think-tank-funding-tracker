@@ -13,7 +13,7 @@ namespace Quincy\ttt;
  * @return void
  */
 function search_form() {
-	$output  = shortcode_unautop( \get_search_form( array( 'echo' => false ) ) );
+	$output = shortcode_unautop( \get_search_form( array( 'echo' => false ) ) );
 	return $output;
 }
 add_shortcode( 'search_form', __NAMESPACE__ . '\search_form' );

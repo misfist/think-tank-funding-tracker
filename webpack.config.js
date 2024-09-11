@@ -250,7 +250,7 @@ module.exports = {
 		}),
 
 		new CleanWebpackPlugin(),
-		new ESLintPlugin(),
+		// new ESLintPlugin(),
 		new StylelintPlugin(),
 	],
 	performance: {

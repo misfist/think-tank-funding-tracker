@@ -37,12 +37,12 @@
 		}
 
 		&:nth-of-type(4n + 4) {
-			color: var(--wp--preset--color--grey-500);
+			color: var(--wp--preset--color--gray-500);
 
 			&:hover,
 			&:active,
 			&:focus {
-				color: var(--wp--preset--color--grey-700);
+				color: var(--wp--preset--color--gray-700);
 			}
 		}
 	}

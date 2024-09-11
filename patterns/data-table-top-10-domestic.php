@@ -3,27 +3,31 @@
  * Title: Data Table - Top 10 Domestic
  * Slug: ttt/data-table-top-10-domestic
  * Inserter: no
- * 
+ *
  * %VAR1% = think_tank
  * %VAR2% = donor
  * %VAR3% = donation_year
  * %VAR4% = donor_type
  * %VAR5% = limit
  */
+use function Quincy\ttt\get_top_ten_data;
+
 $table_id = 9;
 $type     = 'U.S.';
+$type     = 'u-s-government';
 $limit    = 10;
+$year     = '';
 ?>
-<!-- wp:group {"metadata":{"name":"<?php echo esc_attr( $type ); ?>"},"layout":{"type":"grid","columnCount":2,"minimumColumnWidth":"17rem"},"className":"section section__top-10 domestic","tagName":"section"} -->
-<section class="wp-block-group section section__top-10 domestic">
+<!-- wp:group {"metadata":{"name":"<?php echo esc_attr( $type ); ?>"},"layout":{"type":"grid","columnCount":2,"minimumColumnWidth":"17rem"},"className":"section-table domestic","tagName":"div"} -->
+<div class="wp-block-group section-table domestic">
 	<!-- wp:heading -->
 	<h2 class="wp-block-heading">
-		<?php esc_html_e( sprintf( 'Top %d Think Tanks That Receive Funding from the U.S. Government.', intval( $limit ) ), 'ttt' ); ?>
+		<?php esc_html_e( sprintf( 'Top %d Think Tanks That Receive Funding from the U.S. Government%s.', intval( $limit ), ( $year ) ? ' in ' . $year : '' ), 'ttt' ); ?>
 	</h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[wpdatatable id={$table_id} table_view=regular var4='{$type}' var5={$limit}]" ); ?>
+	<?php echo do_shortcode( "[top_ten_table type='{$type}' year='{$year}' limit={$limit}]" ); ?>
 	<!-- /wp:shortcode -->
-</section>
+</div>
 <!-- /wp:group -->

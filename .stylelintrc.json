@@ -4,6 +4,7 @@
 		"at-rule-empty-line-before": null,
 		"no-missing-end-of-source-newline": null,
 		"block-opening-brace-space-before": null,
+		"function-comma-space-after": null,
 		"block-no-empty": null,
 		"indentation": null,
 		"no-eol-whitespace": null,

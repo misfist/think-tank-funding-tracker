@@ -4,13 +4,48 @@
 .blog {
 	.section {
 		&__top-10 {
-			row-gap: 0;
 
-			@include responsive-min( var( --wp--custom--breakpoint--mobile ) ) {
-				grid-template-columns: 16.875rem 1fr;
-				background-color: var( --wp--preset--color--accent );
-				padding-right: var( --wp--preset--spacing--20 );
-				column-gap: 0;
+			.section-table {
+				row-gap: 0;
+
+				@include responsive-min( var( --wp--custom--breakpoint--mobile ) ) {
+					grid-template-columns: 16.875rem 1fr;
+					background-color: var( --wp--preset--color--accent );
+					padding-right: var( --wp--preset--spacing--20 );
+					column-gap: 0;
+				}
+			}
+
+			table {
+				margin-bottom: 1px;
+			}
+
+			thead {
+				@include screen-reader-text;
+			}
+
+			tbody {
+				tr {
+					border: none;
+
+					&:nth-child(odd) {
+						background-color: var( --wp--preset--color--gray-200 ) !important;
+					}
+
+					&:nth-child(even) {
+						background-color: var( --wp--preset--color--white ) !important;
+					}
+
+					td {
+						&:first-child {
+							padding-left: var( --wp--preset--spacing--10 ) !important;
+						}
+
+						&:last-child {
+							padding-right: var( --wp--preset--spacing--10 ) !important;
+						}
+					}
+				}
 			}
 
 			&:has( p.wpdt-c ) {
@@ -20,32 +55,33 @@
 			}
 
 			.wpDataTables,
-			table.wpDataTable {
+			table.wpDataTable,
+			table.dataTable {
 				margin-bottom: 1px !important;
 
-				tbody {
-					tr {
-						border: none;
+				// tbody {
+				// 	tr {
+				// 		border: none;
 
-						&:nth-child(odd) {
-							background-color: var( --wp--preset--color--gray-200 ) !important;
-						}
+				// 		&:nth-child(odd) {
+				// 			background-color: var( --wp--preset--color--gray-200 ) !important;
+				// 		}
 
-						&:nth-child(even) {
-							background-color: var( --wp--preset--color--white ) !important;
-						}
+				// 		&:nth-child(even) {
+				// 			background-color: var( --wp--preset--color--white ) !important;
+				// 		}
 
-						td {
-							&:first-child {
-								padding-left: var( --wp--preset--spacing--10 ) !important;
-							}
+				// 		td {
+				// 			&:first-child {
+				// 				padding-left: var( --wp--preset--spacing--10 ) !important;
+				// 			}
 	
-							&:last-child {
-								padding-right: var( --wp--preset--spacing--10 ) !important;
-							}
-						}
-					}
-				}
+				// 			&:last-child {
+				// 				padding-right: var( --wp--preset--spacing--10 ) !important;
+				// 			}
+				// 		}
+				// 	}
+				// }
 			}
 		
 			.wp-block-heading,
@@ -66,7 +102,7 @@
 		}
 	}
 
-	.section + .section {
+	.section-table + .section-table {
 		margin-top: var( --wp--preset--spacing--20 );
 	}
 }

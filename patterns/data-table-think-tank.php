@@ -4,7 +4,7 @@
  * Slug: ttt/data-table-think-tank
  * Categories: transparency
  * Inserter: false
- * 
+ *
  * %VAR1% = think_tank
  * %VAR2% = donor
  * %VAR3% = donation_year

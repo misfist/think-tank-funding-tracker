@@ -3,8 +3,7 @@
 input,
 select,
 textarea {
-	border-radius: 6px;
-	border: 2px solid var(--wp--preset--color--grey-300) !important; /* stylelint-disable-line declaration-no-important */
+	border-radius: 0;
 	color: var(--wp--preset--color--black);
 	font-size: var(--wp-wp--preset--font-size--xs);
 	margin-top: 0.5rem;
@@ -12,11 +11,30 @@ textarea {
 	width: 100%;
 }
 
+input,
+textarea {
+	border: 1px solid var(--wp--preset--color--gray-200);
+}
+
 select {
 	appearance: none;
+	border: none;
 	outline: 0;
-	background: url(../images/icons/icon-arrow-down.svg) no-repeat right 0.8em
+	background: url(../images/icons/icon-arrow-down.svg) no-repeat right 11px
 		center / 1.4em;
+
+	&.wp-block-search__filters {
+		background: url(../images/icons/icon-arrow-down-white.svg) no-repeat right 11px
+		center / 1.4em,
+		linear-gradient(
+			to right, 
+			var( --wp--preset--color--contrast-3 ), 
+			var( --wp--preset--color--contrast-3 ) calc( 100% - 42px ), 
+			var( --wp--preset--color--contrast-4 ) 43px, 
+			var( --wp--preset--color--contrast-4 )
+		); /* stylelint-disable-line function-comma-space-after */
+	}
+
 	cursor: pointer;
 
 	&::-ms-expand {
@@ -61,7 +79,7 @@ textarea:focus {
 }
 
 ::placeholder {
-	color: var(--wp--preset--color--grey-500);
+	color: var(--wp--preset--color--gray-500);
 }
 
 label {

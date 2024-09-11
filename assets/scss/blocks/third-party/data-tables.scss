@@ -1,8 +1,241 @@
 .dataTable,
 .ninja_table_wrapper {
+    table-layout: auto !important;
+    border-spacing: 0;
+    
     table {
+        // font-family: var( --wp--preset--font-family--body );
+        // font-size: var( --wp--preset--font-size--small );
+        // color: var( --wp--preset--color--contrast );
+
+        // a {
+        //     color: var( --wp--preset--color--contrast );
+        //     text-decoration: underline;
+            
+        //     &:hover,
+        //     &:focus {
+        //         color: var( --wp--preset--color--gray-800 );
+                
+        //     }
+        // }
+
+        // thead {
+        //     background-color: var( --wp--preset--color--gray-200 );
+        // }
+    }
+    font-family: var( --wp--preset--font-family--body );
+    font-size: var( --wp--preset--font-size--small );
+    color: var( --wp--preset--color--contrast );
+
+    a {
+        color: var( --wp--preset--color--contrast );
+        text-decoration: underline;
+        
+        &:hover,
+        &:focus {
+            color: var( --wp--preset--color--gray-800 );
+            
+        }
+    }
+
+    .column-source {
+        a {
+            text-decoration: none;
+        }
+    }
+
+    thead {
+        background-color: var( --wp--preset--color--gray-200 );
+        border: none;
+
+        input {
+            border-bottom: 1px solid var( --wp--preset--color--gray-200 ) !important;
+        }
+
+        tr {
+            &:first-child {}
+
+            &:nth-child(2) {
+                background-color: var( --wp--preset--color--white );
+            }
+        }
+
+        th {
+            &.sorting {
+                width: min-content;
+                white-space: nowrap !important;
+
+                &::after {
+                    font-family: var( --wp--preset--font-family--data-table-icons );
+                    display: inline-block;
+                    padding-left: 10px;
+                    opacity: 0;
+                    content: '\f175';
+                }
+
+                &:hover {
+                    &::after {
+                        opacity: 80%;
+                    }
+                }
+
+                &.sorting_asc {
+                    &::after {
+                        opacity: 1;
+                    }
+                }
+
+                &.sorting_desc {
+                    &::after {
+                        content: '\f176';
+                        opacity: 1;
+                    }
+                }
+
+                &.sorting_asc,
+                &.sorting_desc {
+                    &::before {
+                        content: '';
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    > thead {
+        > tr {
+            > th {
+                &.wdtheader {
+                    background-color: var( --wp--preset--color--gray-200 );
+                    padding-top: var( --wp--preset--spacing--10 );
+                    padding-bottom: var( --wp--preset--spacing--10 );
+
+                    &:first-child {
+                        padding-left: var( --wp--preset--spacing--20 );
+                    }
+
+                    &:last-child {
+                        padding-right: var( --wp--preset--spacing--20 );
+                    }
+
+                    &:hover,
+                    &:focus {
+                        background-color: var( --wp--preset--color--gray-100 );
+                    }
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border: none;
+
+            &:nth-child(odd) {
+                background-color: var( --wp--preset--color--white );
+            }
+
+            &:nth-child(even) {
+                background-color: var( --wp--preset--color--gray-200 );
+            }
+        }
+
+        > tr {
+            > td {
+                border: none;
+                padding-top: var( --wp--preset--spacing--10 );
+                padding-bottom: var( --wp--preset--spacing--10 );
+
+                &:first-child {
+                    padding-left: var( --wp--preset--spacing--20 );
+                }
+
+                &:last-child {
+                    padding-right: var( --wp--preset--spacing--20 );
+                }
+            }
+        }
+
+        td {
+            &.column-min-amount,
+            &.column-min-donations,
+            &.column-total-amount,
+            &.column-pentagon-contractors,
+            &.column-defense-contractors,
+            &.column-us-government,
+            &.column-foreign-interests,
+            &.column-foreign-government {
+                &::before {
+                    content: '$';
+                }
+            }
+        }
+
+    }
+
+
+    &.top-10 {
         thead {
-            background-color: var( --wp--preset--color--gray-200 );
+            @include screen-reader-text();
+        }
+    }
+
+    th,
+    td {
+
+        &.numdata {}
+
+        &.column-think-tank,
+        &.column-donor {
+            text-align: left;
+        }
+
+        &.column-min-amount,
+        &.column-total-amount,
+        &.column-min-donations,
+        &.column-pentagon-contractors,
+        &.column-defense-contractors,
+        &.column-us-government,
+        &.column-foreign-interests,
+        &.column-foreign-government {
+            text-align: right !important;
+        }
+
+        &.column-source {
+            text-align: left;
+        }
+
+        &.column-type {
+            text-align: left;
+        }
+
+        &.column-year {
+            text-align: left;
+        }
+    }
+
+    th {
+        &.wdtheader {
+
+            &:first-child {
+                border-radius: var( --wp--custom--border--radius--lg ) 0 0 var( --wp--custom--border--radius--lg );
+            }
+
+            &:last-child {
+                border-radius: 0 var( --wp--custom--border--radius--lg ) var( --wp--custom--border--radius--lg ) 0;
+            }
+        }
+    }
+
+    @include responsive-min( var( --wp--custom--breakpoint--mobile ) ) {
+        th,
+        td {
+            width: fit-content !important;
+
+            &.column-year {
+                width: 200px !important;
+            }
         }
     }
 }

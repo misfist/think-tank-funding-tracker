@@ -31,12 +31,11 @@ add_filter( 'render_block', __NAMESPACE__ . '\remove_autop', 10, 2 );
  * @param  string $block_type
  * @return array
  */
-function register_block_type_args( array $args, string $block_type ) : array {
-	$search_term = $_GET['s'];
-	if( 'core/search' === $block_type ) {
-		$search_term  = $_GET['s'];
-		if( $search_term ) {
-			$args['attributes']['query']['default']['wdt_search'] = urlencode( sanitize_text_field( $search_term ) );
+function register_block_type_args( array $args, string $block_type ): array {
+	if ( 'core/search' === $block_type ) {
+		$search_term = ( isset( $_GET['s'] ) ) ? sanitize_text_field( $_GET['s'] ) : null;
+		if ( $search_term ) {
+			$args['attributes']['query']['default']['wdt_search'] = urlencode( $search_term );
 		}
 	}
 	return $args;
