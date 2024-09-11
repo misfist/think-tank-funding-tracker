@@ -12,7 +12,7 @@ namespace Quincy\ttt;
  * @param int    $number_of_items Optional. The number of items to return. Default 10.
  * @return array An array of transaction data including think_tank term and total amount.
  */
-function get_top_ten_raw_data( $donor_type = '', $donation_year = '', $number_of_items = 10 ) : array {
+function get_top_ten_raw_data( $donor_type = '', $donation_year = '', $number_of_items = 10 ): array {
 	$args = array(
 		'post_type'      => 'transaction',
 		'post_status'    => 'publish',
@@ -58,7 +58,7 @@ function get_top_ten_raw_data( $donor_type = '', $donation_year = '', $number_of
 			'think_tank'   => $think_tank->name,
 			'total_amount' => (int) $amount,
 			'year'         => implode( ',', wp_get_post_terms( $post->ID, 'donation_year', array( 'fields' => 'names' ) ) ),
-            'type'         => implode( ',', wp_get_post_terms( $post->ID, 'donor_type', array( 'fields' => 'names' ) ) ),
+			'type'         => implode( ',', wp_get_post_terms( $post->ID, 'donor_type', array( 'fields' => 'names' ) ) ),
 		);
 	}
 
@@ -72,26 +72,26 @@ function get_top_ten_raw_data( $donor_type = '', $donation_year = '', $number_of
 	return $result;
 }
 
- /**
-  * Get Table Data
-  *
-  * @param string $donor_type Optional. The slug of the donor_type taxonomy term. Default empty.
-  * @param string $donation_year Optional. The slug of the donation_year taxonomy term. Default empty.
-  * @param int    $number_of_items Optional. The number of items to return. Default 10.
-  * @return array An array of transaction data including think_tank term and total amount.
-  */
-function get_top_ten_data( $donor_type = '', $donation_year = '', $number_of_items = 10 ) : array {
-    $raw_data = get_top_ten_raw_data( $donor_type, $donation_year, $number_of_items );
+/**
+ * Get Table Data
+ *
+ * @param string $donor_type Optional. The slug of the donor_type taxonomy term. Default empty.
+ * @param string $donation_year Optional. The slug of the donation_year taxonomy term. Default empty.
+ * @param int    $number_of_items Optional. The number of items to return. Default 10.
+ * @return array An array of transaction data including think_tank term and total amount.
+ */
+function get_top_ten_data( $donor_type = '', $donation_year = '', $number_of_items = 10 ): array {
+	$raw_data = get_top_ten_raw_data( $donor_type, $donation_year, $number_of_items );
 
-    if( empty( $raw_data ) ) {
-        return array();
-    }
-    
-    $data = array();
+	if ( empty( $raw_data ) ) {
+		return array();
+	}
 
-    foreach ( $raw_data as $item ) {
-        $data[ $item['think_tank'] ] += (int) $item['total_amount'];
-    }
+	$data = array();
+
+	foreach ( $raw_data as $item ) {
+		$data[ $item['think_tank'] ] += (int) $item['total_amount'];
+	}
 
 	arsort( $data );
 
@@ -108,15 +108,15 @@ function get_top_ten_data( $donor_type = '', $donation_year = '', $number_of_ite
 	return $result;
 }
 
- /**
-  * Generate Table
-  *
-  * @param string $donor_type Optional. The slug of the donor_type taxonomy term. Default empty.
-  * @param string $donation_year Optional. The slug of the donation_year taxonomy term. Default empty.
-  * @param int    $number_of_items Optional. The number of items to return. Default 10.
-  * @return string HTML table markup.
-  */
-function generate_top_ten_table( $donor_type = '', $donation_year = '', $number_of_items = 10 ) : string {
+/**
+ * Generate Table
+ *
+ * @param string $donor_type Optional. The slug of the donor_type taxonomy term. Default empty.
+ * @param string $donation_year Optional. The slug of the donation_year taxonomy term. Default empty.
+ * @param int    $number_of_items Optional. The number of items to return. Default 10.
+ * @return string HTML table markup.
+ */
+function generate_top_ten_table( $donor_type = '', $donation_year = '', $number_of_items = 10 ): string {
 	$data = get_top_ten_data( $donor_type, $donation_year, $number_of_items );
 
 	ob_start();
@@ -153,7 +153,7 @@ function generate_top_ten_table( $donor_type = '', $donation_year = '', $number_
  * @param  integer $number_of_items
  * @return void
  */
-function render_top_ten_table( $donor_type = '', $donation_year = '', $number_of_items = 10 ) : void {
+function render_top_ten_table( $donor_type = '', $donation_year = '', $number_of_items = 10 ): void {
 	echo generate_top_ten_table( $donor_type, $donation_year, $number_of_items );
 }
 
@@ -163,10 +163,10 @@ function render_top_ten_table( $donor_type = '', $donation_year = '', $number_of
  * @param array $atts Shortcode attributes.
  * @return string HTML table markup.
  */
-function top_ten_table_shortcode( $atts ) : string {
+function top_ten_table_shortcode( $atts ): string {
 	$atts = shortcode_atts(
 		array(
-			'type' => '',
+			'type'  => '',
 			'year'  => '',
 			'limit' => 10,
 		),

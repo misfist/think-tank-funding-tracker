@@ -28,4 +28,4 @@ $table_id = 12;
 	<!-- wp:shortcode -->
 	<?php echo do_shortcode( "[wpdatatable id={$table_id} {$var2} {$var3}]" ); ?>
 	<!-- /wp:shortcode -->
- <!-- /wp:group -->
+<!-- /wp:group -->

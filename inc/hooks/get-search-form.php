@@ -74,7 +74,7 @@ add_filter( 'get_search_form', __NAMESPACE__ . '\get_search_form', '', 2 );
  * @param  array $query_vars
  * @return array
  */
-function query_vars( $query_vars ) : array {
+function query_vars( $query_vars ): array {
 	$query_vars[] = 'wdt_search';
 	$query_vars[] = 'entity_type';
 	return $query_vars;
@@ -87,14 +87,14 @@ add_filter( 'query_vars', __NAMESPACE__ . '\query_vars' );
  * @param  array $request
  * @return array
  */
-function request( $request ) : array {
+function request( $request ): array {
 	if ( isset( $_REQUEST['wdt_search'] ) ) {
 		$request['s'] = $_REQUEST['wdt_search'];
 	} elseif ( isset( $_REQUEST['s'] ) && ! isset( $_REQUEST['wdt_search'] ) ) {
 		// $request['s'] = $_REQUEST['wdt_search'];
 		$request['wdt_search'] = $_REQUEST['s'];
 	}
-	if( ! isset( $_REQUEST['entity_type'] ) ) {
+	if ( ! isset( $_REQUEST['entity_type'] ) ) {
 		$request['entity_type'] = $_REQUEST['think_tank'];
 	}
 	return $request;

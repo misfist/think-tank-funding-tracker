@@ -3,7 +3,7 @@
  * Title: Data Table - Top 10 Pentagon
  * Slug: ttt/data-table-top-10-pentagon
  * Inserter: no
- * 
+ *
  * %VAR1% = think_tank
  * %VAR2% = donor
  * %VAR3% = donation_year

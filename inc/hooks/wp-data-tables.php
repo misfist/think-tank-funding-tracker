@@ -51,7 +51,7 @@ add_filter( 'wpdatatables_filter_table_description_text', __NAMESPACE__ . '\filt
  *
  * @return array
  */
-function get_vars() : array {
+function get_vars(): array {
 
 	$placeholder_vars = array(
 		'think_tank' => 'wdt_var1',
@@ -63,9 +63,9 @@ function get_vars() : array {
 
 	$vars = array();
 
-	foreach( $placeholder_vars as $key => $value ) {
-		if ( isset( $_GET[$value] ) ) {
-			$vars[$key] = urldecode( sanitize_text_field( $_GET[$value] ) );
+	foreach ( $placeholder_vars as $key => $value ) {
+		if ( isset( $_GET[ $value ] ) ) {
+			$vars[ $key ] = urldecode( sanitize_text_field( $_GET[ $value ] ) );
 		}
 	}
 
