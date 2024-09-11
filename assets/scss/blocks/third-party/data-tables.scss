@@ -1,28 +1,9 @@
 .dataTable,
 .ninja_table_wrapper {
+    width: 100%;
     table-layout: auto !important;
+    border-collapse: separate !important;
     border-spacing: 0;
-    
-    table {
-        // font-family: var( --wp--preset--font-family--body );
-        // font-size: var( --wp--preset--font-size--small );
-        // color: var( --wp--preset--color--contrast );
-
-        // a {
-        //     color: var( --wp--preset--color--contrast );
-        //     text-decoration: underline;
-            
-        //     &:hover,
-        //     &:focus {
-        //         color: var( --wp--preset--color--gray-800 );
-                
-        //     }
-        // }
-
-        // thead {
-        //     background-color: var( --wp--preset--color--gray-200 );
-        // }
-    }
     font-family: var( --wp--preset--font-family--body );
     font-size: var( --wp--preset--font-size--small );
     color: var( --wp--preset--color--contrast );
@@ -45,22 +26,24 @@
     }
 
     thead {
-        background-color: var( --wp--preset--color--gray-200 );
-        border: none;
 
         input {
             border-bottom: 1px solid var( --wp--preset--color--gray-200 ) !important;
         }
 
-        tr {
-            &:first-child {}
-
-            &:nth-child(2) {
-                background-color: var( --wp--preset--color--white );
-            }
-        }
+        tr {}
 
         th {
+            background-color: var( --wp--preset--color--gray-200 );
+
+            &:first-child {
+                border-radius: var( --wp--custom--border--radius--lg ) 0 0 var( --wp--custom--border--radius--lg );
+            }
+
+            &:last-child {
+                border-radius: 0 var( --wp--custom--border--radius--lg ) var( --wp--custom--border--radius--lg ) 0;
+            }
+
             &.sorting {
                 width: min-content;
                 white-space: nowrap !important;
