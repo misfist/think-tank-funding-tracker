@@ -13,9 +13,13 @@
  */
 use function Quincy\ttt\get_most_recent_donation_year;
 use function Quincy\ttt\print_years;
+use function Quincy\ttt\get_donor_think_tank_raw_data;
+use function Quincy\ttt\get_donor_think_tank_data;
 
 $post_id    = get_the_ID();
-$post_title = get_the_title( $post_id );
+$post       = get_post( $post_id );
+$post_title = $post->post_title;
+$donor      = $post->post_name;
 $donors     = wp_get_post_terms(
 	$post_id,
 	'donor',
@@ -27,6 +31,7 @@ $donors     = wp_get_post_terms(
 $donor_name = ( $donors ) ? $donors[0] : $post_title;
 $table_id   = 10;
 $year       = get_most_recent_donation_year();
+$year       = '';
 ?>
 
 <!-- wp:group {"metadata":{"name":"Data Filters"},"id":"custom-filters","className":"wpDataTables data-filters","layout":{"type":"default"}} -->
@@ -38,8 +43,5 @@ $year       = get_most_recent_donation_year();
 <!-- /wp:group -->
 
 <!-- wp:shortcode -->
-<?php echo do_shortcode( "[wpdatatable id={$table_id} var2='{$donor_name}' export_file_name='{$donor_name}']" ); ?>
+<?php echo do_shortcode( "[donor_table donor='{$donor}' year='{$year}']" ); ?>
 <!-- /wp:shortcode -->
-
-
-
