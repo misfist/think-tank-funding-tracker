@@ -13,7 +13,7 @@ textarea {
 
 input,
 textarea {
-	border: 1px solid var(--wp--preset--color--gray-200); /* stylelint-disable-line declaration-no-important */
+	border: 1px solid var(--wp--preset--color--gray-200);
 }
 
 select {
@@ -21,18 +21,18 @@ select {
 	border: none;
 	outline: 0;
 	background: url(../images/icons/icon-arrow-down.svg) no-repeat right 11px
-		center / 1.4em; /* stylelint-disable-line declaration-no-important */
+		center / 1.4em;
 
 	&.wp-block-search__filters {
 		background: url(../images/icons/icon-arrow-down-white.svg) no-repeat right 11px
 		center / 1.4em,
 		linear-gradient(
 			to right, 
-			var( --wp--preset--color--contrast-3 ),
-			var( --wp--preset--color--contrast-3 ) calc( 100% - 42px ),
-			var( --wp--preset--color--contrast-4 ) 43px,
+			var( --wp--preset--color--contrast-3 ), 
+			var( --wp--preset--color--contrast-3 ) calc( 100% - 42px ), 
+			var( --wp--preset--color--contrast-4 ) 43px, 
 			var( --wp--preset--color--contrast-4 )
-		); /* stylelint-disable-line declaration-no-important */
+		); /* stylelint-disable-line function-comma-space-after */
 	}
 
 	cursor: pointer;
