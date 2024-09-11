@@ -76,15 +76,84 @@ function get_top_ten_raw_data( $donor_type = '', $donation_year = '', $number_of
 }
 
 /**
- * Retrieves think tank data grouped by think tank with summed amounts for each donor type,
- * and sorts the data by the think tank key.
+ * Retrieve donor data, optionally filtered by donation year.
+ *
+ * @param string $donation_year The slug of the donation year to filter transactions by (optional).
+ * @return array
+ */
+function get_donors_raw_data( $donation_year = '', $donor_type = '' ) : array {
+	$args = array(
+		'post_type'      => 'transaction',
+		'posts_per_page' => -1,
+	);
+
+	if ( $donation_year ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'donation_year',
+				'field'    => 'slug',
+				'terms'    => sanitize_title( $donation_year ),
+			),
+		);
+	}
+	if ( $donor_type ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'donor_type',
+				'field'    => 'slug',
+				'terms'    => sanitize_title( $donor_type ),
+			),
+		);
+	}
+
+	$query = new \WP_Query( $args );
+
+	$data = array();
+
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+
+			$post_id = get_the_ID();
+
+			$donors = wp_get_object_terms( $post_id, 'donor', array( 'orderby' => 'parent' ) );
+			if ( empty( $donors ) || is_wp_error( $donors ) ) {
+				continue;
+			}
+
+			$donor_names = wp_list_pluck( $donors, 'name' );
+			$donor_slugs = wp_list_pluck( $donors, 'slug' );
+			$donor_name  = implode( ' > ', $donor_names );
+			$donor_slug  = implode( '-', $donor_slugs );
+
+			$amount = get_post_meta( $post_id, 'amount_calc', true );
+			$amount = intval( $amount );
+
+			$data[] = array(
+				'donor'       => $donor_name,
+				'amount_calc' => $amount,
+				'donor_type'  => get_the_term_list( $post_id, 'donor_type' ),
+				'donor_slug'  => $donor_slug,
+				'donor_link'  => get_term_link( $donor_slugs[0], 'donor' ),
+				'year'        => get_the_term_list( $post_id, 'donation_year' ),
+			);
+		}
+
+		wp_reset_postdata();
+	}
+
+	return $data;
+}
+
+/**
+ * Get data for think tanks
  *
  * @param string $donation_year The donation year to filter by.
  * @return array Array of think tank data.
  */
 function get_think_tanks_data( $donation_year = '' ) {
 	$year_var = get_query_var( 'donation_year', '' );
-	$args = array(
+	$args     = array(
 		'post_type'      => 'transaction',
 		'posts_per_page' => -1,
 		'post_status'    => 'publish',
@@ -101,7 +170,7 @@ function get_think_tanks_data( $donation_year = '' ) {
 
 	$query = new \WP_Query( $args );
 
-	$results         = array();
+	$data            = array();
 	$all_donor_types = array();
 
 	if ( $query->have_posts() ) {
@@ -116,9 +185,9 @@ function get_think_tanks_data( $donation_year = '' ) {
 			$think_tank      = $think_tank_terms[0]->name;
 			$think_tank_slug = $think_tank_terms[0]->slug;
 
-			if ( ! isset( $results[ $think_tank_slug ] ) ) {
-				$post_id                     = get_post_from_term( $think_tank_slug, 'think_tank' );
-				$results[ $think_tank_slug ] = array(
+			if ( ! isset( $data[ $think_tank_slug ] ) ) {
+				$post_id                  = get_post_from_term( $think_tank_slug, 'think_tank' );
+				$data[ $think_tank_slug ] = array(
 					'think_tank'         => $think_tank,
 					'donor_types'        => array(),
 					'transparency_score' => get_transparency_score( $think_tank_slug ),
@@ -129,14 +198,14 @@ function get_think_tanks_data( $donation_year = '' ) {
 			foreach ( $donor_type_terms as $donor_type_term ) {
 				$donor_type = $donor_type_term->name;
 
-				if ( ! isset( $results[ $think_tank_slug ]['donor_types'][ $donor_type ] ) ) {
-					$results[ $think_tank_slug ]['donor_types'][ $donor_type ] = 0;
+				if ( ! isset( $data[ $think_tank_slug ]['donor_types'][ $donor_type ] ) ) {
+					$data[ $think_tank_slug ]['donor_types'][ $donor_type ] = 0;
 				}
 
 				$amount_calc = get_post_meta( get_the_ID(), 'amount_calc', true );
 				$amount_calc = floatval( $amount_calc );
 
-				$results[ $think_tank_slug ]['donor_types'][ $donor_type ] += $amount_calc;
+				$data[ $think_tank_slug ]['donor_types'][ $donor_type ] += $amount_calc;
 
 				$all_donor_types[ $donor_type ] = true;
 			}
@@ -145,7 +214,7 @@ function get_think_tanks_data( $donation_year = '' ) {
 
 	wp_reset_postdata();
 
-	foreach ( $results as &$think_tank_data ) {
+	foreach ( $data as &$think_tank_data ) {
 		foreach ( $all_donor_types as $donor_type => $value ) {
 			if ( ! isset( $think_tank_data['donor_types'][ $donor_type ] ) ) {
 				$think_tank_data['donor_types'][ $donor_type ] = 0;
@@ -153,13 +222,57 @@ function get_think_tanks_data( $donation_year = '' ) {
 		}
 	}
 
-	ksort( $results );
+	ksort( $data );
 
-	return $results;
+	return $data;
 }
 
 /**
- * Get Table Data
+ * Get data for donors
+ *
+ * @param  string $donation_year
+ * @return array
+ */
+function get_donors_data( $donation_year = '', $donor_type = '' ) {
+	$donor_data = get_donors_raw_data( $donation_year, $donor_type );
+	$data = array_reduce(
+		$donor_data,
+		function ( $carry, $item ) {
+			$donor_slug  = $item['donor_slug'];
+			$amount_calc = $item['amount_calc'];
+			$year        = $item['year'];
+
+			if ( ! isset( $carry[ $donor_slug ] ) ) {
+				$carry[ $donor_slug ] = array(
+					'donor'       => $item['donor'],
+					'amount_calc' => $amount_calc,
+					'donor_type'  => $item['donor_type'],
+					'donor_slug'  => $donor_slug,
+					'donor_link'  => $item['donor_link'],
+					'year'        => $year,
+				);
+			} else {
+				$carry[ $donor_slug ]['amount_calc'] += $amount_calc;
+
+				$years = explode( ', ', $carry[ $donor_slug ]['year'] );
+				if ( ! in_array( $year, $years ) ) {
+					$years[]                      = $year;
+					$carry[ $donor_slug ]['year'] = implode( ', ', $years );
+				}
+			}
+
+			return $carry;
+		},
+		array()
+	);
+
+	ksort( $data );
+
+	return $data;
+}
+
+/**
+ * Get data for top ten
  *
  * @param string $donor_type Optional. The slug of the donor_type taxonomy term. Default empty.
  * @param string $donation_year Optional. The slug of the donation_year taxonomy term. Default empty.
@@ -195,7 +308,7 @@ function get_top_ten_data( $donor_type = '', $donation_year = '', $number_of_ite
 }
 
 /**
- * Generate Table
+ * Generate table for top ten
  *
  * @param string $donor_type Optional. The slug of the donor_type taxonomy term. Default empty.
  * @param string $donation_year Optional. The slug of the donation_year taxonomy term. Default empty.
@@ -208,7 +321,7 @@ function generate_top_ten_table( $donor_type = '', $donation_year = '', $number_
 	ob_start();
 	?>
 
-	<table class="top-ten-recipients dataTable">
+	<table class="top-ten-recipients dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
 		<thead>
 			<tr>
 				<th class="column-think-tank"><?php esc_html_e( 'Think Tank', 'ttt' ); ?></th>
@@ -232,7 +345,7 @@ function generate_top_ten_table( $donor_type = '', $donation_year = '', $number_
 }
 
 /**
- * Generates and returns HTML table markup for think tank data.
+ * Generate table for think tanks
  *
  * @param  string $donation_year
  * @return string HTML table markup.
@@ -243,9 +356,9 @@ function generate_think_tanks_table( $donation_year = '' ): string {
 	ob_start();
 	if ( $data ) :
 		?>
-	<table class="think-tank-archive dataTable">
+	<table class="think-tank-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
 		<?php
-		if( $donation_year ) :
+		if ( $donation_year ) :
 			?>
 			<caption><?php printf( 'Donations in <span class="donation-year">%s</span> received from…', intval( $donation_year ) ); ?></caption>
 			<?php
@@ -286,7 +399,55 @@ function generate_think_tanks_table( $donation_year = '' ): string {
 }
 
 /**
- * Render Table
+ * Generate table for think tanks
+ *
+ * @param  string $donation_year
+ * @return string HTML table markup.
+ */
+function generate_donors_table( $donation_year = '', $donor_type = '' ): string {
+	$data = get_donors_data( $donation_year, $donor_type );
+
+	ob_start();
+	if ( $data ) :
+		?>
+		<table class="donor-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
+			<?php
+			if ( $donation_year ) :
+				?>
+				<caption><?php printf( 'Donations given in <span class="donation-year">%s</span>…', intval( $donation_year ) ); ?></caption>
+				<?php
+			endif;
+			?>
+			<thead>
+				<tr>
+					<th class="column-donor"><?php esc_html_e( 'Donor', 'ttt' ); ?></th>
+					<th class="column-numeric column-min-amount"><?php esc_html_e( 'Min Amount', 'ttt' ); ?></th>
+					<th class="column-type"><?php esc_html_e( 'Type', 'ttt' ); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				foreach ( $data as $key => $row ) :
+					$amount = $row['amount_calc'];
+					?>
+					<tr data-think-tank="<?php echo esc_attr( $row['donor_slug'] ); ?>">
+						<td class="column-donor" data-heading="<?php esc_attr_e( 'Donor', 'ttt' ); ?>"><a href="<?php echo esc_url( $row['donor_link'] ); ?>"><?php echo esc_html( $row['donor'] ); ?></a></td>
+						<td class="column-numeric column-min-amount" data-heading="<?php esc_attr_e( 'Min Amount', 'ttt' ); ?>"><?php echo esc_html( number_format( $amount, 0, '.', ',' ) ); ?>
+						<td class="column-donor-type" data-heading="<?php esc_attr_e( 'Type', 'ttt' ); ?>"><?php echo $row['donor_type']; ?>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<?php
+	endif;
+
+	$output = ob_get_clean();
+
+	return $output;
+}
+
+/**
+ * Render table for top ten
  *
  * @param  string  $donor_type
  * @param  string  $donation_year
@@ -298,7 +459,7 @@ function render_top_ten_table( $donor_type = '', $donation_year = '', $number_of
 }
 
 /**
- * Render Table
+ * Render table for think tanks
  *
  * @param  string  $donor_type
  * @param  string  $donation_year
@@ -307,6 +468,16 @@ function render_top_ten_table( $donor_type = '', $donation_year = '', $number_of
  */
 function render_think_tanks_table( $donation_year = '' ): void {
 	echo generate_think_tanks_table( $donation_year );
+}
+
+/**
+ * Render table for donors
+ *
+ * @param  string $donation_year
+ * @return void
+ */
+function render_donors_table( $donation_year = '' ) {
+	echo generate_donors_table( $donation_year );
 }
 
 /**
@@ -343,7 +514,7 @@ add_shortcode( 'top_ten_table', __NAMESPACE__ . '\top_ten_table_shortcode' );
 function think_tanks_table_shortcode( $atts ): string {
 	$atts = shortcode_atts(
 		array(
-			'year'  => '',
+			'year' => '',
 		),
 		$atts,
 		'think_tanks_table'
@@ -354,6 +525,29 @@ function think_tanks_table_shortcode( $atts ): string {
 	);
 }
 add_shortcode( 'think_tanks_table', __NAMESPACE__ . '\think_tanks_table_shortcode' );
+
+/**
+ * Shortcode to display the transaction table.
+ *
+ * @param array $atts Shortcode attributes.
+ * @return string HTML table markup.
+ */
+function donors_table_shortcode( $atts ): string {
+	$atts = shortcode_atts(
+		array(
+			'year' => '',
+			'type' => ''
+		),
+		$atts,
+		'donors_table'
+	);
+
+	return generate_donors_table(
+		sanitize_text_field( $atts['year'] ),
+		sanitize_text_field( $atts['type'] )
+	);
+}
+add_shortcode( 'donors_table', __NAMESPACE__ . '\donors_table_shortcode' );
 
 /**
  * Retrieves the Transparency Score for a given think tank slug.
