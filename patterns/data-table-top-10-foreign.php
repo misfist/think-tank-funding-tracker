@@ -11,19 +11,20 @@
  * %VAR5% = limit
  */
 $table_id = 9;
-$type     = 'Foreign';
+$type     = 'foreign-government';
 $limit    = 5;
+$year     = '';
 ?>
-<!-- wp:group {"metadata":{"name":"<?php echo esc_attr( $type ); ?>"},"layout":{"type":"grid","columnCount":2,"minimumColumnWidth":"13rem"},"className":"section section__top-10 foreign","tagName":"section"} -->
-<section class="wp-block-group section section__top-10 foreign">
+<!-- wp:group {"metadata":{"name":"<?php echo esc_attr( $type ); ?>"},"layout":{"type":"grid","columnCount":2,"minimumColumnWidth":"13rem"},"className":"section-table foreign","tagName":"div"} -->
+<div class="wp-block-group section-table foreign">
 	<!-- wp:heading -->
 	<h2 class="wp-block-heading">
-		<?php esc_html_e( sprintf( 'Top %d Think Tanks That Receive Funding from Foreign Interests.', intval( $limit ) ), 'ttt' ); ?>
+		<?php esc_html_e( sprintf( 'Top %d Think Tanks That Receive Funding from Foreign Interests%s.', intval( $limit ), ( $year ) ? ' in ' . $year : '' ), 'ttt' ); ?>
 	</h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[wpdatatable id={$table_id} table_view=regular var4='{$type}' var5={$limit}]" ); ?>
+	<?php echo do_shortcode( "[top_ten_table type='{$type}' year='{$year}' limit={$limit}]" ); ?>
 	<!-- /wp:shortcode -->
-</section>
+</div>
 <!-- /wp:group -->
