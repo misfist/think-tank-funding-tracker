@@ -5,7 +5,7 @@
  * Categories: hidden
  * Inserter: false
  */
-$settings = get_option( 'site_settings' );
+$settings  = get_option( 'site_settings' );
 $data_note = ( $settings && isset( $settings['data_note'] ) ) ? wpautop( wp_kses_post( $settings['data_note'] ) ) : '';
 ?>
 
