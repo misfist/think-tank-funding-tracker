@@ -86,6 +86,15 @@ function get_top_ten_raw_data( $donor_type = '', $donation_year = '', $number_of
  * @return array
  */
 function get_think_tank_donor_raw_data( $think_tank = '', $donation_year = '', $donor_type = '' ): array {
+
+	$think_tank_var    = $_GET['think_tank'];
+	$donation_year_var = $_GET['donation_year'];
+	$donor_type_var    = $_GET['donor_type'];
+
+	$think_tank    = ( $think_tank_var ) ? sanitize_text_field( $think_tank_var ) : sanitize_text_field( $think_tank );
+	$donation_year = ( $donation_year_var ) ? sanitize_text_field( $donation_year_var ) : sanitize_text_field( $donation_year );
+	$donor_type    = ( $donor_type_var ) ? sanitize_text_field( $donor_type_var ) : sanitize_text_field( $donor_type );
+
 	$args = array(
 		'post_type'      => 'transaction',
 		'posts_per_page' => -1,
@@ -94,7 +103,7 @@ function get_think_tank_donor_raw_data( $think_tank = '', $donation_year = '', $
 		),
 	);
 
-	if ( ! empty( $think_tank ) ) {
+	if ( $think_tank ) {
 		$args['tax_query'][] = array(
 			'taxonomy' => 'think_tank',
 			'field'    => 'slug',
@@ -102,7 +111,7 @@ function get_think_tank_donor_raw_data( $think_tank = '', $donation_year = '', $
 		);
 	}
 
-	if ( ! empty( $donation_year ) ) {
+	if ( $donation_year ) {
 		$args['tax_query'][] = array(
 			'taxonomy' => 'donation_year',
 			'field'    => 'slug',
@@ -110,7 +119,7 @@ function get_think_tank_donor_raw_data( $think_tank = '', $donation_year = '', $
 		);
 	}
 
-	if ( ! empty( $donor_type ) ) {
+	if ( $donor_type ) {
 		$args['tax_query'][] = array(
 			'taxonomy' => 'donor_type',
 			'field'    => 'slug',
@@ -206,35 +215,35 @@ function get_donor_think_tank_raw_data( $donor = '', $donation_year = '', $donor
 
 	$data = array();
 
-	if( $query->have_posts() ) {
-		while( $query->have_posts() ) {
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
 			$query->the_post();
-			$post_id = get_the_ID();
+			$post_id     = get_the_ID();
 			$think_tanks = get_the_terms( $post_id, 'think_tank' );
 
 			if ( ! $think_tanks ) {
 				continue;
 			}
-	
-			$think_tank          = $think_tanks[0];
-			$think_tank_slug     = $think_tank->slug;
-			$source              = get_post_meta( $post_id, 'source', true );
-	
+
+			$think_tank      = $think_tanks[0];
+			$think_tank_slug = $think_tank->slug;
+			$source          = get_post_meta( $post_id, 'source', true );
+
 			$amount_calc = get_post_meta( $post_id, 'amount_calc', true );
 			if ( empty( $amount_calc ) ) {
 				$amount_calc = 0;
 			}
-	
+
 			$donor_type = get_the_term_list( $post_id, 'donor_type', '', ', ', '' );
-	
+
 			$donors = wp_get_object_terms( $post_id, 'donor', array( 'orderby' => 'parent' ) );
 			if ( empty( $donors ) || is_wp_error( $donors ) ) {
 				continue;
 			}
-	
+
 			$donor_names = wp_list_pluck( $donors, 'name' );
 			$donor       = end( $donor_names );
-	
+
 			$data[] = array(
 				'think_tank'      => $think_tank->name,
 				'donor'           => $donor,
@@ -256,7 +265,7 @@ function get_donor_think_tank_raw_data( $donor = '', $donation_year = '', $donor
  * @param string $donation_year The slug of the donation year to filter transactions by (optional).
  * @return array
  */
-function get_donors_raw_data( $donation_year = '', $donor_type = '' ) : array {
+function get_donors_raw_data( $donation_year = '', $donor_type = '' ): array {
 	$args = array(
 		'post_type'      => 'transaction',
 		'posts_per_page' => -1,
@@ -576,7 +585,7 @@ function generate_top_ten_table( $donor_type = '', $donation_year = '', $number_
 	if ( $data ) :
 		?>
 
-		<table id="<?php echo TABLE_ID; ?>" class="top-ten-recipients dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
+		<table id="table-<?php echo sanitize_title( $donor_type ); ?>" class="top-ten-recipients dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
 			<thead>
 				<tr>
 					<th class="column-think-tank"><?php esc_html_e( 'Think Tank', 'ttt' ); ?></th>
@@ -595,7 +604,7 @@ function generate_top_ten_table( $donor_type = '', $donation_year = '', $number_
 			</tbody>
 		</table>
 
-		<?php	
+		<?php
 	endif;
 
 	return ob_get_clean();
@@ -608,12 +617,16 @@ function generate_top_ten_table( $donor_type = '', $donation_year = '', $number_
  * @return string HTML table markup.
  */
 function generate_think_tanks_table( $donation_year = '' ): string {
+	$year_var      = $_GET['donation_year'];
+	$donation_year = $year_var ? $year_var : $donation_year;
+	$donation_year = sanitize_text_field( $donation_year );
+
 	$data = get_think_tanks_data( $donation_year );
 
 	ob_start();
 	if ( $data ) :
 		?>
-		<table id="<?php echo TABLE_ID; ?>" class="think-tank-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
+		<table id="<?php echo TABLE_ID; ?>" class="think-tank-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-search-label="<?php esc_attr_e( 'Filter by specific think tank', 'ttt' ); ?>">
 			<?php
 			if ( $donation_year ) :
 				?>
@@ -663,12 +676,16 @@ function generate_think_tanks_table( $donation_year = '' ): string {
  * @param string $donor_type    Optional. Slug of the donor type.
  */
 function generate_think_tank_donor_table( $think_tank = '', $donation_year = '', $donor_type = '' ): string {
+	$year_var      = $_GET['donation_year'];
+	$donation_year = $year_var ? $year_var : $donation_year;
+	$donation_year = sanitize_text_field( $donation_year );
+
 	$data = get_think_tank_donor_data( $think_tank, $donation_year, $donor_type );
 
 	ob_start();
 	if ( $data ) :
 		?>
-		<table id="<?php echo TABLE_ID; ?>" class="think-tank dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-think-tank="<?php echo sanitize_text_field( $think_tank ); ?>">
+		<table id="<?php echo TABLE_ID; ?>" class="think-tank dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-think-tank="<?php echo sanitize_text_field( $think_tank ); ?>" data-search-label="<?php esc_attr_e( 'Filter by specific donor', 'ttt' ); ?>">
 			<?php
 			if ( $donation_year ) :
 				?>
@@ -688,7 +705,7 @@ function generate_think_tank_donor_table( $think_tank = '', $donation_year = '',
 				<?php
 				foreach ( $data as $key => $row ) :
 					$amount           = $row['amount_calc'];
-					$formatted_source = sprintf( '<a href="%s" target="_blank"><span class="screen-reader-text"></span><span class="dashicons dashicons-admin-links" aria-hidden="true"></span></a>', esc_url( $row['source'] ) );
+					$formatted_source = sprintf( '<a href="%1$s" class="source-link" target="_blank"><span class="screen-reader-text">%1$s</span><span class="icon material-symbols-outlined" aria-hidden="true">link</span></a>', esc_url( $row['source'] ) );
 					?>
 					<tr data-think-tank="<?php echo esc_attr( $row['donor_slug'] ); ?>">
 						<td class="column-donor" data-heading="<?php esc_attr_e( 'Donor', 'ttt' ); ?>"><a href="<?php echo esc_url( $row['donor_link'] ); ?>"><?php echo esc_html( $row['donor'] ); ?></a></td>
@@ -715,12 +732,16 @@ function generate_think_tank_donor_table( $think_tank = '', $donation_year = '',
  * @param string $donor_type    Optional. Slug of the donor type.
  */
 function generate_donor_think_tank_table( $donor = '', $donation_year = '', $donor_type = '' ): string {
+	$year_var      = $_GET['donation_year'];
+	$donation_year = $year_var ? $year_var : $donation_year;
+	$donation_year = sanitize_text_field( $donation_year );
+
 	$data = get_donor_think_tank_data( $donor, $donation_year, $donor_type );
 
 	ob_start();
 	if ( $data ) :
 		?>
-		<table id="<?php echo TABLE_ID; ?>" class="donor dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-donor="<?php echo sanitize_text_field( $donor ); ?>">
+		<table id="<?php echo TABLE_ID; ?>" class="donor dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-donor="<?php echo sanitize_text_field( $donor ); ?>" data-search-label="<?php esc_attr_e( 'Filter by specific think tank', 'ttt' ); ?>">
 			<?php
 			if ( $donation_year ) :
 				?>
@@ -739,8 +760,8 @@ function generate_donor_think_tank_table( $donor = '', $donation_year = '', $don
 			<tbody>
 				<?php
 				foreach ( $data as $key => $row ) :
-					$amount = $row['amount_calc'];
-					$formatted_source = sprintf( '<a href="%s" target="_blank"><span class="screen-reader-text"></span><span class="dashicons dashicons-admin-links" aria-hidden="true"></span></a>', esc_url( $row['source'] ) );
+					$amount           = $row['amount_calc'];
+					$formatted_source = sprintf( '<a href="%1$s" class="source-link" target="_blank"><span class="screen-reader-text">%1$s</span><span class="icon material-symbols-outlined" aria-hidden="true">link</span></a>', esc_url( $row['source'] ) );
 					?>
 					<tr data-think-tank="<?php echo esc_attr( $row['think_tank_slug'] ); ?>">
 						<td class="column-think-tank" data-heading="<?php esc_attr_e( 'Think Tank', 'ttt' ); ?>"><a href="<?php echo esc_url( get_term_link( $row['think_tank_slug'], 'think_tank' ) ); ?>"><?php echo esc_html( $row['think_tank'] ); ?></a></td>
@@ -766,12 +787,16 @@ function generate_donor_think_tank_table( $donor = '', $donation_year = '', $don
  * @return string HTML table markup.
  */
 function generate_donors_table( $donation_year = '', $donor_type = '' ): string {
+	$year_var      = $_GET['donation_year'];
+	$donation_year = $year_var ? $year_var : $donation_year;
+	$donation_year = sanitize_text_field( $donation_year );
+
 	$data = get_donors_data( $donation_year, $donor_type );
 
 	ob_start();
 	if ( $data ) :
 		?>
-		<table id="<?php echo TABLE_ID; ?>" class="donor-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
+		<table id="<?php echo TABLE_ID; ?>" class="donor-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-search-label="<?php esc_attr_e( 'Filter by specific donor', 'ttt' ); ?>">
 			<?php
 			if ( $donation_year ) :
 				?>
@@ -990,7 +1015,7 @@ add_shortcode( 'donors_table', __NAMESPACE__ . '\donors_table_shortcode' );
  * @param string $think_tank_slug The think tank slug.
  * @return int The Transparency Score.
  */
-function get_transparency_score( $think_tank_slug ) : int {
+function get_transparency_score( $think_tank_slug ): int {
 	$post_type = 'think_tank';
 	$args      = array(
 		'post_type'      => $post_type,

@@ -98,20 +98,18 @@ function print_years( $name = '', $type = 'donor', $column = 2 ): void {
 	if ( $years ) {
 		?>
 		<div class="filter-group year" data-index="<?php echo intval( $column ); ?>">
-			
-				<input type="radio" name="filter-year" id="filter-all" class="filter-checkbox" value="all" data-index="<?php echo intval( $column ); ?>" checked />
-				<label for="filter-all">
-					<?php esc_html_e( 'All', 'ttt' ); ?>
-				</label>
+			<input type="radio" name="filter-year" id="filter-year-all" class="filter-checkbox" value="all" data-query-var="donation_year=" data-index="<?php echo intval( $column ); ?>" checked />
+			<label for="filter-year-all">
+				<?php esc_html_e( 'All', 'ttt' ); ?>
+			</label>
 			<?php
 			foreach ( $years as $year ) :
-				$url = esc_url( add_query_arg( "wdt_column_filter[$column]", $year, get_permalink( $post_id ) ) );
+				$url = esc_url( add_query_arg( 'donation_year', $year, get_permalink( $post_id ) ) );
 				?>
-				
-					<input type="radio" id="filter-<?php echo esc_attr( $year ); ?>" name="filter-year" class="filter-checkbox" value="<?php echo esc_attr( $year ); ?>" data-query-var="wdt_column_filter[<?php echo intval( $column ); ?>]=<?php echo esc_attr( $year ); ?>" data-index="<?php echo intval( $column ); ?>" />
-					<label for="filter-<?php echo esc_attr( $year ); ?>">
-						<?php echo esc_html( $year ); ?>
-					</label>
+				<input type="radio" id="filter-<?php echo esc_attr( $year ); ?>" name="filter-year" class="filter-checkbox" value="<?php echo esc_attr( $year ); ?>" data-query-var="donation_year=<?php echo esc_attr( $year ); ?>" data-index="<?php echo intval( $column ); ?>" />
+				<label for="filter-<?php echo esc_attr( $year ); ?>">
+					<?php echo esc_html( $year ); ?>
+				</label>
 				<?php
 			endforeach;
 			?>
@@ -143,16 +141,16 @@ function print_archive_years( $column = 2 ): void {
 	if ( $years ) {
 		?>
 		<div class="filter-group year year__archive" data-index="<?php echo intval( $column ); ?>">
-				<input type="radio" name="filter-year" id="filter-all" class="filter-checkbox" value="wdt_var3=" data-index="<?php echo intval( $column ); ?>" checked />
-				<label for="filter-all">
-					<?php esc_html_e( 'All', 'ttt' ); ?>
-				</label>
+			<input type="radio" name="filter-year" id="filter-year-all" class="filter-checkbox" value="all" data-query-var="donation_year=" checked />
+			<label for="filter-year-all">
+				<?php esc_html_e( 'All', 'ttt' ); ?>
+			</label>
 			<?php
 			foreach ( $years as $year ) :
-				$url = esc_url( add_query_arg( "wdt_column_filter[$column]", $year, get_permalink( $post_id ) ) );
+				$url = esc_url( add_query_arg( 'donation_year', $year, get_permalink( $post_id ) ) );
 				?>
 				
-					<input type="radio" id="filter-<?php echo esc_attr( $year ); ?>" name="filter-year" class="filter-checkbox" value="<?php echo esc_attr( 'wdt_var3=' . $year ); ?>" data-query-var="wdt_column_filter[<?php echo intval( $column ); ?>]=<?php echo esc_attr( $year ); ?>" data-index="<?php echo intval( $column ); ?>" />
+					<input type="radio" id="filter-<?php echo esc_attr( $year ); ?>" name="filter-year" class="filter-checkbox" value="<?php echo intval( $year ); ?>" data-query-var="donation_year=<?php echo esc_attr( $year ); ?>" data-index="<?php echo intval( $column ); ?>" />
 					<label for="filter-<?php echo esc_attr( $year ); ?>">
 						<?php echo esc_html( $year ); ?>
 					</label>
@@ -185,15 +183,15 @@ function print_types( $column = 3 ): void {
 	if ( $types ) {
 		?>
 		<div class="filter-group type" data-index="<?php echo intval( $column ); ?>">
-			<input type="radio" id="filter-type-all" name="filter-type" class="filter-checkbox" value="all" data-index="<?php echo intval( $column ); ?>" checked />
+			<input type="radio" id="filter-type-all" name="filter-type" class="filter-checkbox" value="all" data-index="<?php echo intval( $column ); ?>" data-query-var="donor_type=" checked />
 			<label for="filter-type-all">
 				<?php esc_html_e( 'All', 'ttt' ); ?>
 			</label>
 			<?php
 			foreach ( $types as $type ) :
 				?>
-				<input type="radio" id="filter-<?php echo esc_attr( $type->name ); ?>" name="filter-type" class="filter-checkbox" value="<?php echo esc_attr( $type->name ); ?>" data-query-var="wdt_column_filter[<?php echo intval( $column ); ?>]='<?php echo esc_attr( $type->name ); ?>'" data-index="<?php echo intval( $column ); ?>" />
-				<label for="filter-<?php echo esc_attr( $type->name ); ?>">
+				<input type="radio" id="filter-<?php echo esc_attr( $type->slug ); ?>" name="filter-type" class="filter-checkbox" value="<?php echo esc_attr( $type->slug ); ?>" data-query-var="donor_type='<?php echo esc_attr( $type->slug ); ?>'" data-index="<?php echo intval( $column ); ?>" />
+				<label for="filter-<?php echo esc_attr( $type->slug ); ?>">
 					<?php echo esc_html( $type->name ); ?>
 				</label>
 				<?php
