@@ -176,7 +176,7 @@
 			"spacingSizes": [
 				{
 					"name": "1",
-					"size": "min(11px, 2vw)",
+					"size": "11px",
 					"slug": "10"
 				},
 				{
@@ -331,12 +331,49 @@
 					"slug": "system-serif"
 				},
 				{
+					"fontFace": [
+						{
+							"fontFamily": "Material Symbols Outlined",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/material-icons/MaterialIconsOutlined-Regular.otf"
+							]
+						},
+						{
+							"fontFamily": "Material Symbols Round",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/material-icons/MaterialIconsRound-Regular.otf"
+							]
+						},
+						{
+							"fontFamily": "Material Icons",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/material-icons/MaterialIcons-Regular.ttf"
+							]
+						}
+					],
+					"fontFamily": "\"Material Icons\"",
+					"name": "Icon",
+					"slug": "icon"
+				},
+				{
 					"fontFamily": "wpDataTablesIcons",
 					"name": "Data Table Icons",
 					"slug": "data-table-icons"
 				}
 			],
 			"fontSizes": [
+				{
+					"fluid": false,
+					"name": "Extra Small",
+					"size": "0.75rem",
+					"slug": "x-small"
+				},
 				{
 					"fluid": false,
 					"name": "Small",
@@ -399,7 +436,8 @@
 				"score-2": "rgba(229, 242, 74, 0.35)",
 				"score-3": "#E0FAC0",
 				"score-4": "#CBECD9",
-				"pink-light": "rgba(208, 68, 64, 0.15)"
+				"pink-light": "rgba(208, 68, 64, 0.15)",
+				"hover": "rgba(97, 162, 103, 0.25)"
 			},
 			"line-height": {
 				"normal": "normal",
