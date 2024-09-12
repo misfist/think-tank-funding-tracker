@@ -19,6 +19,7 @@ $table_id    = 12;
 
 <!-- wp:group {"metadata":{"name":"Donor Content"},"className":"tab <?php echo $entity_type === 'donor' ? 'active' : ''; ?>","layout":{"type":"default"}} -->
 <div id="donor-results" class="wp-block-group tab">
+	 
 	<!-- wp:shortcode -->
 	<?php echo do_shortcode( "[wpdatatable id={$table_id}]" ); ?>
 	<!-- /wp:shortcode -->

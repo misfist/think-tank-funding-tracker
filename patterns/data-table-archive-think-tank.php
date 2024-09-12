@@ -25,13 +25,15 @@ $var3 = ( isset( $vars['year'] ) ) ? sprintf( "var3='%s'", $vars['year'] ) : '';
 
 $table_id = 13;
 
-$year = '2023';
+$year = '';
 ?>
 <!-- wp:group {"metadata":{"name":"Data Filters"},"id":"custom-filters","className":"wpDataTables data-filters","layout":{"type":"default"}} -->
 <div id="custom-filters" class="wp-block-group wpDataTables data-filters" data-table-id="<?php echo intval( $table_id ); ?>" data-table-number="table_1">
 	<?php echo print_archive_years( 6 ); ?>
-	
-	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[think_tanks_table year='{$year}']" ); ?>
-	<!-- /wp:shortcode -->
+</div>
 <!-- /wp:group -->
+	
+<!-- wp:shortcode -->
+<?php echo do_shortcode( "[think_tanks_table]" ); ?>
+<!-- /wp:shortcode -->
+	 

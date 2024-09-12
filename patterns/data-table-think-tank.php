@@ -27,7 +27,7 @@ $is_limited     = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' 
 $is_transparent = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
 $table_id       = 11;
 $year           = get_most_recent_donation_year();
-$year           = '2023';
+$year           = '';
 $type           = '';
 
 if ( $is_limited ) :
