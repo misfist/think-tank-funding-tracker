@@ -4,6 +4,8 @@
  */
 namespace Quincy\ttt;
 
+const TABLE_ID = 'funding-data';
+
 /**
  * Get Raw Table Data
  *
@@ -571,28 +573,31 @@ function generate_top_ten_table( $donor_type = '', $donation_year = '', $number_
 	$data = get_top_ten_data( $donor_type, $donation_year, $number_of_items );
 
 	ob_start();
-	?>
+	if ( $data ) :
+		?>
 
-	<table class="top-ten-recipients dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
-		<thead>
-			<tr>
-				<th class="column-think-tank"><?php esc_html_e( 'Think Tank', 'ttt' ); ?></th>
-				<th class="column-min-amount column-numeric"><?php esc_html_e( 'Min Amount', 'ttt' ); ?></th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ( $data as $row ) : ?>
+		<table id="<?php echo TABLE_ID; ?>" class="top-ten-recipients dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
+			<thead>
 				<tr>
-					<td class="column-think-tank" data-heading="<?php esc_attr_e( 'Think Tank', 'ttt' ); ?>">
-						<a href="<?php echo esc_url( get_term_link( $row['think_tank'], 'think_tank' ) ); ?>"><?php echo esc_html( $row['think_tank'] ); ?></a>
-					</td>
-					<td class="column-min-amount column-numeric" data-heading="<?php esc_attr_e( 'Min Amount', 'ttt' ); ?>"><?php echo number_format( $row['total_amount'], 0 ); ?></td>
+					<th class="column-think-tank"><?php esc_html_e( 'Think Tank', 'ttt' ); ?></th>
+					<th class="column-min-amount column-numeric"><?php esc_html_e( 'Min Amount', 'ttt' ); ?></th>
 				</tr>
-			<?php endforeach; ?>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<?php foreach ( $data as $row ) : ?>
+					<tr>
+						<td class="column-think-tank" data-heading="<?php esc_attr_e( 'Think Tank', 'ttt' ); ?>">
+							<a href="<?php echo esc_url( get_term_link( $row['think_tank'], 'think_tank' ) ); ?>"><?php echo esc_html( $row['think_tank'] ); ?></a>
+						</td>
+						<td class="column-min-amount column-numeric" data-heading="<?php esc_attr_e( 'Min Amount', 'ttt' ); ?>"><?php echo number_format( $row['total_amount'], 0 ); ?></td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
 
-	<?php
+		<?php	
+	endif;
+
 	return ob_get_clean();
 }
 
@@ -608,40 +613,40 @@ function generate_think_tanks_table( $donation_year = '' ): string {
 	ob_start();
 	if ( $data ) :
 		?>
-	<table class="think-tank-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
-		<?php
-		if ( $donation_year ) :
-			?>
-			<caption><?php printf( 'Donations in <span class="donation-year">%s</span> received from…', intval( $donation_year ) ); ?></caption>
+		<table id="<?php echo TABLE_ID; ?>" class="think-tank-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
 			<?php
-		endif;
-		?>
-		<thead>
-			<tr>
-				<th class="column-think-tank"><?php esc_html_e( 'Think Tank', 'ttt' ); ?></th>
-				<?php if ( ! empty( $data ) ) : ?>
-					<?php
-					$first_entry = reset( $data );
-					foreach ( $first_entry['donor_types'] as $donor_type => $amount ) :
-						?>
-						<th class="column-numeric column-min-amount"><?php echo esc_html( $donor_type ); ?></th>
-					<?php endforeach; ?>
-				<?php endif; ?>
-				<th class="column-numeric column-transparency-score"><?php esc_html_e( 'Score', 'ttt' ); ?></th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ( $data as $think_tank_slug => $data ) : ?>
-				<tr data-think-tank="<?php echo esc_attr( $think_tank_slug ); ?>">
-					<td class="column-think-tank" data-heading="<?php esc_attr_e( 'Think Tank', 'ttt' ); ?>"><a href="<?php echo esc_url( get_term_link( $think_tank_slug, 'think_tank' ) ); ?>"><?php echo esc_html( $data['think_tank'] ); ?></a></td>
-					<?php foreach ( $data['donor_types'] as $donor_type => $amount ) : ?>
-						<td class="column-numeric column-min-amount" data-heading="<?php echo esc_attr( $donor_type ); ?>"><?php echo esc_html( number_format( $amount, 0, '.', ',' ) ); ?></td>
-					<?php endforeach; ?>
-					<td class="column-numeric column-transparency-score" data-heading="<?php esc_attr_e( 'Transparency Score', 'ttt' ); ?>"><?php echo esc_html( $data['transparency_score'] ); ?></td>
+			if ( $donation_year ) :
+				?>
+				<caption><?php printf( 'Donations in <span class="donation-year">%s</span> received from…', intval( $donation_year ) ); ?></caption>
+				<?php
+			endif;
+			?>
+			<thead>
+				<tr>
+					<th class="column-think-tank"><?php esc_html_e( 'Think Tank', 'ttt' ); ?></th>
+					<?php if ( ! empty( $data ) ) : ?>
+						<?php
+						$first_entry = reset( $data );
+						foreach ( $first_entry['donor_types'] as $donor_type => $amount ) :
+							?>
+							<th class="column-numeric column-min-amount"><?php echo esc_html( $donor_type ); ?></th>
+						<?php endforeach; ?>
+					<?php endif; ?>
+					<th class="column-numeric column-transparency-score"><?php esc_html_e( 'Score', 'ttt' ); ?></th>
 				</tr>
-			<?php endforeach; ?>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<?php foreach ( $data as $think_tank_slug => $data ) : ?>
+					<tr data-think-tank="<?php echo esc_attr( $think_tank_slug ); ?>">
+						<td class="column-think-tank" data-heading="<?php esc_attr_e( 'Think Tank', 'ttt' ); ?>"><a href="<?php echo esc_url( get_term_link( $think_tank_slug, 'think_tank' ) ); ?>"><?php echo esc_html( $data['think_tank'] ); ?></a></td>
+						<?php foreach ( $data['donor_types'] as $donor_type => $amount ) : ?>
+							<td class="column-numeric column-min-amount" data-heading="<?php echo esc_attr( $donor_type ); ?>"><?php echo esc_html( number_format( $amount, 0, '.', ',' ) ); ?></td>
+						<?php endforeach; ?>
+						<td class="column-numeric column-transparency-score" data-heading="<?php esc_attr_e( 'Transparency Score', 'ttt' ); ?>"><?php echo esc_html( $data['transparency_score'] ); ?></td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
 		<?php
 	endif;
 
@@ -663,7 +668,7 @@ function generate_think_tank_donor_table( $think_tank = '', $donation_year = '',
 	ob_start();
 	if ( $data ) :
 		?>
-		<table class="think-tank dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-think-tank="<?php echo sanitize_text_field( $think_tank ); ?>">
+		<table id="<?php echo TABLE_ID; ?>" class="think-tank dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-think-tank="<?php echo sanitize_text_field( $think_tank ); ?>">
 			<?php
 			if ( $donation_year ) :
 				?>
@@ -715,7 +720,7 @@ function generate_donor_think_tank_table( $donor = '', $donation_year = '', $don
 	ob_start();
 	if ( $data ) :
 		?>
-		<table class="donor dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-donor="<?php echo sanitize_text_field( $donor ); ?>">
+		<table id="<?php echo TABLE_ID; ?>" class="donor dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>" data-donor="<?php echo sanitize_text_field( $donor ); ?>">
 			<?php
 			if ( $donation_year ) :
 				?>
@@ -766,7 +771,7 @@ function generate_donors_table( $donation_year = '', $donor_type = '' ): string 
 	ob_start();
 	if ( $data ) :
 		?>
-		<table class="donor-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
+		<table id="<?php echo TABLE_ID; ?>" class="donor-archive dataTable" data-total-rows="<?php echo intval( count( $data ) ); ?>">
 			<?php
 			if ( $donation_year ) :
 				?>
