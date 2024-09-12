@@ -7,5 +7,5 @@
 import './header';
 // import './table';
 import './tabs';
-// import './wpDataTables';
 import './wpDataTables';
+// import './dataTables';

@@ -5,4 +5,4 @@
  */
 
 // Import the block variation file.
-// import './block-variation';
+import './search';
