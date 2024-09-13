@@ -24,6 +24,7 @@ define( 'Quincy\ttt\ROOT_URL', trailingslashit( get_template_directory_uri() ) )
 function include_inc_files() {
 	$files = array(
 		'inc/functions/',
+		'inc/functions/data-tables/',
 		'inc/hooks/',
 		'inc/setup/',
 		'inc/blocks/',
