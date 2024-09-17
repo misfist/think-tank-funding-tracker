@@ -18,6 +18,12 @@ textarea,
 	transition: all 0.2s ease-in-out;
 }
 
+p:empty {
+	display: none;
+	visibility: hidden;
+	height: 0;
+}
+
 sup {
 	color: var(--wp--preset--color--primary-500);
 	font-size: 0.75rem;

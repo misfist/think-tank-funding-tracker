@@ -81,7 +81,8 @@
 	"scripts": {
 		"a11y": "node a11y.cjs",
 		"build": "wp-scripts build --config webpack.config.js --webpack-src-dir=assets/blocks --stats-error-details --progress",
-		"create-block": "cd ./assets/blocks && npx @wordpress/create-block --namespace=wdsbt --template ../../inc/block-template --no-plugin",
+		"create-block": "run-s create-block:run",
+		"create-block:run": "cd ./assets/blocks && npx @wordpress/create-block --namespace=ttt --template ../../inc/block-template --no-plugin",
 		"format": "wp-scripts format && npm run format:php",
 		"format:css": "wp-scripts format-style",
 		"format:php": "composer run-script phpcs-fix",
@@ -92,11 +93,11 @@
 		"lint:php": "composer run-script phpcs",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"packages-update": "wp-scripts packages-update",
-		"postinstall": "npx lefthook install",
+		"postinstall": "",
 		"preinstall": "cross-env npm_config_legacy_peer_deps=false",
 		"reset": "rm -rf node_modules vendor build blocks package-lock.json composer.lock",
 		"setup": "npm run reset && npm i && composer i && npm run build",
-		"start": "cross-env NODE_ENV=development wp-scripts start"
+		"start": "rm -rf build blocks && cross-env NODE_ENV=development wp-scripts start"
 	},
 	"lint-staged": {
 		"*.js": [

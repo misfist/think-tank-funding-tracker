@@ -11,24 +11,10 @@
  * %VAR4% = donor_type
  * %VAR5% = limit
  */
-use function Quincy\ttt\get_most_recent_donation_year;
-use function Quincy\ttt\print_years;
-use function Quincy\ttt\print_types;
-use function Quincy\ttt\get_think_tank_donor_data;
 
-$post_id        = get_the_ID();
-$post           = get_post( $post_id );
-$post_title     = $post->post_title;
-$think_tank     = $post->post_name;
-$terms          = wp_get_post_terms( $post_id, 'think_tank' );
-$term_name      = ( $terms ) ? $terms[0]->name : $post_title;
 $limited_info   = get_post_meta( $post_id, 'limited_info', true );
 $is_limited     = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
 $is_transparent = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
-$table_id       = 11;
-$year           = get_most_recent_donation_year();
-$year           = '';
-$type           = '';
 
 if ( $is_limited ) :
 	?>
@@ -48,20 +34,7 @@ elseif ( $is_transparent ) :
 	<?php
 else :
 	?>
-
-	<!-- wp:group {"metadata":{"name":"Data Filters"},"id":"custom-filters","className":"wpDataTables data-filters","layout":{"type":"default"}} -->
-	<div id="custom-filters" class="wp-block-group wpDataTables data-filters" data-table-id="<?php echo intval( $table_id ); ?>" data-table-number="table_1">
-		<?php
-		print_years( '', 'think_tank', 3 );
-
-		print_types( 4 );
-		?>
-	</div>
-	<!-- /wp:group -->
-
-	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[think_tank_table think_tank={$think_tank} year='{$year}' type='{$type}']" ); ?>
-	<!-- /wp:shortcode -->
+		<!-- wp:site-functionality/think-tank-table /-->
 	
 	<?php
 endif;

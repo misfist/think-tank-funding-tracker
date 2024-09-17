@@ -7,6 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const glob = require('glob');
 const postcssRTL = require('postcss-rtl');
 
@@ -34,7 +35,7 @@ const blockEntryPaths = glob
 		const entryKey = filePath
 			.replace('./assets/blocks/', '')
 			.replace('/index.js', '');
-		acc[`../blocks/${entryKey}/index`] = filePath;
+		acc[`./blocks/${entryKey}/index`] = filePath;
 		return acc;
 	}, {});
 
@@ -44,7 +45,7 @@ const blockScssPaths = glob
 		const entryKey = filePath
 			.replace('./assets/blocks/', '')
 			.replace('/style.scss', '');
-		acc[`../blocks/${entryKey}/style`] = filePath;
+		acc[`./blocks/${entryKey}/style`] = filePath;
 		return acc;
 	}, {});
 
@@ -66,7 +67,7 @@ if (hasFiles('./assets/blocks/**/*.php')) {
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
 				`${context}/assets/blocks/`,
-				'../blocks/'
+				'./blocks/'
 			);
 		},
 	});
@@ -78,7 +79,7 @@ if (hasFiles('./assets/blocks/**/*.json')) {
 		to: ({ context, absoluteFilename }) => {
 			return absoluteFilename.replace(
 				`${context}/assets/blocks/`,
-				'../blocks/'
+				'./blocks/'
 			);
 		},
 	});
@@ -93,8 +94,8 @@ module.exports = {
 		variations: './assets/js/block-variations/index.js',
 		filters: './assets/js/block-filters/index.js',
 		...styleScssPaths,
-		...blockEntryPaths,
-		...blockScssPaths,
+		// ...blockEntryPaths,
+		// ...blockScssPaths,
 		...coreBlockEntryPaths,
 	},
 	output: {
@@ -161,7 +162,7 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.js$/,
+				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
@@ -250,9 +251,13 @@ module.exports = {
 		}),
 
 		new CleanWebpackPlugin(),
-		// new ESLintPlugin(),
+		new ESLintPlugin(),
 		new StylelintPlugin(),
 	],
+	optimization: {
+		minimize: true,
+		minimizer: [new TerserPlugin()],
+	},
 	performance: {
 		maxAssetSize: 550000, // Increase the asset size limit to 550 KB
 		maxEntrypointSize: 550000, // Increase the entry point size limit to 550 KB

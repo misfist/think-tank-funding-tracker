@@ -44,3 +44,5 @@ function scripts(): void {
 	);
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts' );
+
+

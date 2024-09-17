@@ -7,11 +7,12 @@ import 'datatables.net-buttons/js/buttons.print';
 // import 'datatables.net-plugins/filtering/type-based/html.mjs';
 
 const tableId = 'funding-data';
-const table = document.getElementById( tableId );
+const table = document.getElementById(tableId);
 
 if (table) {
-	const title = document.querySelector('.site-main h1')?.innerText || document.title;
-	const searchLabelAttr = table.getAttribute( 'data-search-label' );
+	const title =
+		document.querySelector('.site-main h1')?.innerText || document.title;
+	const searchLabelAttr = table.getAttribute('data-search-label');
 	const searchLabel = searchLabelAttr || 'Filter data';
 
 	new DataTable(`#${tableId}`, {
@@ -26,8 +27,8 @@ if (table) {
 			topEnd: {
 				search: {
 					placeholder: 'Enter keyword...',
-					text: searchLabelAttr
-				}
+					text: searchLabelAttr,
+				},
 			},
 			topStart: {
 				buttons: [
@@ -36,20 +37,30 @@ if (table) {
 						title: title,
 						text: 'Download Data',
 					},
-				]
-			}
+				],
+			},
 		},
-		footerCallback: function ( row, data, start, end, display ) {
-            let tfoot = table.querySelector('tfoot');
-            let footerRow = tfoot.querySelector('tr');
+		footerCallback: function (row, data, start, end, display) {
+			let tfoot = table.querySelector('tfoot');
+			let footerRow = tfoot.querySelector('tr');
 
-            if (!footerRow) {
-                footerRow = document.createElement('tr');
-                tfoot.appendChild(footerRow);
-            }
+			if (!footerRow) {
+				footerRow = document.createElement('tr');
+				tfoot.appendChild(footerRow);
+			}
 
-			console.log( 'ROW', row, 'DATA', data, 'START',start, 'END', end, 'DISPLAY', display  );
-
-        },
+			console.log(
+				'ROW',
+				row,
+				'DATA',
+				data,
+				'START',
+				start,
+				'END',
+				end,
+				'DISPLAY',
+				display
+			);
+		},
 	});
 }

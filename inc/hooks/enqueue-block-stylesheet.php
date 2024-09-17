@@ -38,7 +38,6 @@ function enqueue_block_stylesheet() {
 		);
 	}
 }
-
 add_filter( 'init', __NAMESPACE__ . '\enqueue_block_stylesheet', 10, 1 );
 
 /**
@@ -109,20 +108,6 @@ function get_block_stylesheets() {
 		$css_files
 	);
 }
-
-/**
- * Registers all block folders found in the `blocks` directory.
- *
- * @return void
- */
-function register_blocks() {
-	$block_folders = glob( get_stylesheet_directory() . '/blocks/*', GLOB_ONLYDIR );
-	foreach ( $block_folders as $block_folder ) {
-		register_block_type( $block_folder );
-	}
-}
-
-add_action( 'init', __NAMESPACE__ . '\register_blocks' );
 
 /**
  * Enqueue assets for specific blocks when requested.

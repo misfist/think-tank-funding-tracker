@@ -11,6 +11,8 @@
  * %VAR4% = donor_type
  * %VAR5% = limit
  */
+use function Quincy\ttt\get_table_id;
+use function Quincy\ttt\get_app_id;
 
 $entity_type = isset( $_GET['entity_type'] ) ? sanitize_text_field( $_GET['entity_type'] ) : 'donor';
 $search_term = get_search_query();

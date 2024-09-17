@@ -35,7 +35,12 @@ $year       = '';
 ?>
 
 <!-- wp:group {"metadata":{"name":"Data Filters"},"id":"custom-filters","className":"wpDataTables data-filters","layout":{"type":"default"}} -->
-<div id="custom-filters" class="wp-block-group wpDataTables data-filters" data-table-id="<?php echo intval( $table_id ); ?>" data-table-number="table_1">
+<div 
+	id="custom-filters" 
+	class="wp-block-group wpDataTables data-filters" 
+	data-table-id="<?php echo intval( $table_id ); ?>" 
+	data-table-number="table_1"
+>
 
 	<?php print_years(); ?>
 

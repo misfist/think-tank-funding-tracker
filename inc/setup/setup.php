@@ -33,7 +33,7 @@ function setup() {
 	add_theme_support( 'editor-styles' );
 	add_editor_style( 'build/css/style.css' );
 
-	remove_action( 'wp_footer', 'the_block_template_skip_link' );
+	// remove_action( 'wp_footer', 'the_block_template_skip_link' );
 
 	// Add WooCommerce support.
 	add_theme_support( 'woocommerce' );
