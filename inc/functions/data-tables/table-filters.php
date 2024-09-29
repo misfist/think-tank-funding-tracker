@@ -7,10 +7,6 @@
 
 namespace Quincy\ttt;
 
-// const TABLE_ID      = 'funding-data';
-// const APP_ID = 'think-tank-funding';
-
-
 /**
  * Retrieve the most recent donation year term.
  *
@@ -94,42 +90,38 @@ function generate_year_filters( $years ): string {
 	ob_start();
 
 	if ( $years ) {
+
+		$input_type = 'radio';
+		$input_name = 'year-filter';
+		$selected   = $context[ $state_key ];
+		$options    = $context['options'];
+		$all = array( 'all', __( 'All', 'ttft-data-tables' ) );
+		array_unshift( $years, 'all' );
 		?>
-		<div class="filter-group year">
-			<input 
-				type="radio" 
-				name="filter-year" 
-				id="filter-year-all" 
-				class="filter-checkbox" 
-				value="all" 
-				data-query-var="donation_year=" 
-				checked
-				data-wp-interactive-action="setYear"
-				data-wp-on--click="state.showMe"
-				data-wp-interactive-key="<?php echo esc_attr( 'donationYear' ); ?>"
-				data-wp-interactive-value="all"
-			/>
-			<label for="filter-year-all">
-				<?php esc_html_e( 'All', 'ttt' ); ?>
-			</label>
+		<div 
+			data-wp-interactive="<?php echo APP_NAMESPACE; ?>"
+			class="filter-group year"
+			data-wp-watch="callbacks.log"
+			data-wp-bind--year='state.donationYear'
+		>
 			<?php
 			foreach ( $years as $year ) :
-				$url = esc_url( add_query_arg( 'donation_year', $year, get_permalink( $post_id ) ) );
+				$input_id    = "{$input_type}-{$year}";
 				?>
 				<input 
-					type="radio" 
-					id="filter-<?php echo intval( $year ); ?>" 
-					name="filter-year" 
+					type=<?php echo $input_type; ?> 
+					id=<?php echo $input_id; ?> 
+					name=<?php echo $input_name; ?> 
 					class="filter-checkbox" 
-					value="<?php echo intval( $year ); ?>" 
-					data-query-var="donation_year=<?php echo intval( $year ); ?>" 
-					data-wp-interactive-action="setYear"
-					data-wp-on--click="state.showMe"
+					value="<?php echo esc_attr( trim( $year ) ); ?>"
+					data-wp-bind--checked="state.isSelected"
+					data-wp-bind--year='state.donationYear'
+					data-query-var=<?php echo add_query_arg( 'donation_year', $year ); ?> 
+					data-wp-on--click="actions.updateYear"
 					data-wp-interactive-key="<?php echo esc_attr( 'donationYear' ); ?>"
-					data-wp-interactive-value="<?php echo intval( $year ); ?>"
 				/>
-				<label for="filter-<?php echo intval( $year ); ?>">
-					<?php echo esc_html( $year ); ?>
+				<label for="filter-year-<?php echo esc_attr( trim( $year ) ); ?>">
+					<?php echo strtoupper( esc_attr( trim( $year ) ) ); ?>
 				</label>
 				<?php
 			endforeach;
@@ -140,7 +132,9 @@ function generate_year_filters( $years ): string {
 
 	$output = ob_get_clean();
 
-	return $output;
+	$processed_output = wp_interactivity_process_directives( $output );
+
+	return $processed_output;
 }
 
 /**
@@ -152,46 +146,36 @@ function generate_year_filters( $years ): string {
 function generate_type_filters( $types ): string {
 	ob_start();
 
-	if ( $types ) {
+	if ( $types ) {		
+		$all = array( 'all', __( 'All', 'ttft-data-tables' ) );
+		$types = $all + $types;
 		?>
-		<div class="filter-group type">
+		<div 
+			class="filter-group type"
+			data-wp-interactive="<?php echo APP_NAMESPACE; ?>"
+			data-wp-watch="callbacks.log"
+			data-wp-bind--year='state.donorType'
+		>
+			<?php
+			foreach ( $types as $type ) :
+				?>
 				<input 
 					type="radio" 
-					id="filter-type-all" 
+					id="filter-<?php echo esc_attr( $type->slug ); ?>" 
 					name="filter-type" 
 					class="filter-checkbox" 
-					value="all" 
-					data-query-var="donor_type=" 
-					checked
-					data-wp-interactive="<?php echo sanitize_key( APP_ID ); ?>"
-					data-wp-interactive-action="setType"
+					value="<?php echo esc_attr( $type->slug ); ?>" 
+					data-query-var="donor_type='<?php echo esc_attr( $type->slug ); ?>'" 
+					data-wp-on--click="actions.updateType"
 					data-wp-interactive-key="<?php echo esc_attr( 'donorType' ); ?>"
-					data-wp-interactive-value="all"
+					data-wp-interactive-value="<?php echo esc_attr( $type->slug ); ?>"
 				/>
-				<label for="filter-type-all">
-					<?php esc_html_e( 'All', 'ttt' ); ?>
+				<label for="filter-<?php echo esc_attr( $type->slug ); ?>">
+					<?php echo esc_html( $type->name ); ?>
 				</label>
 				<?php
-				foreach ( $types as $type ) :
-					?>
-					<input 
-						type="radio" 
-						id="filter-<?php echo esc_attr( $type->slug ); ?>" 
-						name="filter-type" 
-						class="filter-checkbox" 
-						value="<?php echo esc_attr( $type->slug ); ?>" 
-						data-query-var="donor_type='<?php echo esc_attr( $type->slug ); ?>'" 
-						data-wp-interactive="<?php echo sanitize_key( APP_ID ); ?>"
-						data-wp-interactive-action="setType"
-						data-wp-interactive-key="<?php echo esc_attr( 'donorType' ); ?>"
-						data-wp-interactive-value="<?php echo esc_attr( $type->slug ); ?>"
-					/>
-					<label for="filter-<?php echo esc_attr( $type->slug ); ?>">
-						<?php echo esc_html( $type->name ); ?>
-					</label>
-					<?php
-				endforeach;
-				?>
+			endforeach;
+			?>
 			</div>
 		<?php
 	}

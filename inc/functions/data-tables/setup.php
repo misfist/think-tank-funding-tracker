@@ -6,6 +6,7 @@ namespace Quincy\ttt;
 
 const TABLE_ID = 'funding-data';
 const APP_ID   = 'think-tank-funding';
+const APP_NAMESPACE = 'ttft/data-tables';
 
 /**
  * Get table ID
