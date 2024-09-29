@@ -13,6 +13,7 @@
  */
 global $post;
 $think_tank     = $post->post_name;
+$post_id        = $post->ID;
 $limited_info   = get_post_meta( $post_id, 'limited_info', true );
 $is_limited     = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
 $is_transparent = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
@@ -45,7 +46,7 @@ else :
 
 	<!-- wp:data-tables/data-table {
 		"tableType":"single-think-tank",
-		"thinkTank":"<?php echo $think_tank ;?>"
+		"thinkTank":"<?php echo $think_tank; ?>"
 	 } /-->
 	
 	<?php

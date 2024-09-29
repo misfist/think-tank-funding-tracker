@@ -45,5 +45,5 @@ $year       = '';
 
 <!-- wp:data-tables/data-table {
 	"tableType":"single-donor",
-	"thinkTank":"<?php echo $donor; ?>"
+	"donor":"<?php echo $donor; ?>"
 	} /-->
