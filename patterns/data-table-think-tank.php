@@ -11,7 +11,8 @@
  * %VAR4% = donor_type
  * %VAR5% = limit
  */
-
+global $post;
+$think_tank     = $post->post_name;
 $limited_info   = get_post_meta( $post_id, 'limited_info', true );
 $is_limited     = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
 $is_transparent = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
@@ -34,7 +35,18 @@ elseif ( $is_transparent ) :
 	<?php
 else :
 	?>
-		<!-- wp:site-functionality/think-tank-table /-->
+	<!-- wp:group {"metadata":{"name":"Filters"},"className":"data-filters","layout":{"type":"default"}} -->
+	<div class="wp-block-group data-filters">
+		<!-- wp:group {"metadata":{"name":"Donation Year"},"layout":{"type":"default"}} -->
+		<div class="wp-block-group"><!-- wp:data-tables/data-filter-donation-year /--></div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:data-tables/data-table {
+		"tableType":"single-think-tank",
+		"thinkTank":"<?php echo $think_tank ;?>"
+	 } /-->
 	
 	<?php
 endif;

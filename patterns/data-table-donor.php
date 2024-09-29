@@ -34,19 +34,16 @@ $year       = get_most_recent_donation_year();
 $year       = '';
 ?>
 
-<!-- wp:group {"metadata":{"name":"Data Filters"},"id":"custom-filters","className":"wpDataTables data-filters","layout":{"type":"default"}} -->
-<div 
-	id="custom-filters" 
-	class="wp-block-group wpDataTables data-filters" 
-	data-table-id="<?php echo intval( $table_id ); ?>" 
-	data-table-number="table_1"
->
-
-	<?php print_years(); ?>
-
+<!-- wp:group {"metadata":{"name":"Filters"},"className":"data-filters","layout":{"type":"default"}} -->
+<div class="wp-block-group data-filters"><!-- wp:group {"metadata":{"name":"Donation Year"},"layout":{"type":"default"}} -->
+	<div class="wp-block-group">
+		<!-- wp:data-tables/data-filter-donation-year /-->
+	</div>
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
 
-<!-- wp:shortcode -->
-<?php echo do_shortcode( "[donor_table donor='{$donor}' year='{$year}']" ); ?>
-<!-- /wp:shortcode -->
+<!-- wp:data-tables/data-table {
+	"tableType":"single-donor",
+	"thinkTank":"<?php echo $donor; ?>"
+	} /-->

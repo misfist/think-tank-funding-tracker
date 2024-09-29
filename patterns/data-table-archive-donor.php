@@ -32,17 +32,25 @@ $app_id   = get_app_id();
 
 ?>
 
-<!-- wp:group {"metadata":{"name":"Data Filters"},"id":"custom-filters","className":"wpDataTables data-filters","layout":{"type":"default"}} -->
-<div 
-	id="custom-filters" 
-	class="wp-block-group wpDataTables data-filters" 
-	data-table-id="<?php echo sanitize_key( $table_id ); ?>"
-	data-wp-interactive="<?php echo sanitize_key( $app_id ); ?>"
->
+<!-- wp:group {"metadata":{"name":"Filters"},"className":"data-filters","layout":{"type":"default"}} -->
+<div class="wp-block-group data-filters"><!-- wp:group {"metadata":{"name":"Donation Year"},"layout":{"type":"default"}} -->
+	<div class="wp-block-group">
+		<!-- wp:data-tables/data-filter-donation-year /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"metadata":{"name":"Donor Type"},"layout":{"type":"default"}} -->
+	<div class="wp-block-group">
+		<!-- wp:data-tables/data-filter-donor-type /-->
+		</div>
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
- 
-<!-- wp:shortcode -->
-<?php echo do_shortcode( "[donors_table year='{$year}' type='{$type}']" ); ?>
-<!-- /wp:shortcode -->
+
+
+<!-- wp:data-tables/data-table {
+	"tableType":"donor-archive",
+	"donationYear":"all",
+	"donorType":"all"
+} /-->
 

@@ -30,18 +30,17 @@ $app_id   = get_app_id();
 
 $year = '';
 ?>
-<!-- wp:group {"metadata":{"name":"Data Filters"},"id":"custom-filters","className":"wpDataTables data-filters","layout":{"type":"default"}} -->
-<div 
-	id="custom-filters" 
-	class="wp-block-group wpDataTables data-filters" 
-	data-table-id="<?php echo sanitize_key( $table_id ); ?>"
-	data-wp-interactive="<?php echo sanitize_key( $app_id ); ?>"
->
-	<?php echo print_archive_years( 6 ); ?>
+<!-- wp:group {"metadata":{"name":"Filters"},"className":"data-filters","layout":{"type":"default"}} -->
+<div class="wp-block-group data-filters"><!-- wp:group {"metadata":{"name":"Donation Year"},"layout":{"type":"default"}} -->
+	<div class="wp-block-group">
+		<!-- wp:data-tables/data-filter-donation-year /-->
+	</div>
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
-	
-<!-- wp:shortcode -->
-<?php echo do_shortcode( '[think_tanks_table]' ); ?>
-<!-- /wp:shortcode -->
-	
+
+<!-- wp:data-tables/data-table {
+	"tableType":"think-tank-archive",
+	"donationYear":"all",
+	"donorType":"all"
+} /-->
