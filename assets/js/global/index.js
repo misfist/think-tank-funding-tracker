@@ -3,7 +3,8 @@
  *
  * Import JS that applies globally.
  */
-import './dataTablesInit';
+// import './interactivity';
+// import './dataTablesInit';
 // import './dataTables';
 import './header';
 import './tabs';
