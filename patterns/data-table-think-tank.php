@@ -41,6 +41,12 @@ else :
 		<!-- wp:group {"metadata":{"name":"Donation Year"},"layout":{"type":"default"}} -->
 		<div class="wp-block-group"><!-- wp:data-tables/data-filter-donation-year /--></div>
 		<!-- /wp:group -->
+		
+		<!-- wp:group {"metadata":{"name":"Donor Type"},"layout":{"type":"default"}} -->
+		<div class="wp-block-group">
+			<!-- wp:data-tables/data-filter-donor-type /-->
+		</div>
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
 
