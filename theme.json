@@ -18,27 +18,12 @@
 	],
 	"patterns": ["three-columns-of-services", "clients-section"],
 	"settings": {
+		"useRootPaddingAwareAlignments": true,
 		"appearanceTools": true,
-		"blocks": {
-			"core/image": {
-				"lightbox": {
-					"allowEditing": true,
-					"enabled": true
-				}
-			}
-		},
 		"color": {
 			"defaultDuotone": false,
 			"defaultGradients": false,
 			"defaultPalette": false,
-			"duotone": [
-				{
-					"colors": ["#111111", "#ffffff"],
-					"name": "Black and white",
-					"slug": "duotone-1"
-				}
-			],
-			"gradients": [],
 			"palette": [
 				{
 					"color": "#ffffff",
@@ -165,7 +150,15 @@
 					"name": "Gray 900",
 					"slug": "gray-900"
 				}
-			]
+			],
+			"duotone": [
+				{
+					"colors": ["#111111", "#ffffff"],
+					"name": "Black and white",
+					"slug": "duotone-1"
+				}
+			],
+			"gradients": []
 		},
 		"layout": {
 			"contentSize": "1024px",
@@ -422,7 +415,6 @@
 			],
 			"writingMode": true
 		},
-		"useRootPaddingAwareAlignments": true,
 		"custom": {
 			"border": {
 				"radius": {
@@ -436,7 +428,7 @@
 				"score-2": "rgba(229, 242, 74, 0.35)",
 				"score-3": "#E0FAC0",
 				"score-4": "#CBECD9",
-				"pink-light": "rgba(208, 68, 64, 0.15)",
+				"pink-light": "#FAECEC",
 				"hover": "rgba(97, 162, 103, 0.25)"
 			},
 			"line-height": {
@@ -456,6 +448,14 @@
 				"wide": "1280px",
 				"huge": "1440px",
 				"xhuge": "1920px"
+			}
+		},
+		"blocks": {
+			"core/image": {
+				"lightbox": {
+					"allowEditing": true,
+					"enabled": true
+				}
 			}
 		}
 	},
