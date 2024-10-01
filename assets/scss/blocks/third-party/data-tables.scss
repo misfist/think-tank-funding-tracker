@@ -297,7 +297,9 @@
             }
         }
     }
+}
 
+body:not( .home ) {
     @include responsive-max( calc( $break-small - 1px ) ) {
         caption {
             @include screen-reader-text;
