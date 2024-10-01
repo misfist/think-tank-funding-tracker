@@ -16,29 +16,36 @@
 			"title": "Page with Wide Image"
 		}
 	],
+	"templateParts": [
+		{
+			"area": "header",
+			"name": "header",
+			"title": "Header"
+		},
+		{
+			"area": "footer",
+			"name": "footer",
+			"title": "Footer"
+		},
+		{
+			"area": "sidebar",
+			"name": "sidebar",
+			"title": "Sidebar"
+		},
+		{
+			"area": "uncategorized",
+			"name": "post-meta",
+			"title": "Post Meta"
+		}
+	],
 	"patterns": ["three-columns-of-services", "clients-section"],
 	"settings": {
+		"useRootPaddingAwareAlignments": true,
 		"appearanceTools": true,
-		"blocks": {
-			"core/image": {
-				"lightbox": {
-					"allowEditing": true,
-					"enabled": true
-				}
-			}
-		},
 		"color": {
 			"defaultDuotone": false,
 			"defaultGradients": false,
 			"defaultPalette": false,
-			"duotone": [
-				{
-					"colors": ["#111111", "#ffffff"],
-					"name": "Black and white",
-					"slug": "duotone-1"
-				}
-			],
-			"gradients": [],
 			"palette": [
 				{
 					"color": "#ffffff",
@@ -117,8 +124,13 @@
 				},
 				{
 					"color": "#f8c4c4",
-					"name": "Accent / Nine",
+					"name": "Pink",
 					"slug": "accent-9"
+				},
+				{
+					"color": "var( --wp--custom--color--pink-light )",
+					"name": "Light Pink",
+					"slug": "accent-10"
 				},
 				{
 					"color": "#FAFAFA",
@@ -165,7 +177,15 @@
 					"name": "Gray 900",
 					"slug": "gray-900"
 				}
-			]
+			],
+			"duotone": [
+				{
+					"colors": ["#111111", "#ffffff"],
+					"name": "Black and white",
+					"slug": "duotone-1"
+				}
+			],
+			"gradients": []
 		},
 		"layout": {
 			"contentSize": "1024px",
@@ -176,32 +196,32 @@
 			"spacingSizes": [
 				{
 					"name": "1",
-					"size": "min(11px, 2vw)",
+					"size": "11px",
 					"slug": "10"
 				},
 				{
 					"name": "2",
-					"size": "min(22px, 2vw)",
+					"size": "clamp(calc(22px * 0.75), 2vw, 22px)",
 					"slug": "20"
 				},
 				{
 					"name": "3",
-					"size": "min(33px, 3vw)",
+					"size": "clamp(calc(33px * 0.75), 3vw, 33px)",
 					"slug": "30"
 				},
 				{
 					"name": "4",
-					"size": "min(44px, 5vw)",
+					"size": "clamp(calc(44px * 0.75), 4vw, 44px)",
 					"slug": "40"
 				},
 				{
 					"name": "5",
-					"size": "min(55px, 8vw)",
+					"size": "clamp(calc(55px * 0.75), 5vw, 55px)",
 					"slug": "50"
 				},
 				{
 					"name": "6",
-					"size": "min(66px, 13vw)",
+					"size": "clamp(calc(66px * 0.75), 6vw, 66px)",
 					"slug": "60"
 				}
 			],
@@ -331,12 +351,49 @@
 					"slug": "system-serif"
 				},
 				{
+					"fontFace": [
+						{
+							"fontFamily": "Material Symbols Outlined",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/material-icons/MaterialIconsOutlined-Regular.otf"
+							]
+						},
+						{
+							"fontFamily": "Material Symbols Round",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/material-icons/MaterialIconsRound-Regular.otf"
+							]
+						},
+						{
+							"fontFamily": "Material Icons",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./assets/fonts/material-icons/MaterialIcons-Regular.ttf"
+							]
+						}
+					],
+					"fontFamily": "\"Material Icons\"",
+					"name": "Icon",
+					"slug": "icon"
+				},
+				{
 					"fontFamily": "wpDataTablesIcons",
 					"name": "Data Table Icons",
 					"slug": "data-table-icons"
 				}
 			],
 			"fontSizes": [
+				{
+					"fluid": false,
+					"name": "Extra Small",
+					"size": "0.75rem",
+					"slug": "x-small"
+				},
 				{
 					"fluid": false,
 					"name": "Small",
@@ -385,7 +442,6 @@
 			],
 			"writingMode": true
 		},
-		"useRootPaddingAwareAlignments": true,
 		"custom": {
 			"border": {
 				"radius": {
@@ -399,7 +455,8 @@
 				"score-2": "rgba(229, 242, 74, 0.35)",
 				"score-3": "#E0FAC0",
 				"score-4": "#CBECD9",
-				"pink-light": "rgba(208, 68, 64, 0.15)"
+				"pink-light": "#FAECEC",
+				"hover": "rgba(97, 162, 103, 0.25)"
 			},
 			"line-height": {
 				"normal": "normal",
@@ -418,6 +475,14 @@
 				"wide": "1280px",
 				"huge": "1440px",
 				"xhuge": "1920px"
+			}
+		},
+		"blocks": {
+			"core/image": {
+				"lightbox": {
+					"allowEditing": true,
+					"enabled": true
+				}
 			}
 		}
 	},
@@ -1006,10 +1071,10 @@
 			}
 		},
 		"spacing": {
-			"blockGap": "1.2rem",
+			"blockGap": "var(--wp--preset--spacing--20)",
 			"padding": {
-				"left": "var(--wp--preset--spacing--50)",
-				"right": "var(--wp--preset--spacing--50)"
+				"left": "var(--wp--preset--spacing--30)",
+				"right": "var(--wp--preset--spacing--30)"
 			}
 		},
 		"typography": {
@@ -1020,28 +1085,7 @@
 			"lineHeight": "var:custom|line-height|normal"
 		}
 	},
-	"templateParts": [
-		{
-			"area": "header",
-			"name": "header",
-			"title": "Header"
-		},
-		{
-			"area": "footer",
-			"name": "footer",
-			"title": "Footer"
-		},
-		{
-			"area": "sidebar",
-			"name": "sidebar",
-			"title": "Sidebar"
-		},
-		{
-			"area": "uncategorized",
-			"name": "post-meta",
-			"title": "Post Meta"
-		}
-	],
+
 	"version": 3,
 	"$schema": "https://schemas.wp.org/wp/6.6/theme.json"
 }

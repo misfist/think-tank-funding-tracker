@@ -6,16 +6,6 @@
  * Inserter: no
  */
 ?>
-<!-- wp:group {"metadata":{"name":"Pre-footer"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"
-	style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
-	<!-- wp:group {"metadata":{"name":"Pre-footer Wrapper"}} -->
-	<div class="wp-block-group">
-		<!-- wp:pattern {"slug":"ttt/search-form"} /-->
-	</div>
-	<!-- /wp:group -->
-</div>
-<!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Footer"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"gray-900","textColor":"base","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-base-color has-gray-900-background-color has-text-color has-background has-link-color"

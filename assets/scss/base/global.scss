@@ -10,12 +10,23 @@ html {
 	overflow-x: hidden;
 }
 
+.site-main {
+	padding-top: var( --wp--preset--spacing--30 );
+	padding-bottom: var( --wp--preset--spacing--60 );
+}
+
 a,
 button,
 input,
 textarea,
 .wp-element-button {
 	transition: all 0.2s ease-in-out;
+}
+
+p:empty {
+	display: none;
+	visibility: hidden;
+	height: 0;
 }
 
 sup {
@@ -25,6 +36,12 @@ sup {
 	a {
 		color: var(--wp--preset--color--primary-500);
 		text-decoration: none;
+	}
+}
+
+.dollar-value {
+	&::before {
+		content: '$';
 	}
 }
 

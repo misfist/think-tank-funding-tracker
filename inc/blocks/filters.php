@@ -4,7 +4,7 @@
  *
  * @package ttt
  */
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Add title attribute to post-title and post-featured-image blocks
@@ -23,21 +23,3 @@ function remove_autop( $block_content, $block ) {
 	return $block_content;
 }
 add_filter( 'render_block', __NAMESPACE__ . '\remove_autop', 10, 2 );
-
-/**
- * Add default wdt_search query var to search block
- *
- * @param  array  $args
- * @param  string $block_type
- * @return array
- */
-function register_block_type_args( array $args, string $block_type ): array {
-	if ( 'core/search' === $block_type ) {
-		$search_term = ( isset( $_GET['s'] ) ) ? sanitize_text_field( $_GET['s'] ) : null;
-		if ( $search_term ) {
-			$args['attributes']['query']['default']['wdt_search'] = urlencode( $search_term );
-		}
-	}
-	return $args;
-}
-add_filter( 'register_block_type_args', __NAMESPACE__ . '\register_block_type_args', '', 2 );

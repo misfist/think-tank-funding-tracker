@@ -5,7 +5,7 @@
  * @package ttt
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Prevents editors from adding unregistered core blocks to content or pages.
@@ -21,4 +21,4 @@ function remove_core_blocks_gutenberg_editor() {
 		true
 	);
 }
-add_action( 'enqueue_block_assets', __NAMESPACE__ . '\remove_core_blocks_gutenberg_editor' );
+// add_action( 'enqueue_block_assets', __NAMESPACE__ . '\remove_core_blocks_gutenberg_editor' );

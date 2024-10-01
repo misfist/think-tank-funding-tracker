@@ -11,16 +11,20 @@
  * %VAR4% = donor_type
  * %VAR5% = limit
  */
+use function Quincy\ttft\get_table_id;
+use function Quincy\ttft\get_app_id;
 
-$entity_type = isset( $_GET['entity_type'] ) ? sanitize_text_field( $_GET['entity_type'] ) : 'donor';
-$search_term = get_search_query();
-$table_id    = 13;
+$app_namespace = get_app_id();
 ?>
 
-<!-- wp:group {"metadata":{"name":"Think Tanks Content"},"className":"tab <?php echo $entity_type === 'think_tank' ? 'active' : ''; ?>","layout":{"type":"default"}} -->
-<div id="think-tank-results" class="wp-block-group tab">
-	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[wpdatatable id={$table_id}]" ); ?>
-	<!-- /wp:shortcode -->
+<!-- wp:group {"metadata":{"name":"Think Tanks Content"},"className":"tab","layout":{"type":"default"}} -->
+<div 
+	id="think-tank-results" 
+	class="wp-block-group tab"
+	data-wp-interactive=<?php echo $app_namespace; ?>
+	data-wp-class--active="state.thinkTankSelected"
+	data-wp-bind--hidden="state.!thinkTankSelected"
+>
+	<!-- wp:data-tables/data-table { "tableType":"think-tank-archive" } /-->
 </div>
 <!-- /wp:group -->

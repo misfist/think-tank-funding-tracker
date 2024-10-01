@@ -18,16 +18,16 @@ main,
 					padding-left: var(--wp--preset--spacing--70);
 				}
 
-				&::before {
-					background-color: var(--wp--preset--color--gray-200);
-					content: '';
-					display: block;
-					height: 0.125rem;
-					left: 0;
-					position: absolute;
-					top: 0.5625rem;
-					width: 1.5rem;
-				}
+				// &::before {
+				// 	background-color: var(--wp--preset--color--gray-200);
+				// 	content: '';
+				// 	display: block;
+				// 	height: 0.125rem;
+				// 	left: 0;
+				// 	position: absolute;
+				// 	top: 0.5625rem;
+				// 	width: 1.5rem;
+				// }
 
 				&:last-child {
 					padding-bottom: 0;

@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', function () {
 				e.preventDefault();
 
 				const href = tab.getAttribute('href');
-				const entityType = tab.getAttribute('data-entity-type');
+				const entity = tab.getAttribute('data-entity-type');
 				activateTab(href);
-				activateSelector(entityType);
+				activateSelector(entity);
 			});
 		});
 	}
