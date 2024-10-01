@@ -80,14 +80,22 @@ function get_top_ten_raw_data( $donor_type = '', $donation_year = '', $number_of
  * @param string $donor_type    Optional. Slug of the donor type.
  * @return array
  */
-function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', $donor_type = '' ) : array {
-	$think_tank    = ( $think_tank_var ) ? sanitize_text_field( $think_tank_var ) : sanitize_text_field( $think_tank );
-	$donation_year = ( $donation_year_var ) ? sanitize_text_field( $donation_year_var ) : sanitize_text_field( $donation_year );
-	$donor_type    = ( $donor_type_var ) ? sanitize_text_field( $donor_type_var ) : sanitize_text_field( $donor_type );
+function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', $donor_type = '' ): array {
+	$think_tank    = sanitize_text_field( $think_tank );
+	$donation_year = sanitize_text_field( $donation_year );
+	$donor_type    = sanitize_text_field( $donor_type );
+
+	$transient_key = 'single_think_tank_' . md5( $think_tank . $donation_year . $donor_type );
+
+	$data = get_transient( $transient_key );
+	if ( false !== $data ) {
+		return $data;
+	}
 
 	$args = array(
 		'post_type'      => 'transaction',
 		'posts_per_page' => -1,
+		'fields'         => 'ids',
 		'tax_query'      => array(
 			'relation' => 'AND',
 		),
@@ -117,14 +125,11 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 		);
 	}
 
-	$query   = new \WP_Query( $args );
-	$results = array();
+	$query = new \WP_Query( $args );
+	$data  = array();
 
 	if ( $query->have_posts() ) {
-		while ( $query->have_posts() ) {
-			$query->the_post();
-			$post_id = get_the_ID();
-
+		foreach ( $query->posts as $post_id ) {
 			$donors = wp_get_object_terms( $post_id, 'donor', array( 'orderby' => 'parent' ) );
 			if ( empty( $donors ) || is_wp_error( $donors ) ) {
 				continue;
@@ -140,7 +145,7 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 				$amount_calc = 0;
 			}
 
-			$results[] = array(
+			$data[] = array(
 				'donor'       => $donor_name,
 				'amount_calc' => $amount_calc,
 				'donor_type'  => get_the_term_list( $post_id, 'donor_type' ),
@@ -151,9 +156,11 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 		}
 	}
 
-	wp_reset_postdata();
+	// wp_reset_postdata();
 
-	return $results;
+	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
+
+	return $data;
 }
 
 /**
@@ -164,6 +171,12 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
  * @return array Array of transaction data.
  */
 function get_single_donor_raw_data( $donor = '', $donation_year = '', $donor_type = '' ) {
+	$donor         = sanitize_text_field( $donor );
+	$donation_year = sanitize_text_field( $donation_year );
+	$donor_type    = sanitize_text_field( $donor_type );
+
+	$transient_key = 'single_donor_' . md5( $donor . $donation_year . $donor_type );
+
 	$args = array(
 		'post_type'      => 'transaction',
 		'posts_per_page' => -1,
@@ -243,8 +256,10 @@ function get_single_donor_raw_data( $donor = '', $donation_year = '', $donor_typ
 				'think_tank_slug' => $think_tank_slug,
 			);
 		}
-		wp_reset_postdata();
+		// wp_reset_postdata();
 	}
+
+	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
 
 	return $data;
 }
@@ -362,7 +377,7 @@ function get_top_ten_data( $donor_type = '', $donation_year = '', $number_of_ite
  * @return array Array of think tank data.
  */
 function get_think_tank_archive_data( $donation_year = '' ) {
-	$args     = array(
+	$args = array(
 		'post_type'      => 'transaction',
 		'posts_per_page' => -1,
 		'post_status'    => 'publish',
@@ -563,16 +578,52 @@ function get_donor_archive_data( $donation_year = '', $donor_type = '' ) {
  * Get the total amount of donations for a think tank
  *
  * @param string $think_tank
+ * @param string $donation_year
  * @param string $donor_type
  * @return int
  */
-function get_think_tank_total( $think_tank, $donor_type = '' ) : int {
-	$data = get_single_think_tank_data( $think_tank, '', $donor_type );
-	if( ! empty( $data ) ) {
+function get_single_think_tank_total( $think_tank, $donation_year = '', $donor_type = '' ): int {
+	$donor         = sanitize_text_field( $think_tank );
+	$donation_year = sanitize_text_field( $donation_year );
+	$donor_type    = sanitize_text_field( $donor_type );
+
+	$transient_key = 'single_think_tank_cumulative_' . md5( $think_tank . $donation_year . $donor_type );
+
+	$data = get_single_think_tank_data( $think_tank, $donation_year, $donor_type );
+	if ( ! empty( $data ) ) {
 		$total = array_sum( array_column( $data, 'amount_calc' ) );
 	} else {
 		$total = 0;
-
 	}
+
+	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
+
+	return $total;
+}
+
+
+/**
+ * Get the total amount of donations for a donor
+ *
+ * @param string $donor
+ * @param string $donor_type
+ * @return int
+ */
+function get_single_donor_total( $donor, $donation_year = '', $donor_type = '' ): int {
+	$donor         = sanitize_text_field( $donor );
+	$donation_year = sanitize_text_field( $donation_year );
+	$donor_type    = sanitize_text_field( $donor_type );
+
+	$transient_key = 'single_donor_cumulative_' . md5( $donor . $donation_year . $donor_type );
+
+	$data = get_single_donor_data( $donor, $donation_year, $donor_type );
+	if ( ! empty( $data ) ) {
+		$total = array_sum( array_column( $data, 'amount_calc' ) );
+	} else {
+		$total = 0;
+	}
+
+	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
+
 	return $total;
 }
