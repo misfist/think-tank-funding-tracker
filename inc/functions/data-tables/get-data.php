@@ -362,7 +362,6 @@ function get_top_ten_data( $donor_type = '', $donation_year = '', $number_of_ite
  * @return array Array of think tank data.
  */
 function get_think_tank_archive_data( $donation_year = '' ) {
-	$year_var = get_query_var( 'donation_year', '' );
 	$args     = array(
 		'post_type'      => 'transaction',
 		'posts_per_page' => -1,
@@ -560,6 +559,20 @@ function get_donor_archive_data( $donation_year = '', $donor_type = '' ) {
 	return $data;
 }
 
-function get_think_tank_total( $think_tank, $donor_type = '' ) {
-	
+/**
+ * Get the total amount of donations for a think tank
+ *
+ * @param string $think_tank
+ * @param string $donor_type
+ * @return int
+ */
+function get_think_tank_total( $think_tank, $donor_type = '' ) : int {
+	$data = get_single_think_tank_data( $think_tank, '', $donor_type );
+	if( ! empty( $data ) ) {
+		$total = array_sum( array_column( $data, 'amount_calc' ) );
+	} else {
+		$total = 0;
+
+	}
+	return $total;
 }
