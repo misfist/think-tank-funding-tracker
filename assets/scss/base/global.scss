@@ -39,6 +39,12 @@ sup {
 	}
 }
 
+.dollar-value {
+	&::before {
+		content: '$';
+	}
+}
+
 /** Fix for image lightbox with caption trigger overflow from core **/
 .wp-block-gallery {
 	.lightbox-trigger {
