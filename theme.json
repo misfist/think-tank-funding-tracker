@@ -102,8 +102,13 @@
 				},
 				{
 					"color": "#f8c4c4",
-					"name": "Accent / Nine",
+					"name": "Pink",
 					"slug": "accent-9"
+				},
+				{
+					"color": "var( --wp--custom--color--pink-light )",
+					"name": "Light Pink",
+					"slug": "accent-10"
 				},
 				{
 					"color": "#FAFAFA",
@@ -174,27 +179,27 @@
 				},
 				{
 					"name": "2",
-					"size": "min(22px, 2vw)",
+					"size": "clamp(calc(22px * 0.75), 2vw, 22px)",
 					"slug": "20"
 				},
 				{
 					"name": "3",
-					"size": "min(33px, 3vw)",
+					"size": "clamp(calc(33px * 0.75), 3vw, 33px)",
 					"slug": "30"
 				},
 				{
 					"name": "4",
-					"size": "min(44px, 5vw)",
+					"size": "clamp(calc(44px * 0.75), 4vw, 44px)",
 					"slug": "40"
 				},
 				{
 					"name": "5",
-					"size": "min(55px, 8vw)",
+					"size": "clamp(calc(55px * 0.75), 5vw, 55px)",
 					"slug": "50"
 				},
 				{
 					"name": "6",
-					"size": "min(66px, 13vw)",
+					"size": "clamp(calc(66px * 0.75), 6vw, 66px)",
 					"slug": "60"
 				}
 			],
