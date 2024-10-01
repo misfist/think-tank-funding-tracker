@@ -5,7 +5,7 @@
  * @package ttt
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Modify Breadcrumb for Single Donor

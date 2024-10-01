@@ -5,7 +5,7 @@
  * @package ttt
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Registers custom block pattern categories for the WDS BT theme.

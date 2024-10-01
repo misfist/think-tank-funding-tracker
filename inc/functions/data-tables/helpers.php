@@ -2,7 +2,7 @@
 /**
  * Helper Functions
  */
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Retrieves the Transparency Score for a given think tank slug.

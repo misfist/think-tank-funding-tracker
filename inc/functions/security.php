@@ -7,7 +7,7 @@
  * @package ttt
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Remove generator meta tags.

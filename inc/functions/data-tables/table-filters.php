@@ -5,7 +5,7 @@
  * @package ttt
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Retrieve the most recent donation year term.
@@ -90,12 +90,11 @@ function generate_year_filters( $years ): string {
 	ob_start();
 
 	if ( $years ) {
-
 		$input_type = 'radio';
 		$input_name = 'year-filter';
 		$selected   = $context[ $state_key ];
 		$options    = $context['options'];
-		$all = array( 'all', __( 'All', 'ttft-data-tables' ) );
+		$all        = array( 'all', __( 'All', 'ttft-data-tables' ) );
 		array_unshift( $years, 'all' );
 		?>
 		<div 
@@ -106,7 +105,7 @@ function generate_year_filters( $years ): string {
 		>
 			<?php
 			foreach ( $years as $year ) :
-				$input_id    = "{$input_type}-{$year}";
+				$input_id = "{$input_type}-{$year}";
 				?>
 				<input 
 					type=<?php echo $input_type; ?> 
@@ -146,8 +145,8 @@ function generate_year_filters( $years ): string {
 function generate_type_filters( $types ): string {
 	ob_start();
 
-	if ( $types ) {		
-		$all = array( 'all', __( 'All', 'ttft-data-tables' ) );
+	if ( $types ) {
+		$all   = array( 'all', __( 'All', 'ttft-data-tables' ) );
 		$types = $all + $types;
 		?>
 		<div 

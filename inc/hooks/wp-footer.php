@@ -5,7 +5,7 @@
  * @package ttt
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Add back to top link to footer

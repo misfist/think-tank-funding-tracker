@@ -5,7 +5,7 @@
  * @package ttt
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Retrieves transaction posts that share the same think_tank taxonomy term as the specified or current post.

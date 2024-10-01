@@ -4,8 +4,7 @@
  *
  * @package ttt
  */
-namespace Quincy\ttt;
-
+namespace Quincy\ttft;
 
 /**
  * Registers all block folders found in the `blocks` directory.

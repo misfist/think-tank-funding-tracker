@@ -5,7 +5,7 @@
  * @package ttt
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 if ( 'local' === wp_get_environment_type() && ! class_exists( '\WP_CLI' ) ) {
 	// require_once trailingslashit( get_template_directory() ) . 'vendor/autoload.php';

@@ -2,4 +2,4 @@
 /**
  * Set Data Functions
  */
-namespace Quincy\ttt;
+namespace Quincy\ttft;

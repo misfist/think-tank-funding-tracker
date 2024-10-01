@@ -5,7 +5,7 @@
  * @package ttt
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Enqueue scripts and styles.
@@ -44,5 +44,3 @@ function scripts(): void {
 	);
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts' );
-
-

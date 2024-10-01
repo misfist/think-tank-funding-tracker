@@ -9,11 +9,11 @@
  * @license GNU General Public License v3
  */
 
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 // Define a global path and url.
-define( 'Quincy\ttt\ROOT_PATH', trailingslashit( get_template_directory() ) );
-define( 'Quincy\ttt\ROOT_URL', trailingslashit( get_template_directory_uri() ) );
+define( 'Quincy\ttft\ROOT_PATH', trailingslashit( get_template_directory() ) );
+define( 'Quincy\ttft\ROOT_URL', trailingslashit( get_template_directory_uri() ) );
 
 
 /**

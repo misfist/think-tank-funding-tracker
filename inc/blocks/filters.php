@@ -4,7 +4,7 @@
  *
  * @package ttt
  */
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Add title attribute to post-title and post-featured-image blocks
