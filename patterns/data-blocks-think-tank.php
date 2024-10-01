@@ -5,7 +5,11 @@
  * Categories: transparency
  * Inserter: false
  */
+use function Quincy\ttft\get_think_tank_total;
+
+global $post;
 $post_id            = get_the_ID();
+$think_tank         = get_post_field( 'post_name', $post_id );
 $limited_info       = get_post_meta( $post_id, 'limited_info', true );
 $is_limited         = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
 $is_transparent     = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
@@ -15,6 +19,10 @@ $no_foreign         = get_post_meta( $post_id, 'no_foreign_accepted', true );
 $transparency_score = ( $score = get_post_meta( $post_id, 'transparency_score', true ) ) ? (int) $score : 0;
 $think_tank_term    = wp_get_post_terms( $post_id, 'think_tank' );
 $column_count       = ( $is_limited || $is_transparent ) ? 2 : 4;
+
+$domestic_total  = get_think_tank_total( $think_tank, 'u-s-government' ) ?? 0;
+$defense_total  = get_think_tank_total( $think_tank, 'pentagon-contractor' ) ?? 0;
+$foreign_total  = get_think_tank_total( $think_tank, 'foreign-government' ) ?? 0;
 ?>
 
 <!-- wp:group {"layout":{"type":"grid","columnCount":<?php echo intval( $column_count ); ?>,"minimumColumnWidth":"12rem","rowCount":"1"}} -->
@@ -67,21 +75,9 @@ $column_count       = ( $is_limited || $is_transparent ) ? 2 : 4;
 			else :
 				?>
 
-				<!-- wp:paragraph {
-					"metadata":{
-						"bindings":{
-							"content":{
-								"source":"core/post-meta",
-								"args":{
-									"key":"amount_domestic"
-								}
-							}
-						}
-					}
-				} -->
-				<p>$X</p>
+				<!-- wp:paragraph {"className":"numeric dollar-value"} -->
+				<p class="numeric dollar-value"><?php echo ( $domestic_total ) ? number_format( $domestic_total ) : 0; ?></p>
 				<!-- /wp:paragraph -->
-
 
 				<?php
 			endif;
@@ -110,19 +106,8 @@ $column_count       = ( $is_limited || $is_transparent ) ? 2 : 4;
 			else :
 				?>
 
-				<!-- wp:paragraph {
-					"metadata":{
-						"bindings":{
-							"content":{
-								"source":"core/post-meta",
-								"args":{
-									"key":"amount_defense"
-								}
-							}
-						}
-					}
-				} -->
-				<p>$X</p>
+				<!-- wp:paragraph {"className":"numeric dollar-value"} -->
+				<p class="numeric dollar-value"><?php echo ( $defense_total ) ? number_format( $defense_total ) : 0; ?></p>
 				<!-- /wp:paragraph -->
 
 				<?php
@@ -151,19 +136,8 @@ $column_count       = ( $is_limited || $is_transparent ) ? 2 : 4;
 			else :
 				?>
 
-				<!-- wp:paragraph {
-					"metadata":{
-						"bindings":{
-							"content":{
-								"source":"core/post-meta",
-								"args":{
-									"key":"amount_foreign"
-								}
-							}
-						}
-					}
-				} -->
-				<p>$X</p>
+				<!-- wp:paragraph {"className":"numeric dollar-value"} -->
+				<p class="numeric dollar-value"><?php echo ( $foreign_total ) ? number_format( $foreign_total ) : 0; ?></p>
 				<!-- /wp:paragraph -->
 
 				<?php
