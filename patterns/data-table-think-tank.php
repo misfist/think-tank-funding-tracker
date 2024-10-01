@@ -11,12 +11,15 @@
  * %VAR4% = donor_type
  * %VAR5% = limit
  */
+use function Quincy\ttft\get_single_think_tank_total;
+
 global $post;
-$think_tank     = $post->post_name;
-$post_id        = $post->ID;
-$limited_info   = get_post_meta( $post_id, 'limited_info', true );
-$is_limited     = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
-$is_transparent = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
+$think_tank      = $post->post_name;
+$post_id         = $post->ID;
+$limited_info    = get_post_meta( $post_id, 'limited_info', true );
+$is_limited      = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
+$is_transparent  = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
+$total_donations = get_single_think_tank_total( $think_tank );
 
 if ( $is_limited ) :
 	?>
@@ -24,7 +27,7 @@ if ( $is_limited ) :
 		<div class="wp-block-group has-pink-light-background-color has-background no-data" style="background-color:var(--wp--custom--color--pink-light);padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
 		<!-- wp:heading {"level":4} -->
-		<h4><?php esc_html_e( 'This think tank has not provided data about it\'s donations.', 'ttt' ); ?></h4>
+		<h4><?php esc_html_e( 'This think tank has not provided data about it\'s donations.', 'ttft' ); ?></h4>
 		<!-- /wp:heading -->
 
 	</div>
@@ -39,7 +42,9 @@ else :
 	<!-- wp:group {"metadata":{"name":"Filters"},"className":"data-filters","layout":{"type":"default"}} -->
 	<div class="wp-block-group data-filters">
 		<!-- wp:group {"metadata":{"name":"Donation Year"},"layout":{"type":"default"}} -->
-		<div class="wp-block-group"><!-- wp:data-tables/data-filter-donation-year /--></div>
+		<div class="wp-block-group">
+			<!-- wp:data-tables/data-filter-donation-year /-->
+		</div>
 		<!-- /wp:group -->
 		
 		<!-- wp:group {"metadata":{"name":"Donor Type"},"layout":{"type":"default"}} -->
@@ -47,6 +52,18 @@ else :
 			<!-- wp:data-tables/data-filter-donor-type /-->
 		</div>
 		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"metadata":{"name":"Think Tank Total Donations Received"},"className":"total-donations","layout":{"type":"default"}} -->
+	<div class="wp-block-group total-donations">
+		<!-- wp:paragraph -->
+		<p><?php esc_html_e( 'Minimum amount received', 'ttft' ); ?><p>
+		<!-- /wp:paragraph -->
+
+		<!-- wp:heading {"level":4, "className":"dollar-value"} -->
+		<h4 class="dollar-value"><?php echo number_format( $total_donations ); ?></h4>
+		<!-- /wp:heading -->
 	</div>
 	<!-- /wp:group -->
 

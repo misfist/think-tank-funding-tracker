@@ -15,11 +15,11 @@ function register_block_styles() {
 
 	$block_styles = array(
 		'core/button' => array(
-			'minimal' => __( 'Minimal', 'ttt' ),
-			'text'    => __( 'Text Only', 'ttt' ),
+			'minimal' => __( 'Minimal', 'ttft' ),
+			'text'    => __( 'Text Only', 'ttft' ),
 		),
 		'core/quote'  => array(
-			'large' => __( 'Large', 'ttt' ),
+			'large' => __( 'Large', 'ttft' ),
 		),
 	);
 

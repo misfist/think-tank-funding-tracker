@@ -14,7 +14,7 @@ namespace Quincy\ttft;
  */
 function wp_footer(): void {
 	?>
-	<a href="#top"><?php esc_html_e( 'Jump to top of page', 'ttt' ); ?></a>
+	<a href="#top"><?php esc_html_e( 'Jump to top of page', 'ttft' ); ?></a>
 	<?php
 }
-add_action( 'wp_footer', __NAMESPACE__ . '\wp_footer' );
+// add_action( 'wp_footer', __NAMESPACE__ . '\wp_footer' );

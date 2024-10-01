@@ -16,7 +16,7 @@ register_block_style(
 	'core/paragraph',
 	array(
 		'name'  => 'intro',
-		'label' => __( 'Intro', 'ttt' ),
+		'label' => __( 'Intro', 'ttft' ),
 	)
 );
 
@@ -24,41 +24,41 @@ register_block_style(
 	'core/group',
 	array(
 		'name'  => 'score-0',
-		'label' => __( 'Score 0', 'ttt' ),
+		'label' => __( 'Score 0', 'ttft' ),
 	)
 );
 register_block_style(
 	'core/group',
 	array(
 		'name'  => 'score-1',
-		'label' => __( 'Score 1', 'ttt' ),
+		'label' => __( 'Score 1', 'ttft' ),
 	)
 );
 register_block_style(
 	'core/group',
 	array(
 		'name'  => 'score-2',
-		'label' => __( 'Score 2', 'ttt' ),
+		'label' => __( 'Score 2', 'ttft' ),
 	)
 );
 register_block_style(
 	'core/group',
 	array(
 		'name'  => 'score-3',
-		'label' => __( 'Score 3', 'ttt' ),
+		'label' => __( 'Score 3', 'ttft' ),
 	)
 );
 register_block_style(
 	'core/group',
 	array(
 		'name'  => 'score-4',
-		'label' => __( 'Score 4', 'ttt' ),
+		'label' => __( 'Score 4', 'ttft' ),
 	)
 );
 register_block_style(
 	'core/group',
 	array(
 		'name'  => 'score-5',
-		'label' => __( 'Score 5', 'ttt' ),
+		'label' => __( 'Score 5', 'ttft' ),
 	)
 );

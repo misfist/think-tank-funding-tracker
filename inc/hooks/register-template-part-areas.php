@@ -18,8 +18,8 @@ function register_template_part_areas( array $areas ): array {
 	$areas[] = array(
 		'area'        => 'sidebar',
 		'area_tag'    => 'section',
-		'label'       => __( 'Sidebar', 'ttt' ),
-		'description' => __( 'Custom sidebar displays above footer', 'ttt' ),
+		'label'       => __( 'Sidebar', 'ttft' ),
+		'description' => __( 'Custom sidebar displays above footer', 'ttft' ),
 		'icon'        => 'sidebar',
 	);
 

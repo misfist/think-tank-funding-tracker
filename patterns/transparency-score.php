@@ -12,7 +12,7 @@ $transparency_score = ( $score = get_post_meta( get_the_ID(), 'transparency_scor
 <div class="wp-block-group stars-<?php echo $transparency_score; ?> is-style-score-<?php echo $transparency_score; ?>">
 
 	<!-- wp:heading {"level":4} -->
-	<h4><?php esc_html_e( 'Transparency Score', 'ttt' ); ?></h4>
+	<h4><?php esc_html_e( 'Transparency Score', 'ttft' ); ?></h4>
 	<!-- /wp:heading -->
 
 	<!-- wp:group {"metadata":{"name":"Stars"},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
