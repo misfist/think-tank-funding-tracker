@@ -2,7 +2,7 @@
 /**
  * Render Tables Functions
  */
-namespace Quincy\ttt;
+namespace Quincy\ttft;
 
 /**
  * Generate table for top ten
@@ -86,7 +86,7 @@ function generate_data_table( $table_type, $args ): string {
 function generate_think_tank_archive_table( $donation_year = '' ): string {
 	$donation_year = sanitize_text_field( $donation_year );
 
-	$data = get_think_tanks_data( $donation_year );
+	$data = get_think_tank_archive_data( $donation_year );
 
 	ob_start();
 	if ( $data ) :
@@ -153,7 +153,7 @@ function generate_single_think_tank_table( $think_tank = '', $donation_year = ''
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
-	$data = get_think_tank_donor_data( $think_tank, $donation_year, $donor_type );
+	$data = get_single_think_tank_data( $think_tank, $donation_year, $donor_type );
 
 	ob_start();
 	if ( $data ) :
@@ -214,7 +214,7 @@ function generate_donor_archive_table( $donation_year = '', $donor_type = '' ): 
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
-	$data = get_donors_data( $donation_year, $donor_type );
+	$data = get_donor_archive_data( $donation_year, $donor_type );
 
 	ob_start();
 	if ( $data ) :
@@ -274,7 +274,7 @@ function generate_single_donor_table( $donor = '', $donation_year = '', $donor_t
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
-	$data = get_donor_think_tank_data( $donor, $donation_year, $donor_type );
+	$data = get_single_donor_data( $donor, $donation_year, $donor_type );
 
 	ob_start();
 	if ( $data ) :
