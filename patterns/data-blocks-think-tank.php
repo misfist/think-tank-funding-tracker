@@ -5,7 +5,7 @@
  * Categories: transparency
  * Inserter: false
  */
-use function Quincy\ttft\get_think_tank_total;
+use function Quincy\ttft\get_single_think_tank_total;
 
 global $post;
 $post_id            = get_the_ID();
@@ -20,9 +20,9 @@ $transparency_score = ( $score = get_post_meta( $post_id, 'transparency_score', 
 $think_tank_term    = wp_get_post_terms( $post_id, 'think_tank' );
 $column_count       = ( $is_limited || $is_transparent ) ? 2 : 4;
 
-$domestic_total  = get_think_tank_total( $think_tank, 'u-s-government' ) ?? 0;
-$defense_total  = get_think_tank_total( $think_tank, 'pentagon-contractor' ) ?? 0;
-$foreign_total  = get_think_tank_total( $think_tank, 'foreign-government' ) ?? 0;
+$domestic_total = get_single_think_tank_total( $think_tank, 'u-s-government' ) ?? 0;
+$defense_total  = get_single_think_tank_total( $think_tank, 'pentagon-contractor' ) ?? 0;
+$foreign_total  = get_single_think_tank_total( $think_tank, 'foreign-government' ) ?? 0;
 ?>
 
 <!-- wp:group {"layout":{"type":"grid","columnCount":<?php echo intval( $column_count ); ?>,"minimumColumnWidth":"12rem","rowCount":"1"}} -->
@@ -35,7 +35,7 @@ $foreign_total  = get_think_tank_total( $think_tank, 'foreign-government' ) ?? 0
 		<div class="wp-block-group has-border-color has-contrast-3-border-color has-gray-100-background-color has-background no-data" style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
 			<!-- wp:heading {"level":4} -->
-				<h4><?php esc_html_e( 'No donation data available for this think tank.', 'ttt' ); ?></h4>
+				<h4><?php esc_html_e( 'No donation data available for this think tank.', 'ttft' ); ?></h4>
 			<!-- /wp:heading -->
 			
 		</div>
@@ -60,7 +60,7 @@ $foreign_total  = get_think_tank_total( $think_tank, 'foreign-government' ) ?? 0
 			style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
 			<!-- wp:heading {"level":4} -->
-			<h4><?php esc_html_e( 'U.S. Government Funding', 'ttt' ); ?></h4>
+			<h4><?php esc_html_e( 'U.S. Government Funding', 'ttft' ); ?></h4>
 			<!-- /wp:heading -->
 			
 			<?php
@@ -68,7 +68,7 @@ $foreign_total  = get_think_tank_total( $think_tank, 'foreign-government' ) ?? 0
 				?>
 
 				<!-- wp:paragraph  -->
-				<p><?php esc_html_e( 'Did not accept any donations from the U.S. Government', 'ttt' ); ?></p>
+				<p><?php esc_html_e( 'Did not accept any donations from the U.S. Government', 'ttft' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<?php
@@ -91,7 +91,7 @@ $foreign_total  = get_think_tank_total( $think_tank, 'foreign-government' ) ?? 0
 			style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
 			<!-- wp:heading {"level":4} -->
-			<h4><?php esc_html_e( 'Pentagon Contractor Funding', 'ttt' ); ?></h4>
+			<h4><?php esc_html_e( 'Pentagon Contractor Funding', 'ttft' ); ?></h4>
 			<!-- /wp:heading -->
 
 			<?php
@@ -99,7 +99,7 @@ $foreign_total  = get_think_tank_total( $think_tank, 'foreign-government' ) ?? 0
 				?>
 
 				<!-- wp:paragraph  -->
-				<p><?php esc_html_e( 'Did not accept any donations from Pentagon Contractors', 'ttt' ); ?></p>
+				<p><?php esc_html_e( 'Did not accept any donations from Pentagon Contractors', 'ttft' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<?php
@@ -121,7 +121,7 @@ $foreign_total  = get_think_tank_total( $think_tank, 'foreign-government' ) ?? 0
 			style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
 
 			<!-- wp:heading {"level":4} -->
-			<h4><?php esc_html_e( 'Foreign Interest Funding', 'ttt' ); ?></h4>
+			<h4><?php esc_html_e( 'Foreign Interest Funding', 'ttft' ); ?></h4>
 			<!-- /wp:heading -->
 
 			<?php
@@ -129,7 +129,7 @@ $foreign_total  = get_think_tank_total( $think_tank, 'foreign-government' ) ?? 0
 				?>
 
 				<!-- wp:paragraph  -->
-				<p><?php esc_html_e( 'Did not accept any donations from Foreign Interests', 'ttt' ); ?></p>
+				<p><?php esc_html_e( 'Did not accept any donations from Foreign Interests', 'ttft' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<?php

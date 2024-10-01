@@ -19,7 +19,7 @@ $year     = '';
 <div class="wp-block-group section-table foreign">
 	<!-- wp:heading -->
 	<h2 class="wp-block-heading">
-		<?php esc_html_e( sprintf( 'Top %d Think Tanks That Receive Funding from Foreign Interests%s.', intval( $limit ), ( $year ) ? ' in ' . $year : '' ), 'ttt' ); ?>
+		<?php esc_html_e( sprintf( 'Top %d Think Tanks That Receive Funding from Foreign Interests%s.', intval( $limit ), ( $year ) ? ' in ' . $year : '' ), 'ttft' ); ?>
 	</h2>
 	<!-- /wp:heading -->
 

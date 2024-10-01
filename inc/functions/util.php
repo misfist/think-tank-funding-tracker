@@ -34,12 +34,12 @@ add_action( 'pmxi_after_xml_import', __NAMESPACE__ . '\assign_transaction_data_a
 function assign_transaction_data( $args = array() ): void {
 	assign_think_tank_data();
 	if ( class_exists( '\WP_CLI' ) ) {
-		\WP_CLI::success( __( 'Transactions assigned to think tanks.', 'ttt' ) );
+		\WP_CLI::success( __( 'Transactions assigned to think tanks.', 'ttft' ) );
 	}
 
 	assign_donor_data();
 	if ( class_exists( '\WP_CLI' ) ) {
-		\WP_CLI::success( __( 'Transactions assigned to donors.', 'ttt' ) );
+		\WP_CLI::success( __( 'Transactions assigned to donors.', 'ttft' ) );
 	}
 }
 if ( class_exists( '\WP_CLI' ) ) {

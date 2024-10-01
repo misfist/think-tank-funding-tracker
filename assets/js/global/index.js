@@ -3,10 +3,6 @@
  *
  * Import JS that applies globally.
  */
-// import './dataTablesInit';
-// import './dataTables';
 import './header';
+import './back-to-top';
 // import './tabs';
-// import './dataFilters';
-// import './wpDataTables';
-// import './dataTables';

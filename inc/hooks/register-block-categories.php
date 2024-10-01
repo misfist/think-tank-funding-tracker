@@ -16,8 +16,8 @@ namespace Quincy\ttft;
  */
 function register_wds_category( $categories ) {
 	$custom_block_category = array(
-		'slug'  => __( 'wds-blocks-category', 'ttt' ),
-		'title' => __( 'WDS Blocks', 'ttt' ),
+		'slug'  => __( 'wds-blocks-category', 'ttft' ),
+		'title' => __( 'WDS Blocks', 'ttft' ),
 	);
 
 	$categories_sorted    = array();

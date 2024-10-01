@@ -15,29 +15,29 @@ function register_custom_block_pattern_categories() {
 	register_block_pattern_category(
 		'content',
 		array(
-			'label'       => __( 'Content', 'ttt' ),
-			'description' => __( 'A collection of content patterns designed for WDS BT.', 'ttt' ),
+			'label'       => __( 'Content', 'ttft' ),
+			'description' => __( 'A collection of content patterns designed for WDS BT.', 'ttft' ),
 		)
 	);
 	register_block_pattern_category(
 		'hero',
 		array(
-			'label'       => __( 'Hero', 'ttt' ),
-			'description' => __( 'A collection of hero patterns designed for WDS BT.', 'ttt' ),
+			'label'       => __( 'Hero', 'ttft' ),
+			'description' => __( 'A collection of hero patterns designed for WDS BT.', 'ttft' ),
 		)
 	);
 	register_block_pattern_category(
 		'page',
 		array(
-			'label'       => __( 'Pages', 'ttt' ),
-			'description' => __( 'A collection of page patterns designed for WDS BT.', 'ttt' ),
+			'label'       => __( 'Pages', 'ttft' ),
+			'description' => __( 'A collection of page patterns designed for WDS BT.', 'ttft' ),
 		)
 	);
 	register_block_pattern_category(
 		'template',
 		array(
-			'label'       => __( 'Templates', 'ttt' ),
-			'description' => __( 'A collection of template patterns designed for WDS BT.', 'ttt' ),
+			'label'       => __( 'Templates', 'ttft' ),
+			'description' => __( 'A collection of template patterns designed for WDS BT.', 'ttft' ),
 		)
 	);
 

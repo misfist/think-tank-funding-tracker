@@ -24,7 +24,7 @@ function setup() {
 	 * README.md file in this theme to find and replace all
 	 * references of ttt
 	 */
-	load_theme_textdomain( 'ttt', get_template_directory() . '/build/languages' );
+	load_theme_textdomain( 'ttft', get_template_directory() . '/build/languages' );
 
 	// Gutenberg support for full-width/wide alignment of supported blocks.
 	add_theme_support( 'align-wide' );

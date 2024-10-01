@@ -17,9 +17,9 @@ namespace Quincy\ttft;
 function get_search_form( $form, $args ) {
 	remove_filter( 'the_content', 'wpautop' );
 	$filters     = array(
-		''           => __( 'All', 'ttt' ),
-		'think_tank' => __( 'Think Tank', 'ttt' ),
-		'donor'      => __( 'Donor', 'ttt' ),
+		''           => __( 'All', 'ttft' ),
+		'think_tank' => __( 'Think Tank', 'ttft' ),
+		'donor'      => __( 'Donor', 'ttft' ),
 	);
 	$instance_id = uniqid();
 	$entity_type = sanitize_text_field( $_GET['entity_type'] );
@@ -27,11 +27,11 @@ function get_search_form( $form, $args ) {
 	?>
 	<form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>"
 		class="wp-block-search__button-inside wp-block-search__icon-button wp-block-search transaction-search-form"><label class="wp-block-search__label screen-reader-text" for="search-term">
-			<?php esc_html_e( 'Search', 'ttt' ); ?>
+			<?php esc_html_e( 'Search', 'ttft' ); ?>
 		</label>
 		<div class="wp-block-search__inside-wrapper " style="width: 100%">
 			<label for="taxonomy-filter-<?php echo intval( $instance_id ); ?>" class="screen-reader-text">
-				<?php _e( 'Filter by:', 'ttt' ); ?>
+				<?php _e( 'Filter by:', 'ttft' ); ?>
 			</label>
 			<select id="taxonomy-filter-<?php echo intval( $instance_id ); ?>" class="wp-block-search__filters taxonomy-filter" name="entity_type">
 				<?php foreach ( $filters as $key => $label ) : ?>
@@ -41,7 +41,7 @@ function get_search_form( $form, $args ) {
 				<?php endforeach; ?>
 			</select>
 			<input id="search-term" class="wp-block-search__input"
-				placeholder="<?php esc_attr_e( 'Search by Think Tank or Donor', 'ttt' ); ?>"
+				placeholder="<?php esc_attr_e( 'Search by Think Tank or Donor', 'ttft' ); ?>"
 				value="<?php echo get_search_query(); ?>" type="search" name="s">
 				<input id="table-search-term" value="<?php echo get_search_query(); ?>" type="search" name="wdt_search" hidden><button aria-label="Search"
 				class="wp-block-search__button has-text-color has-contrast-color has-icon wp-element-button search-submit"
@@ -54,7 +54,7 @@ function get_search_form( $form, $args ) {
 			</button>
 		</div>
 		<legend class="has-small-font-size">
-			<?php esc_html_e( 'Examples: Lockheed Martin, Mitsubishi, United Arab Emirates, U.S. Government', 'ttt' ); ?>
+			<?php esc_html_e( 'Examples: Lockheed Martin, Mitsubishi, United Arab Emirates, U.S. Government', 'ttft' ); ?>
 		</legend>
 	</form>
 	<?php
