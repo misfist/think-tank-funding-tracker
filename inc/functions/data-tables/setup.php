@@ -23,5 +23,5 @@ function get_table_id(): string {
  * @return string
  */
 function get_app_id(): string {
-	return APP_ID;
+	return APP_NAMESPACE;
 }
