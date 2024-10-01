@@ -17,7 +17,7 @@
 <div class="wp-block-group data-filters">
 	<!-- wp:group {"metadata":{"name":"Donation Year"},"layout":{"type":"default"}} -->
 	<?php
-	if( ! is_tax( 'donation_year' ) ) :
+	if ( ! is_tax( 'donation_year' ) ) :
 		?>
 		<div class="wp-block-group">
 			<!-- wp:data-tables/data-filter-donation-year /-->
@@ -28,7 +28,7 @@
 	?>
 
 	<?php
-	if( ! is_tax( 'donor_type' ) ) :
+	if ( ! is_tax( 'donor_type' ) ) :
 		?>
 		<!-- wp:group {"metadata":{"name":"Donor Type"},"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
@@ -36,8 +36,8 @@
 			</div>
 		<!-- /wp:group -->
 		<?php
-	 endif;
-	 ?>
+	endif;
+	?>
 </div>
 <!-- /wp:group -->
 

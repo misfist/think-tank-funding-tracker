@@ -53,7 +53,7 @@ else :
 	<!-- wp:data-tables/data-table {
 		"tableType":"single-think-tank",
 		"thinkTank":"<?php echo $think_tank; ?>"
-	 } /-->
+	} /-->
 	
 	<?php
 endif;

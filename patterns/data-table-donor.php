@@ -13,9 +13,9 @@
  */
 global $post;
 
-$post_id    = get_the_ID();
-$post       = get_post( $post_id );
-$donor      = $post->post_name;
+$post_id = get_the_ID();
+$post    = get_post( $post_id );
+$donor   = $post->post_name;
 ?>
 
 <!-- wp:group {"metadata":{"name":"Filters"},"className":"data-filters","layout":{"type":"default"}} -->
