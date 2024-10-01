@@ -10,10 +10,6 @@
  * %VAR4% = donor_type
  * %VAR5% = limit
  */
-use function Quincy\ttft\get_top_ten_data;
-
-$table_id = 9;
-$type     = 'U.S.';
 $type     = 'u-s-government';
 $limit    = 10;
 $year     = '';
