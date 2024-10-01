@@ -2,17 +2,27 @@
 
 .home,
 .blog {
+
+	.site-sub-header {
+		display: none;
+		visibility: collapse;
+	}
+
+	.content-home {
+		margin-top: 0;
+	}
+
 	.section {
 		&__top-10 {
 
 			.section-table {
-				row-gap: 0;
+				gap: 0;
+				background-color: var( --wp--preset--color--gray-200 );
+				grid-template-columns: 1fr;
 
-				@include responsive-min( var( --wp--custom--breakpoint--mobile ) ) {
-					grid-template-columns: 16.875rem 1fr;
-					background-color: var( --wp--preset--color--accent );
+				@include responsive-min( $mobile ) {
 					padding-right: var( --wp--preset--spacing--20 );
-					column-gap: 0;
+					grid-template-columns: min( 16.875rem, 40% ) 1fr;
 				}
 			}
 
@@ -27,22 +37,29 @@
 			tbody {
 				tr {
 					border: none;
+					width: 100%;
 
 					&:nth-child(odd) {
-						background-color: var( --wp--preset--color--gray-200 ) !important;
+						background-color: var( --wp--preset--color--gray-200 );
 					}
 
 					&:nth-child(even) {
-						background-color: var( --wp--preset--color--white ) !important;
+						background-color: var( --wp--preset--color--white );
 					}
+				}
+			}
 
-					td {
-						&:first-child {
-							padding-left: var( --wp--preset--spacing--10 ) !important;
-						}
-
-						&:last-child {
-							padding-right: var( --wp--preset--spacing--10 ) !important;
+			@include responsive-min( $mobile ) {
+				tbody {
+					tr {
+						td {
+							&:first-child {
+								padding-left: var( --wp--preset--spacing--10 );
+							}
+	
+							&:last-child {
+								padding-right: var( --wp--preset--spacing--10 );
+							}
 						}
 					}
 				}
@@ -58,30 +75,6 @@
 			table.wpDataTable,
 			table.dataTable {
 				margin-bottom: 1px !important;
-
-				// tbody {
-				// 	tr {
-				// 		border: none;
-
-				// 		&:nth-child(odd) {
-				// 			background-color: var( --wp--preset--color--gray-200 ) !important;
-				// 		}
-
-				// 		&:nth-child(even) {
-				// 			background-color: var( --wp--preset--color--white ) !important;
-				// 		}
-
-				// 		td {
-				// 			&:first-child {
-				// 				padding-left: var( --wp--preset--spacing--10 ) !important;
-				// 			}
-	
-				// 			&:last-child {
-				// 				padding-right: var( --wp--preset--spacing--10 ) !important;
-				// 			}
-				// 		}
-				// 	}
-				// }
 			}
 		
 			.wp-block-heading,
