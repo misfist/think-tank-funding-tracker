@@ -10,7 +10,7 @@
  * %VAR4% = donor_type
  * %VAR5% = limit
  */
-use function Quincy\ttt\get_top_ten_data;
+use function Quincy\ttft\get_top_ten_data;
 
 $table_id = 9;
 $type     = 'U.S.';
@@ -26,8 +26,6 @@ $year     = '';
 	</h2>
 	<!-- /wp:heading -->
 
-	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[top_ten_table type='{$type}' year='{$year}' limit={$limit}]" ); ?>
-	<!-- /wp:shortcode -->
+	<!-- wp:ttft/top-ten {"donorType":"<?php echo $type; ?>","donationYear":"<?php echo $year; ?>","number":"<?php echo $limit; ?>"} /-->
 </div>
 <!-- /wp:group -->

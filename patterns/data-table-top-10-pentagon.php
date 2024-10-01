@@ -23,8 +23,6 @@ $year     = '';
 	</h2>
 	<!-- /wp:heading -->
 
-	<!-- wp:shortcode -->
-	<?php echo do_shortcode( "[top_ten_table type='{$type}' year='{$year}' limit={$limit}]" ); ?>
-	<!-- /wp:shortcode -->
+	<!-- wp:ttft/top-ten {"donorType":"<?php echo $type; ?>","donationYear":"<?php echo $year; ?>","number":"<?php echo $limit; ?>"} /-->
 </div>
 <!-- /wp:group -->
