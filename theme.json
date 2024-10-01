@@ -1044,10 +1044,10 @@
 			}
 		},
 		"spacing": {
-			"blockGap": "1.2rem",
+			"blockGap": "var(--wp--preset--spacing--20)",
 			"padding": {
-				"left": "var(--wp--preset--spacing--50)",
-				"right": "var(--wp--preset--spacing--50)"
+				"left": "var(--wp--preset--spacing--30)",
+				"right": "var(--wp--preset--spacing--30)"
 			}
 		},
 		"typography": {
