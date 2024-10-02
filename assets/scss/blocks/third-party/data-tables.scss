@@ -202,12 +202,9 @@
             }
         }
 
-
         td {
-
             border: none;
-            padding-top: var( --wp--preset--spacing--10 );
-            padding-bottom: var( --wp--preset--spacing--10 );
+            padding: var( --wp--preset--spacing--20 );
 
             &:first-child {
                 padding-left: var( --wp--preset--spacing--20 );
@@ -286,6 +283,10 @@
         }
     }
 
+                padding-top: var( --wp--preset--spacing--10 );
+                padding-right: var( --wp--preset--spacing--40 );
+                padding-bottom: var( --wp--preset--spacing--10 );
+                padding-left: var( --wp--preset--spacing--20 );
     @include responsive-min( $break-small ) {
 
         &:where( :has( caption ) ) {
@@ -344,16 +345,21 @@ body:not( .home ) {
                 max-width: 100%;
 
                 &:where( :has( .column-source ) ) {
+                    .column-source {
+                        padding: 0;
+                    }
+
                     td {
                         .source-link {
                             display: block;
                             position: absolute;
                             top: 0;
                             right: 0;
-                            margin-top: var( --wp--preset--spacing--10 );
                             left: auto;
-                            padding: var( --wp--preset--spacing--10 );
-                            // padding-right: var( --wp--preset--spacing--10 );
+                            padding-top: var( --wp--preset--spacing--10 );
+                            padding-right: var( --wp--preset--spacing--20 );
+                            padding-bottom: var( --wp--preset--spacing--10 );
+                            padding-left: var( --wp--preset--spacing--10 );
                             font-size: var( --wp--preset--font-size--medium );
                         }
                     }
