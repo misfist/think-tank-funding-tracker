@@ -40,7 +40,7 @@ sup {
 	}
 }
 
-.dollar-value {
+%dollar-value {
 	&::before {
 		content: '$';
 	}
