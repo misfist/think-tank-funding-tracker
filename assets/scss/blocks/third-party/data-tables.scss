@@ -160,31 +160,6 @@
         }
     }
 
-    > thead {
-        > tr {
-            > th {
-                &.wdtheader {
-                    background-color: var( --wp--preset--color--gray-200 );
-                    padding-top: var( --wp--preset--spacing--10 );
-                    padding-bottom: var( --wp--preset--spacing--10 );
-
-                    &:first-child {
-                        padding-left: var( --wp--preset--spacing--20 );
-                    }
-
-                    &:last-child {
-                        padding-right: var( --wp--preset--spacing--20 );
-                    }
-
-                    &:hover,
-                    &:focus {
-                        background-color: var( --wp--custom--color--hover );
-                    }
-                }
-            }
-        }
-    }
-
     tbody {
         will-change: contents;
 
