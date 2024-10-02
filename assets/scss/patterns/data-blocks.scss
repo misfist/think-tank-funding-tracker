@@ -1,0 +1,39 @@
+/** Post Data Details */
+.data-blocks {
+    $min-width: 14em; // Define the minimum width as a variable
+    display: grid;
+    gap: var( --wp--preset--spacing--20 );
+
+    grid-template-columns: repeat( auto-fit, minmax( #{$min-width}, 1fr ) );
+
+    // Ensure an even number of columns
+    @media ( min-width: calc( #{$min-width} * 2) ) and ( max-width: calc( #{$min-width} * 4 - 1px ) ) {
+        grid-template-columns: repeat( 2, minmax( #{$min-width}, 1fr ) );
+    }
+
+    @media ( min-width: calc( #{$min-width} * 4 ) ) {
+        grid-template-columns: repeat( 4, minmax( #{$min-width}, 1fr ) );
+    }
+
+    p {
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    h4 {
+        font-size: var( --wp--preset--font-size--medium );
+        margin-top: 0;
+        margin-bottom: 0;
+
+        &.donor-type {
+            color: var( --wp--preset--color--contrast-3 );
+        }
+    }
+
+
+    .dollar-value {
+        font-size: var( --wp--preset--font-size--medium-large );
+        font-weight: 700;
+    }
+}

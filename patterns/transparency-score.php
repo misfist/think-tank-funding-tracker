@@ -8,8 +8,8 @@
 $transparency_score = ( $score = get_post_meta( get_the_ID(), 'transparency_score', true ) ) ? (int) $score : 0;
 ?>
 
-<!-- wp:group {"metadata":{"name":"Transparency Score"},"className":"stars-<?php echo $transparency_score; ?> is-style-score-<?php echo $transparency_score; ?>","layout":{"type":"default"}} -->
-<div class="wp-block-group stars-<?php echo $transparency_score; ?> is-style-score-<?php echo $transparency_score; ?>">
+<!-- wp:group {"metadata":{"name":"Transparency Score"},"className":"stars-<?php echo $transparency_score; ?> is-style-score-<?php echo $transparency_score; ?>","layout":{"type":"default"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|20","right":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20"}}}} -->
+<div class="wp-block-group stars-<?php echo $transparency_score; ?> is-style-score-<?php echo $transparency_score; ?>" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 
 	<!-- wp:heading {"level":4} -->
 	<h4><?php esc_html_e( 'Transparency Score', 'ttft' ); ?></h4>

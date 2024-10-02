@@ -31,8 +31,8 @@
 </div>
 <!-- /wp:group -->
 
-<!-- wp:group {"metadata":{"name":"Sub-header Wrapper"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)">
+<!-- wp:group {"metadata":{"name":"Sub-header Wrapper"},"className":"breadcrumb-wrapper","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group breadcrumb-wrapper" style="margin-top:var(--wp--preset--spacing--30)">
 	<!-- wp:group {"layout":{"type":"default"}} -->
 	<div class="wp-block-group">
 		<!-- wp:boldblocks/breadcrumb-block {"hideCurrentPage":false} /-->
