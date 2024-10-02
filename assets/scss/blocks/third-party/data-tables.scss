@@ -190,6 +190,8 @@
 
         tr {
             border: none;
+            width: 100%;
+            transition: background-color 0.2s linear;
 
             &:nth-child(odd) {
                 background-color: var( --wp--preset--color--white );
@@ -198,6 +200,12 @@
             &:nth-child(even) {
                 background-color: var( --wp--preset--color--gray-200 );
             }
+
+            &:hover,
+            &:focus {
+                background-color: var( --wp--preset--color--accent-11 );
+            }
+
         }
 
         td {
