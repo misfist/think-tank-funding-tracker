@@ -1,3 +1,7 @@
+.dollar-value {
+    @extend %dollar-value;
+}
+
 /**
  * Table
  */
@@ -222,9 +226,7 @@
             &.column-us-government,
             &.column-foreign-interests,
             &.column-foreign-government {
-                &::before {
-                    content: '$';
-                }
+                @extend %dollar-value;
             }
         }
 
@@ -237,38 +239,7 @@
     }
 
     th,
-    td {
-
-        &.numdata {}
-
-        &.column-think-tank,
-        &.column-donor {
-            text-align: left;
-        }
-
-        &.column-min-amount,
-        &.column-total-amount,
-        &.column-min-donations,
-        &.column-pentagon-contractors,
-        &.column-defense-contractors,
-        &.column-us-government,
-        &.column-foreign-interests,
-        &.column-foreign-government {
-            text-align: right;
-        }
-
-        &.column-source {
-            text-align: left;
-        }
-
-        &.column-type {
-            text-align: left;
-        }
-
-        &.column-year {
-            text-align: left;
-        }
-    }
+    td {}
 
     th {
         &.wdtheader {
@@ -283,10 +254,49 @@
         }
     }
 
+    @include responsive-max( $break-small - 1px ) {
+
+        tbody {
+            td {
                 padding-top: var( --wp--preset--spacing--10 );
                 padding-right: var( --wp--preset--spacing--40 );
                 padding-bottom: var( --wp--preset--spacing--10 );
                 padding-left: var( --wp--preset--spacing--20 );
+
+                text-align: left;
+
+                &::before {
+                    content: attr( data-heading ) ': ';
+                    font-weight: 700;
+                }
+
+                &.column-min-amount,
+                &.column-min-donations,
+                &.column-total-amount,
+                &.column-pentagon-contractors,
+                &.column-defense-contractors,
+                &.column-us-government,
+                &.column-foreign-interests,
+                &.column-foreign-government {
+                    &::before {
+                        content: attr( data-heading ) ': $';
+                        font-weight: 700;
+                    }
+                }
+    
+                &.column-source {
+                    &::before {
+                        content: none;
+                    }
+                }
+            }
+        }
+
+        td + td {
+            padding-top: 0;
+        }
+    }
+
     @include responsive-min( $break-small ) {
 
         &:where( :has( caption ) ) {
@@ -307,10 +317,21 @@
             }
         }
 
-
         th,
         td {
             width: fit-content !important;
+
+            &.column-min-amount,
+            &.column-total-amount,
+            &.column-min-donations,
+            &.column-pentagon-contractors,
+            &.column-defense-contractors,
+            &.column-us-government,
+            &.column-foreign-interests,
+            &.column-foreign-government,
+            &.dt-type-numeric {
+                text-align: right;
+            }
 
             &.column-year {
                 width: 200px !important;
