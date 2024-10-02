@@ -58,23 +58,23 @@
 					"slug": "base-2"
 				},
 				{
-					"color": "#1E1E1E",
+					"color": "#222222",
 					"name": "Contrast / Black",
 					"slug": "contrast"
 				},
 				{
 					"color": "#61a267",
-					"name": "Contrast / Green",
+					"name": "Primary",
 					"slug": "contrast-2"
 				},
 				{
 					"color": "#D04440",
-					"name": "Contrast / Red",
+					"name": "Secondary",
 					"slug": "contrast-3"
 				},
 				{
 					"color": "#aa2e2a",
-					"name": "Contrast / Dark Red",
+					"name": "Secondary Dark",
 					"slug": "contrast-4"
 				},
 				{
@@ -113,7 +113,7 @@
 					"slug": "accent-6"
 				},
 				{
-					"color": "#e4f24b59",
+					"color": "#39603C",
 					"name": "Accent / Seven",
 					"slug": "accent-7"
 				},
@@ -131,6 +131,11 @@
 					"color": "var( --wp--custom--color--pink-light )",
 					"name": "Light Pink",
 					"slug": "accent-10"
+				},
+				{
+					"color": "var( --wp--custom--color--yellow-light )",
+					"name": "Light Yellow",
+					"slug": "accent-11"
 				},
 				{
 					"color": "#FAFAFA",
@@ -456,7 +461,8 @@
 				"score-3": "#E0FAC0",
 				"score-4": "#CBECD9",
 				"pink-light": "#FAECEC",
-				"hover": "rgba(97, 162, 103, 0.25)"
+				"hover": "rgba(97, 162, 103, 0.25)",
+				"yellow-light": "#FFF6DF"
 			},
 			"line-height": {
 				"normal": "normal",
@@ -487,6 +493,10 @@
 		}
 	},
 	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--base)",
+			"text": "var(--wp--preset--color--contrast)"
+		},
 		"blocks": {
 			"core/avatar": {
 				"border": {
@@ -951,10 +961,6 @@
 				}
 			}
 		},
-		"color": {
-			"background": "var(--wp--preset--color--base)",
-			"text": "var(--wp--preset--color--contrast)"
-		},
 		"css": ":where(.wp-site-blocks *:focus){outline-width:2px;outline-style:solid}",
 		"elements": {
 			"button": {
@@ -1085,7 +1091,6 @@
 			"lineHeight": "var:custom|line-height|normal"
 		}
 	},
-
 	"version": 3,
 	"$schema": "https://schemas.wp.org/wp/6.6/theme.json"
 }
