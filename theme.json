@@ -427,12 +427,8 @@
 					"slug": "large"
 				},
 				{
-					"fluid": {
-						"max": "2.5rem",
-						"min": "1.85rem"
-					},
 					"name": "Extra Large",
-					"size": "2.5rem",
+					"size": "var( --wp--preset--spacing--30 )",
 					"slug": "x-large"
 				},
 				{
@@ -1036,12 +1032,12 @@
 			},
 			"h3": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--large)"
+					"fontSize": "var(--wp--preset--font-size--medium-2)"
 				}
 			},
 			"h4": {
 				"typography": {
-					"fontSize": "clamp(1.1rem, 1.1rem + ((1vw - 0.2rem) * 0.767), 1.5rem)"
+					"fontSize": "var(--wp--preset--font-size--medium)"
 				}
 			},
 			"h5": {
