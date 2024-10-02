@@ -3,6 +3,11 @@
 .home,
 .blog {
 
+	.breadcrumb-wrapper {
+		display: none;
+		visibility: collapse;
+	}
+
 	.site-sub-header {
 		display: none;
 		visibility: collapse;

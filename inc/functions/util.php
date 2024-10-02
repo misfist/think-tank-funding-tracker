@@ -457,31 +457,6 @@ function think_tank_transactions( array $source_args, $block_instance, string $a
 
 	$data   = get_think_tank_data( $block_instance->context['postId'] );
 	$output = get_think_tank_output( $block_instance->context['postId'] );
-	// If no key or user ID argument is set, bail early.
-	// if ( ! isset( $source_args['key'] ) || ! isset( $source_args['userId'] ) ) {
-	// return null;
-	// }
-
-	// // Get the user ID.
-	// $user_id = absint( $source_args['userId'] );
-
-	// // Return null if there's no user ID at all.
-	// if ( 0 >= $user_id ) {
-	// return null;
-	// }
-
-	// // Return the data based on the key argument.
-	// switch ( $source_args['key'] ) {
-	// case 'name':
-	// return esc_html( get_the_author_meta( 'display_name', $user_id ) );
-	// case 'description':
-	// return get_the_author_meta( 'description', $user_id );
-	// case 'avatar':
-	// return esc_url( get_avatar_url( $user_id ) );
-	// default:
-	// return 'default';
-	// }
-	// var_dump( $output );
 
 	return $output;
 }

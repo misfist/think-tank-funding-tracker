@@ -39,8 +39,8 @@ elseif ( $is_transparent ) :
 	<?php
 else :
 	?>
-	<!-- wp:group {"metadata":{"name":"Filters"},"className":"data-filters","layout":{"type":"default"}} -->
-	<div class="wp-block-group data-filters">
+	<!-- wp:group {"metadata":{"name":"Filters"},"className":"data-filters","layout":{"type":"default"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
+	<div class="wp-block-group data-filters" style="margin-top:var(--wp--preset--spacing--40);">
 		<!-- wp:group {"metadata":{"name":"Donation Year"},"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
 			<!-- wp:data-tables/data-filter-donation-year /-->
@@ -54,6 +54,7 @@ else :
 		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
+
 
 	<!-- wp:group {"metadata":{"name":"Think Tank Total Donations Received"},"className":"total-donations","layout":{"type":"default"}} -->
 	<div class="wp-block-group total-donations">

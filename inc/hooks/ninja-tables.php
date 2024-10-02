@@ -41,7 +41,6 @@ function format_number_values( $formatted_data, $table_id ): array {
 add_filter(
 	'breadcrumb_block_get_breadcrumb_trail',
 	function ( $markup, $args, $breadcrumbs_instance ) {
-		// var_dump( $markup, $args );
 		return $markup;
 	},
 	10,
@@ -51,7 +50,6 @@ add_filter(
 add_filter(
 	'breadcrumb_block_get_items',
 	function ( $items, $breadcrumbs_instance ) {
-		// var_dump( $items, $breadcrumbs_instance );
 		return $items;
 	},
 	10,

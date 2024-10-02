@@ -6,6 +6,11 @@
  * Inserter: false
  */
 use function Quincy\ttft\get_single_think_tank_total;
+use function Quincy\ttft\generate_think_tank_data_array;
+
+// echo '<pre>';
+// var_dump( generate_think_tank_data_array() );
+// echo '</pre>';
 
 global $post;
 $post_id            = get_the_ID();
@@ -20,135 +25,68 @@ $transparency_score = ( $score = get_post_meta( $post_id, 'transparency_score', 
 $think_tank_term    = wp_get_post_terms( $post_id, 'think_tank' );
 $column_count       = ( $is_limited || $is_transparent ) ? 2 : 4;
 
-$domestic_total = get_single_think_tank_total( $think_tank, 'u-s-government' ) ?? 0;
-$defense_total  = get_single_think_tank_total( $think_tank, 'pentagon-contractor' ) ?? 0;
-$foreign_total  = get_single_think_tank_total( $think_tank, 'foreign-government' ) ?? 0;
+$data_block_label = esc_html__( 'Minimum funding to date from', 'ttft' );
+
+$domestic_total = get_single_think_tank_total( $think_tank, '', 'u-s-government' ) ?? 0;
+$defense_total  = get_single_think_tank_total( $think_tank, '', 'pentagon-contractor' ) ?? 0;
+$foreign_total  = get_single_think_tank_total( $think_tank, '', 'foreign-government' ) ?? 0;
+
+$data = generate_think_tank_data_array( $post_id  );
+
+$funding_sources = array(
+	array(
+		'donor_type'         => 'u-s-government',
+		'no_funding_message' => 'Did not accept any donations from the U.S. Government',
+		'total'              => $data['domestic_total'],
+		'no_funding'         => $data['no_domestic'],
+		'name'               => $data['donor_types']['u-s-government']->name,
+	),
+	array(
+		'donor_type'         => 'pentagon-contractor',
+		'no_funding_message' => 'Did not accept any donations from Defense Contractors',
+		'total'              => $data['defense_total'],
+		'no_funding'         => $data['no_defense'],
+		'name'               => $data['donor_types']['pentagon-contractor']->name,
+	),
+	array(
+		'donor_type'         => 'foreign-government',
+		'no_funding_message' => 'Did not accept any donations from Foreign Governments',
+		'total'              => $data['foreign_total'],
+		'no_funding'         => $data['no_foreign'],
+		'name'               => $data['donor_types']['foreign-government']->name,
+	),
+);
+
 ?>
 
-<!-- wp:group {"layout":{"type":"grid","columnCount":<?php echo intval( $column_count ); ?>,"minimumColumnWidth":"12rem","rowCount":"1"}} -->
-<div class="wp-block-group">
+<!-- wp:group {"metadata":{"name":"Data Blocks"},"className":"data-blocks","layout":{"type":"grid"}} -->
+<div class="wp-block-group data-blocks">
 
 	<?php
-	if ( $is_limited ) :
+	foreach ( $funding_sources as $source ) :
+		$no_funding_class = $source['no_funding'] ? 'no-funding' : 'is-funded';
 		?>
-		<!-- wp:group {"metadata":{"name":"No Data"},"className":"no-data","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"borderColor":"contrast-3","backgroundColor":"gray-100","layout":{"type":"default"}} -->
-		<div class="wp-block-group has-border-color has-contrast-3-border-color has-gray-100-background-color has-background no-data" style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
+		
+		<div class="wp-block-group has-border-color has-gray-300-border-color has-gray-200-background-color has-background <?php echo $no_funding_class; ?>"
+			style="border-width:1px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 
-			<!-- wp:heading {"level":4} -->
-				<h4><?php esc_html_e( 'No donation data available for this think tank.', 'ttft' ); ?></h4>
+			<p class="data-block--label"><?php echo $data['data_block_label']; ?></p>
+
+			<!-- wp:heading {"level":4,"className":"donor-type"} -->
+			<h4 class="donor-type"><?php esc_html_e( $source['name'], 'ttft' ); ?></h4>
 			<!-- /wp:heading -->
 			
-		</div>
-		<!-- /wp:group -->
-		<?php
-	elseif ( $is_transparent ) :
-		?>
-		<!-- wp:group {"metadata":{"name":"Transparent"},"className":"is-transparent","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"borderColor":"contrast-2","backgroundColor":"gray-100","layout":{"type":"default"}} -->
-		<div class="wp-block-group has-border-color has-contrast-2-border-color has-gray-100-background-color has-background no-data" style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
-
-			<!-- wp:heading {"level":4} -->
-				<h4><?php echo esc_html( $limited_info ); ?> </h4>
-			<!-- /wp:heading -->
-			
-		</div>
-		<!-- /wp:group -->
-		<?php
-	else :
-		?>
-		<!-- wp:group {"metadata":{"name":"U.S. Government Funding"},"className":"<?php echo ( $no_domestic ) ? 'no-funding' : 'is-funded'; ?>","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"borderColor":"gray-300","backgroundColor":"gray-200","layout":{"type":"default"}} -->
-		<div class="wp-block-group has-border-color has-gray-300-border-color has-gray-200-background-color has-background <?php echo ( $no_domestic ) ? 'no-funding' : 'is-funded'; ?>"
-			style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
-
-			<!-- wp:heading {"level":4} -->
-			<h4><?php esc_html_e( 'U.S. Government Funding', 'ttft' ); ?></h4>
-			<!-- /wp:heading -->
-			
-			<?php
-			if ( $no_domestic ) :
-				?>
-
+			<?php if ( $source['no_funding'] ) : ?>
 				<!-- wp:paragraph  -->
-				<p><?php esc_html_e( 'Did not accept any donations from the U.S. Government', 'ttft' ); ?></p>
+				<p class="data-blocks--no-funding"><?php esc_html_e( $source['no_funding_message'], 'ttft' ); ?></p>
 				<!-- /wp:paragraph -->
-
-				<?php
-			else :
-				?>
-
+			<?php else : ?>
 				<!-- wp:paragraph {"className":"numeric dollar-value"} -->
-				<p class="numeric dollar-value"><?php echo ( $domestic_total ) ? number_format( $domestic_total ) : 0; ?></p>
+				<p class="numeric dollar-value"><?php echo ( $source['total'] ) ? number_format( $source['total'] ) : 0; ?></p>
 				<!-- /wp:paragraph -->
-
-				<?php
-			endif;
-			?>
-
+			<?php endif; ?>
 		</div>
-		<!-- /wp:group -->
-
-		<!-- wp:group {"metadata":{"name":"Pentagon Contractor Funding"},"className":"<?php echo ( $no_defense ) ? 'no-funding' : 'is-funded'; ?>","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"borderColor":"gray-300","backgroundColor":"gray-200","layout":{"type":"default"}} -->
-		<div class="wp-block-group has-border-color has-gray-300-border-color has-gray-200-background-color has-background <?php echo ( $no_defense ) ? 'no-funding' : 'is-funded'; ?>"
-			style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
-
-			<!-- wp:heading {"level":4} -->
-			<h4><?php esc_html_e( 'Pentagon Contractor Funding', 'ttft' ); ?></h4>
-			<!-- /wp:heading -->
-
-			<?php
-			if ( $no_defense ) :
-				?>
-
-				<!-- wp:paragraph  -->
-				<p><?php esc_html_e( 'Did not accept any donations from Pentagon Contractors', 'ttft' ); ?></p>
-				<!-- /wp:paragraph -->
-
-				<?php
-			else :
-				?>
-
-				<!-- wp:paragraph {"className":"numeric dollar-value"} -->
-				<p class="numeric dollar-value"><?php echo ( $defense_total ) ? number_format( $defense_total ) : 0; ?></p>
-				<!-- /wp:paragraph -->
-
-				<?php
-			endif;
-			?>
-		</div>
-		<!-- /wp:group -->
-
-		<!-- wp:group {"metadata":{"name":"Foreign Interest Funding"},"className":"<?php echo ( $no_foreign ) ? 'no-funding' : 'is-funded'; ?>","style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"borderColor":"gray-300","backgroundColor":"gray-200","layout":{"type":"default"}} -->
-		<div class="wp-block-group has-border-color has-gray-300-border-color has-gray-200-background-color has-background <?php echo ( $no_foreign ) ? 'no-funding' : 'is-funded'; ?>"
-			style="border-width:1px;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
-
-			<!-- wp:heading {"level":4} -->
-			<h4><?php esc_html_e( 'Foreign Interest Funding', 'ttft' ); ?></h4>
-			<!-- /wp:heading -->
-
-			<?php
-			if ( $no_foreign ) :
-				?>
-
-				<!-- wp:paragraph  -->
-				<p><?php esc_html_e( 'Did not accept any donations from Foreign Interests', 'ttft' ); ?></p>
-				<!-- /wp:paragraph -->
-
-				<?php
-			else :
-				?>
-
-				<!-- wp:paragraph {"className":"numeric dollar-value"} -->
-				<p class="numeric dollar-value"><?php echo ( $foreign_total ) ? number_format( $foreign_total ) : 0; ?></p>
-				<!-- /wp:paragraph -->
-
-				<?php
-			endif;
-			?>
-			
-		</div>
-		<!-- /wp:group -->
-		<?php
-	endif;
-	?>
+	<?php endforeach; ?>
 
 	<!-- wp:pattern {"slug":"ttt/transparency-score"} /-->
 </div>

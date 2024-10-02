@@ -22,11 +22,11 @@ function get_search_form( $form, $args ) {
 		'donor'      => __( 'Donor', 'ttft' ),
 	);
 	$instance_id = uniqid();
-	$entity_type = sanitize_text_field( $_GET['entity_type'] );
+	$entity_type = sanitize_text_field( $_GET['entity_type'] ?? '' );
 	ob_start();
 	?>
 	<form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>"
-		class="wp-block-search__button-inside wp-block-search__icon-button wp-block-search transaction-search-form"><label class="wp-block-search__label screen-reader-text" for="search-term">
+		class="wp-block-search__button-inside wp-block-search__icon-button wp-block-search transaction-search-form" style="margin-top:var(--wp--preset--spacing--40);"><label class="wp-block-search__label screen-reader-text" for="search-term">
 			<?php esc_html_e( 'Search', 'ttft' ); ?>
 		</label>
 		<div class="wp-block-search__inside-wrapper " style="width: 100%">
