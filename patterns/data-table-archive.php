@@ -12,7 +12,6 @@
  * %VAR5% = limit
  */
 global $post, $wp_query;
-var_dump( $wp_query->query_vars );
 ?>
 
 <!-- wp:group {"metadata":{"name":"Filters"},"className":"data-filters","layout":{"type":"default"}} -->
