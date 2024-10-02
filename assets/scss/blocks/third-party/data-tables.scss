@@ -27,7 +27,7 @@
         &:hover,
         &:focus {
             color: var( --wp--preset--color--gray-800 );
-            
+            text-decoration: underline;
         }
 
         &[href*='donor-type'] {
