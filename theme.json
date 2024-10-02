@@ -234,43 +234,43 @@
 				{
 					"fontFace": [
 						{
-							"fontFamily": "Inter",
+							"fontFamily": "Source Sans 3",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "400",
 							"src": [
-								"file:./assets/fonts/inter/static/Inter_18pt-Regular.ttf"
+								"file:./build/fonts/source-sans/static/SourceSans3-Regular.ttf"
 							]
 						},
 						{
-							"fontFamily": "Inter",
+							"fontFamily": "Source Sans 3",
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"fontWeight": "700",
 							"src": [
-								"file:./assets/fonts/inter/static/Inter_18pt-Bold.ttf"
+								"file:./build/fonts/source-sans/static/SourceSans3-Bold.ttf"
 							]
 						},
 						{
-							"fontFamily": "Inter",
+							"fontFamily": "Source Sans 3",
 							"fontStretch": "normal",
 							"fontStyle": "italic",
 							"fontWeight": "400",
 							"src": [
-								"file:./assets/fonts/inter/static/Inter_18pt-Italic.ttf"
+								"file:./build/fonts/source-sans/static/SourceSans3-Italic.ttf"
 							]
 						},
 						{
-							"fontFamily": "Inter",
+							"fontFamily": "Source Sans 3",
 							"fontStretch": "normal",
 							"fontStyle": "italic",
 							"fontWeight": "700",
 							"src": [
-								"file:./assets/fonts/inter/static/Inter_18pt-BoldItalic.ttf"
+								"file:./build/fonts/source-sans/static/SourceSans3-BoldItalic.ttf"
 							]
 						}
 					],
-					"fontFamily": "\"Inter\", sans-serif",
+					"fontFamily": "\"Source Sans 3\", sans-serif",
 					"name": "Body",
 					"slug": "body"
 				},
@@ -282,7 +282,7 @@
 							"fontStyle": "normal",
 							"fontWeight": "400",
 							"src": [
-								"file:./assets/fonts/dm-sans/static/DMSans_18pt-Regular.ttf"
+								"file:./build/fonts/dm-sans/static/DMSans_18pt-Regular.ttf"
 							]
 						},
 						{
@@ -291,7 +291,7 @@
 							"fontStyle": "normal",
 							"fontWeight": "700",
 							"src": [
-								"file:./assets/fonts/dm-sans/static/DMSans_18pt-Bold.ttf"
+								"file:./build/fonts/dm-sans/static/DMSans_18pt-Bold.ttf"
 							]
 						},
 						{
@@ -300,7 +300,7 @@
 							"fontStyle": "italic",
 							"fontWeight": "400",
 							"src": [
-								"file:./assets/fonts/dm-sans/static/DMSans_18pt-Italic.ttf"
+								"file:./build/fonts/dm-sans/static/DMSans_18pt-Italic.ttf"
 							]
 						},
 						{
@@ -309,7 +309,7 @@
 							"fontStyle": "italic",
 							"fontWeight": "700",
 							"src": [
-								"file:./assets/fonts/dm-sans/static/DMSans_18pt-BoldItalic.ttf"
+								"file:./build/fonts/dm-sans/static/DMSans_18pt-BoldItalic.ttf"
 							]
 						}
 					],
@@ -324,7 +324,7 @@
 							"fontStyle": "normal",
 							"fontWeight": "400",
 							"src": [
-								"file:./assets/fonts/noto-serif/static/NotoSerif-Regular.ttf"
+								"file:./build/fonts/noto-serif/static/NotoSerif-Regular.ttf"
 							]
 						},
 						{
@@ -332,7 +332,7 @@
 							"fontStyle": "italic",
 							"fontWeight": "400",
 							"src": [
-								"file:./assets/fonts/noto-serif/static/NotoSerif-Italic.ttf"
+								"file:./build/fonts/noto-serif/static/NotoSerif-Italic.ttf"
 							]
 						}
 					],
@@ -357,7 +357,7 @@
 							"fontStyle": "normal",
 							"fontWeight": "400",
 							"src": [
-								"file:./assets/fonts/material-icons/MaterialIconsOutlined-Regular.otf"
+								"file:./build/fonts/material-icons/MaterialIconsOutlined-Regular.otf"
 							]
 						},
 						{
@@ -365,7 +365,7 @@
 							"fontStyle": "normal",
 							"fontWeight": "400",
 							"src": [
-								"file:./assets/fonts/material-icons/MaterialIconsRound-Regular.otf"
+								"file:./build/fonts/material-icons/MaterialIconsRound-Regular.otf"
 							]
 						},
 						{
@@ -373,7 +373,7 @@
 							"fontStyle": "normal",
 							"fontWeight": "400",
 							"src": [
-								"file:./assets/fonts/material-icons/MaterialIcons-Regular.ttf"
+								"file:./build/fonts/material-icons/MaterialIcons-Regular.ttf"
 							]
 						}
 					],
