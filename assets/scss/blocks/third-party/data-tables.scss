@@ -22,12 +22,12 @@
 
     a {
         color: var( --wp--preset--color--contrast );
-        text-decoration: underline;
+        text-decoration: none;
         
         &:hover,
         &:focus {
             color: var( --wp--preset--color--gray-800 );
-            
+            text-decoration: underline;
         }
 
         &[href*='donor-type'] {
@@ -160,36 +160,13 @@
         }
     }
 
-    > thead {
-        > tr {
-            > th {
-                &.wdtheader {
-                    background-color: var( --wp--preset--color--gray-200 );
-                    padding-top: var( --wp--preset--spacing--10 );
-                    padding-bottom: var( --wp--preset--spacing--10 );
-
-                    &:first-child {
-                        padding-left: var( --wp--preset--spacing--20 );
-                    }
-
-                    &:last-child {
-                        padding-right: var( --wp--preset--spacing--20 );
-                    }
-
-                    &:hover,
-                    &:focus {
-                        background-color: var( --wp--custom--color--hover );
-                    }
-                }
-            }
-        }
-    }
-
     tbody {
         will-change: contents;
 
         tr {
             border: none;
+            width: 100%;
+            transition: background-color 0.2s linear;
 
             &:nth-child(odd) {
                 background-color: var( --wp--preset--color--white );
@@ -198,6 +175,12 @@
             &:nth-child(even) {
                 background-color: var( --wp--preset--color--gray-200 );
             }
+
+            &:hover,
+            &:focus {
+                background-color: var( --wp--preset--color--accent-11 );
+            }
+
         }
 
         td {
