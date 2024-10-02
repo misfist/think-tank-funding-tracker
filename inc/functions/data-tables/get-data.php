@@ -5,6 +5,68 @@
 namespace Quincy\ttft;
 
 /**
+ * Get transaction IDs for think tank
+ *
+ * @param string $think_tank    Optional. Slug of the think tank.
+ * @param string $donation_year Optional. Slug of the donation year.
+ * @param string $donor_type    Optional. Slug of the donor type.
+ * @return array
+ */
+function get_single_think_tank_transaction_ids( $think_tank = '', $donation_year = '', $donor_type = '' ): array {
+	$think_tank    = sanitize_text_field( $think_tank );
+	$donation_year = sanitize_text_field( $donation_year );
+	$donor_type    = sanitize_text_field( $donor_type );
+
+	$transient_key = 'single_think_tank_ids_' . md5( $think_tank . $donation_year . $donor_type );
+
+	$data = get_transient( $transient_key );
+	if ( false !== $data ) {
+		return $data;
+	}
+
+	$args = array(
+		'post_type'      => 'transaction',
+		'posts_per_page' => -1,
+		'fields'         => 'ids',
+		'tax_query'      => array(
+			'relation' => 'AND',
+		),
+	);
+
+	if ( $think_tank ) {
+		$args['tax_query'][] = array(
+			'taxonomy' => 'think_tank',
+			'field'    => 'slug',
+			'terms'    => $think_tank,
+		);
+	}
+
+	if ( $donation_year ) {
+		$args['tax_query'][] = array(
+			'taxonomy' => 'donation_year',
+			'field'    => 'slug',
+			'terms'    => $donation_year,
+		);
+	}
+
+	if ( $donor_type ) {
+		$args['tax_query'][] = array(
+			'taxonomy' => 'donor_type',
+			'field'    => 'slug',
+			'terms'    => $donor_type,
+		);
+	}
+
+	$query = new \WP_Query( $args );
+
+	$data = $query->get_posts();
+
+	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
+
+	return $data;
+}
+
+/**
  * Get Raw Table Data
  *
  * @param string $donor_type Optional. The slug of the donor_type taxonomy term. Default empty.
@@ -583,20 +645,31 @@ function get_donor_archive_data( $donation_year = '', $donor_type = '' ) {
  * @return int
  */
 function get_single_think_tank_total( $think_tank, $donation_year = '', $donor_type = '' ): int {
-	$donor         = sanitize_text_field( $think_tank );
+	$think_tank    = sanitize_text_field( $think_tank );
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
 	$transient_key = 'single_think_tank_cumulative_' . md5( $think_tank . $donation_year . $donor_type );
 
-	$data = get_single_think_tank_data( $think_tank, $donation_year, $donor_type );
+	$total = get_transient( $transient_key );
+	if ( false !== $total ) {
+		return $total;
+	}
+
+	$data = get_single_think_tank_transaction_ids( $think_tank, $donation_year, $donor_type );
+
 	if ( ! empty( $data ) ) {
-		$total = array_sum( array_column( $data, 'amount_calc' ) );
+		$amounts = get_meta_values_for_records( $data, 'amount_calc' );
+		if ( $amounts ) {
+			$total = array_sum( $amounts );
+		} else {
+			$total = 0;
+		}
 	} else {
 		$total = 0;
 	}
 
-	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
+	set_transient( $transient_key, $total, 12 * HOUR_IN_SECONDS );
 
 	return $total;
 }
@@ -616,9 +689,11 @@ function get_single_donor_total( $donor, $donation_year = '', $donor_type = '' )
 
 	$transient_key = 'single_donor_cumulative_' . md5( $donor . $donation_year . $donor_type );
 
-	$data = get_single_donor_data( $donor, $donation_year, $donor_type );
+	$data = get_single_donor_raw_data( $donor, $donation_year, $donor_type );
+
 	if ( ! empty( $data ) ) {
-		$total = array_sum( array_column( $data, 'amount_calc' ) );
+		$amounts = get_meta_values_for_records( $data, 'amount_calc' );
+		$total   = array_sum( $amounts );
 	} else {
 		$total = 0;
 	}
@@ -626,4 +701,94 @@ function get_single_donor_total( $donor, $donation_year = '', $donor_type = '' )
 	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
 
 	return $total;
+}
+
+/**
+ * Get the total amount of donations for a group of posts
+ *
+ * @param  array  $post_ids
+ * @param  string $meta_key
+ * @return array
+ */
+function get_meta_values_for_records( array $post_ids, string $meta_key ): array {
+	global $wpdb;
+
+	if ( empty( $post_ids ) ) {
+		return array();
+	}
+
+	$meta_values = array();
+	$chunks      = array_chunk( $post_ids, 1000 ); // Split into chunks to handle large arrays
+
+	foreach ( $chunks as $chunk ) {
+		$placeholders = implode( ',', array_fill( 0, count( $chunk ), '%d' ) );
+		$query        = $wpdb->prepare(
+			"
+            SELECT post_id, meta_value
+            FROM $wpdb->postmeta
+            WHERE post_id IN ($placeholders)
+            AND meta_key = %s
+        ",
+			array_merge( $chunk, array( $meta_key ) )
+		);
+
+		$results = $wpdb->get_results( $query, OBJECT_K );
+
+		foreach ( $results as $post_id => $result ) {
+			$meta_values[ $post_id ] = $result->meta_value;
+		}
+	}
+	return $meta_values;
+}
+
+
+/**
+ * Generate data array for a think tank.
+ *
+ * @param int $post_id Post ID of the think tank.
+ * @return array Data array containing think tank details.
+ */
+function generate_think_tank_data_array( $post_id = 0 ): array {
+	$post_id            = $post_id ?? get_the_ID();
+	$think_tank         = get_post_field( 'post_name', $post_id );
+	$limited_info       = get_post_meta( $post_id, 'limited_info', true );
+	$is_limited         = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
+	$is_transparent     = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
+	$no_domestic        = get_post_meta( $post_id, 'no_domestic_accepted', true );
+	$no_defense         = get_post_meta( $post_id, 'no_defense_accepted', true );
+	$no_foreign         = get_post_meta( $post_id, 'no_foreign_accepted', true );
+	$transparency_score = ( $score = get_post_meta( $post_id, 'transparency_score', true ) ) ? (int) $score : 0;
+	$think_tank_term    = wp_get_post_terms( $post_id, 'think_tank' );
+	$column_count       = ( $is_limited || $is_transparent ) ? 2 : 4;
+
+	$data_block_label = esc_html__( 'Minimum funding to date from', 'ttft' );
+
+	$domestic_total = get_single_think_tank_total( $think_tank, '', 'u-s-government' ) ?? 0;
+	$defense_total  = get_single_think_tank_total( $think_tank, '', 'pentagon-contractor' ) ?? 0;
+	$foreign_total  = get_single_think_tank_total( $think_tank, '', 'foreign-government' ) ?? 0;
+
+	$donor_types = array(
+		'u-s-government'      => get_term_by( 'slug', 'u-s-government', 'donor_type' ),
+		'pentagon-contractor' => get_term_by( 'slug', 'pentagon-contractor', 'donor_type' ),
+		'foreign-government'  => get_term_by( 'slug', 'foreign-government', 'donor_type' ),
+	);
+
+	return array(
+		'post_id'            => $post_id,
+		'think_tank'         => $think_tank,
+		'limited_info'       => $limited_info,
+		'is_limited'         => $is_limited,
+		'is_transparent'     => $is_transparent,
+		'no_domestic'        => $no_domestic,
+		'no_defense'         => $no_defense,
+		'no_foreign'         => $no_foreign,
+		'transparency_score' => $transparency_score,
+		'think_tank_term'    => $think_tank_term,
+		'column_count'       => $column_count,
+		'data_block_label'   => $data_block_label,
+		'domestic_total'     => $domestic_total,
+		'defense_total'      => $defense_total,
+		'foreign_total'      => $foreign_total,
+		'donor_types'        => $donor_types,
+	);
 }
