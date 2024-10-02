@@ -50,12 +50,6 @@
         }
     }
 
-    .column-source {
-        a {
-            text-decoration: none;
-        }
-    }
-
     thead {
 
         input {
@@ -360,9 +354,7 @@ body:not( .home ) {
                 position: relative;
                 display: flex;
                 flex-direction: column;
-                /* Hack to fix resizing */
-                width: calc( 100% - var( --wp--preset--spacing--30 ) );
-                padding-right: var( --wp--preset--spacing--30 );
+                width: 100%;
                 max-width: 100%;
 
                 &:where( :has( .column-source ) ) {
@@ -388,15 +380,15 @@ body:not( .home ) {
             }
 
             td {
-                text-align: left !important;
-                width: 100%;
-                /* Hack to fix resizing */
-                width: 84vw;
-                max-width: 100%;
+                // text-align: left !important;
+                // width: 100%;
+                // max-width: 100%;
+                // padding-right: var( --wp--preset--spacing--30 );
 
                 &.column-donor-type {
                     @include screen-reader-text;
                 }
+
             }
         }
       
