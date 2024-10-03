@@ -1,5 +1,6 @@
 /** Post Data Details */
-.data-blocks {
+.data-blocks,
+.data-boxes {
     $min-width: 14em; // Define the minimum width as a variable
     display: grid;
     gap: var( --wp--preset--spacing--20 );
@@ -15,9 +16,45 @@
         grid-template-columns: repeat( 4, minmax( #{$min-width}, 1fr ) );
     }
 
+    &.is-limited {
+        // grid-template-columns: minmax(14em, 3fr) minmax(14em, 1fr);
+
+        @media ( min-width: calc( #{$min-width} * 4 ) ) {
+            grid-template-columns: minmax(14em, 3fr) minmax(14em, 1fr);
+        }
+    }
+
+    .data-box {
+        background-color: var( --wp--preset--color--gray-100 );
+        border: 1px solid var( --wp--preset--color--gray-200 );
+
+        &.no-funding {
+            background-color: var( --wp--custom--color--primary-light );
+            border-color: var( --wp--preset--color--contrast-2 );
+        }
+
+        &.is-funded {
+            h4 {
+                &.donor-type {
+                    color: var( --wp--preset--color--contrast-3 );
+                }
+            }
+        }
+
+        &.no-data {
+            border-color: var( --wp--preset--color--accent-9 );
+        }
+    }
+
+    .data-box--label,
+    h4 {
+        display: inline;
+    }
+
     p {
         &:first-child {
             margin-top: 0;
+            margin-bottom: 0;
         }
     }
 
@@ -26,11 +63,8 @@
         margin-top: 0;
         margin-bottom: 0;
 
-        &.donor-type {
-            color: var( --wp--preset--color--contrast-3 );
-        }
+        &.donor-type {}
     }
-
 
     .dollar-value {
         font-size: var( --wp--preset--font-size--medium-large );
