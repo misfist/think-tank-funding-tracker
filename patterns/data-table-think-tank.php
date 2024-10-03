@@ -16,18 +16,18 @@ use function Quincy\ttft\get_single_think_tank_total;
 global $post;
 $think_tank      = $post->post_name;
 $post_id         = $post->ID;
-$limited_info    = get_post_meta( $post_id, 'limited_info', true );
-$is_limited      = ( $limited_info && strtolower( trim( $limited_info ) ) == 'x' ) ? true : false;
+$is_limited     = ( get_post_meta( $post_id, 'limited_info', true ) ) ? true : false;
 $is_transparent  = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
+$settings        = get_option( 'site_settings' );
 $total_donations = get_single_think_tank_total( $think_tank );
 
 if ( $is_limited ) :
 	?>
-	<!-- wp:group {"metadata":{"name":"No Data"},"className":"no-data","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}},"backgroundColor":"var:custom|color|pink-light","layout":{"type":"default"}} -->
-		<div class="wp-block-group has-pink-light-background-color has-background no-data" style="background-color:var(--wp--custom--color--pink-light);padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)">
+	<!-- wp:group {"metadata":{"name":"No Data"},"className":"no-data","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"backgroundColor":"var:custom|color|pink-light","layout":{"type":"default"}} -->
+		<div class="wp-block-group has-pink-light-background-color has-background no-data" style="background-color:var(--wp--custom--color--pink-light);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 
 		<!-- wp:heading {"level":4} -->
-		<h4><?php esc_html_e( 'This think tank has not provided data about it\'s donations.', 'ttft' ); ?></h4>
+		<h4><?php echo $settings['think_tank_no_data_text'] ?? esc_html__( 'This think tank has not provided data about it\'s donations.', 'ttft' ); ?></h4>
 		<!-- /wp:heading -->
 
 	</div>
@@ -55,15 +55,14 @@ else :
 	</div>
 	<!-- /wp:group -->
 
-
 	<!-- wp:group {"metadata":{"name":"Think Tank Total Donations Received"},"className":"total-donations","layout":{"type":"default"}} -->
 	<div class="wp-block-group total-donations">
 		<!-- wp:paragraph -->
-		<p><?php esc_html_e( 'Minimum amount received', 'ttft' ); ?><p>
+		<p><?php echo $settings['think_tank_total_text'] ?? esc_html__( 'Minimum amount received', 'ttft' ); ?></p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:heading {"level":4, "className":"dollar-value"} -->
-		<h4 class="dollar-value"><?php echo number_format( $total_donations ); ?></h4>
+		<!-- wp:heading {"level":4,"className":"dollar-value"} -->
+		<h4 class="wp-block-heading dollar-value"><?php echo number_format( $total_donations ); ?></h4>
 		<!-- /wp:heading -->
 	</div>
 	<!-- /wp:group -->
