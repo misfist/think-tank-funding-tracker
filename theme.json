@@ -123,7 +123,7 @@
 					"slug": "accent-8"
 				},
 				{
-					"color": "#f8c4c4",
+					"color": "#D0444026",
 					"name": "Pink",
 					"slug": "accent-9"
 				},
@@ -458,7 +458,8 @@
 				"score-4": "#CBECD9",
 				"pink-light": "#FAECEC",
 				"hover": "rgba(97, 162, 103, 0.25)",
-				"yellow-light": "#FFF6DF"
+				"yellow-light": "#FFF6DF",
+				"primary-light": "#61A26766"
 			},
 			"line-height": {
 				"normal": "normal",
