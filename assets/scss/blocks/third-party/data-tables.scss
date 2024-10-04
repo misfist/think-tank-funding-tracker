@@ -2,6 +2,17 @@
     @extend %dollar-value;
 }
 
+body.js-enabled {
+    .wp-block-data-tables-data-table {
+        transition: opacity 0.3s linear;
+        opacity: 0.5;
+
+        &.is-loaded {
+            opacity: 1;
+        }
+    }
+}
+
 /**
  * Table
  */
@@ -11,7 +22,6 @@
     border-collapse: separate !important;
     border-spacing: 0;
     font-family: var( --wp--preset--font-family--body );
-    font-size: var( --wp--preset--font-size--small );
     color: var( --wp--preset--color--contrast );
 
     p:empty {
@@ -205,6 +215,12 @@
             &.column-foreign-government {
                 @extend %dollar-value;
             }
+
+            &:has( .not-accepted, .not-disclosed ) {
+                &::before {
+                    content: none;
+                }
+            }
         }
 
     }
@@ -215,62 +231,115 @@
         }
     }
 
-    th,
-    td {}
+    .column-transparency-score {
+        min-width: 140px;
+        width: fit-content;
 
-    th {
-        &.wdtheader {
+        .stars-0 {
+            color: var( --wp--preset--color--contrast-3 );
+        }
+        .stars-1 {
+            color: var( --wp--custom--color--score-1 );
+        }
+        .stars-2 {
+            color: var( --wp--custom--color--score-2 );
+        }
+        .stars-3 {
+            color: var( --wp--custom--color--score-3 );
+        }
+        .stars-4 {
+            color: var( --wp--custom--color--score-4 );
+        }
+        .stars-5 {
+            color: var( --wp--preset--color--contrast-2 );
+        }
+    }
 
-            &:first-child {
-                border-radius: var( --wp--custom--border--radius--lg ) 0 0 var( --wp--custom--border--radius--lg );
-            }
+    .not-accepted,
+    .not-disclosed {
+        font-size: var( --wp--preset--font-size--x-small );
+        display: inline-flex;
+        width: fit-content;
+        padding: 1px 3px;
+        margin-left: auto;
+    }
 
-            &:last-child {
-                border-radius: 0 var( --wp--custom--border--radius--lg ) var( --wp--custom--border--radius--lg ) 0;
-            }
+    .not-accepted {
+        background-color: var( --wp--preset--color--contrast-2 );
+        color: var( --wp--preset--color--white );
+
+        &::before {
+            content: 'Not Accepted';
+        }
+    }
+
+    .not-disclosed {
+        background-color: var( --wp--custom--color--yellow-light );
+
+        &::before {
+            content: 'Not Disclosed';
         }
     }
 
     @include responsive-max( $break-small - 1px ) {
-
         tbody {
             td {
                 padding-top: var( --wp--preset--spacing--10 );
                 padding-right: var( --wp--preset--spacing--40 );
                 padding-bottom: var( --wp--preset--spacing--10 );
                 padding-left: var( --wp--preset--spacing--20 );
-
                 text-align: left;
-
-                &::before {
-                    content: attr( data-heading ) ': ';
-                    font-weight: 700;
-                }
-
-                &.column-min-amount,
-                &.column-min-donations,
-                &.column-total-amount,
-                &.column-pentagon-contractors,
-                &.column-defense-contractors,
-                &.column-us-government,
-                &.column-foreign-interests,
-                &.column-foreign-government {
-                    &::before {
-                        content: attr( data-heading ) ': $';
-                        font-weight: 700;
-                    }
-                }
-    
-                &.column-source {
-                    &::before {
-                        content: none;
-                    }
-                }
             }
         }
 
-        td + td {
-            padding-top: 0;
+        /* Top Ten only have 2 columns */
+        &:not( [class*='top-ten'] ) {
+            tbody {
+                tr {
+                    border-radius: var( --wp--custom--border--radius--x-sm);
+                    border: 1px solid var( --wp--preset--color--gray-200 );
+
+                    &:nth-child(odd) {
+                        background-color: var( --wp--preset--color--gray-200 );
+                    }
+        
+                    &:nth-child(even) {
+                        background-color: var( --wp--preset--color--white );
+                    }
+                }
+
+                tr + tr {
+                    margin-top: 1px;
+                }
+
+                td {
+                    &:not( .column-transparency-score ):not( .column-source ) {
+
+                        &::before {
+                            content: attr( data-heading ) ':\00a0\00a0';
+                            font-weight: 700;
+                        }
+        
+                        &.column-min-amount,
+                        &.column-min-donations,
+                        &.column-total-amount,
+                        &.column-pentagon-contractors,
+                        &.column-defense-contractors,
+                        &.column-us-government,
+                        &.column-foreign-interests,
+                        &.column-foreign-government {
+                            &::before {
+                                content: attr( data-heading ) ':\00a0\00a0$';
+                            }
+                        }
+                        
+                    }
+                }
+            }
+
+            td + td {
+                padding-top: 0;
+            }
         }
     }
 
@@ -318,6 +387,19 @@
 }
 
 .dt-container {
+    .dt-layout-row {
+        &:first-child {
+            align-items: flex-start;
+        }
+    }
+
+    .dt-layout-start {
+        .dt-info {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
     .dt-layout-full {
         will-change: contents;
         width: 100% !important;
@@ -394,64 +476,64 @@ body:not( .home ) {
  * Filters
  */
 #custom-filters {
+    // @include responsive-min( $break-small ) {
+    //     .filter-group {
+    //         display: flex;
+    //         flex-direction: row;
+    //         align-items: center;
+    //         flex-wrap: wrap;
+    //         column-gap: var( --wp--preset--spacing--20 );
+    //         row-gap: var( --wp--preset--spacing--10 );
+    //         // margin-bottom: 1rem; /* Space between tabs and content */
 
-    .filter-group {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: wrap;
-        column-gap: var( --wp--preset--spacing--20 );
-        row-gap: var( --wp--preset--spacing--10 );
-        // margin-bottom: 1rem; /* Space between tabs and content */
+    //         &.type {
+    //             background-color: var( --wp--preset--color--gray-200 );
+    //             padding: var( --wp--preset--spacing--10 );
 
-        &.type {
-            background-color: var( --wp--preset--color--gray-200 );
-            padding: var( --wp--preset--spacing--10 );
+    //             label {
+    //                 font-size: var( --wp--preset--font-size--small );
+    //                 font-weight: 400;
+    //                 padding: calc( var( --wp--preset--spacing--10 ) / 2 );
+    //                 border-radius: var( --wp--custom--border--radius--sm );
+    //             }
+    //         }
+    //     }
+        
+    //     input[type='radio'] {
+    //         display: none;
+    //     }
 
-            label {
-                font-size: var( --wp--preset--font-size--small );
-                font-weight: 400;
-                padding: calc( var( --wp--preset--spacing--10 ) / 2 );
-                border-radius: var( --wp--custom--border--radius--sm );
-            }
-        }
-    }
-    
-    input[type='radio'] {
-        display: none;
-    }
+    //     label {
+    //         display: inline-block;
+    //         margin-right: 5px;
+    //         cursor: pointer;
+    //         transition: background-color 0.3s, color 0.3s;
+    //         text-align: center;
 
-    label {
-        display: inline-block;
-        margin-right: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s;
-        text-align: center;
+    //         &:hover,
+    //         &:focus {
+    //             background-color: var( --wp--custom--color--hover );
+    //         }
+    //     }
 
-        &:hover,
-        &:focus {
-            background-color: var( --wp--custom--color--hover );
-        }
-    }
+    //     .year {
+    //         label {
+    //             background-color: var( --wp--preset--color--gray-200 );
+    //             padding: var( --wp--preset--spacing--10 ) var( --wp--preset--spacing--20 );
+        
+    //             &:hover,
+    //             &:focus {
+    //                 background-color: var( --wp--custom--color--hover );
+    //             }
+    //         }
 
-    .year {
-        label {
-            background-color: var( --wp--preset--color--gray-200 );
-            padding: var( --wp--preset--spacing--10 ) var( --wp--preset--spacing--20 );
-    
-            &:hover,
-            &:focus {
-                background-color: var( --wp--custom--color--hover );
-            }
-        }
+    //     }
 
-    }
-
-    input[type='radio']:checked + label {
-        background-color: var( --wp--preset--color--contrast-2 );
-        color: var( --wp--preset--color--white );
-    }
-    
+    //     input[type='radio']:checked + label {
+    //         background-color: var( --wp--preset--color--contrast-2 );
+    //         color: var( --wp--preset--color--white );
+    //     }
+    // }
 }
 
 /**

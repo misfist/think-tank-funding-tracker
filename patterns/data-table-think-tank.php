@@ -12,12 +12,13 @@
  * %VAR5% = limit
  */
 use function Quincy\ttft\get_single_think_tank_total;
+use function Quincy\ttft\is_transparent;
 
 global $post;
 $think_tank      = $post->post_name;
 $post_id         = $post->ID;
-$is_limited     = ( get_post_meta( $post_id, 'limited_info', true ) ) ? true : false;
-$is_transparent  = ( $limited_info && str_contains( strtolower( trim( $limited_info ) ), 'transparent' ) ) ? true : false;
+$is_limited      = ( get_post_meta( $post_id, 'limited_info', true ) ) ? true : false;
+$is_transparent  = is_transparent( $post_id );
 $settings        = get_option( 'site_settings' );
 $total_donations = get_single_think_tank_total( $think_tank );
 
@@ -62,7 +63,7 @@ else :
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"level":4,"className":"dollar-value"} -->
-		<h4 class="wp-block-heading dollar-value"><?php echo number_format( $total_donations ); ?></h4>
+		<h4 class="wp-block-heading dollar-value"><?php echo number_format( $total_donations, 0, '.', ',' ); ?></h4>
 		<!-- /wp:heading -->
 	</div>
 	<!-- /wp:group -->

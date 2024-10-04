@@ -5,8 +5,14 @@
  * Categories: hidden
  * Inserter: false
  */
+use function Quincy\ttft\is_transparent;
+use function Quincy\ttft\is_limited;
+
 $settings  = get_option( 'site_settings' );
 $data_note = ( $settings && isset( $settings['data_note'] ) ) ? wpautop( wp_kses_post( $settings['data_note'] ) ) : '';
+if ( is_singular( 'think_tank' ) && ( is_transparent() || is_limited() ) ) {
+	return;
+}
 ?>
 
 <!-- wp:group {"metadata":{"name":"Data Note"},"className":"data-note","tagName":"footer","layout":{"type":"default"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
