@@ -22,7 +22,6 @@ body.js-enabled {
     border-collapse: separate !important;
     border-spacing: 0;
     font-family: var( --wp--preset--font-family--body );
-    font-size: var( --wp--preset--font-size--small );
     color: var( --wp--preset--color--contrast );
 
     p:empty {
@@ -216,6 +215,12 @@ body.js-enabled {
             &.column-foreign-government {
                 @extend %dollar-value;
             }
+
+            &:has( .not-accepted, .not-disclosed ) {
+                &::before {
+                    content: none;
+                }
+            }
         }
 
     }
@@ -250,17 +255,23 @@ body.js-enabled {
         }
     }
 
-            &:first-child {
-                border-radius: var( --wp--custom--border--radius--lg ) 0 0 var( --wp--custom--border--radius--lg );
-            }
-
-            &:last-child {
-                border-radius: 0 var( --wp--custom--border--radius--lg ) var( --wp--custom--border--radius--lg ) 0;
-            }
-        }
+    .not-accepted,
+    .not-disclosed {
+        font-size: var( --wp--preset--font-size--x-small );
+        display: inline-flex;
+        width: fit-content;
+        padding: 1px 3px;
+        margin-left: auto;
     }
 
-    @include responsive-max( $break-small - 1px ) {
+    .not-accepted {
+        background-color: var( --wp--preset--color--contrast-2 );
+        color: var( --wp--preset--color--white );
+    }
+
+    .not-disclosed {
+        background-color: var( --wp--custom--color--yellow-light );
+    }
 
     @include responsive-max( $break-small - 1px ) {
         tbody {
