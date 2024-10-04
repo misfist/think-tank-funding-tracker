@@ -71,3 +71,16 @@
         font-weight: 700;
     }
 }
+.star-group {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .star {
+        margin: 0;
+
+        &[data-filled='false'] {}
+
+        &[data-filled='true'] {}
+    }
+}
