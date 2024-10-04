@@ -17,8 +17,6 @@
     }
 
     &.is-limited {
-        // grid-template-columns: minmax(14em, 3fr) minmax(14em, 1fr);
-
         @media ( min-width: calc( #{$min-width} * 4 ) ) {
             grid-template-columns: minmax(14em, 3fr) minmax(14em, 1fr);
         }
@@ -71,6 +69,7 @@
         font-weight: 700;
     }
 }
+
 .star-group {
     display: flex;
     width: 100%;
