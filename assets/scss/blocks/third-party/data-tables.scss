@@ -226,11 +226,29 @@ body.js-enabled {
         }
     }
 
-    th,
-    td {}
+    .column-transparency-score {
+        min-width: 140px;
+        width: fit-content;
 
-    th {
-        &.wdtheader {
+        .stars-0 {
+            color: var( --wp--preset--color--contrast-3 );
+        }
+        .stars-1 {
+            color: var( --wp--custom--color--score-1 );
+        }
+        .stars-2 {
+            color: var( --wp--custom--color--score-2 );
+        }
+        .stars-3 {
+            color: var( --wp--custom--color--score-3 );
+        }
+        .stars-4 {
+            color: var( --wp--custom--color--score-4 );
+        }
+        .stars-5 {
+            color: var( --wp--preset--color--contrast-2 );
+        }
+    }
 
             &:first-child {
                 border-radius: var( --wp--custom--border--radius--lg ) 0 0 var( --wp--custom--border--radius--lg );
