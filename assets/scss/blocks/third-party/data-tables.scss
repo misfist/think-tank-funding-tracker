@@ -296,13 +296,20 @@ body.js-enabled {
         &:not( [class*='top-ten'] ) {
             tbody {
                 tr {
+                    border-radius: var( --wp--custom--border--radius--x-sm);
+                    border: 1px solid var( --wp--preset--color--gray-200 );
+
                     &:nth-child(odd) {
-                        background-color: var( --wp--preset--color--white );
+                        background-color: var( --wp--preset--color--gray-200 );
                     }
         
                     &:nth-child(even) {
-                        background-color: var( --wp--preset--color--gray-200 );
+                        background-color: var( --wp--preset--color--white );
                     }
+                }
+
+                tr + tr {
+                    margin-top: 1px;
                 }
 
                 td {
