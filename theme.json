@@ -441,6 +441,7 @@
 		"custom": {
 			"border": {
 				"radius": {
+					"x-sm": "4px",
 					"sm": "6px",
 					"lg": ".75rem"
 				}
@@ -452,7 +453,7 @@
 				"score-3": "#E0FAC0",
 				"score-4": "#CBECD9",
 				"pink-light": "#FAECEC",
-				"hover": "rgba(97, 162, 103, 0.25)",
+				"hover": "#a1c8a5",
 				"yellow-light": "#FFF6DF",
 				"primary-light": "#61A26766"
 			},
