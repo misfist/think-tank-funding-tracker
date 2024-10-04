@@ -385,11 +385,6 @@
 					"fontFamily": "\"Material Icons\"",
 					"name": "Icon",
 					"slug": "icon"
-				},
-				{
-					"fontFamily": "wpDataTablesIcons",
-					"name": "Data Table Icons",
-					"slug": "data-table-icons"
 				}
 			],
 			"fontSizes": [
@@ -889,7 +884,10 @@
 							"text": "var(--wp--preset--color--constrast)"
 						},
 						"spacing": {
-							"padding": "var(--wp--preset--spacing--10)"
+							"padding": "var(--wp--preset--spacing--20)"
+						},
+						"typography": {
+							"fontSize": "var(--wp--preset--font-size--medium-2)"
 						}
 					},
 					"score-1": {
@@ -898,7 +896,10 @@
 							"text": "var(--wp--preset--color--contrast)"
 						},
 						"spacing": {
-							"padding": "var(--wp--preset--spacing--10)"
+							"padding": "var(--wp--preset--spacing--20)"
+						},
+						"typography": {
+							"fontSize": "var(--wp--preset--font-size--medium-2)"
 						}
 					},
 					"score-2": {
@@ -907,7 +908,10 @@
 							"text": "var(--wp--preset--color--contrast)"
 						},
 						"spacing": {
-							"padding": "var(--wp--preset--spacing--10)"
+							"padding": "var(--wp--preset--spacing--20)"
+						},
+						"typography": {
+							"fontSize": "var(--wp--preset--font-size--medium-2)"
 						}
 					},
 					"score-3": {
@@ -916,7 +920,10 @@
 							"text": "var(--wp--preset--color--contrast)"
 						},
 						"spacing": {
-							"padding": "var(--wp--preset--spacing--10)"
+							"padding": "var(--wp--preset--spacing--20)"
+						},
+						"typography": {
+							"fontSize": "var(--wp--preset--font-size--medium-2)"
 						}
 					},
 					"score-4": {
@@ -925,7 +932,10 @@
 							"text": "var(--wp--preset--color--contrast)"
 						},
 						"spacing": {
-							"padding": "var(--wp--preset--spacing--10)"
+							"padding": "var(--wp--preset--spacing--20)"
+						},
+						"typography": {
+							"fontSize": "var(--wp--preset--font-size--medium-2)"
 						}
 					},
 					"score-5": {
@@ -934,7 +944,10 @@
 							"text": "var(--wp--preset--color--base)"
 						},
 						"spacing": {
-							"padding": "var(--wp--preset--spacing--10)"
+							"padding": "var(--wp--preset--spacing--20)"
+						},
+						"typography": {
+							"fontSize": "var(--wp--preset--font-size--medium-2)"
 						},
 						"elements": {
 							"heading": {
