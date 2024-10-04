@@ -233,44 +233,58 @@
 
     @include responsive-max( $break-small - 1px ) {
 
+    @include responsive-max( $break-small - 1px ) {
         tbody {
             td {
                 padding-top: var( --wp--preset--spacing--10 );
                 padding-right: var( --wp--preset--spacing--40 );
                 padding-bottom: var( --wp--preset--spacing--10 );
                 padding-left: var( --wp--preset--spacing--20 );
-
                 text-align: left;
-
-                &::before {
-                    content: attr( data-heading ) ': ';
-                    font-weight: 700;
-                }
-
-                &.column-min-amount,
-                &.column-min-donations,
-                &.column-total-amount,
-                &.column-pentagon-contractors,
-                &.column-defense-contractors,
-                &.column-us-government,
-                &.column-foreign-interests,
-                &.column-foreign-government {
-                    &::before {
-                        content: attr( data-heading ) ': $';
-                        font-weight: 700;
-                    }
-                }
-    
-                &.column-source {
-                    &::before {
-                        content: none;
-                    }
-                }
             }
         }
 
-        td + td {
-            padding-top: 0;
+        /* Top Ten only have 2 columns */
+        &:not( [class*='top-ten'] ) {
+            tbody {
+                tr {
+                    &:nth-child(odd) {
+                        background-color: var( --wp--preset--color--white );
+                    }
+        
+                    &:nth-child(even) {
+                        background-color: var( --wp--preset--color--gray-200 );
+                    }
+                }
+
+                td {
+                    &:not( .column-transparency-score ):not( .column-source ) {
+
+                        &::before {
+                            content: attr( data-heading ) ':\00a0\00a0';
+                            font-weight: 700;
+                        }
+        
+                        &.column-min-amount,
+                        &.column-min-donations,
+                        &.column-total-amount,
+                        &.column-pentagon-contractors,
+                        &.column-defense-contractors,
+                        &.column-us-government,
+                        &.column-foreign-interests,
+                        &.column-foreign-government {
+                            &::before {
+                                content: attr( data-heading ) ':\00a0\00a0$';
+                            }
+                        }
+                        
+                    }
+                }
+            }
+
+            td + td {
+                padding-top: 0;
+            }
         }
     }
 
@@ -318,6 +332,19 @@
 }
 
 .dt-container {
+    .dt-layout-row {
+        &:first-child {
+            align-items: flex-start;
+        }
+    }
+
+    .dt-layout-start {
+        .dt-info {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
     .dt-layout-full {
         will-change: contents;
         width: 100% !important;
