@@ -31,6 +31,31 @@ function get_transparency_score_from_slug( string $think_tank_slug ): int {
 }
 
 /**
+ * Check if post is transparent
+ *
+ * @param  integer $post_id
+ * @return boolean
+ */
+function is_transparent( $post_id = 0 ): bool {
+	$post_id              = $post_id ? (int) $post_id : get_the_ID();
+	$no_defense_accepted  = get_post_meta( $post_id, 'no_defense_accepted', true );
+	$no_domestic_accepted = get_post_meta( $post_id, 'no_domestic_accepted', true );
+	$no_foreign_accepted  = get_post_meta( $post_id, 'no_foreign_accepted', true );
+	return $no_defense_accepted && $no_domestic_accepted && $no_foreign_accepted;
+}
+
+/**
+ * Check if post is limited
+ *
+ * @param  integer $post_id
+ * @return boolean
+ */
+function is_limited( $post_id = 0 ): bool {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+	return (bool) get_post_meta( $post_id, 'limited_info', true );
+}
+
+/**
  * Get post that matches taxonomy term
  *
  * @param  string $slug
@@ -46,4 +71,60 @@ function get_post_from_term( $slug, $type ) {
 	);
 
 	return get_posts( $args );
+}
+
+/**
+ * Get Post Transparency Score
+ *
+ * @param  integer $post_id
+ * @return string
+ */
+function get_star_rating( $post_id = 0 ): string {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+	$score   = get_post_meta( $post_id, 'transparency_score', true );
+
+	return convert_start_rating( $score );
+}
+
+/**
+ * Render Star Rating
+ *
+ * @param  integer $post_id
+ * @return void
+ */
+function render_star_rating( $post_id = 0 ): void {
+	echo get_star_rating( $post_id );
+}
+
+/**
+ * Convert the Transparency Score to a star rating.
+ *
+ * @param int $score The Transparency Score.
+ * @return string The star rating.
+ */
+function convert_start_rating( $score ): string {
+	$max = 5;
+	ob_start();
+	?>
+	<!-- wp:group {"metadata":{"name":"Transparency Stars"},"className":"stars-<?php echo $score; ?>","layout":{"type":"default"}} -->
+	<div class="wp-block-group stars-<?php echo $score; ?>" aria-label="<?php echo $score; ?> stars">
+		<?php
+		for ( $x = 1; $x <= $score && $x <= $max; $x++ ) :
+			?>
+			<span class="icon material-symbols-outlined rating-star" data-filled="true">star</span>
+			<?php
+		endfor;
+
+		for ( $x = ( $score + 1 ); $x <= $max; $x++ ) :
+			?>
+			<span class="icon material-symbols-outlined rating-star" data-filled="false">star_outline</span>
+			<?php
+		endfor;
+		?>
+	</div>
+	<!-- /wp:group -->
+
+	<?php
+	$stars = ob_get_clean();
+	return $stars;
 }
