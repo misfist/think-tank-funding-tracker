@@ -476,7 +476,7 @@ function get_think_tank_archive_data( $donation_year = '' ) {
 				$data[ $think_tank_slug ] = array(
 					'think_tank'         => $think_tank,
 					'donor_types'        => array(),
-					'transparency_score' => get_transparency_score( $think_tank_slug ),
+					'transparency_score' => get_transparency_score_from_slug( $think_tank_slug ),
 				);
 			}
 
@@ -740,7 +740,6 @@ function get_meta_values_for_records( array $post_ids, string $meta_key ): array
 	}
 	return $meta_values;
 }
-
 
 /**
  * Generate data array for a think tank.

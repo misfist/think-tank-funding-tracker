@@ -10,7 +10,7 @@ namespace Quincy\ttft;
  * @param string $think_tank_slug The think tank slug.
  * @return int The Transparency Score.
  */
-function get_transparency_score( $think_tank_slug ): int {
+function get_transparency_score_from_slug( string $think_tank_slug ): int {
 	$post_type = 'think_tank';
 	$args      = array(
 		'post_type'      => $post_type,
