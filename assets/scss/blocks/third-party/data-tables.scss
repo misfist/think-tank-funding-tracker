@@ -267,10 +267,18 @@ body.js-enabled {
     .not-accepted {
         background-color: var( --wp--preset--color--contrast-2 );
         color: var( --wp--preset--color--white );
+
+        &::before {
+            content: 'Not Accepted';
+        }
     }
 
     .not-disclosed {
         background-color: var( --wp--custom--color--yellow-light );
+
+        &::before {
+            content: 'Not Disclosed';
+        }
     }
 
     @include responsive-max( $break-small - 1px ) {
