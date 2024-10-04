@@ -21,14 +21,30 @@
 }
 */
 
-$break-xhuge: 1920px;
-$break-huge: 1440px;
-$break-wide: 1280px;
-$break-xlarge: 1080px;
-$break-large: 960px;	// admin sidebar auto folds
-$break-medium: 782px;	// adminbar goes big
-$break-mobile: 480px;
-$break-small: 600px;
+/* Breakpoints */
+$breakpoints: (
+  mobile: 480px,
+  small: 600px,
+  medium: 782px,
+  large: 960px,
+  xlarge: 1080px,
+  wide: 1280px,
+  huge: 1440px,
+  xhuge: 1920px
+);
+
+@function breakpoint( $name ) {
+  @return map-get( $breakpoints, $name );
+}
+
+$break-xhuge: breakpoint( xhuge );
+$break-huge: breakpoint( huge );
+$break-wide: breakpoint( wide );
+$break-xlarge: breakpoint( xlarge );
+$break-large: breakpoint( large );	// admin sidebar auto folds
+$break-medium: breakpoint( medium );	// adminbar goes big
+$break-mobile: breakpoint( mobile );
+$break-small: breakpoint( small );
 $break-zoomed-in: 280px;
 
 // Define mixin for media queries with min width

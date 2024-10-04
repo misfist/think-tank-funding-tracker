@@ -25,7 +25,7 @@
 				background-color: var( --wp--preset--color--gray-200 );
 				grid-template-columns: 1fr;
 
-				@include responsive-min( $mobile ) {
+				@include responsive-min( $break-mobile ) {
 					padding-right: var( --wp--preset--spacing--20 );
 					grid-template-columns: min( 16.875rem, 40% ) 1fr;
 				}
@@ -54,7 +54,7 @@
 				}
 			}
 
-			@include responsive-min( $mobile ) {
+			@include responsive-min( $break-mobile ) {
 				tbody {
 					tr {
 						td {

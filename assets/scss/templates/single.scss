@@ -14,7 +14,7 @@
         }
     }
 
-    @include responsive-max( $mobile - 1px ) {
+    @include responsive-max( $break-mobile - 1px ) {
         .total-donations {
             flex-wrap: wrap;
 
