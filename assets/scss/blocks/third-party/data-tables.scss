@@ -18,7 +18,8 @@ body.js-enabled {
  */
 .dataTable {
     width: 100%;
-    table-layout: auto !important;
+    table-layout: fixed;
+    // table-layout: auto !important;
     border-collapse: separate !important;
     border-spacing: 0;
     font-family: var( --wp--preset--font-family--body );
@@ -197,14 +198,6 @@ body.js-enabled {
             border: none;
             padding: var( --wp--preset--spacing--20 );
 
-            &:first-child {
-                padding-left: var( --wp--preset--spacing--20 );
-            }
-
-            &:last-child {
-                padding-right: var( --wp--preset--spacing--20 );
-            }
-
             &.column-min-amount,
             &.column-min-donations,
             &.column-total-amount,
@@ -363,9 +356,17 @@ body.js-enabled {
             }
         }
 
+        col {
+            &:first-child {
+                width: 50%;
+            }
+        }
+
         th,
         td {
-            width: fit-content !important;
+            &:last-child {
+                text-align: right;
+            }
 
             &.column-min-amount,
             &.column-total-amount,
@@ -379,9 +380,42 @@ body.js-enabled {
                 text-align: right;
             }
 
-            &.column-year {
-                width: 200px !important;
+            &.column-year {}
+        }
+
+        th {
+            padding: var( --wp--preset--spacing--10 );
+
+            &:first-child {
+                text-align: left;
+                padding-left: var( --wp--preset--spacing--20 );
             }
+            &:last-child {
+                text-align: right;
+                padding-right: var( --wp--preset--spacing--20 );
+            }
+        }
+
+        td {
+            padding: var( --wp--preset--spacing--20 );
+        }
+
+        &.donor-archive {
+            col {
+                &:first-child {
+                    width: 60%;
+                }
+                &:nth-child(2) {
+                    width: 20%;
+                }
+                &:last-child {
+                    width: 20%;
+                }
+            }
+
+            // .column-donor-type {
+            //     width: 150px;
+            // }
         }
     }
 }

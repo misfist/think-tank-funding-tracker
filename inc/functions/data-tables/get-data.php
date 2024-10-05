@@ -692,7 +692,7 @@ function get_single_donor_total( $donor, $donation_year = '', $donor_type = '' )
 	$data = get_single_donor_raw_data( $donor, $donation_year, $donor_type );
 
 	if ( ! empty( $data ) ) {
-		$amounts = get_meta_values_for_records( $data, 'amount_calc' );
+		$amounts = wp_list_pluck( $data, 'amount_calc' ) ;
 		$total   = array_sum( $amounts );
 	} else {
 		$total = 0;
