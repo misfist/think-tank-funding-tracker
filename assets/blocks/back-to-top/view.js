@@ -3,7 +3,7 @@
  */
 import { store } from '@wordpress/interactivity';
 
-store( 'back-to-top', {
+const { state } = store( 'back-to-top', {
 	state: {
         isIntersecting: false,
     },
@@ -30,4 +30,7 @@ store( 'back-to-top', {
             observer.observe( element );
         },
     },
+	log: () => {
+		console.log( `state:`, state );
+	}
 } );

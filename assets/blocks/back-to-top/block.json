@@ -10,7 +10,7 @@
 	"supports": {
 		"interactive": true
 	},
-	"textdomain": "back-to-top",
+	"textdomain": "ttft",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
