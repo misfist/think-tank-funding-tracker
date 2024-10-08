@@ -11,8 +11,8 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
-import { Dashicon } from '@wordpress/components';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { Dashicon, PanelBody, TextControl } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -30,10 +30,26 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit( {
+	attributes: { description },
+	setAttributes,
+} ) {
 	return (
-		<div { ...useBlockProps() }>
-			<Dashicon icon="search" />{ ' ' }{ __( 'Search Form', 'data-table' ) }
-		</div>
+		<>
+			<InspectorControls>
+				<PanelBody title={ __( 'Search Settings', 'ttft' ) }>
+					<TextControl
+						label={ __( 'Description', 'ttft' ) }
+						value={ description || '' }
+						onChange={ ( value ) =>
+							setAttributes( { description: value } )
+						}
+					/>
+				</PanelBody>
+			</InspectorControls>
+			<div { ...useBlockProps() }>
+				<Dashicon icon="search" />{ ' ' }{ description || __( 'Search Form', 'ttft' ) }
+			</div>
+		</>
 	);
 }

@@ -3,15 +3,24 @@
 	"apiVersion": 3,
 	"name": "ttft/search-form",
 	"version": "0.1.0",
-	"title": "Search Form",
+	"title": "Custom Search Form",
 	"category": "widgets",
 	"icon": "search",
 	"description": "Display the search form.",
+	"attributes": {
+		"description": {
+			"type": "string"
+		}
+	},
 	"example": {},
 	"supports": {
 		"html": false,
 		"interactivity": false,
-		"customClassName": true
+		"customClassName": true,
+		"color": {
+			"background": false,
+			"text": true
+		}
 	},
 	"textdomain": "ttft",
 	"editorScript": "file:./index.js",
