@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Note
- * Slug: ttt/data-note
+ * Slug: ttft/data-note
  * Categories: hidden
  * Inserter: false
  */

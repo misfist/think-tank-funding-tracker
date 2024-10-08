@@ -2,7 +2,7 @@
 /**
  * Register blocks
  *
- * @package ttt
+ * @package ttft
  */
 namespace Quincy\ttft;
 

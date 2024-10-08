@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Blocks - Think Tank
- * Slug: ttt/data-blocks-think-tank
+ * Slug: ttft/data-blocks-think-tank
  * Categories: transparency
  * Inserter: false
  */
@@ -108,6 +108,6 @@ $funding_sources = array(
 
 	endif;
 	?>
-	<!-- wp:pattern {"slug":"ttt/transparency-score"} /-->
+	<!-- wp:pattern {"slug":"ttft/transparency-score"} /-->
 </div>
 <!-- /wp:group -->

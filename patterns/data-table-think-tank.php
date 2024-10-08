@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Table - Think Tank
- * Slug: ttt/data-table-think-tank
+ * Slug: ttft/data-table-think-tank
  * Categories: transparency
  * Inserter: false
  *
@@ -15,8 +15,8 @@ use function Quincy\ttft\get_single_think_tank_total;
 use function Quincy\ttft\is_transparent;
 
 global $post;
-$think_tank      = $post->post_name;
-$post_id         = $post->ID;
+$post_id         = get_the_ID();
+$think_tank      = get_post_field( 'post_name', $post_id );
 $is_limited      = ( get_post_meta( $post_id, 'limited_info', true ) ) ? true : false;
 $is_transparent  = is_transparent( $post_id );
 $settings        = get_option( 'site_settings' );

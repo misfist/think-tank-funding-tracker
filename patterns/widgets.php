@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Sidebar
- * Slug: ttt/sidebar
+ * Slug: ttft/sidebar
  * Inserter: no
  */
 ?>

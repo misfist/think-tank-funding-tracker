@@ -2,7 +2,7 @@
 /**
  * Enqueue custom block styles.
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;
@@ -25,7 +25,7 @@ function enqueue_block_stylesheet() {
 	// Enqueue styles from the core block folder.
 	foreach ( glob( get_parent_theme_file_path( '/build/css/blocks/*.css' ) ) as $stylesheet ) {
 		$block_name = basename( $stylesheet, '.css' );
-		$handle     = 'ttt-' . $block_name . '-style';
+		$handle     = 'ttft-' . $block_name . '-style';
 
 		wp_enqueue_block_style(
 			'core/' . $block_name,

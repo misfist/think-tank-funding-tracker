@@ -3,7 +3,7 @@
  * Register template-part areas.
  * Learn More: https://developer.wordpress.org/news/2023/06/16/upgrading-the-site-editing-experience-with-custom-template-part-areas/
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

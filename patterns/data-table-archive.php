@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Table - Archive
- * Slug: ttt/data-table-archive
+ * Slug: ttft/data-table-archive
  * Categories: transparency
  * Inserter: false
  *

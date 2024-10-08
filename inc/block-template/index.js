@@ -15,7 +15,7 @@ module.exports = {
 			};
 		},
 		author: 'Quincy',
-		category: 'wds-blocks',
+		category: 'widgets',
 		dashicon: 'pets',
 		description: 'A custom block created by the create-block for the theme',
 		namespace: 'ttft',

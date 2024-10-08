@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package ttt
+ * @package ttft
  * @author  Quincy
  * @license GNU General Public License v3
  */

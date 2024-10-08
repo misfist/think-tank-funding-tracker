@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Search Results
- * Slug: ttt/search-results
+ * Slug: ttft/search-results
  * Categories: Search
  */
 $entity_type = isset( $_GET['entity_type'] ) ? sanitize_text_field( $_GET['entity_type'] ) : 'donor';

@@ -2,7 +2,7 @@
 /**
  * Register custom block styles.
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;
@@ -12,7 +12,7 @@ namespace Quincy\ttft;
  */
 function register_block_variations() {
 	wp_enqueue_script(
-		'ttt-enqueue-block-variations',
+		'ttft-enqueue-block-variations',
 		get_template_directory_uri() . '/build/js/variations.js',
 		array( 'wp-blocks', 'wp-dom-ready', 'wp-element', 'wp-primitives' ),
 		wp_get_theme()->get( 'Version' ),

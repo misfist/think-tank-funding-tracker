@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Pagination
- * Slug: ttt/pagination
+ * Slug: ttft/pagination
  * Categories: navigation
  */
 ?>

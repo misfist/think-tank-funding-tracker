@@ -2,7 +2,7 @@
 /**
  * Custom search form
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

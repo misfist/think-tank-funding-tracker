@@ -4,7 +4,7 @@
  *
  * Enable or disable certain functionality to harden WordPress.
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

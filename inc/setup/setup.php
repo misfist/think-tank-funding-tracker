@@ -2,7 +2,7 @@
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;
@@ -20,9 +20,9 @@ function setup() {
 	/**
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on ttt, refer to the
+	 * If you're building a theme based on ttft, refer to the
 	 * README.md file in this theme to find and replace all
-	 * references of ttt
+	 * references of ttft
 	 */
 	load_theme_textdomain( 'ttft', get_template_directory() . '/build/languages' );
 

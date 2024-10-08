@@ -2,7 +2,7 @@
 /**
  * Block variations.
  *
- * @package ttt
+ * @package ttft
  */
 namespace Quincy\ttft;
 

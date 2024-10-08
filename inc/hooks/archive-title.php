@@ -2,7 +2,7 @@
 /**
  * Removes or Adjusts the prefix on category archive page titles.
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

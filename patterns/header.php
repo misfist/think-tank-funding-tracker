@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Header
- * Slug: ttt/header
+ * Slug: ttft/header
  * Categories: hidden
  * Inserter: no
  */

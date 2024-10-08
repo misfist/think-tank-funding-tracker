@@ -2,7 +2,7 @@
 /**
  * Registers custom block pattern categories for the WDS BT theme.
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

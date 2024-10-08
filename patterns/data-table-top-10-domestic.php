@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Table - Top 10 Domestic
- * Slug: ttt/data-table-top-10-domestic
+ * Slug: ttft/data-table-top-10-domestic
  * Inserter: no
  *
  * %VAR1% = think_tank

@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Table - Donor Search
- * Slug: ttt/data-table-search-donor
+ * Slug: ttft/data-table-search-donor
  * Categories: transparency
  * Inserter: false
  *
@@ -23,7 +23,12 @@ $app_namespace = get_app_id();
 	data-wp-class--active="state.donorSelected"
 	data-wp-bind--hidden="state.!donorSelected"
 >
-	<!-- wp:data-tables/data-table { "tableType":"donor-archive" } /-->
+	
+<!-- wp:data-tables/data-table {
+	"tableType":"donor-archive",
+	"donationYear":"all",
+	"donorType":"all"
+} /-->
 </div>
 <!-- /wp:group -->
 
