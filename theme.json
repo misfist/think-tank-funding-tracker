@@ -33,6 +33,11 @@
 			"title": "Sidebar"
 		},
 		{
+			"area": "content-footer",
+			"name": "content-footer",
+			"title": "Content Footer"
+		},
+		{
 			"area": "uncategorized",
 			"name": "post-meta",
 			"title": "Post Meta"

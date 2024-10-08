@@ -23,6 +23,14 @@ function register_template_part_areas( array $areas ): array {
 		'icon'        => 'sidebar',
 	);
 
+	$areas[] = array(
+		'area'        => 'content-footer',
+		'area_tag'    => 'section',
+		'label'       => __( 'Content Footer', 'ttft' ),
+		'description' => __( 'Content area that displays below main content areas', 'ttft' ),
+		'icon'        => 'footer',
+	);
+
 	return $areas;
 }
 \add_filter( 'default_wp_template_part_areas', __NAMESPACE__ . '\register_template_part_areas' );
