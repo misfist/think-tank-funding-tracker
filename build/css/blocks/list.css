@@ -1,1 +1,91 @@
-main ul:not([class]),main ul.wp-block-list,.wp-block-post-content ul:not([class]),.wp-block-post-content ul.wp-block-list{list-style-type:none}main ul:not([class]) li,main ul.wp-block-list li,.wp-block-post-content ul:not([class]) li,.wp-block-post-content ul.wp-block-list li{padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--50);position:relative}@media only screen and (max-width: 600px){main ul:not([class]) li,main ul.wp-block-list li,.wp-block-post-content ul:not([class]) li,.wp-block-post-content ul.wp-block-list li{padding-left:var(--wp--preset--spacing--70)}}main ul:not([class]) li:last-child,main ul.wp-block-list li:last-child,.wp-block-post-content ul:not([class]) li:last-child,.wp-block-post-content ul.wp-block-list li:last-child{padding-bottom:0}main ol:not([class]),main ol.wp-block-list,.wp-block-post-content ol:not([class]),.wp-block-post-content ol.wp-block-list{list-style-position:inside}main ol:not([class]) li,main ol.wp-block-list li,.wp-block-post-content ol:not([class]) li,.wp-block-post-content ol.wp-block-list li{padding-bottom:var(--wp--preset--spacing--20);position:relative}main ol:not([class]) li ol,main ol.wp-block-list li ol,.wp-block-post-content ol:not([class]) li ol,.wp-block-post-content ol.wp-block-list li ol{padding-left:var(--wp--preset--spacing--30) !important}main ol:not([class]) li::marker,main ol.wp-block-list li::marker,.wp-block-post-content ol:not([class]) li::marker,.wp-block-post-content ol.wp-block-list li::marker{font-weight:700}main ol:not([class]) li:last-child,main ol.wp-block-list li:last-child,.wp-block-post-content ol:not([class]) li:last-child,.wp-block-post-content ol.wp-block-list li:last-child{padding-bottom:0}main ol:not([class]) li .rich-text,main ol.wp-block-list li .rich-text,.wp-block-post-content ol:not([class]) li .rich-text,.wp-block-post-content ol.wp-block-list li .rich-text{display:inline-block}main ol:not([class]) ol,main ol.wp-block-list ol,.wp-block-post-content ol:not([class]) ol,.wp-block-post-content ol.wp-block-list ol{padding-bottom:0}
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/scss/blocks/core/list.scss ***!
+  \**************************************************************************************************************************************************************************************************/
+/*
+.my-element {
+  width: 100%;
+
+  // Apply styles when the screen width is 600px or more.
+  @include responsive-min(600px) {
+    // Your responsive styles for min-width: 600px.
+  }
+
+  // Apply styles when the screen width is up to 600px
+  @include responsive-max(600px) {
+    // Your responsive styles for max-width: 600px.
+  }
+
+  // Apply styles when the screen width is between 600px and 1200px.
+  @include responsive-min(600px) and (max-width: 1200px) {
+    // Your responsive styles for a range of widths.
+  }
+}
+*/
+/* Breakpoints */
+/* -- List -- */
+main,
+.wp-block-post-content {
+  /* -- Ordered List -- */
+}
+main ul:not([class]), main ul.wp-block-list,
+.wp-block-post-content ul:not([class]),
+.wp-block-post-content ul.wp-block-list {
+  list-style-type: none;
+}
+main ul:not([class]) li, main ul.wp-block-list li,
+.wp-block-post-content ul:not([class]) li,
+.wp-block-post-content ul.wp-block-list li {
+  padding-bottom: var(--wp--preset--spacing--20);
+  padding-left: var(--wp--preset--spacing--50);
+  position: relative;
+}
+@media only screen and (max-width: 600px) {
+  main ul:not([class]) li, main ul.wp-block-list li,
+  .wp-block-post-content ul:not([class]) li,
+  .wp-block-post-content ul.wp-block-list li {
+    padding-left: var(--wp--preset--spacing--70);
+  }
+}
+main ul:not([class]) li:last-child, main ul.wp-block-list li:last-child,
+.wp-block-post-content ul:not([class]) li:last-child,
+.wp-block-post-content ul.wp-block-list li:last-child {
+  padding-bottom: 0;
+}
+main ol:not([class]), main ol.wp-block-list,
+.wp-block-post-content ol:not([class]),
+.wp-block-post-content ol.wp-block-list {
+  list-style-position: inside;
+}
+main ol:not([class]) li, main ol.wp-block-list li,
+.wp-block-post-content ol:not([class]) li,
+.wp-block-post-content ol.wp-block-list li {
+  padding-bottom: var(--wp--preset--spacing--20);
+  position: relative;
+}
+main ol:not([class]) li ol, main ol.wp-block-list li ol,
+.wp-block-post-content ol:not([class]) li ol,
+.wp-block-post-content ol.wp-block-list li ol {
+  padding-left: var(--wp--preset--spacing--30) !important; /* stylelint-disable-line declaration-no-important */
+}
+main ol:not([class]) li::marker, main ol.wp-block-list li::marker,
+.wp-block-post-content ol:not([class]) li::marker,
+.wp-block-post-content ol.wp-block-list li::marker {
+  font-weight: 700;
+}
+main ol:not([class]) li:last-child, main ol.wp-block-list li:last-child,
+.wp-block-post-content ol:not([class]) li:last-child,
+.wp-block-post-content ol.wp-block-list li:last-child {
+  padding-bottom: 0;
+}
+main ol:not([class]) li .rich-text, main ol.wp-block-list li .rich-text,
+.wp-block-post-content ol:not([class]) li .rich-text,
+.wp-block-post-content ol.wp-block-list li .rich-text {
+  display: inline-block;
+}
+main ol:not([class]) ol, main ol.wp-block-list ol,
+.wp-block-post-content ol:not([class]) ol,
+.wp-block-post-content ol.wp-block-list ol {
+  padding-bottom: 0;
+}
+
+/*# sourceMappingURL=list.css.map*/

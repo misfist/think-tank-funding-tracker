@@ -1,0 +1,1 @@
+{"version":3,"file":"css/blocks/post-comments-form.css","mappings":";;;AAAA;AAGC;EACC;EAAA;AADF,C","sources":["webpack://ttft/./assets/scss/blocks/core/post-comments-form.scss"],"sourcesContent":["/* -- post-comments-form -- */\n\n.wp-block-post-comments-form {\n\tinput[type='submit'] {\n\t\twidth: max-content;\n\t}\n}\n"],"names":[],"sourceRoot":""}
