@@ -5,5 +5,4 @@
  * Categories: Search
  */
 ?>
-<?php
-get_search_form();
+<!-- wp:ttft/search-form /-->
