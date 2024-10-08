@@ -2,8 +2,8 @@
 	"name": "ttft",
 	"version": "0.1.0",
 	"private": true,
-	"description": "A starter block theme from WebDevStudios.",
-	"author": "WebDevStudios <contact@webdevstudios.com>",
+	"description": "Custom block.",
+	"author": "Pea <pea@misfist.com>",
 	"license": "GPL-2.0-or-later",
 	"keywords": [
 		"WordPress",
@@ -81,9 +81,9 @@
 	},
 	"scripts": {
 		"a11y": "node a11y.cjs",
-		"build": "wp-scripts build --config webpack.config.js --webpack-src-dir=assets/blocks --stats-error-details --progress",
+		"build": "rm -rf build blocks && wp-scripts build --config webpack.config.js --webpack-src-dir=assets/blocks --stats-error-details --progress",
 		"create-block": "run-s create-block:run",
-		"create-block:run": "cd ./assets/blocks && npx @wordpress/create-block --namespace=ttt --template ../../inc/block-template --no-plugin",
+		"create-block:run": "cd ./assets/blocks && npx @wordpress/create-block --namespace=ttft --template ../../inc/block-template --no-plugin",
 		"format": "wp-scripts format && npm run format:php",
 		"format:css": "wp-scripts format-style",
 		"format:php": "composer run-script phpcs-fix",
