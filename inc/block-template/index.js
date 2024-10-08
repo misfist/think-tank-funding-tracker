@@ -15,10 +15,10 @@ module.exports = {
 			};
 		},
 		author: 'Quincy',
-		category: 'widgets',
+		category: 'widget',
 		dashicon: 'pets',
 		description: 'A custom block created by the create-block for the theme',
-		namespace: 'ttft',
+		namespace: 'wdsbt',
 		render: 'file:./render.php',
 		version: '1.0.0',
 		customPackageJSON: {
