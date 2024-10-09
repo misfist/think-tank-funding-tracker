@@ -20,7 +20,7 @@ function custom_search_form( $args ): string {
 		'donor'      => __( 'Donor', 'ttft' ),
 	);
 
-	$description = ( isset( $args['description'] ) && $args['description'] ) ? esc_html( $args['description'] ) : esc_html__( 'Examples: Lockheed Martin, Mitsubishi, United Arab Emirates, U.S. Government', 'ttft' );
+	$description = ( isset( $args['description'] ) && $args['description'] ) ? esc_html( $args['description'] ) : esc_html__( ' Examples: Accenture, Brookings Institution, U.S. Government ', 'ttft' );
 
 	$instance_id = uniqid();
 	$entity_type = sanitize_text_field( $_GET['entity_type'] ?? '' );
