@@ -881,7 +881,8 @@
 				"variations": {
 					"intro": {
 						"typography": {
-							"fontSize": "var(--wp--preset--font-size--medium-2)",
+							"fontFamily": "var(--wp--preset--font-family--heading)",
+							"fontSize": "var(--wp--preset--font-size--medium-3)",
 							"fontStyle": "normal",
 							"fontWeight": "700"
 						}
