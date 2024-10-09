@@ -648,6 +648,7 @@ body:not( .home ) {
             border: none;
             color: var( --wp--preset--color--contrast-3 );
             font-family: var( --wp--preset--font-family--body );
+            font-size: var( --wp--preset--font-size--medium-2 );
 
             &::before,
             &::after {
@@ -660,23 +661,26 @@ body:not( .home ) {
             }
         }
 
-        &.previous {
-            padding-left: 0;
-
-            &::after {
-                content: attr(aria-label);
-                margin-left: 3px;
+        @include responsive-min( $break-small ) {
+            &.previous {
+                padding-left: 0;
+    
+                &::after {
+                    content: attr(aria-label);
+                    margin-left: 4px;
+                }
             }
-        }
-
-        &.next {
-            margin-left: auto;
-            padding-right: 0;
-
-            &::before {
-                content: attr(aria-label);
-                margin-right: 3px;
+    
+            &.next {
+                margin-left: auto;
+                padding-right: 0;
+    
+                &::before {
+                    content: attr(aria-label);
+                    margin-right: 4px;
+                }
             }
+    
         }
     }
 }
