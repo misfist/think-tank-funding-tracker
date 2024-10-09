@@ -25,13 +25,11 @@ $app_namespace = get_app_id();
 	data-wp-class--active="state.thinkTankSelected"
 	data-wp-bind--hidden="state.!thinkTankSelected"
 >
-
+	<!-- /wp:group -->
+		<!-- wp:data-tables/data-table {
+		"tableType":"think-tank-archive",
+		"donationYear":"all",
+		"donorType":"all"
+	} /-->
 </div>
 
-I am a table.
-<!-- /wp:group -->
-	<!-- wp:data-tables/data-table {
-	"tableType":"think-tank-archive",
-	"donationYear":"all",
-	"donorType":"all"
-} /-->
