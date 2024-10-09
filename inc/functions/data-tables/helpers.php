@@ -81,6 +81,9 @@ function get_post_from_term( $slug, $type ) {
  */
 function get_star_rating( $post_id = 0 ): string {
 	$post_id = $post_id ? (int) $post_id : get_the_ID();
+	if ( ! $post_id ) {
+		return '';
+	}
 	$score   = get_post_meta( $post_id, 'transparency_score', true );
 
 	return convert_star_rating( $score );
