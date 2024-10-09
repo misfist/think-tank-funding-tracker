@@ -36,7 +36,15 @@ if ( $is_limited ) :
 	<?php
 elseif ( $is_transparent ) :
 	?>
-		<!-- hidden -->
+		<!-- wp:group {"metadata":{"name":"Transparent"},"className":"is-transparent","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"backgroundColor":"var:preset|color|accent-5","layout":{"type":"default"}} -->
+		<div class="wp-block-group has-accent-5-background-color has-background is-transparent" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+
+		<!-- wp:heading {"level":4} -->
+		<h4><?php echo $settings['think_tank_is_transparent_text'] ?? esc_html__( 'This think tank is transparent.', 'ttft' ); ?></h4>
+		<!-- /wp:heading -->
+
+	</div>
+	<!-- /wp:group -->
 	<?php
 else :
 	?>
