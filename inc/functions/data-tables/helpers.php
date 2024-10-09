@@ -102,7 +102,8 @@ function render_star_rating( $post_id = 0 ): void {
  * @param int $score The Transparency Score.
  * @return string The star rating.
  */
-function convert_start_rating( $score ): string {
+function convert_star_rating( $score = 0 ): string {
+	$score = (int) $score;
 	$max = 5;
 	ob_start();
 	?>
