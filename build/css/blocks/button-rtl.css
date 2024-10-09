@@ -29,6 +29,7 @@
   justify-content: center;
   position: relative;
   z-index: 1;
+  padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
 }
 .wp-block-button .wp-block-button__link.rich-text {
   min-width: 10rem !important; /* stylelint-disable-line declaration-no-important */
@@ -53,7 +54,7 @@
 .wp-block-button.large .wp-block-button__link {
   border-radius: 6px;
   border-width: 2px;
-  font-size: 1rem;
+  font-size: var(--wp--preset--font-size--medium-2);
 }
 .wp-block-button.large::after {
   height: 1.25rem;
