@@ -1,0 +1,37 @@
+.wp-block-getwid-mailchimp {
+
+    .wp-block-getwid-field-email {
+        margin-top: 0;
+        margin-bottom: 0;
+        
+        input {
+            padding: var( --wp--preset--spacing--10 ) var( --wp--preset--spacing--20 );
+            margin-top: 0;
+            line-height: var( --wp--custom--line-height--1-2 );
+            border: 1px solid var( --wp--preset--color--white );
+        }
+
+        &__label {
+            @include screen-reader-text;
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__submit {
+        margin-top: 0;
+    }
+
+    @include responsive-min( $break-small ) {
+        &__form {
+            flex-direction: row;
+        }
+
+        .wp-block-getwid-field-email {
+            flex-basis: 50%;
+        }
+    }
+}
