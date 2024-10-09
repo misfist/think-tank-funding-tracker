@@ -414,6 +414,12 @@
 				{
 					"fluid": false,
 					"name": "Medium Large",
+					"size": "1.125rem",
+					"slug": "medium-3"
+				},
+				{
+					"fluid": false,
+					"name": "Medium Larger",
 					"size": "1.25rem",
 					"slug": "medium-2"
 				},
@@ -1025,9 +1031,11 @@
 					}
 				},
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--small)",
+					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"fontSize": "var(--wp--preset--font-size--medium-3)",
+					"lineHeight": "var:custom|line-height|1-2",
 					"fontStyle": "normal",
-					"fontWeight": "500"
+					"fontWeight": "700"
 				}
 			},
 			"caption": {
