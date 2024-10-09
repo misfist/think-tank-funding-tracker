@@ -1,13 +1,1 @@
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/scss/blocks/core/preformatted.scss ***!
-  \**********************************************************************************************************************************************************************************************************/
-/* -- preformatted -- */
-.wp-block-preformatted {
-  letter-spacing: -0.023rem;
-  overflow-wrap: normal;
-  overflow-x: scroll;
-  -moz-tab-size: 4;
-    -o-tab-size: 4;
-       tab-size: 4;
-  white-space: pre !important; /* stylelint-disable-line declaration-no-important */
-}
+.wp-block-preformatted{letter-spacing:-0.023rem;overflow-wrap:normal;overflow-x:scroll;-moz-tab-size:4;-o-tab-size:4;tab-size:4;white-space:pre !important}

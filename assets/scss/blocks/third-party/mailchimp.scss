@@ -19,11 +19,26 @@
     &__form {
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
     }
 
     &__submit {
         margin-top: 0;
     }
+
+    p[class*='wp-block-getwid-mailchimp__result'] {
+        order: +2;
+        width: 100%;
+        
+        &.fail {
+            color: var( --wp--preset--color--contrast-3 );
+        }
+        &.success {
+            color: var( --wp--preset--color--contrast-2 );
+        }
+    }
+
+    
 
     @include responsive-min( $break-small ) {
         &__form {

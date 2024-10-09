@@ -1,15 +1,1 @@
-/*!***************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/scss/blocks/core/audio.scss ***!
-  \***************************************************************************************************************************************************************************************************/
-/* -- audio -- */
-.wp-block-audio {
-  max-width: calc(var(--wp--style--global--content-size) - 30%) !important; /* stylelint-disable-line declaration-no-important */
-}
-.wp-block-audio figcaption {
-  text-align: center;
-}
-.wp-block-audio audio::-webkit-media-controls-play-button, .wp-block-audio audio::-webkit-media-controls-timeline, .wp-block-audio audio::-webkit-media-controls-volume-slider, .wp-block-audio audio::-webkit-media-controls-mute-button {
-  filter: invert(15%) sepia(100%) saturate(3615%) hue-rotate(247deg) brightness(83%) contrast(101%);
-}
-
-/*# sourceMappingURL=audio.css.map*/
+.wp-block-audio{max-width:calc(var(--wp--style--global--content-size) - 30%) !important}.wp-block-audio figcaption{text-align:center}.wp-block-audio audio::-webkit-media-controls-play-button,.wp-block-audio audio::-webkit-media-controls-timeline,.wp-block-audio audio::-webkit-media-controls-volume-slider,.wp-block-audio audio::-webkit-media-controls-mute-button{filter:invert(15%) sepia(100%) saturate(3615%) hue-rotate(247deg) brightness(83%) contrast(101%)}
