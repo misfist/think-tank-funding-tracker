@@ -32,10 +32,11 @@
 		"declaration-property-unit-allowed-list": [
 			{
 				"font-size": ["em", "rem", "px"],
-				"line-height": [],
-				"/^border/": ["px"],
+				"line-height": ["em", "rem", "px"],
+				"border": ["px"],
 				"/^margin/": ["em", "rem", "px"],
-				"/^padding/": ["em", "rem", "px"]
+				"/^padding/": ["em", "rem", "px"],
+				"border-radius": ["%", "rem", "px"]
 			}
 		],
 		"font-family-no-missing-generic-family-keyword": null,

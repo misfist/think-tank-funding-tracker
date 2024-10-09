@@ -2,7 +2,7 @@
 /**
  * Ninja Tables Mods.
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

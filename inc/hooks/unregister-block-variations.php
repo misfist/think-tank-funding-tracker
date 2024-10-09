@@ -2,7 +2,7 @@
 /**
  * Functions to disable core Gutenberg blocks.
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

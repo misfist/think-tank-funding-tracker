@@ -2,7 +2,7 @@
 /**
  * Block pattern categories.
  *
- * @package ttt
+ * @package ttft
  */
 namespace Quincy\ttft;
 

@@ -3,7 +3,7 @@
  * Register template-part areas.
  * Learn More: https://developer.wordpress.org/news/2023/06/16/upgrading-the-site-editing-experience-with-custom-template-part-areas/
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;
@@ -21,6 +21,14 @@ function register_template_part_areas( array $areas ): array {
 		'label'       => __( 'Sidebar', 'ttft' ),
 		'description' => __( 'Custom sidebar displays above footer', 'ttft' ),
 		'icon'        => 'sidebar',
+	);
+
+	$areas[] = array(
+		'area'        => 'content-footer',
+		'area_tag'    => 'section',
+		'label'       => __( 'Content Footer', 'ttft' ),
+		'description' => __( 'Content area that displays below main content areas', 'ttft' ),
+		'icon'        => 'footer',
 	);
 
 	return $areas;

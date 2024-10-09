@@ -1,1 +1,18 @@
-.wp-block-post-author .wp-block-post-author__byline{font-family:var(--wp--preset--font-family--body);font-size:var(--wp--preset--font-size--xxs)}.wp-block-post-author .wp-block-post-author__name a{font-family:var(--wp--preset--font-family--headline);font-size:var(--wp--preset--font-size--m);text-decoration:none}.wp-block-post-author .wp-block-post-author__bio{font-family:var(--wp--preset--font-family--body);font-size:var(--wp--preset--font-size--xs);margin-top:.5rem}
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/scss/blocks/core/post-author.scss ***!
+  \*********************************************************************************************************************************************************************************************************/
+/* -- post-author -- */
+.wp-block-post-author .wp-block-post-author__byline {
+  font-family: var(--wp--preset--font-family--body);
+  font-size: var(--wp--preset--font-size--xxs);
+}
+.wp-block-post-author .wp-block-post-author__name a {
+  font-family: var(--wp--preset--font-family--headline);
+  font-size: var(--wp--preset--font-size--m);
+  text-decoration: none;
+}
+.wp-block-post-author .wp-block-post-author__bio {
+  font-family: var(--wp--preset--font-family--body);
+  font-size: var(--wp--preset--font-size--xs);
+  margin-top: 0.5rem;
+}

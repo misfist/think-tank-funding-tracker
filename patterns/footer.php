@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Footer
- * Slug: ttt/footer
+ * Slug: ttft/footer
  * Categories: hidden
  * Inserter: no
  */
@@ -38,8 +38,4 @@
 	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
-
-<a id="bottom" href="#top" class="back-to-top">
-	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z"/></svg>
-	<span class="screen-reader-text"><?php esc_html_e( 'Jump to top of page', 'ttft' ); ?></span>
-</a>
+<!-- wp:ttft/back-to-top /-->

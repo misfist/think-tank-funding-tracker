@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Table - Top 10 Pentagon
- * Slug: ttt/data-table-top-10-pentagon
+ * Slug: ttft/data-table-top-10-pentagon
  * Inserter: no
  *
  * %VAR1% = think_tank

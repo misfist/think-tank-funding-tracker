@@ -2,7 +2,7 @@
 /**
  * Filter wp_footer
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Table - Donor
- * Slug: ttt/data-table-donor
+ * Slug: ttft/data-table-donor
  * Categories: transparency
  * Inserter: false
  *

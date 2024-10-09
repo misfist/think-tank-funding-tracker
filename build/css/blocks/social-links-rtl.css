@@ -1,1 +1,28 @@
-.wp-block-social-links{gap:.75rem}.wp-block-social-links.is-style-logos-only .wp-social-link .wp-block-social-link-anchor{color:var(--wp--preset--color--primary-500);fill:var(--wp--preset--color--primary-500);padding:0}.wp-block-social-links.has-visible-labels .wp-social-link{background-color:var(--wp--preset--color--primary-500)}.wp-block-social-links.has-visible-labels .wp-social-link .wp-block-social-link-anchor{color:var(--wp--preset--color--white);fill:var(--wp--preset--color--white);padding:.75rem}.wp-block-social-links.is-style-icon .wp-social-link{background-color:var(--wp--preset--color--primary-500)}.wp-block-social-links.is-style-icon .wp-social-link .wp-block-social-link-anchor{color:var(--wp--preset--color--white);fill:var(--wp--preset--color--white);padding:.5rem}
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/scss/blocks/core/social-links.scss ***!
+  \**********************************************************************************************************************************************************************************************************/
+/* -- social links -- */
+.wp-block-social-links {
+  gap: 0.75rem;
+}
+.wp-block-social-links.is-style-logos-only .wp-social-link .wp-block-social-link-anchor {
+  color: var(--wp--preset--color--primary-500);
+  fill: var(--wp--preset--color--primary-500);
+  padding: 0;
+}
+.wp-block-social-links.has-visible-labels .wp-social-link {
+  background-color: var(--wp--preset--color--primary-500);
+}
+.wp-block-social-links.has-visible-labels .wp-social-link .wp-block-social-link-anchor {
+  color: var(--wp--preset--color--white);
+  fill: var(--wp--preset--color--white);
+  padding: 0.75rem;
+}
+.wp-block-social-links.is-style-icon .wp-social-link {
+  background-color: var(--wp--preset--color--primary-500);
+}
+.wp-block-social-links.is-style-icon .wp-social-link .wp-block-social-link-anchor {
+  color: var(--wp--preset--color--white);
+  fill: var(--wp--preset--color--white);
+  padding: 0.5rem;
+}

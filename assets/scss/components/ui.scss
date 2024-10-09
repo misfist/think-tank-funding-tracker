@@ -1,0 +1,33 @@
+#scroll-to-top {
+    background-color: var( --wp--preset--color--base );
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    color: var( --wp--preset--color--contrast );
+    cursor: pointer;
+    font-size: var( --wp--preset--font-size--medium );
+    height: var( --wp--preset--spacing--40 );
+    width: var( --wp--preset--spacing--40 );
+    line-height: var( --wp--preset--spacing--40 );
+
+    bottom: var( --wp--preset--spacing--30 );
+    right: var( --wp--preset--spacing--30 );
+
+    transition: all 0.5s ease;
+    z-index: 100;
+
+    position: fixed;
+
+    &.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    &.is-hidden {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+}

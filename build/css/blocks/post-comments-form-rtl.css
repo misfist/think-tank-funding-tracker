@@ -1,1 +1,8 @@
-.wp-block-post-comments-form input[type=submit]{width:-moz-max-content;width:max-content}
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/scss/blocks/core/post-comments-form.scss ***!
+  \****************************************************************************************************************************************************************************************************************/
+/* -- post-comments-form -- */
+.wp-block-post-comments-form input[type=submit] {
+  width: -moz-max-content;
+  width: max-content;
+}

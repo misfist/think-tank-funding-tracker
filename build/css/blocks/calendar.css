@@ -1,1 +1,108 @@
-.wp-block-calendar{display:flex;flex-direction:column-reverse;position:relative}.wp-block-calendar .wp-calendar-table{border:none}.wp-block-calendar .wp-calendar-table th,.wp-block-calendar .wp-calendar-table tr,.wp-block-calendar .wp-calendar-table td{border:none}.wp-block-calendar .wp-calendar-table caption{font-size:var(--wp--preset--font-size--s);font-weight:700;margin-bottom:1.125rem}.wp-block-calendar .wp-calendar-table thead th{font-size:var(--wp--preset--font-size--xxs);font-weight:700;padding:1rem .75rem;text-transform:uppercase}.wp-block-calendar .wp-calendar-table tr td{padding:1rem .75rem}.wp-block-calendar .wp-calendar-table tr td:has(a){padding:0}.wp-block-calendar .wp-calendar-table tr td a{background-color:var(--wp--preset--color--primary-500);border-radius:8px;color:var(--wp--preset--color--white);display:inline-block;padding:1rem .75rem}.wp-block-calendar .wp-calendar-table tr td a:hover,.wp-block-calendar .wp-calendar-table tr td a:focus,.wp-block-calendar .wp-calendar-table tr td a.current{background-color:var(--wp--preset--color--primary-50);color:var(--wp--preset--color--primary-500)}.wp-block-calendar .wp-calendar-nav{align-items:center;display:flex;flex-direction:row;justify-content:space-between;padding:0 .375rem;position:absolute;top:0;width:100%}.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-prev a{display:block;height:1.5rem;overflow:hidden;text-indent:-9999px;width:1.5rem}.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-prev a::before{background-color:var(--wp--preset--color--black);content:"";display:inline-block;height:1.5rem;-webkit-mask-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiA0QzcuNTgxNzIgNCA0IDcuNTgxNzIgNCAxMkM0IDE2LjQxODMgNy41ODE3MiAyMCAxMiAyMEMxNi40MTgzIDIwIDIwIDE2LjQxODMgMjAgMTJDMjAgNy41ODE3MiAxNi40MTgzIDQgMTIgNFpNMiAxMkMyIDYuNDc3MTUgNi40NzcxNSAyIDEyIDJDMTcuNTIyOCAyIDIyIDYuNDc3MTUgMjIgMTJDMjIgMTcuNTIyOCAxNy41MjI4IDIyIDEyIDIyQzYuNDc3MTUgMjIgMiAxNy41MjI4IDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjI5MjkgOC4yOTI4OUMxMC42ODM0IDcuOTAyMzcgMTEuMzE2NiA3LjkwMjM3IDExLjcwNzEgOC4yOTI4OUwxNC43MDcxIDExLjI5MjlDMTUuMDk3NiAxMS42ODM0IDE1LjA5NzYgMTIuMzE2NiAxNC43MDcxIDEyLjcwNzFMMTEuNzA3MSAxNS43MDcxQzExLjMxNjYgMTYuMDk3NiAxMC42ODM0IDE2LjA5NzYgMTAuMjkyOSAxNS43MDcxQzkuOTAyMzcgMTUuMzE2NiA5LjkwMjM3IDE0LjY4MzQgMTAuMjkyOSAxNC4yOTI5TDEyLjU4NTggMTJMMTAuMjkyOSA5LjcwNzExQzkuOTAyMzcgOS4zMTY1OCA5LjkwMjM3IDguNjgzNDIgMTAuMjkyOSA4LjI5Mjg5WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==);mask-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiA0QzcuNTgxNzIgNCA0IDcuNTgxNzIgNCAxMkM0IDE2LjQxODMgNy41ODE3MiAyMCAxMiAyMEMxNi40MTgzIDIwIDIwIDE2LjQxODMgMjAgMTJDMjAgNy41ODE3MiAxNi40MTgzIDQgMTIgNFpNMiAxMkMyIDYuNDc3MTUgNi40NzcxNSAyIDEyIDJDMTcuNTIyOCAyIDIyIDYuNDc3MTUgMjIgMTJDMjIgMTcuNTIyOCAxNy41MjI4IDIyIDEyIDIyQzYuNDc3MTUgMjIgMiAxNy41MjI4IDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjI5MjkgOC4yOTI4OUMxMC42ODM0IDcuOTAyMzcgMTEuMzE2NiA3LjkwMjM3IDExLjcwNzEgOC4yOTI4OUwxNC43MDcxIDExLjI5MjlDMTUuMDk3NiAxMS42ODM0IDE1LjA5NzYgMTIuMzE2NiAxNC43MDcxIDEyLjcwNzFMMTEuNzA3MSAxNS43MDcxQzExLjMxNjYgMTYuMDk3NiAxMC42ODM0IDE2LjA5NzYgMTAuMjkyOSAxNS43MDcxQzkuOTAyMzcgMTUuMzE2NiA5LjkwMjM3IDE0LjY4MzQgMTAuMjkyOSAxNC4yOTI5TDEyLjU4NTggMTJMMTAuMjkyOSA5LjcwNzExQzkuOTAyMzcgOS4zMTY1OCA5LjkwMjM3IDguNjgzNDIgMTAuMjkyOSA4LjI5Mjg5WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==);-webkit-mask-size:contain;mask-size:contain;position:absolute;left:0;text-indent:9999px;transform:rotate(180deg);vertical-align:middle;width:1.5rem}.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-prev a:hover::before,.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-prev a:focus::before{background-color:var(--wp--preset--color--primary-500)}.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-next a{display:block;height:1.5rem;overflow:hidden;text-indent:-9999px;width:1.5rem}.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-next a::before{background-color:var(--wp--preset--color--black);content:"";display:inline-block;height:1.5rem;right:0;-webkit-mask-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiA0QzcuNTgxNzIgNCA0IDcuNTgxNzIgNCAxMkM0IDE2LjQxODMgNy41ODE3MiAyMCAxMiAyMEMxNi40MTgzIDIwIDIwIDE2LjQxODMgMjAgMTJDMjAgNy41ODE3MiAxNi40MTgzIDQgMTIgNFpNMiAxMkMyIDYuNDc3MTUgNi40NzcxNSAyIDEyIDJDMTcuNTIyOCAyIDIyIDYuNDc3MTUgMjIgMTJDMjIgMTcuNTIyOCAxNy41MjI4IDIyIDEyIDIyQzYuNDc3MTUgMjIgMiAxNy41MjI4IDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjI5MjkgOC4yOTI4OUMxMC42ODM0IDcuOTAyMzcgMTEuMzE2NiA3LjkwMjM3IDExLjcwNzEgOC4yOTI4OUwxNC43MDcxIDExLjI5MjlDMTUuMDk3NiAxMS42ODM0IDE1LjA5NzYgMTIuMzE2NiAxNC43MDcxIDEyLjcwNzFMMTEuNzA3MSAxNS43MDcxQzExLjMxNjYgMTYuMDk3NiAxMC42ODM0IDE2LjA5NzYgMTAuMjkyOSAxNS43MDcxQzkuOTAyMzcgMTUuMzE2NiA5LjkwMjM3IDE0LjY4MzQgMTAuMjkyOSAxNC4yOTI5TDEyLjU4NTggMTJMMTAuMjkyOSA5LjcwNzExQzkuOTAyMzcgOS4zMTY1OCA5LjkwMjM3IDguNjgzNDIgMTAuMjkyOSA4LjI5Mjg5WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==);mask-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiA0QzcuNTgxNzIgNCA0IDcuNTgxNzIgNCAxMkM0IDE2LjQxODMgNy41ODE3MiAyMCAxMiAyMEMxNi40MTgzIDIwIDIwIDE2LjQxODMgMjAgMTJDMjAgNy41ODE3MiAxNi40MTgzIDQgMTIgNFpNMiAxMkMyIDYuNDc3MTUgNi40NzcxNSAyIDEyIDJDMTcuNTIyOCAyIDIyIDYuNDc3MTUgMjIgMTJDMjIgMTcuNTIyOCAxNy41MjI4IDIyIDEyIDIyQzYuNDc3MTUgMjIgMiAxNy41MjI4IDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjI5MjkgOC4yOTI4OUMxMC42ODM0IDcuOTAyMzcgMTEuMzE2NiA3LjkwMjM3IDExLjcwNzEgOC4yOTI4OUwxNC43MDcxIDExLjI5MjlDMTUuMDk3NiAxMS42ODM0IDE1LjA5NzYgMTIuMzE2NiAxNC43MDcxIDEyLjcwNzFMMTEuNzA3MSAxNS43MDcxQzExLjMxNjYgMTYuMDk3NiAxMC42ODM0IDE2LjA5NzYgMTAuMjkyOSAxNS43MDcxQzkuOTAyMzcgMTUuMzE2NiA5LjkwMjM3IDE0LjY4MzQgMTAuMjkyOSAxNC4yOTI5TDEyLjU4NTggMTJMMTAuMjkyOSA5LjcwNzExQzkuOTAyMzcgOS4zMTY1OCA5LjkwMjM3IDguNjgzNDIgMTAuMjkyOSA4LjI5Mjg5WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==);-webkit-mask-size:contain;mask-size:contain;position:absolute;text-indent:9999px;vertical-align:middle;width:1.5rem}.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-next a:hover::before,.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-next a:focus::before{background-color:var(--wp--preset--color--primary-500)}
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/scss/blocks/core/calendar.scss ***!
+  \******************************************************************************************************************************************************************************************************/
+/* -- calendar -- */
+.wp-block-calendar {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+}
+.wp-block-calendar .wp-calendar-table {
+  border: none;
+}
+.wp-block-calendar .wp-calendar-table th,
+.wp-block-calendar .wp-calendar-table tr,
+.wp-block-calendar .wp-calendar-table td {
+  border: none;
+}
+.wp-block-calendar .wp-calendar-table caption {
+  font-size: var(--wp--preset--font-size--s);
+  font-weight: 700;
+  margin-bottom: 1.125rem;
+}
+.wp-block-calendar .wp-calendar-table thead th {
+  font-size: var(--wp--preset--font-size--xxs);
+  font-weight: 700;
+  padding: 1rem 0.75rem;
+  text-transform: uppercase;
+}
+.wp-block-calendar .wp-calendar-table tr td {
+  padding: 1rem 0.75rem;
+}
+.wp-block-calendar .wp-calendar-table tr td:has(a) {
+  padding: 0;
+}
+.wp-block-calendar .wp-calendar-table tr td a {
+  background-color: var(--wp--preset--color--primary-500);
+  border-radius: 8px;
+  color: var(--wp--preset--color--white);
+  display: inline-block;
+  padding: 1rem 0.75rem;
+}
+.wp-block-calendar .wp-calendar-table tr td a:hover, .wp-block-calendar .wp-calendar-table tr td a:focus, .wp-block-calendar .wp-calendar-table tr td a.current {
+  background-color: var(--wp--preset--color--primary-50);
+  color: var(--wp--preset--color--primary-500);
+}
+.wp-block-calendar .wp-calendar-nav {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 0.375rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-prev a {
+  display: block;
+  height: 1.5rem;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 1.5rem;
+}
+.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-prev a::before {
+  background-color: var(--wp--preset--color--black);
+  content: "";
+  display: inline-block;
+  height: 1.5rem;
+  -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiA0QzcuNTgxNzIgNCA0IDcuNTgxNzIgNCAxMkM0IDE2LjQxODMgNy41ODE3MiAyMCAxMiAyMEMxNi40MTgzIDIwIDIwIDE2LjQxODMgMjAgMTJDMjAgNy41ODE3MiAxNi40MTgzIDQgMTIgNFpNMiAxMkMyIDYuNDc3MTUgNi40NzcxNSAyIDEyIDJDMTcuNTIyOCAyIDIyIDYuNDc3MTUgMjIgMTJDMjIgMTcuNTIyOCAxNy41MjI4IDIyIDEyIDIyQzYuNDc3MTUgMjIgMiAxNy41MjI4IDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjI5MjkgOC4yOTI4OUMxMC42ODM0IDcuOTAyMzcgMTEuMzE2NiA3LjkwMjM3IDExLjcwNzEgOC4yOTI4OUwxNC43MDcxIDExLjI5MjlDMTUuMDk3NiAxMS42ODM0IDE1LjA5NzYgMTIuMzE2NiAxNC43MDcxIDEyLjcwNzFMMTEuNzA3MSAxNS43MDcxQzExLjMxNjYgMTYuMDk3NiAxMC42ODM0IDE2LjA5NzYgMTAuMjkyOSAxNS43MDcxQzkuOTAyMzcgMTUuMzE2NiA5LjkwMjM3IDE0LjY4MzQgMTAuMjkyOSAxNC4yOTI5TDEyLjU4NTggMTJMMTAuMjkyOSA5LjcwNzExQzkuOTAyMzcgOS4zMTY1OCA5LjkwMjM3IDguNjgzNDIgMTAuMjkyOSA4LjI5Mjg5WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==);
+          mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiA0QzcuNTgxNzIgNCA0IDcuNTgxNzIgNCAxMkM0IDE2LjQxODMgNy41ODE3MiAyMCAxMiAyMEMxNi40MTgzIDIwIDIwIDE2LjQxODMgMjAgMTJDMjAgNy41ODE3MiAxNi40MTgzIDQgMTIgNFpNMiAxMkMyIDYuNDc3MTUgNi40NzcxNSAyIDEyIDJDMTcuNTIyOCAyIDIyIDYuNDc3MTUgMjIgMTJDMjIgMTcuNTIyOCAxNy41MjI4IDIyIDEyIDIyQzYuNDc3MTUgMjIgMiAxNy41MjI4IDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjI5MjkgOC4yOTI4OUMxMC42ODM0IDcuOTAyMzcgMTEuMzE2NiA3LjkwMjM3IDExLjcwNzEgOC4yOTI4OUwxNC43MDcxIDExLjI5MjlDMTUuMDk3NiAxMS42ODM0IDE1LjA5NzYgMTIuMzE2NiAxNC43MDcxIDEyLjcwNzFMMTEuNzA3MSAxNS43MDcxQzExLjMxNjYgMTYuMDk3NiAxMC42ODM0IDE2LjA5NzYgMTAuMjkyOSAxNS43MDcxQzkuOTAyMzcgMTUuMzE2NiA5LjkwMjM3IDE0LjY4MzQgMTAuMjkyOSAxNC4yOTI5TDEyLjU4NTggMTJMMTAuMjkyOSA5LjcwNzExQzkuOTAyMzcgOS4zMTY1OCA5LjkwMjM3IDguNjgzNDIgMTAuMjkyOSA4LjI5Mjg5WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==);
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  position: absolute;
+  left: 0;
+  text-indent: 9999px;
+  transform: rotate(180deg);
+  vertical-align: middle;
+  width: 1.5rem;
+}
+.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-prev a:hover::before, .wp-block-calendar .wp-calendar-nav .wp-calendar-nav-prev a:focus::before {
+  background-color: var(--wp--preset--color--primary-500);
+}
+.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-next a {
+  display: block;
+  height: 1.5rem;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 1.5rem;
+}
+.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-next a::before {
+  background-color: var(--wp--preset--color--black);
+  content: "";
+  display: inline-block;
+  height: 1.5rem;
+  right: 0;
+  -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiA0QzcuNTgxNzIgNCA0IDcuNTgxNzIgNCAxMkM0IDE2LjQxODMgNy41ODE3MiAyMCAxMiAyMEMxNi40MTgzIDIwIDIwIDE2LjQxODMgMjAgMTJDMjAgNy41ODE3MiAxNi40MTgzIDQgMTIgNFpNMiAxMkMyIDYuNDc3MTUgNi40NzcxNSAyIDEyIDJDMTcuNTIyOCAyIDIyIDYuNDc3MTUgMjIgMTJDMjIgMTcuNTIyOCAxNy41MjI4IDIyIDEyIDIyQzYuNDc3MTUgMjIgMiAxNy41MjI4IDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjI5MjkgOC4yOTI4OUMxMC42ODM0IDcuOTAyMzcgMTEuMzE2NiA3LjkwMjM3IDExLjcwNzEgOC4yOTI4OUwxNC43MDcxIDExLjI5MjlDMTUuMDk3NiAxMS42ODM0IDE1LjA5NzYgMTIuMzE2NiAxNC43MDcxIDEyLjcwNzFMMTEuNzA3MSAxNS43MDcxQzExLjMxNjYgMTYuMDk3NiAxMC42ODM0IDE2LjA5NzYgMTAuMjkyOSAxNS43MDcxQzkuOTAyMzcgMTUuMzE2NiA5LjkwMjM3IDE0LjY4MzQgMTAuMjkyOSAxNC4yOTI5TDEyLjU4NTggMTJMMTAuMjkyOSA5LjcwNzExQzkuOTAyMzcgOS4zMTY1OCA5LjkwMjM3IDguNjgzNDIgMTAuMjkyOSA4LjI5Mjg5WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==);
+          mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiA0QzcuNTgxNzIgNCA0IDcuNTgxNzIgNCAxMkM0IDE2LjQxODMgNy41ODE3MiAyMCAxMiAyMEMxNi40MTgzIDIwIDIwIDE2LjQxODMgMjAgMTJDMjAgNy41ODE3MiAxNi40MTgzIDQgMTIgNFpNMiAxMkMyIDYuNDc3MTUgNi40NzcxNSAyIDEyIDJDMTcuNTIyOCAyIDIyIDYuNDc3MTUgMjIgMTJDMjIgMTcuNTIyOCAxNy41MjI4IDIyIDEyIDIyQzYuNDc3MTUgMjIgMiAxNy41MjI4IDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjI5MjkgOC4yOTI4OUMxMC42ODM0IDcuOTAyMzcgMTEuMzE2NiA3LjkwMjM3IDExLjcwNzEgOC4yOTI4OUwxNC43MDcxIDExLjI5MjlDMTUuMDk3NiAxMS42ODM0IDE1LjA5NzYgMTIuMzE2NiAxNC43MDcxIDEyLjcwNzFMMTEuNzA3MSAxNS43MDcxQzExLjMxNjYgMTYuMDk3NiAxMC42ODM0IDE2LjA5NzYgMTAuMjkyOSAxNS43MDcxQzkuOTAyMzcgMTUuMzE2NiA5LjkwMjM3IDE0LjY4MzQgMTAuMjkyOSAxNC4yOTI5TDEyLjU4NTggMTJMMTAuMjkyOSA5LjcwNzExQzkuOTAyMzcgOS4zMTY1OCA5LjkwMjM3IDguNjgzNDIgMTAuMjkyOSA4LjI5Mjg5WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==);
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  position: absolute;
+  text-indent: 9999px;
+  vertical-align: middle;
+  width: 1.5rem;
+}
+.wp-block-calendar .wp-calendar-nav .wp-calendar-nav-next a:hover::before, .wp-block-calendar .wp-calendar-nav .wp-calendar-nav-next a:focus::before {
+  background-color: var(--wp--preset--color--primary-500);
+}
+
+/*# sourceMappingURL=calendar.css.map*/

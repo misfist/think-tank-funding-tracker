@@ -4,7 +4,7 @@ const { promisify } = require('util');
 const https = require('https');
 
 const execAsync = promisify(exec);
-const defaultPath = 'https://ttt.local'; // Update this to your theme folder path
+const defaultPath = 'https://think-tank-transparency.test'; // Update this to your theme folder path
 
 // Create an HTTPS agent that ignores SSL certificate errors
 const httpsAgent = new https.Agent({
@@ -25,7 +25,7 @@ async function run() {
 			type: 'input',
 			name: 'url',
 			message:
-				'Please enter the URL to test for accessibility (leave blank to use your local: https://ttt.local):',
+				'Please enter the URL to test for accessibility (leave blank to use your local: https://think-tank-transparency.testl):',
 			validate(value) {
 				if (!value) {
 					return true; // Allow empty input

@@ -3,7 +3,7 @@
  * Register custom block styles.
  * Learn More: https://developer.wordpress.org/reference/functions/register_block_style/
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

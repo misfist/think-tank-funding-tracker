@@ -2,7 +2,7 @@
 /**
  * Register custom block category(ies).
  *
- * @package ttt
+ * @package ttft
  */
 
 namespace Quincy\ttft;

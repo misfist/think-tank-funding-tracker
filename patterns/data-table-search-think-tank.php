@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Table - Think Tank Search
- * Slug: ttt/data-table-search-think-tank
+ * Slug: ttft/data-table-search-think-tank
  * Categories: transparency
  * Inserter: false
  *
@@ -25,6 +25,13 @@ $app_namespace = get_app_id();
 	data-wp-class--active="state.thinkTankSelected"
 	data-wp-bind--hidden="state.!thinkTankSelected"
 >
-	<!-- wp:data-tables/data-table { "tableType":"think-tank-archive" } /-->
+
 </div>
+
+I am a table.
 <!-- /wp:group -->
+	<!-- wp:data-tables/data-table {
+	"tableType":"think-tank-archive",
+	"donationYear":"all",
+	"donorType":"all"
+} /-->

@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Block - Transparency Score
- * Slug: ttt/transparency-score
+ * Slug: ttft/transparency-score
  * Categories: transparency
  * Inserter: false
  */

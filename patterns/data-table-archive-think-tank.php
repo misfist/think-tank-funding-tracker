@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Table - Think Tank Archive
- * Slug: ttt/data-table-archive-think-tank
+ * Slug: ttft/data-table-archive-think-tank
  * Categories: transparency
  * Inserter: false
  *

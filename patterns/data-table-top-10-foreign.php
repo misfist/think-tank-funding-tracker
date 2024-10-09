@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Table - Top 10 Foreign
- * Slug: ttt/data-table-top-10-foreign
+ * Slug: ttft/data-table-top-10-foreign
  * Inserter: no
  *
  * %VAR1% = think_tank

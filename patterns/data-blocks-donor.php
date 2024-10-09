@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Data Blocks - Donor
- * Slug: ttt/data-blocks-donor
+ * Slug: ttft/data-blocks-donor
  * Categories: transparency
  * Inserter: false
  */
