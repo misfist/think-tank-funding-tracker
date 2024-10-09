@@ -82,10 +82,8 @@
 				margin-bottom: 1px !important;
 			}
 		
-			.wp-block-heading,
-			p.wpdt-c {
+			.wp-block-heading {
 				font-size: var( --wp--preset--font-size--medium-2 );
-				font-family: var( --wp--preset--font-size--heading );
 				padding: var( --wp--preset--spacing--20 );
 				background-color: var( --wp--preset--color--contrast-5 );
 				color: var( --wp--preset--color--white );
