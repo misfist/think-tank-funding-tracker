@@ -108,7 +108,7 @@
 					"slug": "accent-4"
 				},
 				{
-					"color": "#cbecd9",
+					"color": "var( --wp--custom--color--score-4 )",
 					"name": "Accent / Five",
 					"slug": "accent-5"
 				},
