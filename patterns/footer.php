@@ -38,4 +38,3 @@
 	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
-<!-- wp:ttft/back-to-top /-->
