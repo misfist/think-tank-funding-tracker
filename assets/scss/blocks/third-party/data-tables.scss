@@ -487,6 +487,7 @@ body:not( .home ) {
                     }
 
                     td {
+                        &.column-source,
                         .source-link {
                             display: block;
                             position: absolute;
