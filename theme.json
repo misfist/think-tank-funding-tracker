@@ -1083,7 +1083,7 @@
 				},
 				"border": {
 					"color": "var(--wp--preset--color--contrast)",
-					"radius": ".33rem"
+					"radius": "0"
 				},
 				"color": {
 					"background": "var(--wp--preset--color--contrast-2)",
