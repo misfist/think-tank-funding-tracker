@@ -25,6 +25,7 @@
     .data-box {
         background-color: var( --wp--preset--color--gray-100 );
         border: 1px solid var( --wp--preset--color--gray-200 );
+        padding: var( --wp--preset--spacing--20 );
 
         &.no-funding {
             background-color: var( --wp--preset--color--accent-5 );
@@ -57,7 +58,7 @@
     }
 
     h4 {
-        font-size: var( --wp--preset--font-size--medium );
+        font-size: var( --wp--preset--font-size--medium-3 );
         margin-top: 0;
         margin-bottom: 0;
 
