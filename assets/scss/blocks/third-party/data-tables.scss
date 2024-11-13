@@ -19,7 +19,6 @@ body.js-enabled {
 .dataTable {
     width: 100%;
     table-layout: fixed;
-    // table-layout: auto !important;
     border-collapse: separate !important;
     border-spacing: 0;
     font-family: var( --wp--preset--font-family--body );
@@ -223,12 +222,22 @@ body.js-enabled {
         }
     }
 
+    .star-group {
+        width: min-content;
+        margin-right: 0;
+        margin-left: auto;
+    }
+
     .column-transparency-score {
-        min-width: 140px;
+        // min-width: 140px;
         width: fit-content;
 
+        .star {
+            font-size: var(--wp--preset--font-size--medium-3);
+        }
+
         .stars-0 {
-            color: var( --wp--preset--color--contrast-3 );
+            color: var( --wp--custom--color--score-0 );
         }
         .stars-1 {
             color: var( --wp--custom--color--score-1 );
@@ -243,7 +252,7 @@ body.js-enabled {
             color: var( --wp--custom--color--score-4 );
         }
         .stars-5 {
-            color: var( --wp--preset--color--contrast-2 );
+            color: var( --wp--custom--color--score-5 );
         }
     }
 
@@ -695,7 +704,6 @@ body:not( .home ) {
     font-size: var( --wp--preset--font-size--x-small );
     color: var( --wp--preset--color--gray-500 );
 }
-
 
 .icon {
     font-family: var( --wp--preset--font-family--icon );

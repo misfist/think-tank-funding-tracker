@@ -49,8 +49,8 @@ $funding_sources = array(
 	<?php
 	if ( $is_limited ) :
 		?>
-		<!-- wp:group {"metadata":{"name":"No Data"},"className":"data-box no-data","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"default"}} -->
-		<div class="wp-block-group has-background data-box no-data" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"metadata":{"name":"No Data"},"className":"data-box no-data","layout":{"type":"default"}} -->
+		<div class="wp-block-group has-background data-box no-data">
 
 		<!-- wp:heading {"level":4} -->
 			<h4><?php echo $settings['think_tank_all_no_data'] ?? esc_html__( 'No donation data available for this think tank.', 'ttft' ); ?></h4>
@@ -62,8 +62,8 @@ $funding_sources = array(
 		<?php
 	elseif ( $is_transparent ) :
 		?>
-		<!-- wp:group {"metadata":{"name":"Transparent"},"className":"data-box is-transparent","spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"default"}} -->
-		<div class="wp-block-group has-background data-box is-transparent" style="border-width:1px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"metadata":{"name":"Transparent"},"className":"data-box is-transparent","layout":{"type":"default"}} -->
+		<div class="wp-block-group has-background data-box is-transparent">
 
 		<!-- wp:heading {"level":4} -->
 		<h4><?php echo esc_html( '{Transparent}' ); ?> </h4>
@@ -77,9 +77,8 @@ $funding_sources = array(
 			$no_funding_class = $source['no_funding'] ? 'no-funding' : 'is-funded';
 			?>
 
-			<!-- wp:group {"metadata":{"name":"Data Box"},"className":"no-data data-box <?php echo esc_attr( $no_funding_class ); ?>","spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"default"}} -->
-			<div class="wp-block-group has-background data-box <?php echo esc_attr( $no_funding_class ); ?>"
-				style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+			<!-- wp:group {"metadata":{"name":"Data Box"},"className":"no-data data-box <?php echo esc_attr( $no_funding_class ); ?>","layout":{"type":"default"}} -->
+			<div class="wp-block-group has-background data-box <?php echo esc_attr( $no_funding_class ); ?>">
 
 				<?php if ( $source['no_funding'] ) : ?>
 					<!-- wp:paragraph  -->
