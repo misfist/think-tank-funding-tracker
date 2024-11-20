@@ -207,7 +207,7 @@ body.js-enabled {
                 @extend %dollar-value;
             }
 
-            &:has( .not-accepted, .not-disclosed ) {
+            &:has( .not-accepted, .not-disclosed, .no-data ) {
                 &::before {
                     content: none;
                 }
@@ -257,7 +257,8 @@ body.js-enabled {
     }
 
     .not-accepted,
-    .not-disclosed {
+    .not-disclosed,
+    .no-data {
         font-size: var( --wp--preset--font-size--x-small );
         display: inline-flex;
         width: fit-content;
@@ -266,11 +267,20 @@ body.js-enabled {
     }
 
     .not-accepted {
-        background-color: var( --wp--preset--color--contrast-2 );
+        background-color: var( --wp--custom--color--score-5 );
         color: var( --wp--preset--color--white );
 
         &::before {
-            content: 'Not Accepted';
+            content: attr( data-label );
+        }
+    }
+
+    .no-data {
+        background-color: var( --wp--custom--color--score-0 );
+        color: var( --wp--preset--color--white );
+
+        &::before {
+            content: attr( data-label );
         }
     }
 
@@ -278,7 +288,7 @@ body.js-enabled {
         background-color: var( --wp--custom--color--yellow-light );
 
         &::before {
-            content: 'Not Disclosed';
+            content: attr( data-label );
         }
     }
 
@@ -437,10 +447,6 @@ body.js-enabled {
                     width: 20%;
                 }
             }
-
-            // .column-donor-type {
-            //     width: 150px;
-            // }
         }
     }
 }
@@ -505,11 +511,6 @@ body:not( .home ) {
             }
 
             td {
-                // text-align: left !important;
-                // width: 100%;
-                // max-width: 100%;
-                // padding-right: var( --wp--preset--spacing--30 );
-
                 &.column-donor-type {
                     @include screen-reader-text;
                 }
