@@ -264,6 +264,10 @@ body.js-enabled {
         width: fit-content;
         padding: 1px 3px;
         margin-left: auto;
+
+        span {
+            @include screen-reader-text();
+        }
     }
 
     .not-accepted {
@@ -392,6 +396,23 @@ body.js-enabled {
 
         th,
         td {
+            &.column-min-amount,
+            &.column-total-amount,
+            &.column-min-donations,
+            &.column-pentagon-contractors,
+            &.column-defense-contractors,
+            &.column-us-government,
+            &.column-foreign-interests,
+            &.column-foreign-government,
+            &.dt-type-numeric {
+                text-align: right;
+            }
+
+            &.column-source {
+                text-align: center;
+                max-width: var( --wp--preset--spacing--30 );
+            }
+
             &:last-child {
                 text-align: right;
             }
@@ -401,7 +422,7 @@ body.js-enabled {
             padding: var( --wp--preset--spacing--10 );
 
             &:has( .dt-column-order ) {
-                text-align: left;
+                // text-align: left;
 
                 .dt-column-title {}
                 .dt-column-order {}
@@ -420,17 +441,17 @@ body.js-enabled {
         td {
             padding: var( --wp--preset--spacing--20 );
 
-            &.column-min-amount,
-            &.column-total-amount,
-            &.column-min-donations,
-            &.column-pentagon-contractors,
-            &.column-defense-contractors,
-            &.column-us-government,
-            &.column-foreign-interests,
-            &.column-foreign-government,
-            &.dt-type-numeric {
-                text-align: right;
-            }
+            // &.column-min-amount,
+            // &.column-total-amount,
+            // &.column-min-donations,
+            // &.column-pentagon-contractors,
+            // &.column-defense-contractors,
+            // &.column-us-government,
+            // &.column-foreign-interests,
+            // &.column-foreign-government,
+            // &.dt-type-numeric {
+            //     text-align: right;
+            // }
 
             &.column-year {}
         }
