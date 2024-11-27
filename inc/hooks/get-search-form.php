@@ -46,7 +46,7 @@ function custom_search_form( $args ): string {
 			<input id="search-term" class="wp-block-search__input"
 				placeholder="<?php esc_attr_e( 'Search by Think Tank or Donor', 'ttft' ); ?>"
 				value="<?php echo get_search_query(); ?>" type="search" name="s">
-				<input id="search-entity-type" value="<?php echo $entity_type; ?>" type="search" name="entity_type" hidden>
+			
 				<button aria-label="Search"
 					class="wp-block-search__button has-text-color has-contrast-color has-icon wp-element-button search-submit"
 					type="submit">
