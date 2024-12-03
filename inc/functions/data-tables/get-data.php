@@ -147,82 +147,93 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
-	$transient_key = 'single_think_tank_' . md5( $think_tank . $donation_year . $donor_type );
+	if( class_exists( '\Ttft\Data_Tables\Data' ) ) {
 
-	$data = get_transient( $transient_key );
-	if ( false !== $data ) {
+		$data = new \Ttft\Data_Tables\Data();
+		$raw_data = $data->get_single_think_tank_raw_data( $think_tank, $donation_year, $donor_type );
+
+		return $raw_data;
+
+	} else {
+
+		$transient_key = 'single_think_tank_' . md5( $think_tank . $donation_year . $donor_type );
+
+		$data = get_transient( $transient_key );
+		if ( false !== $data ) {
+			return $data;
+		}
+	
+		$args = array(
+			'post_type'      => 'transaction',
+			'posts_per_page' => -1,
+			'fields'         => 'ids',
+			'tax_query'      => array(
+				'relation' => 'AND',
+			),
+		);
+	
+		if ( $think_tank ) {
+			$args['tax_query'][] = array(
+				'taxonomy' => 'think_tank',
+				'field'    => 'slug',
+				'terms'    => $think_tank,
+			);
+		}
+	
+		if ( $donation_year ) {
+			$args['tax_query'][] = array(
+				'taxonomy' => 'donation_year',
+				'field'    => 'slug',
+				'terms'    => $donation_year,
+			);
+		}
+	
+		if ( $donor_type ) {
+			$args['tax_query'][] = array(
+				'taxonomy' => 'donor_type',
+				'field'    => 'slug',
+				'terms'    => $donor_type,
+			);
+		}
+	
+		$query = new \WP_Query( $args );
+		$data  = array();
+	
+		if ( $query->have_posts() ) {
+			foreach ( $query->posts as $post_id ) {
+				$donors = wp_get_object_terms( $post_id, 'donor', array( 'orderby' => 'parent' ) );
+				if ( empty( $donors ) || is_wp_error( $donors ) ) {
+					continue;
+				}
+	
+				$donor_names = wp_list_pluck( $donors, 'name' );
+				$donor_slugs = wp_list_pluck( $donors, 'slug' );
+				$donor_name  = implode( ' > ', $donor_names );
+				$donor_slug  = implode( '-', $donor_slugs );
+	
+				$amount_calc = (int) get_post_meta( $post_id, 'amount_calc', true );
+				if ( empty( $amount_calc ) ) {
+					$amount_calc = 0;
+				}
+	
+				$data[] = array(
+					'donor'       => $donor_name,
+					'amount_calc' => $amount_calc,
+					'donor_type'  => get_the_term_list( $post_id, 'donor_type' ),
+					'donor_link'  => get_term_link( $donor_slugs[0], 'donor' ),
+					'donor_slug'  => $donor_slug,
+					'source'      => get_post_meta( $post_id, 'source', true ),
+				);
+			}
+		}
+	
+		// wp_reset_postdata();
+	
+		set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
+	
 		return $data;
 	}
 
-	$args = array(
-		'post_type'      => 'transaction',
-		'posts_per_page' => -1,
-		'fields'         => 'ids',
-		'tax_query'      => array(
-			'relation' => 'AND',
-		),
-	);
-
-	if ( $think_tank ) {
-		$args['tax_query'][] = array(
-			'taxonomy' => 'think_tank',
-			'field'    => 'slug',
-			'terms'    => $think_tank,
-		);
-	}
-
-	if ( $donation_year ) {
-		$args['tax_query'][] = array(
-			'taxonomy' => 'donation_year',
-			'field'    => 'slug',
-			'terms'    => $donation_year,
-		);
-	}
-
-	if ( $donor_type ) {
-		$args['tax_query'][] = array(
-			'taxonomy' => 'donor_type',
-			'field'    => 'slug',
-			'terms'    => $donor_type,
-		);
-	}
-
-	$query = new \WP_Query( $args );
-	$data  = array();
-
-	if ( $query->have_posts() ) {
-		foreach ( $query->posts as $post_id ) {
-			$donors = wp_get_object_terms( $post_id, 'donor', array( 'orderby' => 'parent' ) );
-			if ( empty( $donors ) || is_wp_error( $donors ) ) {
-				continue;
-			}
-
-			$donor_names = wp_list_pluck( $donors, 'name' );
-			$donor_slugs = wp_list_pluck( $donors, 'slug' );
-			$donor_name  = implode( ' > ', $donor_names );
-			$donor_slug  = implode( '-', $donor_slugs );
-
-			$amount_calc = (int) get_post_meta( $post_id, 'amount_calc', true );
-			if ( empty( $amount_calc ) ) {
-				$amount_calc = 0;
-			}
-
-			$data[] = array(
-				'donor'       => $donor_name,
-				'amount_calc' => $amount_calc,
-				'donor_type'  => get_the_term_list( $post_id, 'donor_type' ),
-				'donor_link'  => get_term_link( $donor_slugs[0], 'donor' ),
-				'donor_slug'  => $donor_slug,
-				'source'      => get_post_meta( $post_id, 'source', true ),
-			);
-		}
-	}
-
-	// wp_reset_postdata();
-
-	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
-
-	return $data;
 }
 
 /**
@@ -237,93 +248,112 @@ function get_single_donor_raw_data( $donor = '', $donation_year = '', $donor_typ
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
-	$transient_key = 'single_donor_' . md5( $donor . $donation_year . $donor_type );
+	if( class_exists( '\Ttft\Data_Tables\Data' ) ) {
 
-	$args = array(
-		'post_type'      => 'transaction',
-		'posts_per_page' => -1,
-		'post_status'    => 'publish',
-		'fields'         => 'ids',
-	);
+		$data = new \Ttft\Data_Tables\Data();
+		$raw_data = $data->get_single_donor_raw_data( $donor, $donation_year, $donor_type );
 
-	$tax_query = array( 'relation' => 'AND' );
+		return $raw_data;
 
-	if ( ! empty( $donor ) ) {
-		$tax_query[] = array(
-			'taxonomy' => 'donor',
-			'field'    => 'slug',
-			'terms'    => $donor,
+	} else {
+
+		$transient_key = 'single_donor_' . md5( $donor . $donor_type . $donation_year );
+		$data          = get_transient( $transient_key );
+		if ( false !== $data || ! empty( $data ) ) {
+			return $data;
+		}
+
+		$args = array(
+			'post_type'      => 'transaction',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'fields'         => 'ids',
 		);
-	}
 
-	if ( ! empty( $donation_year ) ) {
-		$tax_query[] = array(
-			'taxonomy' => 'donation_year',
-			'field'    => 'slug',
-			'terms'    => $donation_year,
-		);
-	}
+		$tax_query = array( 'relation' => 'AND' );
 
-	if ( ! empty( $donor_type ) ) {
-		$tax_query[] = array(
-			'taxonomy' => 'donor_type',
-			'field'    => 'slug',
-			'terms'    => $donor_type,
-		);
-	}
-
-	if ( ! empty( $tax_query ) ) {
-		$args['tax_query'] = $tax_query;
-	}
-
-	$query = new \WP_Query( $args );
-
-	$data = array();
-
-	if ( $query->have_posts() ) {
-		while ( $query->have_posts() ) {
-			$query->the_post();
-			$post_id     = get_the_ID();
-			$think_tanks = get_the_terms( $post_id, 'think_tank' );
-
-			if ( ! $think_tanks ) {
-				continue;
-			}
-
-			$think_tank      = $think_tanks[0];
-			$think_tank_slug = $think_tank->slug;
-			$source          = get_post_meta( $post_id, 'source', true );
-
-			$amount_calc = get_post_meta( $post_id, 'amount_calc', true );
-			if ( empty( $amount_calc ) ) {
-				$amount_calc = 0;
-			}
-
-			$donor_type = get_the_term_list( $post_id, 'donor_type', '', ', ', '' );
-
-			$donors = wp_get_object_terms( $post_id, 'donor', array( 'orderby' => 'parent' ) );
-			if ( empty( $donors ) || is_wp_error( $donors ) ) {
-				continue;
-			}
-
-			$donor_names = wp_list_pluck( $donors, 'name' );
-			$donor       = end( $donor_names );
-
-			$data[] = array(
-				'think_tank'      => $think_tank->name,
-				'donor'           => $donor,
-				'amount_calc'     => (int) $amount_calc,
-				'donor_type'      => $donor_type,
-				'source'          => $source,
-				'think_tank_slug' => $think_tank_slug,
+		if ( ! empty( $donor ) ) {
+			$tax_query[] = array(
+				'taxonomy' => 'donor',
+				'field'    => 'slug',
+				'terms'    => $donor,
 			);
 		}
-		// wp_reset_postdata();
+
+		if ( ! empty( $donation_year ) ) {
+			$tax_query[] = array(
+				'taxonomy' => 'donation_year',
+				'field'    => 'slug',
+				'terms'    => $donation_year,
+			);
+		}
+
+		if ( ! empty( $donor_type ) ) {
+			$tax_query[] = array(
+				'taxonomy' => 'donor_type',
+				'field'    => 'slug',
+				'terms'    => $donor_type,
+			);
+		}
+
+		if ( ! empty( $tax_query ) ) {
+			$args['tax_query'] = $tax_query;
+		}
+
+		$query = new \WP_Query( $args );
+
+		$data = array();
+
+		if ( $query->have_posts() ) {
+			foreach ( $query->posts as $post_id ) {
+				$query->the_post();
+				$post_id     = get_the_ID();
+				$think_tanks = get_the_terms( $post_id, 'think_tank' );
+
+				if ( ! $think_tanks ) {
+					continue;
+				}
+
+				$think_tank      = $think_tanks[0];
+				$think_tank_slug = $think_tank->slug;
+				$source          = get_post_meta( $post_id, 'source', true );
+				$disclosed       = strtolower( get_post_meta( $post_id, 'disclosed', true ) );
+
+				$amount_calc = get_post_meta( $post_id, 'amount_calc', true );
+				if ( empty( $amount_calc ) ) {
+					$amount_calc = 0;
+				}
+
+				$donor_type = get_the_term_list( $post_id, 'donor_type', '', ', ', '' );
+
+				$donors = wp_get_object_terms( $post_id, 'donor', array( 'orderby' => 'parent' ) );
+
+				if ( empty( $donors ) || is_wp_error( $donors ) ) {
+					continue;
+				}
+
+				$donor_names = wp_list_pluck( $donors, 'name' );
+				$donor       = end( $donor_names );
+
+				$data[] = array(
+					'think_tank'      => $think_tank->name,
+					'donor'           => $donor,
+					'amount_calc'     => (int) $amount_calc,
+					'donor_type'      => $donor_type,
+					'source'          => $source,
+					'disclosed'       => $disclosed,
+					'think_tank_slug' => $think_tank_slug,
+					'transaction_id'  => $post_id,
+				);
+			}
+			wp_reset_postdata();
+		}
+
+		set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
+
+		return $data;
 	}
 
-	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
-
-	return $data;
 }
 
 /**
@@ -648,30 +678,40 @@ function get_single_think_tank_total( $think_tank, $donation_year = '', $donor_t
 	$think_tank    = sanitize_text_field( $think_tank );
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
+	
+	if( class_exists( '\Ttft\Data_Tables\Data' ) ) {
 
-	$transient_key = 'single_think_tank_cumulative_' . md5( $think_tank . $donation_year . $donor_type );
+		$total = \Ttft\Data_Tables\Data::get_single_think_tank_total( $think_tank, $donation_year, $donor_type );
 
-	$total = get_transient( $transient_key );
-	if ( false !== $total ) {
 		return $total;
-	}
 
-	$data = get_single_think_tank_transaction_ids( $think_tank, $donation_year, $donor_type );
+	} else {
 
-	if ( ! empty( $data ) ) {
-		$amounts = get_meta_values_for_records( $data, 'amount_calc' );
-		if ( $amounts ) {
-			$total = array_sum( $amounts );
+		$transient_key = 'single_think_tank_cumulative_' . md5( $think_tank . $donation_year . $donor_type );
+
+		$total = get_transient( $transient_key );
+		if ( false !== $total ) {
+			return $total;
+		}
+
+		$data = get_single_think_tank_transaction_ids( $think_tank, $donation_year, $donor_type );
+
+		if ( ! empty( $data ) ) {
+			$amounts = get_meta_values_for_records( $data, 'amount_calc' );
+			if ( $amounts ) {
+				$total = array_sum( $amounts );
+			} else {
+				$total = 0;
+			}
 		} else {
 			$total = 0;
 		}
-	} else {
-		$total = 0;
+
+		set_transient( $transient_key, $total, 12 * HOUR_IN_SECONDS );
+
+		return $total;
 	}
 
-	set_transient( $transient_key, $total, 12 * HOUR_IN_SECONDS );
-
-	return $total;
 }
 
 
@@ -687,20 +727,30 @@ function get_single_donor_total( $donor, $donation_year = '', $donor_type = '' )
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
-	$transient_key = 'single_donor_cumulative_' . md5( $donor . $donation_year . $donor_type );
+	if( class_exists( '\Ttft\Data_Tables\Data' ) ) {
 
-	$data = get_single_donor_raw_data( $donor, $donation_year, $donor_type );
+		$total = \Ttft\Data_Tables\Data::get_single_donor_total( $donor, $donation_year, $donor_type );
 
-	if ( ! empty( $data ) ) {
-		$amounts = wp_list_pluck( $data, 'amount_calc' ) ;
-		$total   = array_sum( $amounts );
+		return $total;
+
 	} else {
-		$total = 0;
+
+		$transient_key = 'single_donor_cumulative_' . md5( $donor . $donation_year . $donor_type );
+
+		$data = get_single_donor_raw_data( $donor, $donation_year, $donor_type );
+	
+		if ( ! empty( $data ) ) {
+			$amounts = wp_list_pluck( $data, 'amount_calc' ) ;
+			$total   = array_sum( $amounts );
+		} else {
+			$total = 0;
+		}
+	
+		set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
+	
+		return $total;
 	}
 
-	set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
-
-	return $total;
 }
 
 /**
