@@ -13,12 +13,14 @@
  */
 use function Quincy\ttft\get_single_think_tank_total;
 use function Quincy\ttft\is_transparent;
+use function Quincy\ttft\is_not_transparent;
 
 global $post;
 $post_id         = get_the_ID();
 $think_tank      = get_post_field( 'post_name', $post_id );
 $is_limited      = ( get_post_meta( $post_id, 'limited_info', true ) ) ? true : false;
 $is_transparent  = is_transparent( $post_id );
+$non_transparent = is_not_transparent( $post_id );
 $settings        = get_option( 'site_settings' );
 $total_donations = get_single_think_tank_total( $think_tank );
 
@@ -27,20 +29,32 @@ if ( $is_limited ) :
 	<!-- wp:group {"metadata":{"name":"No Data"},"className":"no-data","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"backgroundColor":"var:custom|color|pink-light","layout":{"type":"default"}} -->
 		<div class="wp-block-group has-pink-light-background-color has-background no-data" style="background-color:var(--wp--custom--color--pink-light);padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 
-		<!-- wp:heading {"level":4} -->
-		<h4><?php echo $settings['think_tank_no_data_text'] ?? esc_html__( 'This think tank has not provided data about it\'s donations.', 'ttft' ); ?></h4>
-		<!-- /wp:heading -->
+			<!-- wp:heading {"level":4} -->
+			<h4><?php echo $settings['think_tank_no_data_text'] ?? esc_html__( 'This think tank has not provided data about it\'s donations.', 'ttft' ); ?></h4>
+			<!-- /wp:heading -->
 
-	</div>
-	<!-- /wp:group -->
+		</div>
+		<!-- /wp:group -->
 	<?php
 elseif ( $is_transparent ) :
 	?>
 		<!-- wp:group {"metadata":{"name":"Transparent"},"className":"is-transparent","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"backgroundColor":"var:preset|color|accent-5","layout":{"type":"default"}} -->
 		<div class="wp-block-group has-accent-5-background-color has-background is-transparent" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
 
+			<!-- wp:heading {"level":4} -->
+			<h4><?php echo $settings['think_tank_is_transparent_text'] ?? esc_html__( 'This think tank is transparent.', 'ttft' ); ?></h4>
+			<!-- /wp:heading -->
+
+		</div>
+		<!-- /wp:group -->
+	<?php
+elseif ( $non_transparent ) :
+	?>
+	<!-- wp:group {"metadata":{"name":"Not Accepted"},"className":"none-acccepted is-not-transparent","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"backgroundColor":"var:preset|color|accent-6","layout":{"type":"default"}} -->
+	<div class="wp-block-group has-accent-6-background-color has-background none-acccepted is-not-transparent" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)">
+
 		<!-- wp:heading {"level":4} -->
-		<h4><?php echo $settings['think_tank_is_transparent_text'] ?? esc_html__( 'This think tank is transparent.', 'ttft' ); ?></h4>
+		<h4><?php echo $settings['think_tank_none_accepted_text'] ?? esc_html__( 'Donations were not received from these donor types.', 'ttft' ); ?></h4>
 		<!-- /wp:heading -->
 
 	</div>

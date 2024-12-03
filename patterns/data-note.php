@@ -7,10 +7,11 @@
  */
 use function Quincy\ttft\is_transparent;
 use function Quincy\ttft\is_limited;
+use function Quincy\ttft\is_not_transparent;
 
 $settings  = get_option( 'site_settings' );
 $data_note = ( $settings && isset( $settings['data_note'] ) ) ? wpautop( wp_kses_post( $settings['data_note'] ) ) : '';
-if ( is_singular( 'think_tank' ) && ( is_transparent() || is_limited() ) ) {
+if ( is_singular( 'think_tank' ) && ( is_transparent() || is_limited() || is_not_transparent() ) ) {
 	return;
 }
 ?>

@@ -37,11 +37,31 @@ function get_transparency_score_from_slug( string $think_tank_slug ): int {
  * @return boolean
  */
 function is_transparent( $post_id = 0 ): bool {
+	$range = range( 4, 5 );
 	$post_id              = $post_id ? (int) $post_id : get_the_ID();
 	$no_defense_accepted  = get_post_meta( $post_id, 'no_defense_accepted', true );
 	$no_domestic_accepted = get_post_meta( $post_id, 'no_domestic_accepted', true );
 	$no_foreign_accepted  = get_post_meta( $post_id, 'no_foreign_accepted', true );
-	return $no_defense_accepted && $no_domestic_accepted && $no_foreign_accepted;
+	$transparency_score   = get_post_meta( $post_id, 'transparency_score', true );
+
+	return in_array( (int) $transparency_score, $range ) && $no_defense_accepted && $no_domestic_accepted && $no_foreign_accepted;
+}
+
+/**
+ * Check if post does not accept any defense, domestic, or foreign funding, but is not transparent
+ *
+ * @param  integer $post_id
+ * @return boolean
+ */
+function is_not_transparent( $post_id = 0 ): bool {
+	$range = range( 2, 3 );
+	$post_id              = $post_id ? (int) $post_id : get_the_ID();
+	$no_defense_accepted  = get_post_meta( $post_id, 'no_defense_accepted', true );
+	$no_domestic_accepted = get_post_meta( $post_id, 'no_domestic_accepted', true );
+	$no_foreign_accepted  = get_post_meta( $post_id, 'no_foreign_accepted', true );
+	$transparency_score   = get_post_meta( $post_id, 'transparency_score', true );
+
+	return in_array( (int) $transparency_score, $range ) && $no_defense_accepted && $no_domestic_accepted && $no_foreign_accepted;
 }
 
 /**
