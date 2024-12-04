@@ -61,15 +61,18 @@
 			padding: 0;
 
             a {
-                display: block;
+                display: flex;
+				column-gap: var( --wp--preset--spacing--10 );
                 padding: var( --wp--preset--spacing--20 );
                 background-color: var( --wp--preset--color--gray-200 );
-                color: var( --wp--preset--color--constrast );
+                color: var( --wp--preset--color--contrast );
                 text-decoration: none;
 				border: none;
                 // border: 1px solid var( --wp--preset--spacing--20 );
                 // border-radius: 5px 5px 0 0;
-                // font-weight: 700;
+				font-size: var( --wp--preset--font-size--medium-3 );
+                font-weight: 700;
+				font-family: var( --wp--preset--font-family--heading );
                 transition: background-color 0.3s, color 0.3s;
 
                 &:hover,
@@ -79,10 +82,25 @@
                 }
             }
 
+			.found-records {
+				display: inline-flex;
+				align-items: center;
+				padding: 0 5px;
+				border-radius: 4px;
+				background-color: var( --wp--custom--color--hover );
+				font-size: var( --wp--preset--font-size--small );
+				font-weight: 400;
+			}
+
 			&.active {
 				a {
 					background-color: var( --wp--preset--color--contrast-2 );
 					color: var( --wp--preset--color--white );
+				}
+
+				.found-records {
+					background-color: var( --wp--preset--color--gray-100 );
+					color: var( --wp--preset--color--contrast );
 				}
 			}
         }
