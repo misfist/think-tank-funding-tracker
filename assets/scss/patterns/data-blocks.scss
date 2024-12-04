@@ -65,22 +65,25 @@
         &.donor-type {}
     }
 
+    .star-group {
+        width: 100%;
+
+        &.stars-0,
+        &.stars-1,
+        &.stars-2,
+        &.stars-3,
+        &.stars-4,
+        &.stars-5 {
+            color: currentColor;
+        }
+    
+        .star {
+            margin: 0;
+        }
+    }
+    
     .dollar-value {
         font-size: var( --wp--preset--font-size--medium-large );
         font-weight: 700;
-    }
-}
-
-.star-group {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-
-    .star {
-        margin: 0;
-
-        &[data-filled='false'] {}
-
-        &[data-filled='true'] {}
     }
 }
