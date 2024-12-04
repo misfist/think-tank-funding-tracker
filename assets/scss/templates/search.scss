@@ -90,6 +90,12 @@
 				background-color: var( --wp--custom--color--hover );
 				font-size: var( --wp--preset--font-size--small );
 				font-weight: 400;
+
+				&.no-records {
+					&::before {
+						content: '0';
+					}
+				}
 			}
 
 			&.active {
