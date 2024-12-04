@@ -10,12 +10,16 @@
 	"attributes": {
 		"description": {
 			"type": "string"
+		},
+		"ajax": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"example": {},
 	"supports": {
 		"html": false,
-		"interactivity": false,
+		"interactivity": true,
 		"customClassName": true,
 		"color": {
 			"background": false,

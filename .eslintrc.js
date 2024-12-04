@@ -21,6 +21,7 @@ module.exports = {
 		'import/no-extraneous-dependencies': 0,
 		'no-console': 0,
 		'no-undef': 0,
+		'selector-id-pattern': 0,
 		camelcase: 1,
 	},
 };
