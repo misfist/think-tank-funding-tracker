@@ -12,7 +12,7 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { Dashicon, PanelBody, TextControl } from '@wordpress/components';
+import { Dashicon, PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -31,7 +31,7 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit( {
-	attributes: { description },
+	attributes: { description, ajax },
 	setAttributes,
 } ) {
 	return (
@@ -43,6 +43,19 @@ export default function Edit( {
 						value={ description || '' }
 						onChange={ ( value ) =>
 							setAttributes( { description: value } )
+						}
+					/>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={ __( 'Ajax Search', 'ttft' ) }
+						help={
+							ajax
+								? __( 'Use AJAX Search', 'ttft' )
+								: __( 'Use Default Search', 'ttft' )
+						}
+						checked={ ajax || false  }
+						onChange={ ( value ) =>
+							setAttributes( { ajax: value } )
 						}
 					/>
 				</PanelBody>
