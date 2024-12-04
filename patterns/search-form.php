@@ -5,4 +5,4 @@
  * Categories: Search
  */
 ?>
-<!-- wp:ttft/search-form {"description":"<?php esc_html_e( 'Examples: Lockheed Martin, Brookings Institution, US Department of Defense', 'ttft' ); ?>"} /-->
+<!-- wp:ttft/search-form {"description":"<?php esc_html_e( 'Examples: Lockheed Martin, Brookings Institution, US Department of Defense', 'ttft' ); ?>","ajax":"false"} /-->
