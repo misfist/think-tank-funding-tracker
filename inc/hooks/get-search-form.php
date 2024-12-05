@@ -80,10 +80,15 @@ function asp_show_the_post_type_title( $results ) {
 }
 // add_filter( 'asp_results', __NAMESPACE__ . '\asp_show_the_post_type_title', 10, 1 );
 
-
-function search_results_render( $results, $search_id, $args ) {
-
-	// Parse through each result item
+/**
+ * Modify search results
+ *
+ * @param  array $results
+ * @param  int   $search_id
+ * @param  array $args
+ * @return array
+ */
+function search_results_render( $results, $search_id, $args ): array {
 	foreach ( $results as $k => &$r ) {
 		if ( isset( $r->post_type ) ) {
 			$post_type_obj = get_post_type_object( $r->post_type );
