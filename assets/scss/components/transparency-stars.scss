@@ -1,0 +1,29 @@
+.star-group {
+    display: flex;
+    justify-content: space-between;
+    width: min-content;
+    margin-right: 0;
+    margin-left: auto;
+
+    &.stars-0,
+    &.stars-1 {
+        color: var( --wp--custom--color--score-1 );
+    }
+    &.stars-2,
+    &.stars-3 {
+        color: var( --wp--custom--color--score-3 );
+    }
+    &.stars-4,
+    &.stars-5 {
+        color: var( --wp--custom--color--score-5 );
+    }
+
+    .star {
+        font-size: var(--wp--preset--font-size--medium-3);
+        
+        &[data-filled='false'] {}
+    
+        &[data-filled='true'] {}
+    }
+
+}

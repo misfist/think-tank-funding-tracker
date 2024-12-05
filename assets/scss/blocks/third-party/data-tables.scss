@@ -222,37 +222,13 @@ body.js-enabled {
         }
     }
 
-    .star-group {
-        width: min-content;
-        margin-right: 0;
-        margin-left: auto;
-    }
-
     .column-transparency-score {
-        // min-width: 140px;
         width: fit-content;
 
-        .star {
-            font-size: var(--wp--preset--font-size--medium-3);
-        }
-
-        .stars-0 {
-            color: var( --wp--custom--color--score-0 );
-        }
-        .stars-1 {
-            color: var( --wp--custom--color--score-1 );
-        }
-        .stars-2 {
-            color: var( --wp--custom--color--score-2 );
-        }
-        .stars-3 {
-            color: var( --wp--custom--color--score-3 );
-        }
-        .stars-4 {
-            color: var( --wp--custom--color--score-4 );
-        }
-        .stars-5 {
-            color: var( --wp--custom--color--score-5 );
+        .star-group {
+            width: min-content;
+            margin-right: 0;
+            margin-left: auto;
         }
     }
 
