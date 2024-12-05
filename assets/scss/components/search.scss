@@ -1,0 +1,52 @@
+.ajaxsearchpro {
+    .results {
+        .item + .item {
+            border-top: 1px solid var( --wp--preset--color--gray-200 );
+        }
+    }
+
+    .asp_content {
+        h3 {}
+
+        .etc {}
+        
+        .post-title {}
+
+        .entity-type {
+            // font-style: italic;
+        }
+    }
+
+    .asp_res_url {}
+
+    .asp_res_text {
+		.star-group {
+			width: min-content;
+		}
+
+		a {
+			&[href*='donor-type'] {
+				display: inline-flex;
+				padding: 2px 6px;
+				border-radius: 10px;
+				font-size: var( --wp--preset--font-size--x-small );
+				background-color: var( --wp--preset--color--contrast-5 );
+				color: var( --wp--preset--color--white );
+				text-decoration: none;
+				word-wrap: nowrap;
+			}
+			&[href*='foreign'] {
+				background-color: var( --wp--preset--color--vivid-purple );
+			}
+			&[href*='pentagon'] {
+				background-color: var( --wp--preset--color--gray-800 );
+			}
+		}
+	}
+
+    .asp-fss-flex {
+        legend {
+            font-family: var( --wp--preset--font-family--heading );
+        }
+    }
+}
