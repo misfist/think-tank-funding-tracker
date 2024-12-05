@@ -134,3 +134,17 @@ function search_query_args( $args, $search_id ) {
 	return $args;
 }
 add_filter( 'asp_query_args', __NAMESPACE__ . '\search_query_args', 10, 2 );
+
+/**
+ * Disable CSS
+ * If set to true, the plugin will not load its CSS files
+ * 
+ * @link https://knowledgebase.ajaxsearchpro.com/hooks/filters/css-and-js/asp_load_css
+ *
+ * @param  bool $stop
+ * @return void
+ */
+function search_disable_css( $stop ): bool {
+	return false;
+}
+// add_filter( 'asp_load_css', __NAMESPACE__ . '\search_disable_css', 10, 1 );
