@@ -134,3 +134,20 @@ function search_results_render( $results, $search_id, $args ) {
 
 	return $results;
 }
+add_filter( 'asp_cpt_results', __NAMESPACE__ . '\search_results_render', 10, 3 );
+
+/**
+ * Modify search query args
+ * Limit to donor and think tank post types
+ * Limit to title field
+ *
+ * @param  array $args
+ * @param  int   $search_id
+ * @return array
+ */
+function search_query_args( $args, $search_id ) {
+	$args['post_fields'] = array( 'title' );
+	$args['search_type'] = array( 'cpt' );
+	return $args;
+}
+add_filter( 'asp_query_args', __NAMESPACE__ . '\search_query_args', 10, 2 );
