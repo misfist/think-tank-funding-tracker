@@ -97,16 +97,17 @@ function asp_show_the_post_type_title( $results ) {
 
 add_filter( 'asp_cpt_results', __NAMESPACE__ . '\asp_cpt_result_filter', 10, 3 );
 function asp_cpt_result_filter( $results, $search_id, $args ) {
+function search_results_render( $results, $search_id, $args ) {
 
 	// Parse through each result item
 	foreach ( $results as $k => &$r ) {
 		if ( isset( $r->post_type ) ) {
 			$post_type_obj = get_post_type_object( $r->post_type );
-			$r->title      = sprintf( '%s - %s', $r->title, $post_type_obj->labels->singular_name );
+			$r->title      = sprintf( '<span class="post-title">%s</span> <span class="separator">-</span> <span class="entity-type">%s</span>', $r->title, $post_type_obj->labels->singular_name );
 		}
 
 		$transparency_score = get_post_meta( $r->id, 'transparency_score', true );
-		if ( $transparency_score ) {
+		if ( isset( $transparency_score ) ) {
 			$r->content = convert_star_rating( (int) $transparency_score );
 		}
 
