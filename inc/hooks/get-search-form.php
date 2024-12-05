@@ -15,6 +15,12 @@ namespace Quincy\ttft;
  * @return string
  */
 function get_search_form( $form, $args ) {
+	$defaults = array(
+		'ajax' => true,
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
 	return custom_search_form( $args );
 }
 add_filter( 'get_search_form', __NAMESPACE__ . '\get_search_form', '', 2 );
