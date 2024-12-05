@@ -68,8 +68,6 @@ function request( $request ): array {
  * @return array
  */
 function asp_show_the_post_type_title( $results ) {
-	var_dump( $results );
-
 	foreach ( $results as $k => &$r ) {
 		if ( isset( $r->post_type ) ) {
 			// Modify the post title
@@ -82,27 +80,7 @@ function asp_show_the_post_type_title( $results ) {
 }
 // add_filter( 'asp_results', __NAMESPACE__ . '\asp_show_the_post_type_title', 10, 1 );
 
-// function asp_show_the_post_type_content( $results ) {
 
-// foreach ( $results as $k => &$r ) {
-// if ( isset( $r->post_type ) ) {
-// Modify the post title
-// $post_type_obj = get_post_type_object( $r->post_type );
-// if( 'donor' === $r->post_type ) {
-// $r->content = '{Donor Type}';
-// } elseif( 'think_tank' === $r->post_type ) {
-// $r->content = '{Transparency Score}';
-
-// }
-// }
-// }
-
-// return $results;
-// }
-// add_filter( 'asp_results', __NAMESPACE__ . '\asp_show_the_post_type_content', 10, 1 );
-
-add_filter( 'asp_cpt_results', __NAMESPACE__ . '\asp_cpt_result_filter', 10, 3 );
-function asp_cpt_result_filter( $results, $search_id, $args ) {
 function search_results_render( $results, $search_id, $args ) {
 
 	// Parse through each result item
