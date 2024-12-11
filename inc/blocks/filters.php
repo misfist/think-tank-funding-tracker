@@ -23,3 +23,19 @@ function remove_autop( $block_content, $block ) {
 	return $block_content;
 }
 add_filter( 'render_block', __NAMESPACE__ . '\remove_autop', 10, 2 );
+
+/**
+ * Render search block.
+ *
+ * @param  string $block_content
+ * @param  array  $block
+ * @return string $block_content
+ */
+function render_search( $block_content, $block ) {
+	if ( 'core/search' !== $block['blockName'] ) {
+		return $block_content;
+	}
+	$block_content = custom_search_form();
+	return $block_content;
+}
+add_filter( 'render_block', __NAMESPACE__ . '\render_search', 10, 2 );

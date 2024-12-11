@@ -13,16 +13,10 @@ namespace Quincy\ttft;
  * @param  array $args
  * @return string
  */
-function custom_search_form( $args ): string {
-	$filters = array(
-		''           => __( 'All', 'ttft' ),
-		'think_tank' => __( 'Think Tank', 'ttft' ),
-		'donor'      => __( 'Donor', 'ttft' ),
-	);
-
+function custom_search_form( $args = array() ): string {
     $defaults = array(
-        'description' => esc_html__( ' Examples: Lockheed Martin, Brookings Institution, US Department of Defense ', 'ttft' ),
-        'ajax'        => false,
+        'description' => esc_html__( 'Examples: Lockheed Martin, Brookings Institution, US Department of Defense ', 'ttft' ),
+        'ajax'        => true,
     );
 
     $args = wp_parse_args( $args, $defaults );
@@ -35,7 +29,7 @@ function custom_search_form( $args ): string {
     
 	ob_start();
     
-	if ( ! $args['ajax'] ) :
+	if ( ! $args['ajax'] || ! function_exists( 'wpd_get_terms' ) ) :
 		?>
 
         <?php echo custom_search_form_default( $args ); ?>
@@ -89,6 +83,12 @@ function custom_search_form_ajax( $args ): string {
  * @return string
  */
 function custom_search_form_default( $args ): string {
+	$filters = array(
+		''           => __( 'All', 'ttft' ),
+		'think_tank' => __( 'Think Tank', 'ttft' ),
+		'donor'      => __( 'Donor', 'ttft' ),
+	);
+	
     $instance_id = uniqid();
 	$entity_type = sanitize_text_field( $_GET['entity_type'] ?? '' );
     ob_start();
