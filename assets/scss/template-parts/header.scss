@@ -6,12 +6,13 @@
 		&.wp-block-search__button-inside {
 			.wp-block-search__inside-wrapper {
 				padding: 0;
+				background-color: var( --wp--preset--color--base );
 
 				.wp-block-search__button {
 					background-color: transparent;
 
 					svg {
-						fill: var(--wp--preset--color--base);
+						fill: var(--wp--preset--color--contrast);
 						min-height: 1.875rem;
 						min-width: 1.875rem;
 					}
