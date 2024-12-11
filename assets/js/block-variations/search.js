@@ -1,19 +1,24 @@
-/**
- * Add Search Attribute to Search
- * Learn more: https://developer.wordpress.org/news/2023/08/29/an-introduction-to-block-variations/
- */
+import { registerBlockVariation } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 
-function addSearchProp(props) {
-	return {
-		...props,
-		query: {
-			wdt_search: '',
+const NAMESPACE = `ttft/search`;
+
+const variations = [
+	{
+		name: NAMESPACE,
+		title: __('Custom Search', 'ttft'),
+		description: __('Display authors for post.', 'ttft'),
+		icon: 'code-standards',
+		attributes: {
+			className: 'custom-search',
+			namespace: NAMESPACE,
+			ajax: true,
 		},
-	};
-}
+		scope: ['block', 'inserter', 'transform'],
+		isActive: ['namespace'],
+	},
+];
 
-wp.hooks.addFilter(
-	'blocks.getSaveContent.extraProps',
-	'core/search',
-	addSearchProp
-);
+variations.forEach((variation) => {
+	registerBlockVariation('core/search', variation);
+});
