@@ -8,7 +8,7 @@
 <!-- wp:group {"metadata":{"name":"Search Component"},"className":"search-component","layout":{"type":"default"}} -->
 <div class="wp-block-group search-component">
     
-    <!-- wp:ttft/search-form /-->
+    <!-- wp:ttft/search-form {"ajax":true} /-->
 
     <!-- wp:buttons {"style":{"layout":{"selfStretch":"fixed","flexSize":"100%"}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
     <div class="wp-block-buttons">
