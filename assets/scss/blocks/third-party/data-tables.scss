@@ -78,7 +78,6 @@ body.js-enabled {
             &.dt-orderable-asc,
             &.dt-orderable-desc {
                 cursor: pointer;
-                // white-space: nowrap;
             }
 
             .dt-column-order {
@@ -88,6 +87,10 @@ body.js-enabled {
                     content: '\e5db';
                     margin-left: 2px;
                 }
+            }
+
+            &.column-donor {
+                text-align: left;
             }
 
             &[aria-sort='ascending'],
@@ -194,7 +197,7 @@ body.js-enabled {
 
         td {
             border: none;
-            padding: var( --wp--preset--spacing--20 );
+            padding: var( --wp--preset--spacing--10 );
 
             &.column-min-amount,
             &.column-min-donations,
@@ -211,6 +214,14 @@ body.js-enabled {
                 &::before {
                     content: none;
                 }
+            }
+
+            &:first-child {
+                padding-left: var( --wp--preset--spacing--20 );
+            }
+
+            &:last-child {
+                padding-right: var( --wp--preset--spacing--20 );
             }
         }
 
