@@ -66,7 +66,7 @@ function custom_search_form_ajax( $args ): string {
         >
 			<?php echo do_shortcode( '[wd_asp id=1]' ); ?>
 
-			<legend class="has-small-font-size">
+			<legend class="has-small-font-size screen-reader-text">
 				<?php echo $description; ?>
 			</legend>
 		</div>
@@ -131,9 +131,15 @@ function custom_search_form_default( $args ): string {
 						</svg>
 					</button>
 			</div>
-			<legend class="has-small-font-size">
-				<?php echo $description; ?>
-			</legend>
+			<?php
+			if ( ! empty( $args['description'] ) ) :
+				?>
+				<legend class="has-small-font-size">
+					<?php echo esc_html( $args['description'] ); ?>
+				</legend>
+				<?php 
+			endif; 
+			?>
 		</form>
     <?php
     $form = ob_get_clean();
