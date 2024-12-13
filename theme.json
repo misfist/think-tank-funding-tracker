@@ -211,7 +211,7 @@
 				},
 				{
 					"name": "2",
-					"size": "clamp(calc(22px * 0.75), 2vw, 22px)",
+					"size": "22px",
 					"slug": "20"
 				},
 				{
