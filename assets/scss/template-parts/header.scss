@@ -43,8 +43,23 @@
 		max-width: 300px;
 	}
 
+	.header-wrapper > .wp-block-group {
+		align-items: flex-start;
+	}
+
 	.wp-block-site-title {
 		text-wrap: balance;
+
+		a {
+			&:focus {
+				outline: thin dotted;
+			}
+		}
+	}
+	button {
+		&:focus {
+			outline: thin dotted;
+		}
 	}
 }
 
