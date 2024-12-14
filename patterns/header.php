@@ -9,7 +9,7 @@
 <!-- wp:group {"metadata":{"name":"Header Wrapper"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}},"elements":{"link":{"color":{"text":"var:preset|color|base-2"}}}},"backgroundColor":"contrast-2","textColor":"base-2","className":"header-wrapper","layout":{"type":"constrained"}} -->
 <div class="wp-block-group header-wrapper has-base-2-color has-contrast-2-background-color has-text-color has-background has-link-color"
 	style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
-	<!-- wp:group {"metadata":{"name":"Header Row"},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
+	<!-- wp:group {"metadata":{"name":"Header Row"},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 	<div class="wp-block-group">
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"},"layout":{"selfStretch":"fit","flexSize":null}},"className":"site-branding","layout":{"type":"flex"}} -->
 		<div class="wp-block-group site-branding">

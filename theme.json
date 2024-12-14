@@ -891,7 +891,7 @@
 			},
 			"core/table": {
 				"color": {
-					"text": "var:preset|color|base"
+					"text": "var:preset|color|contrast"
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--body)",
