@@ -9,6 +9,11 @@
 		position: relative;
 		z-index: 1;
 		padding: var( --wp--preset--spacing--10 ) var( --wp--preset--spacing--20 );
+		background-color: var( --wp--preset--color--contrast-2 );
+		color: var( --wp--preset--color--base );
+		border-radius: 0;
+		font-weight: 700;
+		font-size: var( --wp--preset--font-size--medium-3 );
 
 		&.rich-text {
 			min-width: 10rem !important; /* stylelint-disable-line declaration-no-important */
@@ -19,6 +24,20 @@
 			cursor: not-allowed;
 			opacity: 0.15;
 			pointer-events: none;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: var( --wp--custom--color--hover-button ) !important;
+		}
+
+		&.has-contrast-3-background-color {
+			background-color: var( --wp--preset--color--contrast-3 ) !important;
+			
+			&:hover,
+			&:focus {
+				background-color: var( --wp--custom--color--hover-button-alt ) !important;
+			}
 		}
 	}
 
@@ -43,8 +62,9 @@
 
 	&.is-style-text {
 		.wp-block-button__link {
-			&:hover {
-				color: var(--wp--preset--color--primary-700);
+			&:hover,
+			&:focus  {
+				color: var( --wp--preset--color--primary-700 );
 			}
 		}
 	}
