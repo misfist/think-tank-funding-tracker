@@ -7,32 +7,26 @@ main,
 	ul {
 		&:not([class]),
 		&.wp-block-list {
-			list-style-type: none;
 
+			padding-left: var(--wp--preset--spacing--40);
+		
 			li {
 				padding-bottom: var(--wp--preset--spacing--20);
-				padding-left: var(--wp--preset--spacing--50);
+				// padding-left: var(--wp--preset--spacing--10);
 				position: relative;
 
 				@include responsive-max(600px) {
-					padding-left: var(--wp--preset--spacing--70);
+					// padding-left: var(--wp--preset--spacing--20);
 				}
-
-				// &::before {
-				// 	background-color: var(--wp--preset--color--gray-200);
-				// 	content: '';
-				// 	display: block;
-				// 	height: 0.125rem;
-				// 	left: 0;
-				// 	position: absolute;
-				// 	top: 0.5625rem;
-				// 	width: 1.5rem;
-				// }
 
 				&:last-child {
 					padding-bottom: 0;
 				}
 			}
+		}
+
+		&.is-style-no-bullet {
+			list-style-type: none;
 		}
 	}
 
@@ -47,11 +41,7 @@ main,
 				padding-bottom: var(--wp--preset--spacing--20);
 				position: relative;
 
-				ol {
-					padding-left: var(
-						--wp--preset--spacing--30
-					) !important; /* stylelint-disable-line declaration-no-important */
-				}
+				ol {}
 
 				&::marker {
 					font-weight: 700;
