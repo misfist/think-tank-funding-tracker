@@ -5,6 +5,26 @@
 namespace Quincy\ttft;
 
 /**
+ * Get a post by its slug.
+ *
+ * @param string $slug      The post slug.
+ * @param string $post_type The post type. Default is 'think_tank'.
+ * @return int|null The post->ID, or null if not.
+ */
+function get_post_id_by_slug( $slug, $post_type = 'think_tank' ): ?int {
+	$args = array(
+		'name'           => $slug,
+		'post_type'      => $post_type,
+		'posts_per_page' => 1,
+		'fields'         => 'ids',
+	);
+
+	$posts = get_posts( $args );
+
+	return ( ! empty( $posts ) && ! is_wp_error( $posts ) ) ? (int) $posts[0] : null;
+}
+
+/**
  * Retrieves the Transparency Score for a given think tank slug.
  *
  * @param string $think_tank_slug The think tank slug.
@@ -37,7 +57,7 @@ function get_transparency_score_from_slug( string $think_tank_slug ): int {
  * @return boolean
  */
 function is_transparent( $post_id = 0 ): bool {
-	$range = range( 4, 5 );
+	$range                = range( 4, 5 );
 	$post_id              = $post_id ? (int) $post_id : get_the_ID();
 	$no_defense_accepted  = get_post_meta( $post_id, 'no_defense_accepted', true );
 	$no_domestic_accepted = get_post_meta( $post_id, 'no_domestic_accepted', true );
@@ -54,7 +74,7 @@ function is_transparent( $post_id = 0 ): bool {
  * @return boolean
  */
 function is_not_transparent( $post_id = 0 ): bool {
-	$range = range( 2, 3 );
+	$range                = range( 2, 3 );
 	$post_id              = $post_id ? (int) $post_id : get_the_ID();
 	$no_defense_accepted  = get_post_meta( $post_id, 'no_defense_accepted', true );
 	$no_domestic_accepted = get_post_meta( $post_id, 'no_domestic_accepted', true );
@@ -73,6 +93,60 @@ function is_not_transparent( $post_id = 0 ): bool {
 function is_limited( $post_id = 0 ): bool {
 	$post_id = $post_id ? (int) $post_id : get_the_ID();
 	return (bool) get_post_meta( $post_id, 'limited_info', true );
+}
+
+/**
+ * Check if post is accepted
+ *
+ * @param  string $value
+ * @return boolean
+ */
+function is_not_accepted( string $value ): bool {
+	$value = strtolower( trim( $value ) );
+	return (bool) in_array( $value, array( 'yes', 'x', '1' ), true );
+}
+
+/**
+ * Check if all donor types are either undisclosed or not accepted.
+ *
+ * @param int $post_id The post ID to check. Defaults to current post ID.
+ * @return bool True if all donor types are either undisclosed or not accepted, false otherwise.
+ */
+function is_undisclosed_or_not_accepted( $post_id = 0 ): bool {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+	$data    = generate_think_tank_data_array( $post_id );
+
+	if ( empty( $data['donor_types'] ) || ! is_array( $data['donor_types'] ) ) {
+		return false;
+	}
+
+	foreach ( $data['donor_types'] as $donor_type ) {
+		if ( empty( $donor_type['undisclosed'] ) && empty( $donor_type['not_accepted'] ) ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
+ * Check if all donor types are either undisclosed or not accepted.
+ *
+ * @param array $data The data array to check.
+ * @return bool True if all donor types are either undisclosed or not accepted, false otherwise.
+ */
+function is_undisclosed_or_not_accepted_from_data( $data ): bool {
+	if ( empty( $data['donor_types'] ) || ! is_array( $data['donor_types'] ) ) {
+		return false;
+	}
+
+	foreach ( $data['donor_types'] as $donor_type ) {
+		if ( empty( $donor_type['undisclosed'] ) && empty( $donor_type['not_accepted'] ) ) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 /**
@@ -104,7 +178,7 @@ function get_star_rating( $post_id = 0 ): string {
 	if ( ! $post_id ) {
 		return '';
 	}
-	$score   = get_post_meta( $post_id, 'transparency_score', true );
+	$score = get_post_meta( $post_id, 'transparency_score', true );
 
 	return convert_star_rating( $score );
 }
@@ -127,22 +201,25 @@ function render_star_rating( $post_id = 0 ): void {
  */
 function convert_star_rating( $score = 0 ): string {
 	$score = (int) $score;
-	$max = 5;
+	$max   = 5;
 	ob_start();
 	?>
-	<!-- wp:group {"metadata":{"name":"Transparency Stars"},"className":"star-group stars-<?php echo $score; ?>","layout":{"type":"default"}} -->
-	<div class="wp-block-group star-group stars-<?php echo $score; ?>" aria-label="<?php echo $score; ?> stars">
+	
+	<!-- wp:group {"metadata":{"name":"Transparency Stars"},"className":"star-group stars-<?php echo $score; ?> no-export noExport","layout":{"type":"default"}} -->
+	<div class="wp-block-group star-group stars-<?php echo $score; ?> no-export noExport" aria-label="<?php echo $score; ?> stars">
 		<?php
-		for ( $x = 1; $x <= $score && $x <= $max; $x++ ) :
-			?>
-			<span class="icon material-symbols-outlined star" data-filled="true" role="img"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><g><path d="M0 0h24v24H0V0z" fill="none"/><path d="M0 0h24v24H0V0z" fill="none"/></g><g><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"/></g></svg></span>
-			<?php
-		endfor;
+		$star_rating = '';
 
-		for ( $x = ( $score + 1 ); $x <= $max; $x++ ) :
-			?>
-			<span class="icon material-symbols-outlined star" data-filled="false" role="img"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg></g></svg></span>
-			<?php
+		for ( $i = 1; $i <= 5; $i++ ) :
+			if ( $i <= $score ) :
+				?>
+				<span class="star filled">&#9733;</span>
+				<?php
+			else :
+				?>
+				<span class="star">&#9734;</span>
+				<?php
+			endif;
 		endfor;
 		?>
 	</div>
@@ -151,4 +228,34 @@ function convert_star_rating( $score = 0 ): string {
 	<?php
 	$stars = ob_get_clean();
 	return $stars;
+}
+
+/**
+ * Normalize a value to a boolean, considering empty values separately.
+ *
+ * @param mixed $value The value to normalize.
+ * @return mixed Returns true, false, or null for empty values.
+ */
+function normalize_boolean( $value ) {
+	if ( is_string( $value ) ) {
+		$value = strtolower( trim( $value ) );
+	}
+
+	// Handle explicitly truthy values.
+	if ( in_array( $value, array( '1', 'true', 'yes', 'x' ), true ) ) {
+		return true;
+	}
+
+	// Handle explicitly falsy values.
+	if ( in_array( $value, array( '0', 'no' ), true ) ) {
+		return false;
+	}
+
+	// Treat empty strings or null as "empty" (null).
+	if ( $value === '' || $value === null ) {
+		return null;
+	}
+
+	// Fallback: Treat anything else as true.
+	return true;
 }

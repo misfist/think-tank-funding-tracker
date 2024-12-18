@@ -87,3 +87,42 @@
         font-weight: 700;
     }
 }
+
+.total-donations {
+    background-color: var( --wp--preset--color--gray-200 );
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var( --wp--preset--spacing--20 );
+    gap: var( --wp--preset--spacing--10 );
+
+    p {
+        color: var( --wp--preset--color--contrast-4 );
+        font-size: var( --wp--preset--font-size--medium );
+        font-weight: 700;
+    }
+
+    .dollar-value {
+        flex: 0 1 min-content;
+        margin-top: 0;
+    }
+
+    .not-disclosed {
+        margin-top: 0;
+    }
+}
+
+.total-donations,
+.data-boxes {
+    .not-disclosed {
+        font-weight: 400;
+        color: var( --wp--preset--color--contrast );
+        display: inline-flex;
+        width: fit-content;
+        white-space: nowrap;
+        padding: 1px 3px;
+        margin-left: auto;
+        background-color: var( --wp--custom--color--yellow-light );
+        // border: 1px solid var( --wp--preset--color--accent-6 );
+    }
+}
