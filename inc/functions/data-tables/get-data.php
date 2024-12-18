@@ -162,9 +162,9 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
-	if( class_exists( '\Ttft\Data_Tables\Data' ) ) {
+	if ( class_exists( '\Ttft\Data_Tables\Data' ) ) {
 
-		$data = new \Ttft\Data_Tables\Data();
+		$data     = new \Ttft\Data_Tables\Data();
 		$raw_data = $data->get_single_think_tank_raw_data( $think_tank, $donation_year, $donor_type );
 
 		return $raw_data;
@@ -177,7 +177,7 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 		if ( false !== $data ) {
 			return $data;
 		}
-	
+
 		$args = array(
 			'post_type'      => 'transaction',
 			'posts_per_page' => -1,
@@ -186,7 +186,7 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 				'relation' => 'AND',
 			),
 		);
-	
+
 		if ( $think_tank ) {
 			$args['tax_query'][] = array(
 				'taxonomy' => 'think_tank',
@@ -194,7 +194,7 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 				'terms'    => $think_tank,
 			);
 		}
-	
+
 		if ( $donation_year ) {
 			$args['tax_query'][] = array(
 				'taxonomy' => 'donation_year',
@@ -202,7 +202,7 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 				'terms'    => $donation_year,
 			);
 		}
-	
+
 		if ( $donor_type ) {
 			$args['tax_query'][] = array(
 				'taxonomy' => 'donor_type',
@@ -210,27 +210,27 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 				'terms'    => $donor_type,
 			);
 		}
-	
+
 		$query = new \WP_Query( $args );
 		$data  = array();
-	
+
 		if ( $query->have_posts() ) {
 			foreach ( $query->posts as $post_id ) {
 				$donors = wp_get_object_terms( $post_id, 'donor', array( 'orderby' => 'parent' ) );
 				if ( empty( $donors ) || is_wp_error( $donors ) ) {
 					continue;
 				}
-	
+
 				$donor_names = wp_list_pluck( $donors, 'name' );
 				$donor_slugs = wp_list_pluck( $donors, 'slug' );
 				$donor_name  = implode( ' > ', $donor_names );
 				$donor_slug  = implode( '-', $donor_slugs );
-	
+
 				$amount_calc = (int) get_post_meta( $post_id, 'amount_calc', true );
 				if ( empty( $amount_calc ) ) {
 					$amount_calc = 0;
 				}
-	
+
 				$data[] = array(
 					'donor'       => $donor_name,
 					'amount_calc' => $amount_calc,
@@ -241,11 +241,11 @@ function get_single_think_tank_raw_data( $think_tank = '', $donation_year = '', 
 				);
 			}
 		}
-	
+
 		// wp_reset_postdata();
-	
+
 		set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
-	
+
 		return $data;
 	}
 
@@ -263,9 +263,9 @@ function get_single_donor_raw_data( $donor = '', $donation_year = '', $donor_typ
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
-	if( class_exists( '\Ttft\Data_Tables\Data' ) ) {
+	if ( class_exists( '\Ttft\Data_Tables\Data' ) ) {
 
-		$data = new \Ttft\Data_Tables\Data();
+		$data     = new \Ttft\Data_Tables\Data();
 		$raw_data = $data->get_single_donor_raw_data( $donor, $donation_year, $donor_type );
 
 		return $raw_data;
@@ -693,8 +693,8 @@ function get_single_think_tank_total( $think_tank, $donation_year = '', $donor_t
 	$think_tank    = sanitize_text_field( $think_tank );
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
-	
-	if( class_exists( '\Ttft\Data_Tables\Data' ) ) {
+
+	if ( class_exists( '\Ttft\Data_Tables\Data' ) ) {
 
 		$total = \Ttft\Data_Tables\Data::get_single_think_tank_total( $think_tank, $donation_year, $donor_type );
 
@@ -729,7 +729,6 @@ function get_single_think_tank_total( $think_tank, $donation_year = '', $donor_t
 
 }
 
-
 /**
  * Get the total amount of donations for a donor
  *
@@ -742,7 +741,7 @@ function get_single_donor_total( $donor, $donation_year = '', $donor_type = '' )
 	$donation_year = sanitize_text_field( $donation_year );
 	$donor_type    = sanitize_text_field( $donor_type );
 
-	if( class_exists( '\Ttft\Data_Tables\Data' ) ) {
+	if ( class_exists( '\Ttft\Data_Tables\Data' ) ) {
 
 		$total = \Ttft\Data_Tables\Data::get_single_donor_total( $donor, $donation_year, $donor_type );
 
@@ -753,16 +752,16 @@ function get_single_donor_total( $donor, $donation_year = '', $donor_type = '' )
 		$transient_key = 'single_donor_cumulative_' . md5( $donor . $donation_year . $donor_type );
 
 		$data = get_single_donor_raw_data( $donor, $donation_year, $donor_type );
-	
+
 		if ( ! empty( $data ) ) {
-			$amounts = wp_list_pluck( $data, 'amount_calc' ) ;
+			$amounts = wp_list_pluck( $data, 'amount_calc' );
 			$total   = array_sum( $amounts );
 		} else {
 			$total = 0;
 		}
-	
+
 		set_transient( $transient_key, $data, 12 * HOUR_IN_SECONDS );
-	
+
 		return $total;
 	}
 
