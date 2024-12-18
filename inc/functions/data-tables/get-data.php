@@ -754,6 +754,128 @@ function get_single_donor_total( $donor, $donation_year = '', $donor_type = '' )
 }
 
 /**
+ * Get sum of donations for a think tank.
+ *
+ * @param string $think_tank     The think tank slug.
+ * @param string $donation_year  Optional. The donation year slug.
+ * @param string $donor_type     Optional. The donor type slug.
+ * @return array|null The sum data or null if not found.
+ */
+function get_single_think_tank_sums( string $think_tank, string $donation_year = '', string $donor_type = '' ): ?array {
+	$think_tank    = sanitize_text_field( $think_tank );
+	$donation_year = sanitize_text_field( $donation_year );
+	$donor_type    = sanitize_text_field( $donor_type );
+
+	$think_tank_id = get_post_id_by_slug( $think_tank, 'think_tank' );
+	if ( ! $think_tank_id ) {
+		return null;
+	}
+
+	return get_single_think_tank_sums_by_id( $think_tank_id, $donation_year, $donor_type );
+}
+
+/**
+ * Get sum of donations for a donor.
+ *
+ * @param string $donor          The donor slug.
+ * @param string $donation_year  Optional. The donation year slug.
+ * @return array|null The sum data or null if not found.
+ */
+function get_single_donor_sums( string $donor, string $donation_year = '' ): ?array {
+	$donor         = sanitize_text_field( $donor );
+	$donation_year = sanitize_text_field( $donation_year );
+
+	$donor_id = get_post_id_by_slug( $donor, 'donor' );
+	if ( ! $donor_id ) {
+		return null;
+	}
+
+	return get_single_donor_sums_by_id( $donor_id, $donation_year );
+}
+
+/**
+ * Get sum of donations for a think tank by ID.
+ *
+ * @param  integer|null $think_tank_id
+ * @param  string       $donation_year
+ * @param  string       $donor_type
+ * @return array|null
+ */
+function get_single_think_tank_sums_by_id( ?int $think_tank_id = null, string $donation_year = '', string $donor_type = '' ): ?array {
+	$think_tank_id = $think_tank_id ?? get_the_ID();
+	if ( ! $think_tank_id ) {
+		return null;
+	}
+
+	$meta_sums = get_meta_sums_by_id( $think_tank_id, $donor_type );
+	if ( $meta_sums ) {
+		return $meta_sums;
+	}
+
+	if ( class_exists( '\Ttft\Data_Tables\Data' ) ) {
+		$think_tank = get_post_field( 'post_name', $think_tank_id );
+		return \Ttft\Data_Tables\Data::get_think_tank_sums( $think_tank, $donation_year, $donor_type );
+	}
+
+	return null;
+}
+
+/**
+ * Get sum of donations for a donor by ID.
+ *
+ * @param  integer|null $donor_id
+ * @param  string       $donation_year
+ * @return array|null
+ */
+function get_single_donor_sums_by_id( ?int $donor_id = null, string $donation_year = '' ): ?array {
+	$donor_id = $donor_id ?? get_the_ID();
+	if ( ! $donor_id ) {
+		return null;
+	}
+
+	$meta_sums = get_meta_sums_by_id( $donor_id );
+	if ( $meta_sums ) {
+		return $meta_sums;
+	}
+
+	if ( class_exists( '\Ttft\Data_Tables\Data' ) ) {
+		$donor = get_post_field( 'post_name', $donor_id );
+		return \Ttft\Data_Tables\Data::get_donor_sums( $donor, $donation_year );
+	}
+
+	return null;
+}
+
+/**
+ * Helper function to retrieve meta sums for a post.
+ *
+ * @param int    $post_id   The post ID.
+ * @param string $donor_type Optional. The donor type slug.
+ * @return array|null
+ */
+function get_meta_sums_by_id( ?int $post_id = null, string $donor_type = '' ): ?array {
+	$post_id = $post_id ?? get_the_ID();
+	if ( ! $post_id ) {
+		return null;
+	}
+
+	$amount_key      = $donor_type ? 'amount_' . $donor_type : 'amount_calc';
+	$undisclosed_key = $donor_type ? 'undisclosed_' . $donor_type : 'undisclosed';
+
+	$amount_exists      = metadata_exists( 'post', $post_id, $amount_key );
+	$undisclosed_exists = metadata_exists( 'post', $post_id, $undisclosed_key );
+
+	if ( $amount_exists && $undisclosed_exists ) {
+		return array(
+			'amount_calc' => (int) get_post_meta( $post_id, $amount_key, true ),
+			'undisclosed' => (bool) get_post_meta( $post_id, $undisclosed_key, true ),
+		);
+	}
+
+	return null;
+}
+
+/**
  * Get the total amount of donations for a group of posts
  *
  * @param  array  $post_ids
