@@ -10,7 +10,7 @@
 <!-- wp:group {"metadata":{"name":"Footer"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"gray-900","textColor":"base","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-base-color has-gray-900-background-color has-text-color has-background has-link-color"
 	style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
-	<!-- wp:columns {"metadata":{"name":"Footer Menu"}} -->
+	<!-- wp:columns {"verticalAlignment":null,"metadata":{"name":"Footer Menu"}} -->
 	<div class="wp-block-columns">
 		<!-- wp:column {"width":"30%"} -->
 		<div class="wp-block-column" style="flex-basis:30%">
@@ -20,20 +20,21 @@
 		</div>
 		<!-- /wp:column -->
 
-		<!-- wp:column {"width":"75%"} -->
-		<div class="wp-block-column" style="flex-basis:75%">
-			<!-- wp:navigation {"ref":29851,"layout":{"type":"flex","justifyContent":"right"}} /--></div>
+		<!-- wp:column {"verticalAlignment":"top","width":"75%"} -->
+		<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:75%">
+			<!-- wp:navigation {"ref":33646,"overlayMenu":"never"} /-->
+		</div>
 		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->
 
-	<!-- wp:group {"metadata":{"name":"Legal"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"0"}}}} -->
-	<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:0">
-		<!-- wp:paragraph {"style":{"elements":{"link":{":hover":{"color":{"text":"var:preset|color|gray-100"}}}}},"textColor":"contrast-2","fontSize":"small"} -->
-		<p class="has-contrast-2-color has-text-color has-small-font-size">
-			<?php echo __( 'Legal Info', 'ttft' ); ?>
-		</p>
+	<!-- wp:group {"fontSize":"small","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+	<div class="wp-block-group has-small-font-size">
+		<!-- wp:paragraph -->
+		<p>&copy;<? echo date( 'Y' );?></p>
 		<!-- /wp:paragraph -->
+
+		<!-- wp:navigation {"ref":33642,"overlayMenu":"never","fontSize":"small","layout":{"type":"flex","justifyContent":"right"}} /-->
 	</div>
 	<!-- /wp:group -->
 </div>
