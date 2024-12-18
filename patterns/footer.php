@@ -31,7 +31,7 @@
 	<!-- wp:group {"fontSize":"small","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group has-small-font-size">
 		<!-- wp:paragraph -->
-		<p>&copy;<? echo date( 'Y' );?> <!-- wp:site-title {"level":0,"fontSize":"small"} /--></p>
+		<p>&copy;<?php echo date( 'Y' ); ?> </p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:navigation {"ref":31686,"overlayMenu":"never","fontSize":"small","layout":{"type":"flex","justifyContent":"right"}} /-->
