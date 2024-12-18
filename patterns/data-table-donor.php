@@ -4,14 +4,7 @@
  * Slug: ttft/data-table-donor
  * Categories: transparency
  * Inserter: false
- *
- * %VAR1% = think_tank
- * %VAR2% = donor
- * %VAR3% = donation_year
- * %VAR4% = donor_type
- * %VAR5% = limit
  */
-use function Quincy\ttft\get_single_donor_total;
 global $post;
 
 $post_id = get_the_ID();
