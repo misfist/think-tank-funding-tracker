@@ -5,6 +5,21 @@
 namespace Quincy\ttft;
 
 /**
+ * Get the app namespace for data tables
+ *
+ * @return void
+ */
+function get_app_id() {
+	if( defined( 'TTFT_APP_NAMESPACE' ) ) {
+		return TTFT_APP_NAMESPACE;
+	} elseif( class_exists( '\Ttft\Data_Tables\Data_Tables' ) ) {
+		return \Ttft\Data_Tables\Data_Tables::TTFT_APP_NAMESPACE;
+	} else {
+		return 'ttft/data-tables';
+	}
+}
+
+/**
  * Get transaction IDs for think tank
  *
  * @param string $think_tank    Optional. Slug of the think tank.
