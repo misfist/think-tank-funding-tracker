@@ -123,6 +123,11 @@
 // 		}
 // 	}
 // }
+	&.has-small-font-size {
+		a {
+			font-size: var( --wp--preset--font-size--small );
+		}
+	}
 
 // .wp-block-navigation__responsive-container-content
 
