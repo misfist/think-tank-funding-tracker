@@ -1,19 +1,5 @@
 .single {
 
-    .total-donations {
-        background-color: var( --wp--preset--color--gray-200 );
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: var( --wp--preset--spacing--20 );
-        gap: var( --wp--preset--spacing--10 );
-
-        .dollar-value {
-            flex: 0 1 min-content;
-            margin-top: 0;
-        }
-    }
-
     @include responsive-max( $break-mobile - 1px ) {
         .total-donations {
             flex-wrap: wrap;
@@ -36,11 +22,6 @@
             justify-content: flex-start;
             background-color: var( --wp--preset--color--gray-100 );
             border: 1px solid var( --wp--preset--color--gray-200 );
-
-            p {
-                color: var( --wp--preset--color--contrast-4 );
-                font-weight: 700;
-            }
         }
     }
 
