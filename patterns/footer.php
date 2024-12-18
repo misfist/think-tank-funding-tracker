@@ -22,7 +22,7 @@
 
 		<!-- wp:column {"verticalAlignment":"top","width":"75%"} -->
 		<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:75%">
-			<!-- wp:navigation {"ref":33646,"overlayMenu":"never"} /-->
+			<!-- wp:navigation {"ref":31684,"overlayMenu":"never","layout":{"type":"flex","justifyContent":"right","orientation":"vertical"}} /-->
 		</div>
 		<!-- /wp:column -->
 	</div>
@@ -31,10 +31,10 @@
 	<!-- wp:group {"fontSize":"small","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group has-small-font-size">
 		<!-- wp:paragraph -->
-		<p>&copy;<? echo date( 'Y' );?></p>
+		<p>&copy;<?php echo date( 'Y' ); ?> </p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:navigation {"ref":33642,"overlayMenu":"never","fontSize":"small","layout":{"type":"flex","justifyContent":"right"}} /-->
+		<!-- wp:navigation {"ref":31686,"overlayMenu":"never","fontSize":"small","layout":{"type":"flex","justifyContent":"right"}} /-->
 	</div>
 	<!-- /wp:group -->
 </div>
