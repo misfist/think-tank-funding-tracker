@@ -19,7 +19,7 @@
 
         <!-- wp:button {"backgroundColor":"contrast-3","metadata":{"name":"Button","bindings":{"__default":{"source":"core/pattern-overrides"}}},"className":"is-style-fill"} -->
         <div class="wp-block-button is-style-fill">
-            <a class="wp-block-button__link has-contrast-3-background-color has-background wp-element-button" href="<?php echo esc_url( get_post_type_archive_link( 'think_tank' ) ); ?>"><?php esc_html_e( 'All Donors', 'ttft' ); ?></a></div>
+            <a class="wp-block-button__link has-contrast-3-background-color has-background wp-element-button" href="<?php echo esc_url( get_post_type_archive_link( 'donor' ) ); ?>"><?php esc_html_e( 'All Donors', 'ttft' ); ?></a></div>
         <!-- /wp:button -->
     </div>
     <!-- /wp:buttons -->
