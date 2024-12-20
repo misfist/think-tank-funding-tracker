@@ -92,7 +92,16 @@ function search_results_render( $results, $search_id, $args ): array {
 	foreach ( $results as $k => &$r ) {
 		if ( isset( $r->post_type ) ) {
 			$post_type_obj = get_post_type_object( $r->post_type );
-			$r->title      = sprintf( '<span class="post-title">%s</span> <span class="separator">-</span> <span class="entity-type">%s</span>', $r->title, $post_type_obj->labels->singular_name );
+			$post_title    = $r->title;
+
+			if( 'donor' === $r->post_type ) {
+				$parent        = get_post_parent( $r->id );
+				if ( $parent ) {
+					$post_title = sprintf( '%s > %s', $parent->post_title, $r->title );
+				}
+			}
+
+			$r->title = sprintf( '<span class="post-title">%s</span> <span class="separator">-</span> <span class="entity-type">%s</span>', $post_title, $post_type_obj->labels->singular_name );
 		}
 
 		$transparency_score = get_post_meta( $r->id, 'transparency_score', true );
@@ -138,7 +147,7 @@ add_filter( 'asp_query_args', __NAMESPACE__ . '\search_query_args', 10, 2 );
 /**
  * Disable CSS
  * If set to true, the plugin will not load its CSS files
- * 
+ *
  * @link https://knowledgebase.ajaxsearchpro.com/hooks/filters/css-and-js/asp_load_css
  *
  * @param  bool $stop
