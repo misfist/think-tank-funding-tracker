@@ -56,6 +56,7 @@ function custom_search_form( $args = array() ): string {
  */
 function custom_search_form_ajax( $args ): string {
     $instance_id = uniqid();
+	$description = ( isset( $args['description'] ) ) ? esc_html( $args['description'] ) : '';
     ob_start();
     ?>
         <div 
