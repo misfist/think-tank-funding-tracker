@@ -10,9 +10,9 @@ namespace Quincy\ttft;
  * @return void
  */
 function get_app_id() {
-	if( defined( 'TTFT_APP_NAMESPACE' ) ) {
+	if ( defined( 'TTFT_APP_NAMESPACE' ) ) {
 		return TTFT_APP_NAMESPACE;
-	} elseif( class_exists( '\Ttft\Data_Tables\Data_Tables' ) ) {
+	} elseif ( class_exists( '\Ttft\Data_Tables\Data_Tables' ) ) {
 		return \Ttft\Data_Tables\Data_Tables::TTFT_APP_NAMESPACE;
 	} else {
 		return 'ttft/data-tables';
@@ -969,23 +969,23 @@ function generate_think_tank_data_array( $post_id = 0 ): array {
 	$donor_type_slugs = wp_list_pluck( $donor_types, 'slug' );
 
 	$data = array(
-		'post_id'                         => $post_id,
-		'think_tank'                      => $think_tank,
-		'amount_calc'                     => $amount_calc,
-		'limited_info'                    => $limited_info,
-		'is_limited'                      => $is_limited,
-		'is_transparent'                  => $is_transparent,
-		'is_not_transparent'              => $is_not_transparent,
+		'post_id'                        => $post_id,
+		'think_tank'                     => $think_tank,
+		'amount_calc'                    => $amount_calc,
+		'limited_info'                   => $limited_info,
+		'is_limited'                     => $is_limited,
+		'is_transparent'                 => $is_transparent,
+		'is_not_transparent'             => $is_not_transparent,
 		'is_undisclosed_or_not_accepted' => true,
-		'undisclosed'                     => $undisclosed,
-		'no_domestic'                     => $no_domestic,
-		'no_defense'                      => $no_defense,
-		'no_foreign'                      => $no_foreign,
-		'transparency_score'              => $transparency_score,
-		'think_tank_term'                 => $think_tank_term,
-		'column_count'                    => $column_count,
-		'data_block_label'                => $data_block_label,
-		'donor_types'                     => array(),
+		'undisclosed'                    => $undisclosed,
+		'no_domestic'                    => $no_domestic,
+		'no_defense'                     => $no_defense,
+		'no_foreign'                     => $no_foreign,
+		'transparency_score'             => $transparency_score,
+		'think_tank_term'                => $think_tank_term,
+		'column_count'                   => $column_count,
+		'data_block_label'               => $data_block_label,
+		'donor_types'                    => array(),
 	);
 
 	foreach ( $donor_types as $donor_type ) {

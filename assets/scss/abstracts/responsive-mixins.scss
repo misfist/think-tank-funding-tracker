@@ -1,26 +1,3 @@
-// Example usage:
-
-/*
-.my-element {
-  width: 100%;
-
-  // Apply styles when the screen width is 600px or more.
-  @include responsive-min(600px) {
-    // Your responsive styles for min-width: 600px.
-  }
-
-  // Apply styles when the screen width is up to 600px
-  @include responsive-max(600px) {
-    // Your responsive styles for max-width: 600px.
-  }
-
-  // Apply styles when the screen width is between 600px and 1200px.
-  @include responsive-min(600px) and (max-width: 1200px) {
-    // Your responsive styles for a range of widths.
-  }
-}
-*/
-
 /* Breakpoints */
 $breakpoints: (
   mobile: 480px,
