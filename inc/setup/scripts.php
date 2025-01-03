@@ -43,7 +43,7 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts' );
 function disable_default_styles( $theme_json ) {
 	$data = $theme_json->get_data();
 
-	$data['settings']['color']['palette']['default']   = array();
+	// $data['settings']['color']['palette']['default']   = array();
 	$data['settings']['color']['duotone']['default']   = array();
 	$data['settings']['color']['gradients']['default'] = array();
 
