@@ -48,6 +48,7 @@
 		"useRootPaddingAwareAlignments": true,
 		"appearanceTools": true,
 		"color": {
+			"custom": false,
 			"defaultDuotone": false,
 			"defaultGradients": false,
 			"defaultPalette": false,
@@ -186,15 +187,19 @@
 					"color": "#232323",
 					"name": "Gray 900",
 					"slug": "gray-900"
-				}
-			],
-			"duotone": [
+				},
 				{
-					"colors": ["#111111", "#ffffff"],
-					"name": "Black and white",
-					"slug": "duotone-1"
+					"color": "#ffffff",
+					"name": "White",
+					"slug": "white"
+				},
+				{
+					"color": "#000",
+					"name": "Black",
+					"slug": "black"
 				}
 			],
+			"duotone": [],
 			"gradients": []
 		},
 		"layout": {
