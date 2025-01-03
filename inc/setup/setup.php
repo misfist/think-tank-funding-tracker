@@ -36,6 +36,6 @@ function setup() {
 	// remove_action( 'wp_footer', 'the_block_template_skip_link' );
 
 	// Add WooCommerce support.
-	add_theme_support( 'woocommerce' );
+	// add_theme_support( 'woocommerce' );
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );

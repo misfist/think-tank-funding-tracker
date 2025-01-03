@@ -26,8 +26,6 @@ function scripts(): void {
 		);
 	}
 
-	// wp_dequeue_style( 'wdt-skin-material' );
-
 	// Register styles & scripts.
 	wp_enqueue_style( 'ttft-styles', get_stylesheet_directory_uri() . '/build/css/style.css', array(), $asset_file['version'] );
 	wp_enqueue_script( 'ttft-scripts', get_stylesheet_directory_uri() . '/build/js/index.js', $asset_file['dependencies'], $asset_file['version'], true );
