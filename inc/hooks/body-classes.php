@@ -26,6 +26,13 @@ function body_classes( $classes ): array {
 			$classes[] = 'is-limited';
 		}
 	}
+
+	if ( is_singular() || is_page() ) {
+		global $post;
+		$classes[] = 'post-' . $post->post_name;
+		$classes[] = sprintf( '%s-%s', $post->post_type, $post->post_name );
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', __NAMESPACE__ . '\body_classes' );
