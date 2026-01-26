@@ -4,11 +4,6 @@
  * Slug: ttft/data-table-top-10-domestic
  * Inserter: no
  *
- * %VAR1% = think_tank
- * %VAR2% = donor
- * %VAR3% = donation_year
- * %VAR4% = donor_type
- * %VAR5% = limit
  */
 $type  = 'u-s-government';
 $limit = 10;
