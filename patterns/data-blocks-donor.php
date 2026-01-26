@@ -13,7 +13,7 @@ $sums             = get_single_donor_sums_by_id( $post_id );
 $text             = $settngs['donor_total_text'] ?? __( 'Minimum contributions', 'ttft' );
 $undisclosed_text = $settngs['unknown_amount'] ?? __( 'Unknown Amt §', 'ttft' );
 $total            = $sums['amount_calc'];
-$undisclosed      = $sums['undisclosed'];
+$undisclosed      = $sums['undisclosed'] ?? '';
 ?>
 <!-- wp:group {"metadata":{"name":"Think Tank Total Donations Received"},"className":"total-donations","layout":{"type":"default"}} -->
 <div class="wp-block-group total-donations">
